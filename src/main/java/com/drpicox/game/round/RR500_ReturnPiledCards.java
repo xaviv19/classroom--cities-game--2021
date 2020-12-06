@@ -6,11 +6,11 @@ import com.drpicox.game.scenarios.Scenario;
 import org.springframework.stereotype.Component;
 
 @Component
-public class RR500_DiscardPiledCards implements RoundRule {
+public class RR500_ReturnPiledCards implements RoundRule {
 
     private final CardController cardController;
 
-    public RR500_DiscardPiledCards(CardController cardController) {
+    public RR500_ReturnPiledCards(CardController cardController) {
         this.cardController = cardController;
     }
 
@@ -18,6 +18,6 @@ public class RR500_DiscardPiledCards implements RoundRule {
     public void run(Game game, Scenario scenario) {
         var piledCards = cardController.findByGame(game).atAnyPile();
         for (var card: piledCards)
-            cardController.discardCard(card);
+            cardController.returnCardToHand(card);
     }
 }

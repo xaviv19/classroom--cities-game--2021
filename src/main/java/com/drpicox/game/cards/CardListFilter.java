@@ -71,6 +71,9 @@ public class CardListFilter<T extends ICard> implements Iterable<T> {
     public CardListFilter<T> atAnySquare() {
         return filter(Positions::atAnySquare);
     }
+    public CardListFilter<T> atSquare(Player player, int square) {
+        return this.atSquare(square).ofOwner(player);
+    }
     public CardListFilter<T> atSquare(int square) {
         return filter(c -> Positions.atSquare(c, square));
     }
@@ -93,5 +96,9 @@ public class CardListFilter<T extends ICard> implements Iterable<T> {
         return "{\n- " +
                 cards.stream().map(c -> c.toString()).collect(Collectors.joining("\n- ")) +
                 '}';
+    }
+
+    public T getOne() {
+        return stream().findAny().get();
     }
 }

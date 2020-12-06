@@ -9,9 +9,9 @@ import com.drpicox.game.scenarios.Scenario;
 import org.springframework.stereotype.Component;
 
 @Component
-public class RR300_DefenseFieldsRoundRule extends EachPlayerSquareRoundRule {
+public class RR300_DefenseFields extends EachPlayerSquareRoundRule {
 
-    public RR300_DefenseFieldsRoundRule(PlayerController playerController, CardController cardController) {
+    public RR300_DefenseFields(PlayerController playerController, CardController cardController) {
         super(playerController, cardController);
     }
 

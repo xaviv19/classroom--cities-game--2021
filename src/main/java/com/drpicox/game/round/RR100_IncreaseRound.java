@@ -7,12 +7,12 @@ import com.drpicox.game.scenarios.Scenario;
 import org.springframework.stereotype.Component;
 
 @Component
-public class RR100_IncreaseRoundRule implements RoundRule {
+public class RR100_IncreaseRound implements RoundRule {
 
     private final GameController gameController;
     private final PlayerController playerController;
 
-    public RR100_IncreaseRoundRule(GameController gameController, PlayerController playerController) {
+    public RR100_IncreaseRound(GameController gameController, PlayerController playerController) {
         this.gameController = gameController;
         this.playerController = playerController;
     }

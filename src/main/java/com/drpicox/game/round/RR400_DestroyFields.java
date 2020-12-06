@@ -9,9 +9,9 @@ import com.drpicox.game.scenarios.Scenario;
 import org.springframework.stereotype.Component;
 
 @Component
-public class RR400_DestroyFieldsRoundRule extends EachPlayerSquareRoundRule {
+public class RR400_DestroyFields extends EachPlayerSquareRoundRule {
 
-    public RR400_DestroyFieldsRoundRule(PlayerController playerController, CardController cardController) {
+    public RR400_DestroyFields(PlayerController playerController, CardController cardController) {
         super(playerController, cardController);
     }
 
@@ -22,5 +22,6 @@ public class RR400_DestroyFieldsRoundRule extends EachPlayerSquareRoundRule {
                 cardController.discardCard(field)
             );
         });
+        allCards.atPile(player, square).ofType("knight").forEach(cardController::discardCard);
     }
 }

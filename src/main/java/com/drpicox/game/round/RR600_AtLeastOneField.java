@@ -9,9 +9,9 @@ import com.drpicox.game.scenarios.Scenario;
 import org.springframework.stereotype.Component;
 
 @Component
-public class RR600_AtLeastOneFieldRoundRule extends EachPlayerRoundRule {
+public class RR600_AtLeastOneField extends EachPlayerRoundRule {
 
-    public RR600_AtLeastOneFieldRoundRule(PlayerController playerController, CardController cardController) {
+    public RR600_AtLeastOneField(PlayerController playerController, CardController cardController) {
         super(playerController, cardController);
     }
 

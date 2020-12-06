@@ -9,9 +9,9 @@ import com.drpicox.game.scenarios.Scenario;
 import org.springframework.stereotype.Component;
 
 @Component
-public class RR200_BuyFieldRoundRule extends EachPlayerRoundRule {
+public class RR200_BuyField extends EachPlayerRoundRule {
 
-    public RR200_BuyFieldRoundRule(PlayerController playerController, CardController cardController) {
+    public RR200_BuyField(PlayerController playerController, CardController cardController) {
         super(playerController, cardController);
     }
 
@@ -21,26 +21,34 @@ public class RR200_BuyFieldRoundRule extends EachPlayerRoundRule {
         var fields = ofOwner.atAnySquare().ofType("field");
         var foods = ofOwner.atPile("buy-field").ofType("food");
 
-        var required = computeRequiredFood(fields.count());
-        if (required < 0) return;
-        if (foods.count() < required) return;
-        var freeSquare = findFreeSquare(fields);
+        var availableFood = foods.count();
+        if (availableFood == 0) return;
+
+        var cost = computeNextFieldCost(fields.count());
+        if (availableFood < cost) return;
+
+        var freeSquare = findFreeSquare(fields, scenario);
+        if (freeSquare < 0) return;
+
         cardController.pickCard(player, freeSquare, "field");
+        foods.limit(cost).forEach(cardController::discardCard);
     }
 
-    private int findFreeSquare(CardListFilter fields) {
-        for (var square = 1; square < 5; square++)
+    private int findFreeSquare(CardListFilter fields, Scenario scenario) {
+        var maxSquare = scenario.getInt("squares.count");
+        for (var square = 1; square <= maxSquare; square++)
             if (fields.atSquare(square).isEmpty()) return square;
 
-        return 5;
+        return -1;
     }
 
-    private int computeRequiredFood(int count) {
-        switch (count) {
+    private int computeNextFieldCost(int fieldsCount) {
+        switch (fieldsCount+1) {
             case 2: return 2;
             case 3: return 4;
             case 4: return 6;
-            default: return 9;
+            case 5: return 9;
+            default: return Integer.MAX_VALUE;
         }
     }
 }

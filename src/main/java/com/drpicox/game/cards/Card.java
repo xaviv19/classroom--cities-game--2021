@@ -99,9 +99,9 @@ public class Card implements ICard {
     @Override
     public String toString() {
         return type +"-"+ name +
-                "#" + id +
-                "[" + square + "]" +
+                "#" + id + ";" +
                 owner +
+                "[" + square + "]" +
                 "|p:" + pile + "|";
     }
 }

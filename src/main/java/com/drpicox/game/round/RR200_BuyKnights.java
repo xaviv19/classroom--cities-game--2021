@@ -26,6 +26,9 @@ public class RR200_BuyKnights extends EachPlayerRoundRule {
         count = Math.min(count, 5 - knights.count());
         for (var i = 0; i < count; i++)
             cardController.pickCard(player, Positions.HAND, "knight");
+
+        var cost = count * 2;
+        foods.limit(cost).forEach(cardController::discardCard);
     }
 
 

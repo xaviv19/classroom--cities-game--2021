@@ -9,12 +9,12 @@ import com.drpicox.game.scenarios.Scenario;
 import org.springframework.stereotype.Component;
 
 @Component
-public class RR600_RefillEventCardsRoundRule implements RoundRule {
+public class RR600_RefillEventCards implements RoundRule {
 
     private final CardController cardController;
     private final PlayerController playerController;
 
-    public RR600_RefillEventCardsRoundRule(CardController cardController, PlayerController playerController) {
+    public RR600_RefillEventCards(CardController cardController, PlayerController playerController) {
         this.cardController = cardController;
         this.playerController = playerController;
     }

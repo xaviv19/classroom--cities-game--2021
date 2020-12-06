@@ -52,7 +52,7 @@ the number of knights bought.
  > _Martel_ plays _3_ _food_ cards into the _buy-knight_ pile.  
  > Click _Ready_ in the main header.  
  <!-- SNAPSHOT status=200 --> 
- > _Martel_ has in his hand _1_ _food_ card.  
+ > _Martel_ has in his hand _2_ _food_ card.  
  > _Martel_ has in his hand _4_ _knight_ cards.
 
 And of course, if you spend 1 _food_ card you will get nothing:
@@ -60,7 +60,7 @@ And of course, if you spend 1 _food_ card you will get nothing:
  > _Martel_ plays _1_ _food_ card into the _buy-knight_ pile.  
  > Click _Ready_ in the main header.  
  <!-- SNAPSHOT status=200 --> 
- > _Martel_ has in his hand no _food_ cards.  
+ > _Martel_ has in his hand _2_ _food_ card.  
  > _Martel_ has in his hand _4_ _knight_ cards.
 
 ### Knights limit
@@ -68,29 +68,29 @@ And of course, if you spend 1 _food_ card you will get nothing:
 You have a limit of five knights in hand.
 Let's recover a little bit of food. Play until you hav eplenty of food:
   
- <!-- CHEAT _Martel_ picks _10_ _food_ cards at square _0_ -->  
+ <!-- CHEAT _Martel_ picks _8_ _food_ cards at square _0_ -->  
  <!-- Click _Refresh_ in the main header. -->
  <!-- SNAPSHOT status=200 --> 
  > _Martel_ has in his hand _10_ _food_ cards.   
 
 There is a limit of 5 knights in hand, if you try to buy more
-you get only five and the rest of food is discarded.
+you get only five and the rest of food is returned to the hand.
 
  > _Martel_ plays _4_ _food_ cards into the _buy-knight_ pile.  
  > Click _Ready_ in the main header.  
  <!-- SNAPSHOT status=200 --> 
- > _Martel_ has in his hand _6_ _food_ cards.  
+ > _Martel_ has in his hand _8_ _food_ cards.  
  > _Martel_ has in his hand _5_ _knight_ cards.
 
-And try again, and you only loose food:
+And try again, and nothing happens:
 
  > _Martel_ plays _5_ _food_ cards into the _buy-knight_ pile.  
  > Click _Ready_ in the main header.  
  <!-- SNAPSHOT status=200 --> 
- > _Martel_ has in his hand _1_ _food_ card.  
+ > _Martel_ has in his hand _8_ _food_ card.  
  > _Martel_ has in his hand _5_ _knight_ cards.
 
-### But what are knights for?
+### But, what are knights for?
 
 They are pretty, but what I can do with knights?
 Wait for the next post :D
