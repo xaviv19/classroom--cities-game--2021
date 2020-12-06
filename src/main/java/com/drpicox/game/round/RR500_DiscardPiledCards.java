@@ -2,6 +2,7 @@ package com.drpicox.game.round;
 
 import com.drpicox.game.cards.CardController;
 import com.drpicox.game.games.Game;
+import com.drpicox.game.scenarios.Scenario;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -14,7 +15,7 @@ public class RR500_DiscardPiledCards implements RoundRule {
     }
 
     @Override
-    public void run(Game game) {
+    public void run(Game game, Scenario scenario) {
         var piledCards = cardController.findByGame(game).atAnyPile();
         for (var card: piledCards)
             cardController.discardCard(card);

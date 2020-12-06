@@ -6,6 +6,7 @@ import com.drpicox.game.cards.CardListFilter;
 import com.drpicox.game.games.Game;
 import com.drpicox.game.players.Player;
 import com.drpicox.game.players.PlayerController;
+import com.drpicox.game.scenarios.Scenario;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -20,14 +21,14 @@ public abstract class EachPlayerRoundRule implements RoundRule {
     }
 
     @Override
-    public void run(Game game) {
+    public void run(Game game, Scenario scenario) {
         var allCards = cardController.findByGame(game);
         var players = playerController.findByGame(game);
 
         for (var player: players)
-            runPlayer(player, allCards);
+            runPlayer(player, allCards, scenario);
     }
 
-    protected abstract void runPlayer(Player player, CardListFilter<Card> allCards);
+    protected abstract void runPlayer(Player player, CardListFilter<Card> allCards, Scenario scenario);
 
 }

@@ -1,5 +1,6 @@
 export * from "./enterGame";
 export * from "./GameState";
+export * from "./findSquareCountByPlayer";
 export * from "./getGameName";
 export * from "./getGameRound";
 export * from "./listPlayers";

@@ -1,4 +1,4 @@
-## Practica LS2 2020/21
+## Examen Practica LS2 2020/21
 
 Nom del grup:
 
@@ -13,6 +13,9 @@ Membres del grup:
 Deploy path:
 - url to heroku running
 
+## Checklist
+
+[ ] Prepend your github username to pom.xml > artifacId
 
 ## Setup
 
@@ -43,6 +46,7 @@ Setup Javascript BackEnd:
 ## Develop Run
 
 - Run the com.drpicox.game.Application from intellij
+  - use `-ea -client -Xverify:none -noverify` for faster test run
 - Run `yarn start` from command line
 - Open the browser in `http://localhost:3000`
   (the react opens a proxy with the backend and uses actual services)

@@ -5,6 +5,7 @@ import com.drpicox.game.cards.CardController;
 import com.drpicox.game.cards.CardListFilter;
 import com.drpicox.game.cards.Positions;
 import com.drpicox.game.games.Game;
+import com.drpicox.game.scenarios.Scenario;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -17,7 +18,7 @@ public class RR200_EventProduceFoodRoundRule implements RoundRule {
     }
 
     @Override
-    public void run(Game game) {
+    public void run(Game game, Scenario scenario) {
         var allCards = cardController.findByGame(game);
 
         var playedFoodEvents = allCards.atPile("event");

@@ -5,6 +5,7 @@ import com.drpicox.game.cards.CardController;
 import com.drpicox.game.cards.CardListFilter;
 import com.drpicox.game.players.Player;
 import com.drpicox.game.players.PlayerController;
+import com.drpicox.game.scenarios.Scenario;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -15,7 +16,7 @@ public class RR400_DestroyFieldsRoundRule extends EachPlayerSquareRoundRule {
     }
 
     @Override
-    protected void runPlayerSquare(Player player, int square, CardListFilter<Card> allCards) {
+    protected void runPlayerSquare(Player player, int square, CardListFilter<Card> allCards, Scenario scenario) {
         allCards.ofOwner(player).atSquare(square).stream().findAny().ifPresent(field -> {
             allCards.atPile(player, square).ofType("knight").stream().findAny().ifPresent(x ->
                 cardController.discardCard(field)

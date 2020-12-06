@@ -2,6 +2,7 @@ package com.drpicox.game.forms;
 
 import com.drpicox.game.cards.CardListFilter;
 import com.drpicox.game.games.Game;
+import com.drpicox.game.scenarios.Scenario;
 
 import java.util.*;
 
@@ -9,13 +10,15 @@ public class VisibleGameForm {
 
     private String gameName;
     private String currentPlayerName;
+    private ScenarioForm scenario;
     private int round;
     private Map<String, VisiblePlayerForm> players = new TreeMap<>();
     private List<VisibleCardForm> cards = new LinkedList<>();
 
-    public VisibleGameForm(String currentPlayerName, Game game) {
+    public VisibleGameForm(String currentPlayerName, Game game, Scenario scenario) {
         this.gameName = game.getName();
         this.round = game.getRound();
+        this.scenario = new ScenarioForm(scenario);
         this.currentPlayerName = currentPlayerName;
     }
 
@@ -58,5 +61,9 @@ public class VisibleGameForm {
 
     public Collection<String> getPlayersName() {
         return players.keySet();
+    }
+
+    public ScenarioForm getScenario() {
+        return scenario;
     }
 }

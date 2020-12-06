@@ -7,6 +7,7 @@ import com.drpicox.game.games.Game;
 import com.drpicox.game.games.GameController;
 import com.drpicox.game.players.Player;
 import com.drpicox.game.players.PlayerController;
+import com.drpicox.game.scenarios.ScenarioController;
 import org.springframework.stereotype.Controller;
 
 import java.util.List;
@@ -17,11 +18,13 @@ public class VisibleGameBuilder {
     private final GameController gameController;
     private final PlayerController playerController;
     private final CardController cardController;
+    private final ScenarioController scenarioController;
 
-    public VisibleGameBuilder(GameController gameController, PlayerController playerController, CardController cardController) {
+    public VisibleGameBuilder(GameController gameController, PlayerController playerController, CardController cardController, ScenarioController scenarioController) {
         this.gameController = gameController;
         this.playerController = playerController;
         this.cardController = cardController;
+        this.scenarioController = scenarioController;
     }
 
     public VisibleGameForm build(String gameName, String playerName) {
@@ -30,7 +33,8 @@ public class VisibleGameBuilder {
     }
 
     public VisibleGameForm build(Game game, String playerName) {
-        var result = new VisibleGameForm(playerName, game);
+        var scenario = scenarioController.find(game.getScenarioName()).get();
+        var result = new VisibleGameForm(playerName, game, scenario);
 
         var players = playerController.findByGame(game);
         addPlayers(players, result);

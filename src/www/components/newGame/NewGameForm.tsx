@@ -32,7 +32,7 @@ export function NewGameForm() {
         ref={scenario}
         name="scenario"
         label="Game scenario:"
-        values={["Basic"]}
+        values={["Basic", "Mini"]}
       />
       {players.map((p, idx) => (
         <InputText ref={p} label={`Player ${idx + 1} name:`} key={idx} />

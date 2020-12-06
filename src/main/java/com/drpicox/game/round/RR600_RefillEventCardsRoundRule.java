@@ -5,6 +5,7 @@ import com.drpicox.game.cards.Positions;
 import com.drpicox.game.games.Game;
 import com.drpicox.game.players.Player;
 import com.drpicox.game.players.PlayerController;
+import com.drpicox.game.scenarios.Scenario;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -19,17 +20,18 @@ public class RR600_RefillEventCardsRoundRule implements RoundRule {
     }
 
     @Override
-    public void run(Game game) {
+    public void run(Game game, Scenario scenario) {
         var allCards = cardController.findByGame(game);
         var players = playerController.findByGame(game);
+        var limit = scenario.getInt("limit.hand.event");
 
         for (var player: players)
-            pickEventCards(player, allCards.ofOwner(player).atHand().ofType("event").count());
+            pickEventCards(player, allCards.ofOwner(player).atHand().ofType("event").count(), limit);
 
     }
 
-    private void pickEventCards(Player player, int eventCardsCount) {
-        if (eventCardsCount < 3)
+    private void pickEventCards(Player player, int eventCardsCount, int limit) {
+        if (eventCardsCount < limit)
             cardController.pickCard(player, Positions.HAND, "event");
     }
 }

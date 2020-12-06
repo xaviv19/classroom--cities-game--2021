@@ -4,11 +4,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.springframework</groupId>
-    <artifactId>classroom--card-game</artifactId>
+    <artifactId>classroom--card-game--exam</artifactId>
     <version>1.0.0</version>
 
-    <name>Card Game</name>
-    <description>Ultimate text Card Game engine</description>
+    <name>Card Game Exam</name>
+    <description>Ultimate text Card Game engine Exam</description>
 
     <parent>
         <groupId>org.springframework.boot</groupId>

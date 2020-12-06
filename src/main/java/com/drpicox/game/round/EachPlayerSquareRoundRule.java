@@ -5,6 +5,7 @@ import com.drpicox.game.cards.CardController;
 import com.drpicox.game.cards.CardListFilter;
 import com.drpicox.game.players.Player;
 import com.drpicox.game.players.PlayerController;
+import com.drpicox.game.scenarios.Scenario;
 
 public abstract class EachPlayerSquareRoundRule extends EachPlayerRoundRule {
 
@@ -12,12 +13,12 @@ public abstract class EachPlayerSquareRoundRule extends EachPlayerRoundRule {
         super(playerController, cardController);
     }
 
-    protected void runPlayer(Player player, CardListFilter<Card> allCards) {
+    protected void runPlayer(Player player, CardListFilter<Card> allCards, Scenario scenario) {
         for (var square = 1; square <= 5; square++)
-            runPlayerSquare(player, square, allCards);
+            runPlayerSquare(player, square, allCards, scenario);
     }
 
-    protected abstract void runPlayerSquare(Player player, int square, CardListFilter<Card> allCards);
+    protected abstract void runPlayerSquare(Player player, int square, CardListFilter<Card> allCards, Scenario scenario);
 
 
 }

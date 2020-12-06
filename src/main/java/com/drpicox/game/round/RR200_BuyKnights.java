@@ -6,6 +6,7 @@ import com.drpicox.game.cards.CardListFilter;
 import com.drpicox.game.cards.Positions;
 import com.drpicox.game.players.Player;
 import com.drpicox.game.players.PlayerController;
+import com.drpicox.game.scenarios.Scenario;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -15,7 +16,7 @@ public class RR200_BuyKnights extends EachPlayerRoundRule {
         super(playerController, cardController);
     }
 
-    protected void runPlayer(Player player, CardListFilter<Card> allCards) {
+    protected void runPlayer(Player player, CardListFilter<Card> allCards, Scenario scenario) {
         var ofOwner = allCards.ofOwner(player);
         var foods = ofOwner.atPile("buy-knight").ofType("food");
         var knights = ofOwner.atHand().ofType("knight");

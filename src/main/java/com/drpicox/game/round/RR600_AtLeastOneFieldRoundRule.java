@@ -5,6 +5,7 @@ import com.drpicox.game.cards.CardController;
 import com.drpicox.game.cards.CardListFilter;
 import com.drpicox.game.players.Player;
 import com.drpicox.game.players.PlayerController;
+import com.drpicox.game.scenarios.Scenario;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -14,7 +15,7 @@ public class RR600_AtLeastOneFieldRoundRule extends EachPlayerRoundRule {
         super(playerController, cardController);
     }
 
-    protected void runPlayer(Player player, CardListFilter<Card> allCards) {
+    protected void runPlayer(Player player, CardListFilter<Card> allCards, Scenario scenario) {
         var fields = allCards.ofOwner(player).ofType("field").atAnySquare();
 
         if (fields.isEmpty())

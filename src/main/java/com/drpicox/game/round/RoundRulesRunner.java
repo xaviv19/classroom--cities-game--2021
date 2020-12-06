@@ -1,6 +1,7 @@
 package com.drpicox.game.round;
 
 import com.drpicox.game.games.Game;
+import com.drpicox.game.scenarios.Scenario;
 import org.springframework.stereotype.Component;
 
 import java.util.SortedSet;
@@ -14,7 +15,7 @@ public class RoundRulesRunner {
         this.roundRules = roundRules;
     }
 
-    public void run(Game game) {
-        roundRules.forEach(rr -> rr.run(game));
+    public void run(Game game, Scenario scenario) {
+        roundRules.forEach(rr -> rr.run(game, scenario));
     }
 }

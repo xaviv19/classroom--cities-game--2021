@@ -8,11 +8,13 @@ public class Game {
 
     @Id
     private String name;
+    private String scenarioName;
 
     private int round;
 
-    public Game(String gameName) {
+    public Game(String gameName, String scenarioName) {
         this.name = gameName;
+        this.scenarioName = scenarioName;
         this.round = 1;
     }
 
@@ -29,5 +31,9 @@ public class Game {
 
     public void increaseRoundNumber() {
         round++;
+    }
+
+    public String getScenarioName() {
+        return scenarioName;
     }
 }

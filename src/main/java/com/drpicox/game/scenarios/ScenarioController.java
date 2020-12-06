@@ -6,13 +6,17 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
-import java.util.Optional;
-import java.util.Properties;
+import java.util.*;
 
 @Service
 public class ScenarioController {
 
+    private Map<String,Scenario> cache = new HashMap<>();
+
     public Optional<Scenario> find(String name) {
+        if (cache.containsKey(name))
+            return Optional.of(cache.get(name));
+
         var props = new Properties();
         var fileName = name.toLowerCase().replaceAll("[^\\w\\d]+", "-") + ".properties";
         var path = getScenariosPath();
@@ -24,7 +28,8 @@ public class ScenarioController {
             throw new Error("Error while loading scenario '"+name+"'", e);
         }
 
-        var result = new Scenario(props);
+        var result = new Scenario(name, props);
+        cache.put(name, result);
 
         return Optional.of(result);
     }

@@ -29,16 +29,17 @@ public class NewGameBuilder {
 
     public void replace(NewGameForm newGameForm) {
         var gameName = newGameForm.getGameName();
-        var scenario = scenarioController.find(newGameForm.getScenario()).get();
+        String scenarioName = newGameForm.getScenario();
+        var scenario = scenarioController.find(scenarioName).get();
 
-        var game = replaceGame(gameName);
+        var game = replaceGame(gameName, scenarioName);
         var players = replaceGamePlayers(game, newGameForm);
         replaceGameCards(game, scenario);
         pickGamePlayersCards(scenario, players);
     }
 
-    private Game replaceGame(String gameName) {
-        return gameController.replace(gameName);
+    private Game replaceGame(String gameName, String scenarioName) {
+        return gameController.replace(gameName, scenarioName);
     }
 
     private List<Player> replaceGamePlayers(Game game, NewGameForm newGameForm) {
