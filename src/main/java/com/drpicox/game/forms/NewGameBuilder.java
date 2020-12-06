@@ -27,48 +27,47 @@ public class NewGameBuilder {
         this.scenarioController = scenarioController;
     }
 
-    public void replace(NewGameForm newGameForm) {
+    public void create(NewGameForm newGameForm) {
         var gameName = newGameForm.getGameName();
         String scenarioName = newGameForm.getScenario();
         var scenario = scenarioController.find(scenarioName).get();
 
-        var game = replaceGame(gameName, scenarioName);
-        var players = replaceGamePlayers(game, newGameForm);
-        replaceGameCards(game, scenario);
-        pickGamePlayersCards(scenario, players);
+        var game = createGame(gameName, scenarioName);
+        var players = createGamePlayers(game, newGameForm);
+        createGameCards(game, scenario);
+        pickCardsForEachPlayer(scenario, players);
     }
 
-    private Game replaceGame(String gameName, String scenarioName) {
-        return gameController.replace(gameName, scenarioName);
+    private Game createGame(String gameName, String scenarioName) {
+        return gameController.create(gameName, scenarioName);
     }
 
-    private List<Player> replaceGamePlayers(Game game, NewGameForm newGameForm) {
+    private List<Player> createGamePlayers(Game game, NewGameForm newGameForm) {
         return newGameForm.getPlayers().stream()
                 .map(p -> playerController.create(game, p.getName()))
                 .collect(Collectors.toList());
     }
 
-    private void replaceGameCards(Game game, Scenario scenario) {
+    private void createGameCards(Game game, Scenario scenario) {
         scenario.forEach("cards.", (key, countAsString) -> {
             var parts = key.split("\\.");
-            var type = parts[1];
-            var name = parts[2];
+            var cardType = parts[1];
+            var cardName = parts[2];
             var count = Integer.parseInt(countAsString);
 
-            cardController.createCards(game, type, name, count);
+            cardController.createCards(game, cardType, cardName, count);
         });
     }
 
-    private void pickGamePlayersCards(Scenario scenario, List<Player> players) {
+    private void pickCardsForEachPlayer(Scenario scenario, List<Player> players) {
         players.forEach(p -> pickPlayerCards(p, scenario));
     }
 
     public void pickPlayerCards(Player player, Scenario scenario) {
-        scenario.forEach("picks.", (key, scount) -> {
+        scenario.forEachInteger("picks.", (key, count) -> {
             var parts = key.split("\\.");
             var position = Integer.parseInt(parts[1]);
             var type = parts[2];
-            var count = Integer.parseInt(scount);
 
             cardController.pickCards(player, position, type, count);
         });

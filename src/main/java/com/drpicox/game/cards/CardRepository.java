@@ -10,6 +10,4 @@ interface CardRepository extends JpaRepository<Card, Long> {
 
     // see https://docs.spring.io/spring-data/jpa/docs/1.5.0.RELEASE/reference/html/jpa.repositories.html
     List<Card> findByGame(Game game);
-    List<Card> findByOwnerAndType(Player owner, String type);
-    List<Card> findByOwnerAndSquareNotAndPileNot(Player owner, int square, String pile);
 }

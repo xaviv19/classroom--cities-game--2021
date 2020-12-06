@@ -15,7 +15,7 @@ public class GameController {
         this.gameRepository = gameRepository;
     }
 
-    public Game replace(String gameName, String scenarioName) {
+    public Game create(String gameName, String scenarioName) {
         var game = new Game(gameName, scenarioName);
         gameRepository.save(game);
         return game;

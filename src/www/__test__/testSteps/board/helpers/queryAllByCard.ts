@@ -1,8 +1,27 @@
-import { queryAllByTestId } from "@testing-library/dom";
+import { queryAllByTestId, buildQueries } from "@testing-library/dom";
 
-export function queryAllByCard(
-  container: HTMLElement,
-  type: string
-): HTMLElement[] {
+function queryAllByCard(container: HTMLElement, type: string): HTMLElement[] {
   return queryAllByTestId(container, `card-${type}`);
 }
+
+const getMultipleError = (container: HTMLElement, type: string) =>
+  `Found multiple cards of type "${type}"`;
+const getMissingError = (container: HTMLElement, type: string) =>
+  `Unable to find any card of type "${type}"`;
+
+const [
+  queryByCard,
+  getAllByCard,
+  getByCard,
+  findAllByCard,
+  findByCard,
+] = buildQueries(queryAllByCard, getMultipleError, getMissingError);
+
+export {
+  queryByCard,
+  queryAllByCard,
+  getByCard,
+  getAllByCard,
+  findAllByCard,
+  findByCard,
+};

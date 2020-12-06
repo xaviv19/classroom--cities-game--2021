@@ -37,7 +37,7 @@ public class CardController {
     }
 
     public Card pickCard(Player player, int square, String type) {
-        var cards = cardRepository.findByOwnerAndType(null, type);
+        var cards = findByGame(player.getGame()).withoutOwner().ofType(type).toList();
         var card = randomCardPicker.pickOne(cards);
         card.onPick(player, square);
         cardRepository.save(card);

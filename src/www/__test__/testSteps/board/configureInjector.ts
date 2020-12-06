@@ -7,6 +7,7 @@ import { HasInHisHandACardOf } from "./HasInHisHandACardOf";
 import { HasInHisHandCards } from "./HasInHisHandCards";
 import { HasInHisHandCardsOf } from "./HasInHisHandCardsOf";
 import { HasInHisHandNoCards } from "./HasInHisHandNoCards";
+import { HasInHisHandNoCardsOf } from "./HasInHisHandNoCardsOf";
 import { HasNoSquare } from "./HasNoSquare";
 import { HasSquare } from "./HasSquare";
 import { TheCurrentPlayerIs } from "./TheCurrentPlayerIs";
@@ -20,6 +21,7 @@ export default function configureTestStepsBoardInjector(injector: Injector) {
   injector.register(PostLineStep, HasInHisHandCards);
   injector.register(PostLineStep, HasInHisHandCardsOf);
   injector.register(PostLineStep, HasInHisHandNoCards);
+  injector.register(PostLineStep, HasInHisHandNoCardsOf);
   injector.register(PostLineStep, HasNoSquare);
   injector.register(PostLineStep, HasSquare);
   injector.register(PostLineStep, TheCurrentPlayerIs);

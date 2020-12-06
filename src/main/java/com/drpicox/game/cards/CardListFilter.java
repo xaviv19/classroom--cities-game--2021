@@ -58,6 +58,9 @@ public class CardListFilter<T extends ICard> implements Iterable<T> {
     public CardListFilter<T> ofOwner(String ownerName) {
         return filter(c -> c.getOwnerName().equals(ownerName));
     }
+    public CardListFilter<T> withoutOwner() {
+        return ofOwner("");
+    }
     public CardListFilter<T> ofOtherOwnerThan(Player owner) {
         return ofOtherOwnerThan(owner.getName());
     }
@@ -100,5 +103,10 @@ public class CardListFilter<T extends ICard> implements Iterable<T> {
 
     public T getOne() {
         return stream().findAny().get();
+    }
+
+
+    public List<T> toList() {
+        return stream().collect(Collectors.toList());
     }
 }

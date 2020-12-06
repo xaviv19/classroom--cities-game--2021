@@ -12,6 +12,8 @@ import java.util.Objects;
 public class Player {
 
     @Id
+    private String id;
+
     private String name;
 
     private int readyRound;
@@ -20,12 +22,17 @@ public class Player {
     private Game game;
 
     public Player(Game game, String name) {
+        this.id = game.getName() + '#' + name;
         this.game = game;
         this.name = name;
     }
 
     // JPA required
     protected Player() {}
+
+    public Game getGame() {
+        return game;
+    }
 
     public String getName() {
         return name;
