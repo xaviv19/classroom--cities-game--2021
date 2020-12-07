@@ -74,6 +74,9 @@ public class CardListFilter<T extends ICard> implements Iterable<T> {
     public CardListFilter<T> atAnySquare() {
         return filter(Positions::atAnySquare);
     }
+    public CardListFilter<T> atSquare(String player, int square) {
+        return this.atSquare(square).ofOwner(player);
+    }
     public CardListFilter<T> atSquare(Player player, int square) {
         return this.atSquare(square).ofOwner(player);
     }

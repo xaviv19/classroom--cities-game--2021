@@ -16,7 +16,7 @@ public class RR400_DestroyFields extends EachPlayerSquareRoundRule {
     }
 
     @Override
-    protected void runPlayerSquare(Player player, int square, CardListFilter<Card> allCards, Scenario scenario) {
+    protected void runPlayerSquare(Player player, int square, CardListFilter<Card> allCards) {
         allCards.ofOwner(player).atSquare(square).stream().findAny().ifPresent(field -> {
             allCards.atPile(player, square).ofType("knight").stream().findAny().ifPresent(x ->
                 cardController.discardCard(field)

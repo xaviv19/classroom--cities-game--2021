@@ -21,14 +21,14 @@ public abstract class EachPlayerRoundRule implements RoundRule {
     }
 
     @Override
-    public void run(Game game, Scenario scenario) {
+    public void run(Game game) {
         var allCards = cardController.findByGame(game);
         var players = playerController.findByGame(game);
 
         for (var player: players)
-            runPlayer(player, allCards, scenario);
+            runPlayer(player, allCards);
     }
 
-    protected abstract void runPlayer(Player player, CardListFilter<Card> allCards, Scenario scenario);
+    protected abstract void runPlayer(Player player, CardListFilter<Card> allCards);
 
 }

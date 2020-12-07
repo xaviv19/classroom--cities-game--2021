@@ -16,7 +16,7 @@ public class RR100_PlaceThePlague extends EachPlayerSquareRoundRule {
     }
 
     @Override
-    protected void runPlayerSquare(Player player, int square, CardListFilter<Card> allCards, Scenario scenario) {
+    protected void runPlayerSquare(Player player, int square, CardListFilter<Card> allCards) {
         var plagues = allCards.atPile(player, square).ofType("event").ofName("plague");
         if (plagues.isEmpty()) return;
 

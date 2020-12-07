@@ -1,20 +1,25 @@
 package com.drpicox.game.games;
 
+import com.drpicox.game.scenarios.Scenario;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Game {
 
     @Id
     private String name;
-    private String scenarioName;
 
     private int round;
 
-    public Game(String gameName, String scenarioName) {
+    @ManyToOne
+    private Scenario scenario;
+
+    public Game(String gameName, Scenario scenario) {
         this.name = gameName;
-        this.scenarioName = scenarioName;
+        this.scenario = scenario;
         this.round = 1;
     }
 
@@ -33,7 +38,7 @@ public class Game {
         round++;
     }
 
-    public String getScenarioName() {
-        return scenarioName;
+    public Scenario getScenario() {
+        return scenario;
     }
 }

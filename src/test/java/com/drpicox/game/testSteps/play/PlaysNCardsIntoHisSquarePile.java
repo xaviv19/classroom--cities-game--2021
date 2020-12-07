@@ -32,7 +32,7 @@ public class PlaysNCardsIntoHisSquarePile extends AbstractPostLineStep {
         var response = testPostForms.getForm(VisibleGameForm.class);
 
         var cards = response.getCards().ofOwner(player).atHand().ofType(type).limit(count);
-        cards.forEach(c -> c.play(target, square));
+        cards.forEach(c -> response.play(c, target, square));
         assertThat(cards).hasSize(count);
     }
 }

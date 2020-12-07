@@ -17,7 +17,8 @@ public class RR500_DiscardExtraHandCards extends EachPlayerRoundRule {
     }
 
     @Override
-    protected void runPlayer(Player player, CardListFilter<Card> allCards, Scenario scenario) {
+    protected void runPlayer(Player player, CardListFilter<Card> allCards) {
+        var scenario = player.getGame().getScenario();
         scenario.forEachInteger("limit.hand.", (key, limit) -> {
             var type = key.split("\\.")[2];
             discardExtraCards(allCards.atHand().ofOwner(player).ofType(type), limit);

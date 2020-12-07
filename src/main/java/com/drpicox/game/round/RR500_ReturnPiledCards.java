@@ -15,7 +15,7 @@ public class RR500_ReturnPiledCards implements RoundRule {
     }
 
     @Override
-    public void run(Game game, Scenario scenario) {
+    public void run(Game game) {
         var piledCards = cardController.findByGame(game).atAnyPile();
         for (var card: piledCards)
             cardController.returnCardToHand(card);

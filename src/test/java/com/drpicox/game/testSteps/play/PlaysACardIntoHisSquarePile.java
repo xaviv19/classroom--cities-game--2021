@@ -31,6 +31,6 @@ public class PlaysACardIntoHisSquarePile extends AbstractPostLineStep {
         var card = response.getCards()
                 .ofOwner(owner).atHand().ofType(type).stream().findAny().get();
 
-        card.play(target, square);
+        response.play(card, target, square);
     }
 }

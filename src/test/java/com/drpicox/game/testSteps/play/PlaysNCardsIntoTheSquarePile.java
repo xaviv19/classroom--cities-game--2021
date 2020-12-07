@@ -19,6 +19,7 @@ public class PlaysNCardsIntoTheSquarePile extends AbstractPostLineStep {
 
     @Override
     protected String getRegex() {
+        //      1 player        2 count   3 type                4 target         5 square
         return "_([^_]+)_ plays _([^_]+)_ _([^_]+)_ cards? into _([^_]+)_ square _([^_]+)_ pile";
     }
 
@@ -32,7 +33,7 @@ public class PlaysNCardsIntoTheSquarePile extends AbstractPostLineStep {
         var response = testPostForms.getForm(VisibleGameForm.class);
 
         var cards = response.getCards().ofOwner(player).atHand().ofType(type).limit(count);
-        cards.forEach(c -> c.play(target, square));
+        cards.forEach(c -> response.play(c, target, square));
         assertThat(cards).hasSize(count);
     }
 }

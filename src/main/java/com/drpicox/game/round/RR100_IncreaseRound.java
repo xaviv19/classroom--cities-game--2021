@@ -18,7 +18,7 @@ public class RR100_IncreaseRound implements RoundRule {
     }
 
     @Override
-    public void run(Game game, Scenario scenario) {
+    public void run(Game game) {
         gameController.increaseRoundNumber(game);
     }
 }

@@ -20,7 +20,8 @@ public class RR600_RefillEventCards implements RoundRule {
     }
 
     @Override
-    public void run(Game game, Scenario scenario) {
+    public void run(Game game) {
+        var scenario = game.getScenario();
         var allCards = cardController.findByGame(game);
         var players = playerController.findByGame(game);
         var limit = scenario.getInt("limit.hand.event");

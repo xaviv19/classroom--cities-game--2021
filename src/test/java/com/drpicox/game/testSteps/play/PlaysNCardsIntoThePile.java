@@ -31,7 +31,7 @@ public class PlaysNCardsIntoThePile extends AbstractPostLineStep {
         var response = testPostForms.getForm(VisibleGameForm.class);
 
         var cards = response.getCards().ofOwner(player).atHand().ofType(type).limit(count);
-        cards.forEach(c -> c.play(pile));
+        cards.forEach(c -> response.play(c, pile));
         assertThat(cards).hasSize(count);
     }
 }

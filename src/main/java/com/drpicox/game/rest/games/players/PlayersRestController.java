@@ -37,12 +37,11 @@ public class PlayersRestController {
     @PutMapping("/{playerName}/ready")
     public VisibleGameForm ready(@PathVariable String gameName, @PathVariable String playerName, @RequestBody Optional<PlayGameForm> playGameForm) {
         var game = gameController.find(gameName).get();
-        var scenario = scenarioController.find(game.getScenarioName()).get();
 
         playGameForm.ifPresent(f -> playGameBuilder.replace(game, playerName, f));
         playerController.ready(game, playerName);
         if (playerController.areAllPlayersReady(game)) {
-            roundRulesRunner.run(game, scenario);
+            roundRulesRunner.run(game);
         }
 
         return responseBuilder.build(game, playerName);

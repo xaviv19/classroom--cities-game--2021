@@ -5,7 +5,7 @@ import com.drpicox.game.scenarios.Scenario;
 
 public interface RoundRule extends Comparable<RoundRule> {
 
-    void run(Game game, Scenario scenario);
+    void run(Game game);
 
     @Override
     default int compareTo(RoundRule o) {

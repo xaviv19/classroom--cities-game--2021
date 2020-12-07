@@ -33,8 +33,7 @@ public class VisibleGameBuilder {
     }
 
     public VisibleGameForm build(Game game, String playerName) {
-        var scenario = scenarioController.find(game.getScenarioName()).get();
-        var result = new VisibleGameForm(playerName, game, scenario);
+        var result = new VisibleGameForm(playerName, game);
 
         var players = playerController.findByGame(game);
         addPlayers(players, result);

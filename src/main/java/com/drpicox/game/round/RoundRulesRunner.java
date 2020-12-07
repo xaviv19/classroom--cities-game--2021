@@ -15,7 +15,7 @@ public class RoundRulesRunner {
         this.roundRules = roundRules;
     }
 
-    public void run(Game game, Scenario scenario) {
-        roundRules.forEach(rr -> rr.run(game, scenario));
+    public void run(Game game) {
+        roundRules.forEach(rr -> rr.run(game));
     }
 }

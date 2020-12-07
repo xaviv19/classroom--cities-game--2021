@@ -51,12 +51,29 @@ public class VisibleCardForm implements Comparable<VisibleCardForm>, ICard {
         return name.compareTo(o.name);
     }
 
-    public void play(String pile) {
+    public void play(ScenarioForm scenario, String pile) {
+        if (!pileAcceptsThisCard(scenario, pile)) return;
         this.pile = pile;
     }
 
-    public void play(String target, int square) {
-        play(target + "-square-" + square);
+    private boolean pileAcceptsThisCard(ScenarioForm scenario, String pile) {
+        var key = "pile." + pile + ".accepts";
+        var accepts = scenario.getStringSet(key);
+        var isAccepted = accepts.contains(type) || accepts.contains(type + "-" + name);
+        return isAccepted;
+    }
+
+    public void play(ScenarioForm scenario, String target, int square) {
+        if (!squarePileAcceptsThisCard(scenario, target)) return;
+        this.pile = target + "-square-" + square;
+    }
+
+    private boolean squarePileAcceptsThisCard(ScenarioForm scenario, String target) {
+        var ownOrFoe = target.equals(ownerName) ? "own" : "foe";
+        var key = "pile.square." + ownOrFoe + ".accepts";
+        var accepts = scenario.getStringSet(key);
+        var isAccept = accepts.contains(type) || accepts.contains(type + "-" + name);
+        return isAccept;
     }
 
     @Override

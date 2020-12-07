@@ -16,7 +16,7 @@ public class RR100_PlaceSquareCards extends EachPlayerSquareRoundRule {
     }
 
     @Override
-    protected void runPlayerSquare(Player player, int square, CardListFilter<Card> allCards, Scenario scenario) {
+    protected void runPlayerSquare(Player player, int square, CardListFilter<Card> allCards) {
         allCards.ofOwner(player).atPile(player, square).forEach(card -> {
             cardController.moveCardToSquare(card, square);
         });

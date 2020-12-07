@@ -2,9 +2,9 @@ import userEvent from "@testing-library/user-event";
 import { AbstractPostLineStep } from "../AbstractPostLineStep";
 import { getAllByCardOf, getByHand } from "../board/helpers";
 
-export class PicksACardOfAtHisHand extends AbstractPostLineStep {
+export class PicksACardOf extends AbstractPostLineStep {
   constructor() {
-    super(/_([^_]+)_ picks an? _([^_]+)_ card of _([^_]+)_ at h[ei][rs] hand/i);
+    super(/_([^_]+)_ picks an? _([^_]+)_ card of _([^_]+)_/i);
   }
 
   async runMatch(_: any, match: string[]) {

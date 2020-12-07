@@ -16,7 +16,7 @@ public class RR200_BuyKnights extends EachPlayerRoundRule {
         super(playerController, cardController);
     }
 
-    protected void runPlayer(Player player, CardListFilter<Card> allCards, Scenario scenario) {
+    protected void runPlayer(Player player, CardListFilter<Card> allCards) {
         var ofOwner = allCards.ofOwner(player);
         var foods = ofOwner.atPile("buy-knight").ofType("food");
         var knights = ofOwner.atHand().ofType("knight");

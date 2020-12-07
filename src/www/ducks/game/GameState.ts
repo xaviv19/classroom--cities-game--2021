@@ -8,5 +8,9 @@ export interface GameState {
     currentPlayerName: string;
     round: number;
     players: { [name: string]: PlayerState };
+    scenario: {
+      name: string;
+      values: { [key: string]: string };
+    };
   };
 }

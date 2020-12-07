@@ -15,7 +15,7 @@ public class RR600_AtLeastOneField extends EachPlayerRoundRule {
         super(playerController, cardController);
     }
 
-    protected void runPlayer(Player player, CardListFilter<Card> allCards, Scenario scenario) {
+    protected void runPlayer(Player player, CardListFilter<Card> allCards) {
         var fields = allCards.ofOwner(player).ofType("field").atAnySquare();
 
         if (fields.isEmpty())

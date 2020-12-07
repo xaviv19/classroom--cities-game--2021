@@ -16,13 +16,13 @@ public class RR300_DefenseFields extends EachPlayerSquareRoundRule {
     }
 
     @Override
-    protected void runPlayerSquare(Player player, int square, CardListFilter<Card> allCards, Scenario scenario) {
+    protected void runPlayerSquare(Player player, int square, CardListFilter<Card> allCards) {
         var defenses = allCards.ofOwner(player).atSquare(square).ofType("knight");
         var attackers = allCards.ofOtherOwnerThan(player).atPile(player, square).ofType("knight");
 
         var killedDefenses = Math.floorDiv(attackers.count(), 2);
-        var killetdAttackers = defenses.count() * 2;
+        var killedAttackers = defenses.count() * 2;
         defenses.limit(killedDefenses).forEach(cardController::discardCard);
-        attackers.limit(killetdAttackers).forEach(cardController::discardCard);
+        attackers.limit(killedAttackers).forEach(cardController::discardCard);
     }
 }

@@ -31,7 +31,8 @@ public class PlaysACardOfIntoThePile extends AbstractPostLineStep {
         var response = testPostForms.getForm(VisibleGameForm.class);
 
         var card = response.getCards()
-                .ofOwner(player).atHand().ofType(type).ofName(name).stream().findAny().get();
-        card.play(pile);
+                .ofOwner(player).atHand().ofType(type).ofName(name).getOne();
+
+        response.play(card, pile);
     }
 }

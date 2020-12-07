@@ -1,42 +1,77 @@
 package com.drpicox.game.scenarios;
 
-import java.util.Properties;
-import java.util.SortedMap;
-import java.util.TreeMap;
+import javax.persistence.*;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.net.URL;
+import java.util.*;
 import java.util.function.BiConsumer;
+import java.util.stream.Collectors;
 
+@Entity
 public class Scenario {
+    @Id
     private String name;
-    private SortedMap<String,String> values = new TreeMap<>();
 
-    public Scenario(String name, Properties props) {
+    @Transient
+    private TreeMap<String,String> values = null;
+
+    public Scenario(String name) {
         this.name = name;
-        props.forEach((key, value) -> values.put(""+key, ""+value));
     }
+
+    // JPA Constructor
+    protected Scenario(){}
+
 
     public String getName() {
         return name;
     }
 
     public SortedMap<String, String> getValues() {
+        if (values == null) loadValues();
+
         return values;
     }
 
     public void forEach(String prefix, BiConsumer<String, String> action) {
-        values.forEach((key, value) -> {
+        getValues().forEach((key, value) -> {
             if (!key.startsWith(prefix)) return;
             action.accept(key, value);
         });
     }
 
     public void forEachInteger(String prefix, BiConsumer<String, Integer> action) {
-        values.forEach((key, value) -> {
+        getValues().forEach((key, value) -> {
             if (!key.startsWith(prefix)) return;
             action.accept(key, Integer.parseInt(value));
         });
     }
 
     public int getInt(String key) {
-        return Integer.parseInt(values.get(key));
+        return Integer.parseInt(getValues().get(key));
+    }
+
+    private void loadValues() {
+        var fileName = name.toLowerCase().replaceAll("[^\\w\\d]+", "-") + ".properties";
+        var path = getScenariosPath();
+        var file = new File(path, fileName);
+        try {
+            var reader = new FileReader(file);
+            var props = new Properties();
+            props.load(reader);
+
+            values = new TreeMap<>();
+            props.forEach((key, value) -> values.put(""+key, ""+value));
+        } catch (IOException e) {
+            throw new Error("Error while loading scenario '"+name+"'", e);
+        }
+    }
+
+    private String getScenariosPath() {
+        ClassLoader loader = Thread.currentThread().getContextClassLoader();
+        URL url = loader.getResource("scenarios");
+        return url.getPath().replaceAll("%20", " ");
     }
 }

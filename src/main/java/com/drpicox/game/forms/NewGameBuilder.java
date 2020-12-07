@@ -32,14 +32,14 @@ public class NewGameBuilder {
         String scenarioName = newGameForm.getScenario();
         var scenario = scenarioController.find(scenarioName).get();
 
-        var game = createGame(gameName, scenarioName);
+        var game = createGame(gameName, scenario);
         var players = createGamePlayers(game, newGameForm);
         createGameCards(game, scenario);
         pickCardsForEachPlayer(scenario, players);
     }
 
-    private Game createGame(String gameName, String scenarioName) {
-        return gameController.create(gameName, scenarioName);
+    private Game createGame(String gameName, Scenario scenario) {
+        return gameController.create(gameName, scenario);
     }
 
     private List<Player> createGamePlayers(Game game, NewGameForm newGameForm) {

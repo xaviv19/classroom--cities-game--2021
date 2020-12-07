@@ -30,6 +30,6 @@ public class PlaysACardIntoThePile extends AbstractPostLineStep {
 
         var card = response.getCards()
                 .ofOwner(player).atHand().ofType(type).getOne();
-        card.play(pile);
+        response.play(card, pile);
     }
 }

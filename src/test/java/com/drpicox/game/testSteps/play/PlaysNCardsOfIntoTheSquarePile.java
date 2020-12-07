@@ -35,7 +35,7 @@ public class PlaysNCardsOfIntoTheSquarePile extends AbstractPostLineStep {
 
         var cards = response.getCards()
                 .ofOwner(player).atHand().ofType(type).ofName(name).limit(count);
-        cards.forEach(c -> c.play(target, square));
+        cards.forEach(c -> response.play(c, target, square));
         assertThat(cards).hasSize(count);
     }
 }

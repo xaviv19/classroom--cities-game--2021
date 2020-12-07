@@ -16,7 +16,7 @@ public class RR300_PlagueMasacre extends EachPlayerSquareRoundRule {
     }
 
     @Override
-    protected void runPlayerSquare(Player player, int square, CardListFilter<Card> allCards, Scenario scenario) {
+    protected void runPlayerSquare(Player player, int square, CardListFilter<Card> allCards) {
         var squareCards =  allCards.ofOwner(player).atSquare(square);
         var plagues = squareCards.ofType("event").ofName("plague");
         if (plagues.isEmpty()) return;

@@ -33,7 +33,7 @@ public class PlaysNCardsOfIntoThePile extends AbstractPostLineStep {
 
         var cards = response.getCards()
                 .ofOwner(player).atHand().ofType(type).ofName(name).limit(count);
-        cards.forEach(c -> c.play(pile));
+        cards.forEach(c -> response.play(c, pile));
         assertThat(cards).hasSize(count);
     }
 }

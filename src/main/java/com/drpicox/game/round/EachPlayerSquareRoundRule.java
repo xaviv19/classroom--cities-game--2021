@@ -13,12 +13,12 @@ public abstract class EachPlayerSquareRoundRule extends EachPlayerRoundRule {
         super(playerController, cardController);
     }
 
-    protected void runPlayer(Player player, CardListFilter<Card> allCards, Scenario scenario) {
+    protected void runPlayer(Player player, CardListFilter<Card> allCards) {
         for (var square = 1; square <= 5; square++)
-            runPlayerSquare(player, square, allCards, scenario);
+            runPlayerSquare(player, square, allCards);
     }
 
-    protected abstract void runPlayerSquare(Player player, int square, CardListFilter<Card> allCards, Scenario scenario);
+    protected abstract void runPlayerSquare(Player player, int square, CardListFilter<Card> allCards);
 
 
 }

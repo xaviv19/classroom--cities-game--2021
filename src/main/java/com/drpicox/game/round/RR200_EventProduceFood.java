@@ -18,7 +18,7 @@ public class RR200_EventProduceFood extends EachPlayerSquareRoundRule {
     }
 
     @Override
-    protected void runPlayerSquare(Player player, int square, CardListFilter<Card> allCards, Scenario scenario) {
+    protected void runPlayerSquare(Player player, int square, CardListFilter<Card> allCards) {
         var fields = allCards.atSquare(player, square).ofType("field");
         if (fields.isEmpty()) return;
 

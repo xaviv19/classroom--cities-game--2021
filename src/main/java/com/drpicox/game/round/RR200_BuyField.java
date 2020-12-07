@@ -16,7 +16,8 @@ public class RR200_BuyField extends EachPlayerRoundRule {
     }
 
     @Override
-    protected void runPlayer(Player player, CardListFilter<Card> allCards, Scenario scenario) {
+    protected void runPlayer(Player player, CardListFilter<Card> allCards) {
+        var scenario = player.getGame().getScenario();
         var ofOwner = allCards.ofOwner(player);
         var fields = ofOwner.atAnySquare().ofType("field");
         var foods = ofOwner.atPile("buy-field").ofType("food");

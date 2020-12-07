@@ -20,7 +20,7 @@ public class RR250_DiscardEventPile implements RoundRule {
     }
 
     @Override
-    public void run(Game game, Scenario scenario) {
+    public void run(Game game) {
         cardController.findByGame(game).atPile("event").forEach(cardController::discardCard);
     }
 }

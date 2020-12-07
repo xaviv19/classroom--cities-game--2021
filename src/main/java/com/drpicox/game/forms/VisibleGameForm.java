@@ -15,10 +15,10 @@ public class VisibleGameForm {
     private Map<String, VisiblePlayerForm> players = new TreeMap<>();
     private List<VisibleCardForm> cards = new LinkedList<>();
 
-    public VisibleGameForm(String currentPlayerName, Game game, Scenario scenario) {
+    public VisibleGameForm(String currentPlayerName, Game game) {
         this.gameName = game.getName();
         this.round = game.getRound();
-        this.scenario = new ScenarioForm(scenario);
+        this.scenario = new ScenarioForm(game.getScenario());
         this.currentPlayerName = currentPlayerName;
     }
 
@@ -65,5 +65,13 @@ public class VisibleGameForm {
 
     public ScenarioForm getScenario() {
         return scenario;
+    }
+
+    public void play(VisibleCardForm card, String target, int square) {
+        card.play(scenario, target, square);
+    }
+
+    public void play(VisibleCardForm card, String pile) {
+        card.play(scenario, pile);
     }
 }
