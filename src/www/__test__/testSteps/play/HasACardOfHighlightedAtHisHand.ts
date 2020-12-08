@@ -1,6 +1,6 @@
 import { AbstractPostLineStep } from "../AbstractPostLineStep";
 import { getByHand } from "../board/helpers";
-import { getByHighlighted } from "./helpers";
+import { getByCardHighlighted } from "./helpers";
 
 export class HasACardOfHighlightedAtHisHand extends AbstractPostLineStep {
   constructor() {
@@ -13,7 +13,7 @@ export class HasACardOfHighlightedAtHisHand extends AbstractPostLineStep {
     const [, player, type, name] = match;
     const hand = getByHand(document.body, player);
 
-    const highlighted = getByHighlighted(hand);
+    const highlighted = getByCardHighlighted(hand);
 
     expect(highlighted).toBeInTheDocument();
     expect(highlighted).toHaveAttribute("data-testid", `card-${type}`);

@@ -1,6 +1,6 @@
 import { AbstractPostLineStep } from "../AbstractPostLineStep";
 import { getByHand } from "../board/helpers";
-import { queryByHighlighted } from "./helpers";
+import { queryByCardHighlighted } from "./helpers";
 
 export class HasNoCardOfHighlightedAtHisHand extends AbstractPostLineStep {
   constructor() {
@@ -13,7 +13,7 @@ export class HasNoCardOfHighlightedAtHisHand extends AbstractPostLineStep {
     const [, player, type, name] = match;
     const hand = getByHand(document.body, player);
 
-    const highlighted = queryByHighlighted(hand);
+    const highlighted = queryByCardHighlighted(hand);
     if (!highlighted) return;
 
     expect(highlighted.dataset).not.toMatchObject({

@@ -1,6 +1,9 @@
 package com.drpicox.game.rest;
 
+import com.google.gson.Gson;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -11,12 +14,14 @@ import java.util.HashMap;
 @ControllerAdvice
 public class GlobalRestControllerExceptionHandler {
 
-    @ResponseBody
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(GlobalRestException.class)
-    public Object badRequest(GlobalRestException exception) {
-        return new HashMap() {{
-            put("message", exception.getMessage());
-        }};
+    public ResponseEntity badRequest(GlobalRestException exception) {
+        var body = new HashMap<String,String>();
+        body.put("message", exception.getMessage());
+        return new ResponseEntity(
+                body,
+                new HttpHeaders(),
+                HttpStatus.BAD_REQUEST
+        );
     }
 }

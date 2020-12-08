@@ -1,5 +1,5 @@
 import { AbstractPostLineStep } from "../AbstractPostLineStep";
-import { queryByHighlighted } from "./helpers";
+import { queryByCardHighlighted } from "./helpers";
 
 export class ThereAreNoHighlightedCards extends AbstractPostLineStep {
   constructor() {
@@ -7,7 +7,7 @@ export class ThereAreNoHighlightedCards extends AbstractPostLineStep {
   }
 
   async runMatch(_: any, match: string[]) {
-    const highlighted = queryByHighlighted(document.body);
+    const highlighted = queryByCardHighlighted(document.body);
     expect(highlighted).not.toBeInTheDocument();
   }
 }

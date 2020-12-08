@@ -1,5 +1,6 @@
 import { Injector } from "www/injector";
 import { ReduxStore } from "./ReduxStore";
+import configureAlertInjector from "./alert";
 import configureBlogInjector from "./blog";
 import configureCardsInjector from "./cards";
 import configureCurrentUserInjector from "./currentUser";
@@ -10,6 +11,7 @@ import configureSelectedCardInjector from "./selectedCard";
 import configureViewInjector from "./view";
 
 export default function configureDucksnjector(injector: Injector) {
+  injector.configure(configureAlertInjector);
   injector.configure(configureBlogInjector);
   injector.configure(configureCardsInjector);
   injector.configure(configureCurrentUserInjector);
