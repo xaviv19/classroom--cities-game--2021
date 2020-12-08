@@ -98,10 +98,14 @@ public class Card implements ICard {
 
     @Override
     public String toString() {
-        return type +"-"+ name +
+        return toSimpleString() +
                 "#" + id + ";" +
                 owner +
                 "[" + square + "]" +
                 "|p:" + pile + "|";
+    }
+
+    public String toSimpleString() {
+        return type + "-" + name;
     }
 }

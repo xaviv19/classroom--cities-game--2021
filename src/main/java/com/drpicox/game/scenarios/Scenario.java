@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.*;
 import java.util.function.BiConsumer;
+import java.util.function.BiPredicate;
 import java.util.stream.Collectors;
 
 @Entity
@@ -33,6 +34,14 @@ public class Scenario {
         if (values == null) loadValues();
 
         return values;
+    }
+
+    public Optional<String> findKey(String prefix, BiPredicate<String, String> predicate) {
+        var values = getValues();
+        return values.keySet().stream()
+                .filter(key -> key.startsWith(prefix))
+                .filter(key -> predicate.test(key, values.get(key)))
+                .findAny();
     }
 
     public void forEach(String prefix, BiConsumer<String, String> action) {
@@ -74,4 +83,5 @@ public class Scenario {
         URL url = loader.getResource("scenarios");
         return url.getPath().replaceAll("%20", " ");
     }
+
 }

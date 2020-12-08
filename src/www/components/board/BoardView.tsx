@@ -25,6 +25,7 @@ export function BoardView() {
       <Pile name="event" />
       <Pile name="buy-field" />
       <Pile name="buy-knight" />
+      <Pile name="train" />
       <hr />
       {players.map((player) => (
         <PlayerView player={player} key={player} />

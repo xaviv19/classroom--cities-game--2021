@@ -10,6 +10,7 @@ import { PlacesTheCardIntoThePile } from "./PlacesTheCardIntoThePile";
 import { PlaysACardIntoHisSquarePile } from "./PlaysACardIntoHisSquarePile";
 import { PlaysACardIntoTheSquarePile } from "./PlaysACardIntoTheSquarePile";
 import { PlaysACardIntoThePile } from "./PlaysACardIntoThePile";
+import { PlaysACardOfIntoHisSquarePile } from "./PlaysACardOfIntoHisSquarePile";
 import { PlaysACardOfIntoThePile } from "./PlaysACardOfIntoThePile";
 import { PlaysACardOfIntoTheSquarePile } from "./PlaysACardOfIntoTheSquarePile";
 import { PlaysNCardsIntoHisSquarePile } from "./PlaysNCardsIntoHisSquarePile";
@@ -36,6 +37,7 @@ export default function configureTestStepsPlayInjector(injector: Injector) {
   injector.register(PostLineStep, PlaysACardIntoHisSquarePile);
   injector.register(PostLineStep, PlaysACardIntoTheSquarePile);
   injector.register(PostLineStep, PlaysACardIntoThePile);
+  injector.register(PostLineStep, PlaysACardOfIntoHisSquarePile);
   injector.register(PostLineStep, PlaysACardOfIntoThePile);
   injector.register(PostLineStep, PlaysACardOfIntoTheSquarePile);
   injector.register(PostLineStep, PlaysNCardsIntoHisSquarePile);

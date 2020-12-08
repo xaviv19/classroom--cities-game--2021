@@ -20,6 +20,8 @@ const typeIcons = {
   knight: "💂",
   field: "🏠",
   event: "⚡",
+  material: "♻️",
+  worker: "🧑",
 } as any;
 
 const nameIcons = {
@@ -30,6 +32,8 @@ const nameIcons = {
   forest: "🌲",
   grain: "🌾",
   sheep: "🐑",
+  hay: "🌾",
+  farmer: "🧑‍🌾",
 } as any;
 
 const cardClassName = css`

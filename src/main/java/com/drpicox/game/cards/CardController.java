@@ -44,6 +44,13 @@ public class CardController {
         return card;
     }
 
+    public Card pickCard(Player player, int square, String type, String name) {
+        var card = findByGame(player.getGame()).withoutOwner().ofType(type).ofName(name).getOne();
+        card.onPick(player, square);
+        cardRepository.save(card);
+        return card;
+    }
+
     public void discardCard(Card card) {
         card.discard();
         cardRepository.save(card);
@@ -67,4 +74,5 @@ public class CardController {
     public void returnCardToHand(Card card) {
         moveCardToSquare(card, 0);
     }
+
 }
