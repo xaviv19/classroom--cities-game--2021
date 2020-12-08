@@ -34,8 +34,10 @@ const nameIcons = {
   sheep: "🐑",
   hay: "🌾",
   wood: "🪵",
+  wool: "🧶",
   farmer: "🧑‍🌾",
   lumberjack: "🪓",
+  shepherd: "🦯",
 } as any;
 
 const cardClassName = css`
