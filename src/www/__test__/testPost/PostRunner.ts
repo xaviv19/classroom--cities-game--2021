@@ -40,7 +40,7 @@ export class PostRunner {
     message += `Too many PostLineSteps (${runners.length}) matches the instruction:\n`;
     message += `=> ${line.getPrettyPrint()}\n`;
     message += `They are:\n`;
-    runners.forEach((r) => (message += `  - ${r.getPrettyPrint}\n`));
+    runners.forEach((r) => (message += `  - ${r.getPrettyPrint()}\n`));
 
     return new Error(message);
   }

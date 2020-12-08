@@ -1,6 +1,7 @@
 package com.drpicox.game.forms;
 
 import com.drpicox.game.cards.CardListFilter;
+import com.drpicox.game.cards.Positions;
 import com.drpicox.game.games.Game;
 import com.drpicox.game.scenarios.Scenario;
 
@@ -43,6 +44,8 @@ public class VisibleGameForm {
     }
 
     public void addCard(VisibleCardForm visibleCardForm) {
+        if (Positions.atHand(visibleCardForm) && !visibleCardForm.getOwnerName().equals(currentPlayerName))
+            visibleCardForm.hideName();
         cards.add(visibleCardForm);
     }
 

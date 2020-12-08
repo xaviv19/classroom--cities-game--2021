@@ -38,7 +38,7 @@ Now, let's see the board:
  > _Martel_ has at the square _1_ a _field_ card of _grain_.
  > _Martel_ has at the square _2_ no _field_ cards.
  > _Tyrell_ has in his hand _1_ _food_ cards.  
- > _Tyrell_ has in his hand _2_ _event_ card of _sheep_.  
+ > _Tyrell_ has in his hand _2_ _event_ cards.  
  > _Tyrell_ has at the square _1_ a _field_ card of _sheep_.  
  > _Tyrell_ has at the square _2_ no _field_ cards.  
 

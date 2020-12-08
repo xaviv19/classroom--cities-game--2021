@@ -76,6 +76,10 @@ public class VisibleCardForm implements Comparable<VisibleCardForm>, ICard {
         return isAccept;
     }
 
+    public void hideName() {
+        this.name = "unknown";
+    }
+
     @Override
     public String toString() {
         return "VisibleCardForm{" +
