@@ -70,10 +70,8 @@ public class VisibleCardForm implements Comparable<VisibleCardForm>, ICard {
 
     private boolean squarePileAcceptsThisCard(ScenarioForm scenario, String target) {
         var ownOrFoe = target.equals(ownerName) ? "own" : "foe";
-        var key = "pile.square." + ownOrFoe + ".accepts";
-        var accepts = scenario.getStringSet(key);
-        var isAccept = accepts.contains(type) || accepts.contains(type + "-" + name);
-        return isAccept;
+        var pile = "square." + ownOrFoe;
+        return pileAcceptsThisCard(scenario, pile);
     }
 
     public void hideName() {

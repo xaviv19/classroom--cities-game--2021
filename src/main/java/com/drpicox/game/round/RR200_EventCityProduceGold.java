@@ -19,9 +19,7 @@ public class RR200_EventCityProduceGold extends EachPlayerSquareRoundRule {
     protected void runPlayerSquare(Player player, int square, CardListFilter<Card> allCards) {
         var squareCards = allCards.atSquare(player, square);
         var cities = squareCards.ofType("building").ofName("city");
-        if (cities.isEmpty()) return;
         var fields = squareCards.ofType("field");
-        if (fields.isEmpty()) return;
 
         fields.forEach(field -> {
             var eventName = field.getName();

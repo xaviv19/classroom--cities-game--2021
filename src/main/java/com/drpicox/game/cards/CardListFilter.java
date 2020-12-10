@@ -45,9 +45,6 @@ public class CardListFilter<T extends ICard> implements Iterable<T> {
     public CardListFilter<T> ofType(String type) {
         return filter(c -> c.getType().equals(type));
     }
-    public CardListFilter<T> ofSameName(Card card) {
-        return ofName(card.getName());
-    }
     public CardListFilter<T> ofName(String name) {
         return filter(c -> c.getName().equals(name));
     }

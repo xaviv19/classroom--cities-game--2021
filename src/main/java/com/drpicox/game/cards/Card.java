@@ -70,10 +70,6 @@ public class Card implements ICard {
         this.square = square;
     }
 
-    public Player getOwner() {
-        return owner;
-    }
-
     public void discard() {
         this.pile = "";
         this.owner = null;

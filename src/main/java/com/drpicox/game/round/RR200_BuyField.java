@@ -48,8 +48,7 @@ public class RR200_BuyField extends EachPlayerRoundRule {
             case 2: return 2;
             case 3: return 4;
             case 4: return 6;
-            case 5: return 9;
-            default: return Integer.MAX_VALUE;
+            default: return 9;
         }
     }
 }
