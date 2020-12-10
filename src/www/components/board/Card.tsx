@@ -22,6 +22,7 @@ const typeIcons = {
   event: "⚡",
   material: "♻️",
   worker: "🧑",
+  building: "🏗️",
 } as any;
 
 const nameIcons = {
@@ -38,6 +39,7 @@ const nameIcons = {
   farmer: "🧑‍🌾",
   lumberjack: "🪓",
   shepherd: "🦯",
+  city: "🏙️",
 } as any;
 
 const cardClassName = css`
