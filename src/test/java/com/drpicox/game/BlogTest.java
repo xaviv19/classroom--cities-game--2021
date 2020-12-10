@@ -45,8 +45,8 @@ public class BlogTest {
         var list = new JsonOld(result.getResponse().getContentAsString()).get("list");
         var size = list.size();
         for (var i = 1; i < size; i++) {
-            var d0 = list.get(i-0).get("id").toString().split("_")[0];
-            var d1 = list.get(i-1).get("id").toString().split("_")[0];
+            var d0 = list.get(i-0).get("id").toString();
+            var d1 = list.get(i-1).get("id").toString();
             Truth.assertThat(d0).isLessThan(d1);
         }
     }
