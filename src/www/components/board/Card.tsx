@@ -33,6 +33,7 @@ const nameIcons = {
   forest: "🌲",
   grain: "🌾",
   sheep: "🐑",
+  mountain: "⛰️",
   hay: "🌾",
   wood: "🪵",
   wool: "🧶",
