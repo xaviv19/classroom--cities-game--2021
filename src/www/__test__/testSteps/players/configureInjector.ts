@@ -3,6 +3,7 @@ import { PostLineStep } from "www/__test__/testPost";
 import { AllPlayersClickReadyAndThenRefreshInTheMainHeader } from "./AllPlayersClickReadyAndThenRefreshInTheMainHeader";
 import { ClickReadyInTheMainHeader } from "./ClickReadyInTheMainHeader";
 import { ClickRefreshInTheMainHeader } from "./ClickRefreshInTheMainHeader";
+import { HasAMaterialsCardCounterOf } from "./HasAMaterialsCardCounterOf";
 import { UseTheBrowserOf } from "./UseTheBrowserOf";
 
 export default function configureTestStepsPlayersInjector(injector: Injector) {
@@ -12,5 +13,6 @@ export default function configureTestStepsPlayersInjector(injector: Injector) {
   );
   injector.register(PostLineStep, ClickReadyInTheMainHeader);
   injector.register(PostLineStep, ClickRefreshInTheMainHeader);
+  injector.register(PostLineStep, HasAMaterialsCardCounterOf);
   injector.register(PostLineStep, UseTheBrowserOf);
 }
