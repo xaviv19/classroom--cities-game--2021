@@ -90,7 +90,7 @@ Just place the mayor into the same square than the townhall.
 Yes, they do not do embezzle, they create gold, well, only one of gold per turn that they have an event...
 (do they have more hidden gold?).
 
- > _Martel_ has in his hand _1_ _event_ cards of _grain_.
+ > _Martel_ has in his hand an _event_ card of _grain_.
  > _Martel_ has at the square _1_ a _field_ card of _grain_.
  > _Martel_ has at the square _1_ a _worker_ card of _mayor_.
  > _Martel_ has at the square _1_ a _building_ card of _townhall_.

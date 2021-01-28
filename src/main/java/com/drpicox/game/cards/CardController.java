@@ -75,4 +75,8 @@ public class CardController {
         moveCardToSquare(card, 0);
     }
 
+    public void stealCard(Player newOwner, Card card) {
+        card.stealCard(newOwner);
+        cardRepository.save(card);
+    }
 }

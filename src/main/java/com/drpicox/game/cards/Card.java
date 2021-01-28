@@ -91,6 +91,12 @@ public class Card implements ICard {
         this.square = square;
     }
 
+    public void stealCard(Player newOwner) {
+        this.pile = "";
+        this.square = 0;
+        this.owner = newOwner;
+    }
+
 
     @Override
     public String toString() {
