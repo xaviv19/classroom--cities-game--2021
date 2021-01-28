@@ -1,12 +1,12 @@
 import { buildQueries } from "@testing-library/dom";
-import { getAllByCard } from "./queryAllByCard";
+import { queryAllByCard } from "./queryAllByCard";
 
 function queryAllByCardOf(
   container: HTMLElement,
   type: string,
   name: string
 ): HTMLElement[] {
-  return getAllByCard(container, type).filter(
+  return queryAllByCard(container, type).filter(
     (element) => element.dataset.name === name
   );
 }
