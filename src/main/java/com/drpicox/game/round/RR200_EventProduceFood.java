@@ -7,19 +7,24 @@ import com.drpicox.game.cards.Positions;
 import com.drpicox.game.games.Game;
 import com.drpicox.game.players.Player;
 import com.drpicox.game.players.PlayerController;
+import com.drpicox.game.players.RandomPlayerPicker;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 public class RR200_EventProduceFood implements RoundRule {
 
     private final PlayerController playerController;
     private final CardController cardController;
+    private final RandomPlayerPicker randomPlayerPicker;
 
-    public RR200_EventProduceFood(PlayerController playerController, CardController cardController) {
+    public RR200_EventProduceFood(PlayerController playerController, CardController cardController, RandomPlayerPicker randomPlayerPicker) {
         this.playerController = playerController;
         this.cardController = cardController;
+        this.randomPlayerPicker = randomPlayerPicker;
     }
 
     @Override
@@ -39,8 +44,8 @@ public class RR200_EventProduceFood implements RoundRule {
     private void balanceProductionAccordingSocialism(Game game, java.util.List<Player> players, HashMap<Player, Integer> productions) {
         if (game.getScenario().getInt("socialism") == 0) return;
 
-        Player unluckyPlayer = getUnluckyPlayer(players);
-        Player luckyPlayer = getLuckyPlayer(players);
+        var luckyPlayer = getLuckyPlayer(players);
+        var unluckyPlayer = getUnluckyPlayer(players);
 
         if (luckyPlayer.getTotalReceivedFoodCount() <= unluckyPlayer.getTotalReceivedFoodCount()) return;
 
@@ -56,28 +61,32 @@ public class RR200_EventProduceFood implements RoundRule {
 
     private Player getLuckyPlayer(java.util.List<Player> players) {
         var luckyCount = 0;
-        var luckyPlayer = players.get(0);
         for (var player: players) {
             var count = player.getTotalReceivedFoodCount();
             if (count > luckyCount) {
                 luckyCount = count;
-                luckyPlayer = player;
             }
         }
-        return luckyPlayer;
+
+        return pickRandomPlayerWithTotalReceivedFoodCount(players, luckyCount);
     }
 
     private Player getUnluckyPlayer(java.util.List<Player> players) {
         var unluckyCount = Integer.MAX_VALUE;
-        var unluckyPlayer = players.get(0);
         for (var player: players) {
             var count = player.getTotalReceivedFoodCount();
             if (count < unluckyCount) {
                 unluckyCount = count;
-                unluckyPlayer = player;
             }
         }
-        return unluckyPlayer;
+
+        return pickRandomPlayerWithTotalReceivedFoodCount(players, unluckyCount);
+    }
+
+    private Player pickRandomPlayerWithTotalReceivedFoodCount(List<Player> players, int count) {
+        var list = players.stream().filter(p -> p.getTotalReceivedFoodCount() == count).collect(Collectors.toList());
+
+        return randomPlayerPicker.pickOne(list);
     }
 
     private HashMap<Player, Integer> countProducedFoodCards(CardListFilter<Card> allCards, java.util.List<Player> players) {
