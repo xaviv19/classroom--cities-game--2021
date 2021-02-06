@@ -17,6 +17,8 @@ public class Player {
     private String name;
 
     private int readyRound;
+    
+    private int totalReceivedFoodCounter;
 
     @ManyToOne
     private Game game;
@@ -62,5 +64,14 @@ public class Player {
     @Override
     public String toString() {
         return name;
+    }
+
+    public int getTotalReceivedFoodCount() {
+        return totalReceivedFoodCounter;
+    }
+
+    public void receivedCard(int square, String type, String name) {
+        if (type.equals("food"))
+            totalReceivedFoodCounter += 1;
     }
 }

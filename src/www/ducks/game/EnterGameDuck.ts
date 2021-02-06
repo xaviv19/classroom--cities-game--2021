@@ -3,9 +3,8 @@ import { Injector } from "www/injector";
 import { decrementLoading, incrementLoading } from "../loading";
 import { ReduxAfterAction } from "../ReduxAfterAction";
 import { ReduxStore } from "../ReduxStore";
-import { setView } from "../view";
 import { ENTER_GAME } from "./enterGame";
-import { replaceGame } from "./replaceGame";
+import { dispatchReplaceGame } from "./dispatchReplaceGame";
 
 export class EnterGameDuck implements ReduxAfterAction {
   private reduxStore: ReduxStore;
@@ -24,8 +23,7 @@ export class EnterGameDuck implements ReduxAfterAction {
       `/api/v1/games/${action.body.gameName}/players/${action.body.playerName}`
     );
 
-    this.reduxStore.dispatch(replaceGame(game));
-    this.reduxStore.dispatch(setView({ root: "Board" }));
+    dispatchReplaceGame(this.reduxStore, game);
     this.reduxStore.dispatch(decrementLoading());
   }
 }

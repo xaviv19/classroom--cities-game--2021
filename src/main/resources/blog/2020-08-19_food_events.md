@@ -100,7 +100,7 @@ And if you look to the _Tyrell_ hand, nothing has changed:
 ### Food event cards benefit all players
 
 If you look to the board, you can see that _Martel_ have a _grain_
-_field_ at square 2, and _Tyrell_ has a _grian_ _field_ at square 1.
+_field_ at square 2, and _Tyrell_ has a _grain_ _field_ at square 1.
 If _Martel_ decides to play _grain_, both players will receive
 one of food:
 

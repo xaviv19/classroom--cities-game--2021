@@ -2,6 +2,7 @@ package com.drpicox.game.cards;
 
 import com.drpicox.game.games.Game;
 import com.drpicox.game.players.Player;
+import com.drpicox.game.players.PlayerController;
 import org.springframework.stereotype.Controller;
 
 import java.util.List;
@@ -11,10 +12,12 @@ import java.util.Optional;
 public class CardController {
     private final CardRepository cardRepository;
     private final RandomCardPicker randomCardPicker;
+    private final PlayerController playerController;
 
-    public CardController(CardRepository cardRepository, RandomCardPicker randomCardPicker) {
+    public CardController(CardRepository cardRepository, RandomCardPicker randomCardPicker, PlayerController playerController) {
         this.cardRepository = cardRepository;
         this.randomCardPicker = randomCardPicker;
+        this.playerController = playerController;
     }
 
     public CardListFilter<Card> findByGame(Game game) {
@@ -28,7 +31,7 @@ public class CardController {
 
     private void createCard(Game game, String type, String name) {
         var card = new Card(game, type, name);
-        cardRepository.save(card);
+        saveCard(card);
     }
 
     public void pickCards(Player player, int position, String type, int count) {
@@ -40,35 +43,35 @@ public class CardController {
         var cards = findByGame(player.getGame()).withoutOwner().ofType(type).toList();
         var card = randomCardPicker.pickOne(cards);
         card.onPick(player, square);
-        cardRepository.save(card);
+        saveCard(card);
         return card;
     }
 
     public Card pickCard(Player player, int square, String type, String name) {
         var card = findByGame(player.getGame()).withoutOwner().ofType(type).ofName(name).getOne();
         card.onPick(player, square);
-        cardRepository.save(card);
+        saveCard(card);
         return card;
     }
 
     public void discardCard(Card card) {
         card.discard();
-        cardRepository.save(card);
+        saveCard(card);
     }
 
     public void pileCard(Card card, String pile) {
         card.pile(pile);
-        cardRepository.save(card);
+        saveCard(card);
     }
 
     public void moveCardToSquare(Card card, int square) {
         card.moveToSquare(square);
-        cardRepository.save(card);
+        saveCard(card);
     }
 
     public void moveCardToSquare(Card card, Player player, int square) {
         card.moveToSquare(player, square);
-        cardRepository.save(card);
+        saveCard(card);
     }
 
     public void returnCardToHand(Card card) {
@@ -77,6 +80,16 @@ public class CardController {
 
     public void stealCard(Player newOwner, Card card) {
         card.stealCard(newOwner);
+        saveCard(card);
+    }
+
+    private void saveCard(Card card) {
+        var owner = card.getOwner();
+        var ownerBeforeSave = card.getBeforeSaveOwner();
+        card.resetBeforeSaveOwner();
         cardRepository.save(card);
+
+        if (owner != ownerBeforeSave)
+            playerController.receivedCard(owner, card.getSquare(), card.getType(), card.getName());
     }
 }

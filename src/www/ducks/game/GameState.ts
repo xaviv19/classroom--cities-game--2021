@@ -1,5 +1,6 @@
 interface PlayerState {
   name: string;
+  totalReceivedFoodCount: number;
 }
 
 export interface GameState {

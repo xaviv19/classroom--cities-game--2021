@@ -22,6 +22,8 @@ public class Card implements ICard {
 
     @ManyToOne
     private Player owner;
+    @ManyToOne
+    private Player beforeSaveOwner;
     private int square;
 
     private String pile;
@@ -47,6 +49,18 @@ public class Card implements ICard {
     }
     public String getOwnerName() {
         return owner != null ? owner.getName() : "";
+    }
+
+    public Player getOwner() {
+        return owner;
+    }
+
+    public Player getBeforeSaveOwner() {
+        return beforeSaveOwner;
+    }
+
+    public void resetBeforeSaveOwner() {
+        beforeSaveOwner = owner;
     }
 
     public int getSquare() {

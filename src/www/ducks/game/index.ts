@@ -4,6 +4,7 @@ export * from "./findSquareCountByPlayer";
 export * from "./getGameName";
 export * from "./getGameRound";
 export * from "./getGameScenario";
+export * from "./getPlayerTotalReceivedFoodCount";
 export * from "./listPlayers";
 export * from "./readyGame";
 export * from "./refreshGame";

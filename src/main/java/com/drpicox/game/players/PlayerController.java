@@ -41,4 +41,10 @@ public class PlayerController {
         var round = game.getRound();
         return findByGame(game).stream().allMatch(p -> p.hasReadyRound(round));
     }
+
+    public void receivedCard(Player owner, int square, String type, String name) {
+        if (owner == null) return;
+        owner.receivedCard(square, type, name);
+        playerRepository.save(owner);
+    }
 }

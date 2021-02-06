@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
 import { useSelector } from "react-redux";
-import { listPlayers } from "www/ducks/game";
+import { getPlayerTotalReceivedFoodCount, listPlayers } from "www/ducks/game";
 import { Hand } from "./Hand";
 import { Pile } from "./Pile";
 import { Squares } from "./Squares";
@@ -15,9 +15,14 @@ function PlayerView({ player }: { player: string }) {
     [handCards]
   );
 
+  const food = useSelector((s: any) =>
+    getPlayerTotalReceivedFoodCount(s, { player })
+  );
+
   return (
     <>
       <h3>Player: {player}</h3>
+      <span data-testid={`player-${player}-total-food-counter`}>{food}</span>
       <span data-testid={`player-${player}-card-counter`}>{count}</span>
       <Squares player={player} key={player} />
       <Hand player={player} />

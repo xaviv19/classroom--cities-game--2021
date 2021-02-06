@@ -5,10 +5,9 @@ import { getCurrentUser } from "../currentUser";
 import { decrementLoading, incrementLoading } from "../loading";
 import { ReduxAfterAction } from "../ReduxAfterAction";
 import { ReduxStore } from "../ReduxStore";
-import { setView } from "../view";
 import { getGameName } from "./getGameName";
 import { READY_GAME } from "./readyGame";
-import { replaceGame } from "./replaceGame";
+import { dispatchReplaceGame } from "./dispatchReplaceGame";
 
 export class ReadyGameDuck implements ReduxAfterAction {
   private reduxStore: ReduxStore;
@@ -32,8 +31,7 @@ export class ReadyGameDuck implements ReduxAfterAction {
       { cards: plays, playerName }
     );
 
-    this.reduxStore.dispatch(replaceGame(game));
-    this.reduxStore.dispatch(setView({ root: "Board" }));
+    dispatchReplaceGame(this.reduxStore, game);
     this.reduxStore.dispatch(decrementLoading());
   }
 }

@@ -4,6 +4,7 @@ import { AllPlayersClickReadyAndThenRefreshInTheMainHeader } from "./AllPlayersC
 import { ClickReadyInTheMainHeader } from "./ClickReadyInTheMainHeader";
 import { ClickRefreshInTheMainHeader } from "./ClickRefreshInTheMainHeader";
 import { HasAMaterialsCardCounterOf } from "./HasAMaterialsCardCounterOf";
+import { HasTheTotalReceivedFoodCounterOf } from "./HasTheTotalReceivedFoodCounterOf";
 import { UseTheBrowserOf } from "./UseTheBrowserOf";
 
 export default function configureTestStepsPlayersInjector(injector: Injector) {
@@ -14,5 +15,6 @@ export default function configureTestStepsPlayersInjector(injector: Injector) {
   injector.register(PostLineStep, ClickReadyInTheMainHeader);
   injector.register(PostLineStep, ClickRefreshInTheMainHeader);
   injector.register(PostLineStep, HasAMaterialsCardCounterOf);
+  injector.register(PostLineStep, HasTheTotalReceivedFoodCounterOf);
   injector.register(PostLineStep, UseTheBrowserOf);
 }

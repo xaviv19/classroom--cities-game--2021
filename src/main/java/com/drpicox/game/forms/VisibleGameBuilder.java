@@ -49,7 +49,7 @@ public class VisibleGameBuilder {
     }
 
     private void addPlayer(Player player, VisibleGameForm result) {
-        var vp = new VisiblePlayerForm(player.getName());
+        var vp = new VisiblePlayerForm(player.getName(), player.getTotalReceivedFoodCount());
         result.addPlayer(vp);
     }
 

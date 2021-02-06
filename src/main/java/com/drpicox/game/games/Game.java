@@ -14,6 +14,8 @@ public class Game {
 
     private int round;
 
+    private String message;
+
     @ManyToOne
     private Scenario scenario;
 
@@ -21,6 +23,10 @@ public class Game {
         this.name = gameName;
         this.scenario = scenario;
         this.round = 1;
+    }
+
+    public String getMessage() {
+        return message;
     }
 
     // JPA required
@@ -40,5 +46,9 @@ public class Game {
 
     public Scenario getScenario() {
         return scenario;
+    }
+
+    public void sendMessageToAllPlayers(String message) {
+        this.message = message;
     }
 }
