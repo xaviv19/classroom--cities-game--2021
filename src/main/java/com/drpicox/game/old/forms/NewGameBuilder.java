@@ -3,7 +3,7 @@ package com.drpicox.game.old.forms;
 import com.drpicox.game.old.cards.CardController;
 import com.drpicox.game.old.games.Game;
 import com.drpicox.game.old.games.GameController;
-import com.drpicox.game.old.players.Player;
+import com.drpicox.game.old.players.OldPlayer;
 import com.drpicox.game.old.players.PlayerController;
 import com.drpicox.game.old.scenarios.Scenario;
 import com.drpicox.game.old.scenarios.ScenarioController;
@@ -42,7 +42,7 @@ public class NewGameBuilder {
         return gameController.create(gameName, scenario);
     }
 
-    private List<Player> createGamePlayers(Game game, NewGameForm newGameForm) {
+    private List<OldPlayer> createGamePlayers(Game game, NewGameForm newGameForm) {
         return newGameForm.getPlayers().stream()
                 .map(p -> playerController.create(game, p.getName()))
                 .collect(Collectors.toList());
@@ -59,17 +59,17 @@ public class NewGameBuilder {
         });
     }
 
-    private void pickCardsForEachPlayer(Scenario scenario, List<Player> players) {
-        players.forEach(p -> pickPlayerCards(p, scenario));
+    private void pickCardsForEachPlayer(Scenario scenario, List<OldPlayer> oldPlayers) {
+        oldPlayers.forEach(p -> pickPlayerCards(p, scenario));
     }
 
-    public void pickPlayerCards(Player player, Scenario scenario) {
+    public void pickPlayerCards(OldPlayer oldPlayer, Scenario scenario) {
         scenario.forEachInteger("picks.", (key, count) -> {
             var parts = key.split("\\.");
             var position = Integer.parseInt(parts[1]);
             var type = parts[2];
 
-            cardController.pickCards(player, position, type, count);
+            cardController.pickCards(oldPlayer, position, type, count);
         });
     }
 

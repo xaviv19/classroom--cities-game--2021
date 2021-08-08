@@ -1,6 +1,6 @@
 package com.drpicox.game.old.cards;
 
-import com.drpicox.game.old.players.Player;
+import com.drpicox.game.old.players.OldPlayer;
 
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -49,7 +49,7 @@ public class CardListFilter<T extends ICard> implements Iterable<T> {
         return filter(c -> c.getName().equals(name));
     }
 
-    public CardListFilter<T> ofOwner(Player owner) {
+    public CardListFilter<T> ofOwner(OldPlayer owner) {
         return ofOwner(owner.getName());
     }
     public CardListFilter<T> ofOwner(String ownerName) {
@@ -58,7 +58,7 @@ public class CardListFilter<T extends ICard> implements Iterable<T> {
     public CardListFilter<T> withoutOwner() {
         return ofOwner("");
     }
-    public CardListFilter<T> ofOtherOwnerThan(Player owner) {
+    public CardListFilter<T> ofOtherOwnerThan(OldPlayer owner) {
         return ofOtherOwnerThan(owner.getName());
     }
     public CardListFilter<T> ofOtherOwnerThan(String ownerName) {
@@ -74,8 +74,8 @@ public class CardListFilter<T extends ICard> implements Iterable<T> {
     public CardListFilter<T> atSquare(String player, int square) {
         return this.atSquare(square).ofOwner(player);
     }
-    public CardListFilter<T> atSquare(Player player, int square) {
-        return this.atSquare(square).ofOwner(player);
+    public CardListFilter<T> atSquare(OldPlayer oldPlayer, int square) {
+        return this.atSquare(square).ofOwner(oldPlayer);
     }
     public CardListFilter<T> atSquare(int square) {
         return filter(c -> Positions.atSquare(c, square));
@@ -87,7 +87,7 @@ public class CardListFilter<T extends ICard> implements Iterable<T> {
     public CardListFilter<T> atPile(String pile) {
         return filter(c -> Positions.atPile(c, pile));
     }
-    public CardListFilter<T> atPile(Player target, int square) {
+    public CardListFilter<T> atPile(OldPlayer target, int square) {
         return atPile(target.getName(), square);
     }
     public CardListFilter<T> atPile(String targetName, int square) {

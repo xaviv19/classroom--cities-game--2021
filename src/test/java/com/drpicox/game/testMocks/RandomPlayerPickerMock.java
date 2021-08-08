@@ -1,6 +1,6 @@
 package com.drpicox.game.testMocks;
 
-import com.drpicox.game.old.players.Player;
+import com.drpicox.game.old.players.OldPlayer;
 import com.drpicox.game.old.players.RandomPlayerPicker;
 import com.drpicox.game.testPost.AfterPostTest;
 import com.drpicox.game.testPost.BeforePostTest;
@@ -29,16 +29,16 @@ public class RandomPlayerPickerMock extends RandomPlayerPicker implements Before
     }
 
     @Override
-    public Player pickOne(List<Player> players) {
-        if (cheats.isEmpty()) return super.pickOne(players);
+    public OldPlayer pickOne(List<OldPlayer> oldPlayers) {
+        if (cheats.isEmpty()) return super.pickOne(oldPlayers);
 
         var name = cheats.remove(0);
-        var player = players.stream().filter(p -> p.getName().equals(name)).findAny().orElse(null);
+        var player = oldPlayers.stream().filter(p -> p.getName().equals(name)).findAny().orElse(null);
         if (player == null)
             throw new AssertionError(
                     "Cheating player '"+name+
                             "' does not work because that player is not in the pick list: "+
-                            players.stream().map(p -> p.getName()).collect(Collectors.toList())
+                            oldPlayers.stream().map(p -> p.getName()).collect(Collectors.toList())
             );
 
         return player;

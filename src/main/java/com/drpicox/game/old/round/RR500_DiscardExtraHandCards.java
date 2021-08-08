@@ -3,7 +3,7 @@ package com.drpicox.game.old.round;
 import com.drpicox.game.old.cards.Card;
 import com.drpicox.game.old.cards.CardController;
 import com.drpicox.game.old.cards.CardListFilter;
-import com.drpicox.game.old.players.Player;
+import com.drpicox.game.old.players.OldPlayer;
 import com.drpicox.game.old.players.PlayerController;
 import org.springframework.stereotype.Component;
 
@@ -15,11 +15,11 @@ public class RR500_DiscardExtraHandCards extends EachPlayerRoundRule {
     }
 
     @Override
-    protected void runPlayer(Player player, CardListFilter<Card> allCards) {
-        var scenario = player.getGame().getScenario();
+    protected void runPlayer(OldPlayer oldPlayer, CardListFilter<Card> allCards) {
+        var scenario = oldPlayer.getGame().getScenario();
         scenario.forEachInteger("limit.hand.", (key, limit) -> {
             var type = key.split("\\.")[2];
-            discardExtraCards(allCards.atHand().ofOwner(player).ofType(type), limit);
+            discardExtraCards(allCards.atHand().ofOwner(oldPlayer).ofType(type), limit);
         });
     }
 

@@ -16,7 +16,7 @@ import com.drpicox.game.old.cards.Positions;
 import com.drpicox.game.old.cards.RandomCardPicker;
 import com.drpicox.game.old.forms.VisibleCardForm;
 import com.drpicox.game.old.games.Game;
-import com.drpicox.game.old.players.Player;
+import com.drpicox.game.old.players.OldPlayer;
 import com.drpicox.game.old.scenarios.Scenario;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -63,9 +63,9 @@ public class CoverTest {
     @Test
     public void coverPlayer() {
         var g = new Game("gameName", null);
-        var p1a = new Player(g, "playerName1");
-        var p1b = new Player(g, "playerName1");
-        var p2 = new Player(g, "playerName2");
+        var p1a = new OldPlayer(g, "playerName1");
+        var p1b = new OldPlayer(g, "playerName1");
+        var p2 = new OldPlayer(g, "playerName2");
 
         assertThat(p1a.equals(null)).isFalse();
         assertThat(p1a.equals(new Object())).isFalse();

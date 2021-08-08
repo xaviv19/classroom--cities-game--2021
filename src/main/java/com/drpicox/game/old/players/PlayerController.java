@@ -15,16 +15,16 @@ public class PlayerController {
         this.playerRepository = playerRepository;
     }
 
-    public Optional<Player> findByGameAndName(Game game, String name) {
+    public Optional<OldPlayer> findByGameAndName(Game game, String name) {
         return playerRepository.findByGameAndName(game, name).stream().findFirst();
     }
 
-    public List<Player> findByGame(Game game) {
+    public List<OldPlayer> findByGame(Game game) {
         return playerRepository.findByGame(game);
     }
 
-    public Player create(Game game, String name) {
-        var player = new Player(game, name);
+    public OldPlayer create(Game game, String name) {
+        var player = new OldPlayer(game, name);
         playerRepository.save(player);
         return player;
     }
@@ -41,7 +41,7 @@ public class PlayerController {
         return findByGame(game).stream().allMatch(p -> p.hasReadyRound(round));
     }
 
-    public void receivedCard(Player owner, int square, String type, String name) {
+    public void receivedCard(OldPlayer owner, int square, String type, String name) {
         if (owner == null) return;
         owner.receivedCard(square, type, name);
         playerRepository.save(owner);

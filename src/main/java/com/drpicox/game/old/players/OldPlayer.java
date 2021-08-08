@@ -8,7 +8,7 @@ import javax.persistence.ManyToOne;
 import java.util.Objects;
 
 @Entity
-public class Player {
+public class OldPlayer {
 
     @Id
     private String id;
@@ -22,14 +22,14 @@ public class Player {
     @ManyToOne
     private Game game;
 
-    public Player(Game game, String name) {
+    public OldPlayer(Game game, String name) {
         this.id = game.getName() + '#' + name;
         this.game = game;
         this.name = name;
     }
 
     // JPA required
-    protected Player() {}
+    protected OldPlayer() {}
 
     public Game getGame() {
         return game;
@@ -51,8 +51,8 @@ public class Player {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Player player = (Player) o;
-        return Objects.equals(name, player.name);
+        OldPlayer oldPlayer = (OldPlayer) o;
+        return Objects.equals(name, oldPlayer.name);
     }
 
     @Override

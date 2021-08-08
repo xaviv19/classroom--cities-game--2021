@@ -1,7 +1,7 @@
 package com.drpicox.game.old.cards;
 
 import com.drpicox.game.old.games.Game;
-import com.drpicox.game.old.players.Player;
+import com.drpicox.game.old.players.OldPlayer;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -21,9 +21,9 @@ public class Card implements ICard {
     private String name;
 
     @ManyToOne
-    private Player owner;
+    private OldPlayer owner;
     @ManyToOne
-    private Player beforeSaveOwner;
+    private OldPlayer beforeSaveOwner;
     private int square;
 
     private String pile;
@@ -51,11 +51,11 @@ public class Card implements ICard {
         return owner != null ? owner.getName() : "";
     }
 
-    public Player getOwner() {
+    public OldPlayer getOwner() {
         return owner;
     }
 
-    public Player getBeforeSaveOwner() {
+    public OldPlayer getBeforeSaveOwner() {
         return beforeSaveOwner;
     }
 
@@ -79,8 +79,8 @@ public class Card implements ICard {
         return this.name.equals(name);
     }
 
-    public void onPick(Player player, int square) {
-        this.owner = player;
+    public void onPick(OldPlayer oldPlayer, int square) {
+        this.owner = oldPlayer;
         this.square = square;
     }
 
@@ -99,13 +99,13 @@ public class Card implements ICard {
         this.square = square;
     }
 
-    public void moveToSquare(Player player, int square) {
+    public void moveToSquare(OldPlayer oldPlayer, int square) {
         this.pile = "";
-        this.owner = player;
+        this.owner = oldPlayer;
         this.square = square;
     }
 
-    public void stealCard(Player newOwner) {
+    public void stealCard(OldPlayer newOwner) {
         this.pile = "";
         this.square = 0;
         this.owner = newOwner;

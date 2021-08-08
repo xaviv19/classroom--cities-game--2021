@@ -5,7 +5,7 @@ import com.drpicox.game.old.cards.CardController;
 import com.drpicox.game.old.cards.CardListFilter;
 import com.drpicox.game.old.cards.Positions;
 import com.drpicox.game.old.games.Game;
-import com.drpicox.game.old.players.Player;
+import com.drpicox.game.old.players.OldPlayer;
 import com.drpicox.game.old.players.PlayerController;
 import com.drpicox.game.old.players.RandomPlayerPicker;
 import org.springframework.stereotype.Component;
@@ -41,11 +41,11 @@ public class RR200_EventProduceFood implements RoundRule {
         }
     }
 
-    private void balanceProductionAccordingSocialism(Game game, java.util.List<Player> players, HashMap<Player, Integer> productions) {
+    private void balanceProductionAccordingSocialism(Game game, java.util.List<OldPlayer> oldPlayers, HashMap<OldPlayer, Integer> productions) {
         if (game.getScenario().getInt("socialism") == 0) return;
 
-        var luckyPlayer = getLuckyPlayer(players);
-        var unluckyPlayer = getUnluckyPlayer(players);
+        var luckyPlayer = getLuckyPlayer(oldPlayers);
+        var unluckyPlayer = getUnluckyPlayer(oldPlayers);
 
         if (luckyPlayer.getTotalReceivedFoodCount() <= unluckyPlayer.getTotalReceivedFoodCount()) return;
 
@@ -59,54 +59,54 @@ public class RR200_EventProduceFood implements RoundRule {
         game.sendMessageToAllPlayers("Socialism rules, one food from "+luckyPlayer.getName()+" goes to " + unluckyPlayer.getName());
     }
 
-    private Player getLuckyPlayer(java.util.List<Player> players) {
+    private OldPlayer getLuckyPlayer(java.util.List<OldPlayer> oldPlayers) {
         var luckyCount = 0;
-        for (var player: players) {
+        for (var player: oldPlayers) {
             var count = player.getTotalReceivedFoodCount();
             if (count > luckyCount) {
                 luckyCount = count;
             }
         }
 
-        return pickRandomPlayerWithTotalReceivedFoodCount(players, luckyCount);
+        return pickRandomPlayerWithTotalReceivedFoodCount(oldPlayers, luckyCount);
     }
 
-    private Player getUnluckyPlayer(java.util.List<Player> players) {
+    private OldPlayer getUnluckyPlayer(java.util.List<OldPlayer> oldPlayers) {
         var unluckyCount = Integer.MAX_VALUE;
-        for (var player: players) {
+        for (var player: oldPlayers) {
             var count = player.getTotalReceivedFoodCount();
             if (count < unluckyCount) {
                 unluckyCount = count;
             }
         }
 
-        return pickRandomPlayerWithTotalReceivedFoodCount(players, unluckyCount);
+        return pickRandomPlayerWithTotalReceivedFoodCount(oldPlayers, unluckyCount);
     }
 
-    private Player pickRandomPlayerWithTotalReceivedFoodCount(List<Player> players, int count) {
-        var list = players.stream().filter(p -> p.getTotalReceivedFoodCount() == count).collect(Collectors.toList());
+    private OldPlayer pickRandomPlayerWithTotalReceivedFoodCount(List<OldPlayer> oldPlayers, int count) {
+        var list = oldPlayers.stream().filter(p -> p.getTotalReceivedFoodCount() == count).collect(Collectors.toList());
 
         return randomPlayerPicker.pickOne(list);
     }
 
-    private HashMap<Player, Integer> countProducedFoodCards(CardListFilter<Card> allCards, java.util.List<Player> players) {
-        var productions = new HashMap<Player, Integer>();
-        for (var player: players) {
+    private HashMap<OldPlayer, Integer> countProducedFoodCards(CardListFilter<Card> allCards, java.util.List<OldPlayer> oldPlayers) {
+        var productions = new HashMap<OldPlayer, Integer>();
+        for (var player: oldPlayers) {
             productions.put(player, countProducedFoodCards(player, allCards));
         }
         return productions;
     }
 
-    private int countProducedFoodCards(Player player, CardListFilter<Card> allCards) {
+    private int countProducedFoodCards(OldPlayer oldPlayer, CardListFilter<Card> allCards) {
         var sum = 0;
         for (var square = 1; square <= 5; square++)
-            sum += countProducedFoodCardsBySquare(player, square, allCards);
+            sum += countProducedFoodCardsBySquare(oldPlayer, square, allCards);
         return sum;
     }
 
 
-    private int countProducedFoodCardsBySquare(Player player, int square, CardListFilter<Card> allCards) {
-        var fields = allCards.atSquare(player, square).ofType("field");
+    private int countProducedFoodCardsBySquare(OldPlayer oldPlayer, int square, CardListFilter<Card> allCards) {
+        var fields = allCards.atSquare(oldPlayer, square).ofType("field");
         if (fields.isEmpty()) return 0;
 
         var name = fields.getOne().getName();

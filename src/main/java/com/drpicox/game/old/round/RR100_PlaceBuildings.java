@@ -3,7 +3,7 @@ package com.drpicox.game.old.round;
 import com.drpicox.game.old.cards.Card;
 import com.drpicox.game.old.cards.CardController;
 import com.drpicox.game.old.cards.CardListFilter;
-import com.drpicox.game.old.players.Player;
+import com.drpicox.game.old.players.OldPlayer;
 import com.drpicox.game.old.players.PlayerController;
 import org.springframework.stereotype.Component;
 
@@ -15,8 +15,8 @@ public class RR100_PlaceBuildings extends EachPlayerSquareRoundRule {
     }
 
     @Override
-    protected void runPlayerSquare(Player player, int square, CardListFilter<Card> allCards) {
-        var buildings = allCards.atSquare(player, square).ofType("building");
+    protected void runPlayerSquare(OldPlayer oldPlayer, int square, CardListFilter<Card> allCards) {
+        var buildings = allCards.atSquare(oldPlayer, square).ofType("building");
         buildings.forEach(w -> cardController.moveCardToSquare(w, square));
     }
 }

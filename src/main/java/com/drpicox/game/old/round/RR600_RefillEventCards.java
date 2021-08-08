@@ -3,7 +3,7 @@ package com.drpicox.game.old.round;
 import com.drpicox.game.old.cards.CardController;
 import com.drpicox.game.old.cards.Positions;
 import com.drpicox.game.old.games.Game;
-import com.drpicox.game.old.players.Player;
+import com.drpicox.game.old.players.OldPlayer;
 import com.drpicox.game.old.players.PlayerController;
 import org.springframework.stereotype.Component;
 
@@ -30,8 +30,8 @@ public class RR600_RefillEventCards implements RoundRule {
 
     }
 
-    private void pickEventCards(Player player, int eventCardsCount, int limit) {
+    private void pickEventCards(OldPlayer oldPlayer, int eventCardsCount, int limit) {
         if (eventCardsCount < limit)
-            cardController.pickCard(player, Positions.HAND, "event");
+            cardController.pickCard(oldPlayer, Positions.HAND, "event");
     }
 }

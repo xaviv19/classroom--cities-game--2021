@@ -4,7 +4,7 @@ import com.drpicox.game.old.cards.Card;
 import com.drpicox.game.old.cards.CardController;
 import com.drpicox.game.old.cards.CardListFilter;
 import com.drpicox.game.old.cards.Positions;
-import com.drpicox.game.old.players.Player;
+import com.drpicox.game.old.players.OldPlayer;
 import com.drpicox.game.old.players.PlayerController;
 import org.springframework.stereotype.Component;
 
@@ -16,8 +16,8 @@ public class RR200_EventCityProduceGold extends EachPlayerSquareRoundRule {
     }
 
     @Override
-    protected void runPlayerSquare(Player player, int square, CardListFilter<Card> allCards) {
-        var squareCards = allCards.atSquare(player, square);
+    protected void runPlayerSquare(OldPlayer oldPlayer, int square, CardListFilter<Card> allCards) {
+        var squareCards = allCards.atSquare(oldPlayer, square);
         var cities = squareCards.ofType("building").ofName("city");
         var fields = squareCards.ofType("field");
 
@@ -25,7 +25,7 @@ public class RR200_EventCityProduceGold extends EachPlayerSquareRoundRule {
             var eventName = field.getName();
             var events = allCards.atPile("event").ofType("event").ofName(eventName);
             events.forEach(event -> cities.forEach(city ->
-                    cardController.pickCard(player, Positions.HAND, "material", "gold")
+                    cardController.pickCard(oldPlayer, Positions.HAND, "material", "gold")
             ));
         });
     }

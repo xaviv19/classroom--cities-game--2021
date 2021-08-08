@@ -5,7 +5,7 @@ import com.drpicox.game.old.cards.CardController;
 import com.drpicox.game.old.cards.CardListFilter;
 import com.drpicox.game.old.games.Game;
 import com.drpicox.game.old.games.GameController;
-import com.drpicox.game.old.players.Player;
+import com.drpicox.game.old.players.OldPlayer;
 import com.drpicox.game.old.players.PlayerController;
 import com.drpicox.game.old.scenarios.ScenarioController;
 import org.springframework.stereotype.Controller;
@@ -44,12 +44,12 @@ public class VisibleGameBuilder {
         return result;
     }
 
-    private void addPlayers(List<Player> players, VisibleGameForm result) {
-        players.forEach(p -> addPlayer(p, result));
+    private void addPlayers(List<OldPlayer> oldPlayers, VisibleGameForm result) {
+        oldPlayers.forEach(p -> addPlayer(p, result));
     }
 
-    private void addPlayer(Player player, VisibleGameForm result) {
-        var vp = new VisiblePlayerForm(player.getName(), player.getTotalReceivedFoodCount());
+    private void addPlayer(OldPlayer oldPlayer, VisibleGameForm result) {
+        var vp = new VisiblePlayerForm(oldPlayer.getName(), oldPlayer.getTotalReceivedFoodCount());
         result.addPlayer(vp);
     }
 

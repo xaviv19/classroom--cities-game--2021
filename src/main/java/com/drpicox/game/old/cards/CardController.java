@@ -1,7 +1,7 @@
 package com.drpicox.game.old.cards;
 
 import com.drpicox.game.old.games.Game;
-import com.drpicox.game.old.players.Player;
+import com.drpicox.game.old.players.OldPlayer;
 import com.drpicox.game.old.players.PlayerController;
 import org.springframework.stereotype.Controller;
 
@@ -31,22 +31,22 @@ public class CardController {
         saveCard(card);
     }
 
-    public void pickCards(Player player, int position, String type, int count) {
+    public void pickCards(OldPlayer oldPlayer, int position, String type, int count) {
         for (var i = 0; i < count; i++)
-            pickCard(player, position, type);
+            pickCard(oldPlayer, position, type);
     }
 
-    public Card pickCard(Player player, int square, String type) {
-        var cards = findByGame(player.getGame()).withoutOwner().ofType(type).toList();
+    public Card pickCard(OldPlayer oldPlayer, int square, String type) {
+        var cards = findByGame(oldPlayer.getGame()).withoutOwner().ofType(type).toList();
         var card = randomCardPicker.pickOne(cards);
-        card.onPick(player, square);
+        card.onPick(oldPlayer, square);
         saveCard(card);
         return card;
     }
 
-    public Card pickCard(Player player, int square, String type, String name) {
-        var card = findByGame(player.getGame()).withoutOwner().ofType(type).ofName(name).getOne();
-        card.onPick(player, square);
+    public Card pickCard(OldPlayer oldPlayer, int square, String type, String name) {
+        var card = findByGame(oldPlayer.getGame()).withoutOwner().ofType(type).ofName(name).getOne();
+        card.onPick(oldPlayer, square);
         saveCard(card);
         return card;
     }
@@ -66,8 +66,8 @@ public class CardController {
         saveCard(card);
     }
 
-    public void moveCardToSquare(Card card, Player player, int square) {
-        card.moveToSquare(player, square);
+    public void moveCardToSquare(Card card, OldPlayer oldPlayer, int square) {
+        card.moveToSquare(oldPlayer, square);
         saveCard(card);
     }
 
@@ -75,7 +75,7 @@ public class CardController {
         moveCardToSquare(card, 0);
     }
 
-    public void stealCard(Player newOwner, Card card) {
+    public void stealCard(OldPlayer newOwner, Card card) {
         card.stealCard(newOwner);
         saveCard(card);
     }

@@ -4,7 +4,7 @@ import com.drpicox.game.old.cards.Card;
 import com.drpicox.game.old.cards.CardController;
 import com.drpicox.game.old.cards.CardListFilter;
 import com.drpicox.game.old.games.Game;
-import com.drpicox.game.old.players.Player;
+import com.drpicox.game.old.players.OldPlayer;
 import com.drpicox.game.old.players.PlayerController;
 import org.springframework.stereotype.Component;
 
@@ -28,6 +28,6 @@ public abstract class EachPlayerRoundRule implements RoundRule {
             runPlayer(player, allCards);
     }
 
-    protected abstract void runPlayer(Player player, CardListFilter<Card> allCards);
+    protected abstract void runPlayer(OldPlayer oldPlayer, CardListFilter<Card> allCards);
 
 }

@@ -18,9 +18,9 @@ public class RandomPlayerPicker {
         this.random = random;
     }
 
-    public Player pickOne(List<Player> players) {
-        var size = players.size();
+    public OldPlayer pickOne(List<OldPlayer> oldPlayers) {
+        var size = oldPlayers.size();
         var index = random.nextInt(size);
-        return players.get(index);
+        return oldPlayers.get(index);
     }
 }

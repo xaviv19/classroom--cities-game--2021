@@ -3,7 +3,7 @@ package com.drpicox.game.old.round;
 import com.drpicox.game.old.cards.Card;
 import com.drpicox.game.old.cards.CardController;
 import com.drpicox.game.old.cards.CardListFilter;
-import com.drpicox.game.old.players.Player;
+import com.drpicox.game.old.players.OldPlayer;
 import com.drpicox.game.old.players.PlayerController;
 import org.springframework.stereotype.Component;
 
@@ -17,9 +17,9 @@ public class RR300_TrainWorkers extends EachPlayerRoundRule {
     }
 
     @Override
-    protected void runPlayer(Player player, CardListFilter<Card> allCards) {
-        var scenario = player.getGame().getScenario();
-        var trainCards = allCards.atPile("train").ofOwner(player);
+    protected void runPlayer(OldPlayer oldPlayer, CardListFilter<Card> allCards) {
+        var scenario = oldPlayer.getGame().getScenario();
+        var trainCards = allCards.atPile("train").ofOwner(oldPlayer);
         if (trainCards.isEmpty()) return;
 
         var combination = trainCards.stream()
@@ -32,7 +32,7 @@ public class RR300_TrainWorkers extends EachPlayerRoundRule {
         var parts = mayKey.get().split("\\.");
         var type = parts[1];
         var name = parts[2];
-        cardController.pickCard(player, 0, type, name);
+        cardController.pickCard(oldPlayer, 0, type, name);
         trainCards.forEach(cardController::discardCard);
     }
 }

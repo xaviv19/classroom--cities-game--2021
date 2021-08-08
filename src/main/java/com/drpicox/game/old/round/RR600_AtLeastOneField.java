@@ -3,7 +3,7 @@ package com.drpicox.game.old.round;
 import com.drpicox.game.old.cards.Card;
 import com.drpicox.game.old.cards.CardController;
 import com.drpicox.game.old.cards.CardListFilter;
-import com.drpicox.game.old.players.Player;
+import com.drpicox.game.old.players.OldPlayer;
 import com.drpicox.game.old.players.PlayerController;
 import org.springframework.stereotype.Component;
 
@@ -14,11 +14,11 @@ public class RR600_AtLeastOneField extends EachPlayerRoundRule {
         super(playerController, cardController);
     }
 
-    protected void runPlayer(Player player, CardListFilter<Card> allCards) {
-        var fields = allCards.ofOwner(player).ofType("field").atAnySquare();
+    protected void runPlayer(OldPlayer oldPlayer, CardListFilter<Card> allCards) {
+        var fields = allCards.ofOwner(oldPlayer).ofType("field").atAnySquare();
 
         if (fields.isEmpty())
-            cardController.pickCard(player, 1, "field");
+            cardController.pickCard(oldPlayer, 1, "field");
     }
 
 
