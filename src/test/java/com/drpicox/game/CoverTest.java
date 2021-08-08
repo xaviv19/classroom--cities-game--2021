@@ -10,29 +10,24 @@
 
 package com.drpicox.game;
 
-import com.drpicox.game.cards.Card;
-import com.drpicox.game.cards.CardListFilter;
-import com.drpicox.game.cards.Positions;
-import com.drpicox.game.cards.RandomCardPicker;
-import com.drpicox.game.forms.VisibleCardForm;
-import com.drpicox.game.games.Game;
-import com.drpicox.game.players.Player;
-import com.drpicox.game.scenarios.Scenario;
-import com.google.common.truth.Truth;
+import com.drpicox.game.old.cards.Card;
+import com.drpicox.game.old.cards.CardListFilter;
+import com.drpicox.game.old.cards.Positions;
+import com.drpicox.game.old.cards.RandomCardPicker;
+import com.drpicox.game.old.forms.VisibleCardForm;
+import com.drpicox.game.old.games.Game;
+import com.drpicox.game.old.players.Player;
+import com.drpicox.game.old.scenarios.Scenario;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-import org.springframework.test.web.servlet.MockMvc;
+
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import java.util.Arrays;
 
-import static com.drpicox.game.tools.JsonSubject.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import static com.google.common.truth.Truth.assertThat;
 

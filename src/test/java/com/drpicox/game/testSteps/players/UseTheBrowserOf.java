@@ -1,7 +1,7 @@
 package com.drpicox.game.testSteps.players;
 
-import com.drpicox.game.forms.NewGameForm;
-import com.drpicox.game.forms.VisibleGameForm;
+import com.drpicox.game.old.forms.NewGameForm;
+import com.drpicox.game.old.forms.VisibleGameForm;
 import com.drpicox.game.testPost.SnapshotService;
 import com.drpicox.game.testPost.TestPostForms;
 import com.drpicox.game.testPost.reader.PostLine;

@@ -1,9 +1,9 @@
 package com.drpicox.game.testSteps.cheating;
 
-import com.drpicox.game.cards.CardController;
-import com.drpicox.game.forms.VisibleGameForm;
-import com.drpicox.game.games.GameController;
-import com.drpicox.game.players.PlayerController;
+import com.drpicox.game.old.cards.CardController;
+import com.drpicox.game.old.forms.VisibleGameForm;
+import com.drpicox.game.old.games.GameController;
+import com.drpicox.game.old.players.PlayerController;
 import com.drpicox.game.testMocks.RandomCardPickerMock;
 import com.drpicox.game.testPost.TestPostForms;
 import com.drpicox.game.testPost.reader.PostLine;

@@ -1,6 +1,5 @@
 package com.drpicox.game.testSteps.enterGame;
 
-import com.drpicox.game.forms.NewGameForm;
 import com.drpicox.game.testPost.TestPostForms;
 import com.drpicox.game.testPost.reader.PostLine;
 import com.drpicox.game.testSteps.AbstractPostLineStep;

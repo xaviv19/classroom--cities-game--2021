@@ -1,6 +1,6 @@
 package com.drpicox.game.testMocks;
 
-import com.drpicox.game.cards.RandomCardPicker;
+import com.drpicox.game.old.cards.RandomCardPicker;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;

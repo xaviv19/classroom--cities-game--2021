@@ -1,6 +1,6 @@
 package com.drpicox.game.testSteps.board;
 
-import com.drpicox.game.forms.VisibleGameForm;
+import com.drpicox.game.old.forms.VisibleGameForm;
 import com.drpicox.game.testPost.TestPostForms;
 import com.drpicox.game.testPost.reader.PostLine;
 import com.drpicox.game.testSteps.AbstractPostLineStep;

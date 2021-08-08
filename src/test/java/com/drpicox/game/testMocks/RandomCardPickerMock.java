@@ -1,7 +1,7 @@
 package com.drpicox.game.testMocks;
 
-import com.drpicox.game.cards.Card;
-import com.drpicox.game.cards.RandomCardPicker;
+import com.drpicox.game.old.cards.Card;
+import com.drpicox.game.old.cards.RandomCardPicker;
 import com.drpicox.game.testPost.AfterPostTest;
 import com.drpicox.game.testPost.BeforePostTest;
 import org.springframework.stereotype.Component;

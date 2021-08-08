@@ -1,6 +1,6 @@
 package com.drpicox.game.testSteps.play;
 
-import com.drpicox.game.forms.VisibleGameForm;
+import com.drpicox.game.old.forms.VisibleGameForm;
 import com.drpicox.game.testPost.TestPostForms;
 import com.drpicox.game.testPost.reader.PostLine;
 import com.drpicox.game.testSteps.AbstractPostLineStep;
@@ -39,7 +39,7 @@ public class PlaysNNCardsIntoThePile extends AbstractPostLineStep {
         playCardsOfName(pile, response, cards, count2, name2);
     }
 
-    private void playCardsOfName(String pile, VisibleGameForm response, com.drpicox.game.cards.CardListFilter<com.drpicox.game.forms.VisibleCardForm> cards, int count, String name) {
+    private void playCardsOfName(String pile, VisibleGameForm response, com.drpicox.game.old.cards.CardListFilter<com.drpicox.game.old.forms.VisibleCardForm> cards, int count, String name) {
         cards = cards.ofName(name).limit(count);
         cards.forEach(c -> response.play(c, pile));
         assertThat(cards).hasSize(count);

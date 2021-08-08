@@ -1,7 +1,7 @@
 package com.drpicox.game.testMocks;
 
-import com.drpicox.game.players.Player;
-import com.drpicox.game.players.RandomPlayerPicker;
+import com.drpicox.game.old.players.Player;
+import com.drpicox.game.old.players.RandomPlayerPicker;
 import com.drpicox.game.testPost.AfterPostTest;
 import com.drpicox.game.testPost.BeforePostTest;
 import org.springframework.stereotype.Component;

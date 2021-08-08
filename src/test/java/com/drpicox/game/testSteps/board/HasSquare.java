@@ -1,12 +1,11 @@
 package com.drpicox.game.testSteps.board;
 
-import com.drpicox.game.forms.VisibleGameForm;
+import com.drpicox.game.old.forms.VisibleGameForm;
 import com.drpicox.game.testPost.TestPostForms;
 import com.drpicox.game.testPost.reader.PostLine;
 import com.drpicox.game.testSteps.AbstractPostLineStep;
 import org.springframework.stereotype.Component;
 
-import static com.drpicox.game.tools.CardCorrespondence.AS_STRING;
 import static com.google.common.truth.Truth.assertThat;
 
 @Component
