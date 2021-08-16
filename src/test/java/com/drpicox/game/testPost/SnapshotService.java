@@ -1,5 +1,6 @@
 package com.drpicox.game.testPost;
 
+import com.drpicox.game.common.api.GlobalRestException;
 import com.google.gson.Gson;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
@@ -82,8 +83,19 @@ public class SnapshotService {
             snapshot.setResolvedException(result.getResolvedException());
             lastSnapshot = snapshot;
 
+            if (responseStatus == 400) {
+                var error = gson.fromJson(responseBody, Map.class);
+                if (error.containsKey("isError") && error.get("isError").equals(Boolean.TRUE))
+                    throw new GlobalRestException(error.get("message").toString());
+            }
+
             return gson.fromJson(responseBody, classOfT);
         } catch (Throwable reason) {
+            if (reason instanceof GlobalRestException) {
+                var expectedReason = (GlobalRestException) reason;
+                throw expectedReason;
+            }
+
             var message = new StringBuilder()
                     .append("Error resolving a REST api call:\n")
                     .append(snapshot.getPrettyPrint())

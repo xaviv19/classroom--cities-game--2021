@@ -1,5 +1,7 @@
 package com.drpicox.game.players.api;
 
+import com.drpicox.game.common.api.GlobalRestException;
+
 public class NewPlayerForm {
 
     private String playerName;
@@ -11,5 +13,10 @@ public class NewPlayerForm {
 
     public String getPassword() {
         return password;
+    }
+
+    public void verify() {
+        if (playerName == null)
+            throw new GlobalRestException("You should add a player name");
     }
 }

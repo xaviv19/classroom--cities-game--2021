@@ -1,5 +1,6 @@
 package com.drpicox.game.testViews;
 
+import com.drpicox.game.common.api.GlobalRestException;
 import com.drpicox.game.common.api.SuccessResponse;
 import com.drpicox.game.testPost.SnapshotService;
 import org.springframework.stereotype.Component;
@@ -35,7 +36,11 @@ public class NewPlayerTestView {
         data.put("playerName", playerName);
         data.put("password", password);
 
-        var response = snapshotService.post("/api/v1/players", data, SuccessResponse.class);
-        messageTestView.replaceMessage(response.getMessage());
+        try {
+            var response = snapshotService.post("/api/v1/players", data, SuccessResponse.class);
+            messageTestView.reportMessage(response.getMessage());
+        } catch (GlobalRestException g) {
+            messageTestView.reportError(g);
+        }
     }
 }

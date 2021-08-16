@@ -21,6 +21,6 @@ public class AddYourNameAsPlayerNameStep extends AbstractPostLineStep {
 
     @Override
     protected void run(PostLine line, String[] match) {
-        newPlayerTestView.addPlayerName("leoard");
+        newPlayerTestView.addPlayerName("leonard");
     }
 }

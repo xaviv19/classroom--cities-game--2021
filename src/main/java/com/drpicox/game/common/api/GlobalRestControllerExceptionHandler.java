@@ -13,7 +13,8 @@ public class GlobalRestControllerExceptionHandler {
 
     @ExceptionHandler(GlobalRestException.class)
     public ResponseEntity badRequest(GlobalRestException exception) {
-        var body = new HashMap<String,String>();
+        var body = new HashMap<String,Object>();
+        body.put("isError", Boolean.TRUE);
         body.put("message", exception.getMessage());
         return new ResponseEntity(
                 body,

@@ -41,9 +41,10 @@ errors.
 
 ### No player name
 
- > Go to the signup.
- > Click the signup button
- > It should show an error message that says "missing player name"
+ > Go to the signup.  
+ > Click the signup button.  
+ > You should see an error message saying that "You should add a player name".  
+ <!-- SNAPSHOT status=400 -->
 
 It is necessary the player name,
 

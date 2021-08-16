@@ -9,6 +9,8 @@ public class PlayersApi {
 
     @PostMapping
     public SuccessResponse newPlayer(@RequestBody NewPlayerForm form) {
-        return new SuccessResponse("The " + form.getPlayerName() + " has been added successfully");
+        form.verify();
+
+        return new SuccessResponse("The " + form.getPlayerName() + " player has been added successfully");
     }
 }

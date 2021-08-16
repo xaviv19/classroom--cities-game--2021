@@ -4,20 +4,22 @@ import com.drpicox.game.testPost.reader.PostLine;
 import com.drpicox.game.testSteps.AbstractPostLineStep;
 import com.drpicox.game.testViews.MessageTestView;
 import org.springframework.stereotype.Component;
+
 import static com.google.common.truth.Truth.assertThat;
+import static com.google.common.truth.Truth.assertWithMessage;
 
 @Component
-public class YouShouldSeeAMessageSayingThatStep extends AbstractPostLineStep {
+public class YouShouldSeeAnErrorMessageSayingThatStep extends AbstractPostLineStep {
 
     private MessageTestView messageTestView;
 
-    public YouShouldSeeAMessageSayingThatStep(MessageTestView messageTestView) {
+    public YouShouldSeeAnErrorMessageSayingThatStep(MessageTestView messageTestView) {
         this.messageTestView = messageTestView;
     }
 
     @Override
     protected String getRegex() {
-        return "You should see a message saying that \"([^\"]+)\"";
+        return "You should see an error message saying that \"([^\"]+)\"";
     }
 
     @Override
@@ -25,5 +27,6 @@ public class YouShouldSeeAMessageSayingThatStep extends AbstractPostLineStep {
         var message = match[1];
 
         assertThat(messageTestView.getMessage()).isEqualTo(message);
+        assertWithMessage("Message should be an error. Message.isError(): ").that(messageTestView.isError()).isTrue();
     }
 }
