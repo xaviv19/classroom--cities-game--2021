@@ -50,4 +50,12 @@ public class PostLine {
     public String getContent() {
         return content;
     }
+
+    public boolean startsWith(String prefix) {
+        return content.startsWith(prefix);
+    }
+
+    public boolean endsWith(String suffix) {
+        return content.endsWith(suffix);
+    }
 }

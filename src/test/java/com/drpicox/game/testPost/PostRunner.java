@@ -28,6 +28,9 @@ public class PostRunner {
 
     private void runLine(PostLine line) {
         print(line);
+        if (!isWellFormattedStep(line))
+            throw newErrorShouldEndWithTwoSpaces(line);
+
         var runners = matchLine(line);
         if (runners.size() > 1)
             throw newErrorTooManyMatches(runners, line);
@@ -35,7 +38,38 @@ public class PostRunner {
             throw newErrorNoRunnersFound(line);
 
         var runner = runners.get(0);
+        verifyRunnerNaming(runner, line);
         runner.run(line);
+    }
+
+    private void verifyRunnerNaming(PostLineStep runner, PostLine line) {
+        if (!isCustomStep(line)) return;
+
+        var className = runner.getClass().getSimpleName();
+        if (className.contains("_") || className.contains("$") || className.matches(".*\\d.*"))
+            throw new AssertionError("Matcher found for the current line should follow the naming convention.\n" +
+                    " - postLineStep: " + runner.getClass().getName() + "\n" +
+                    "Make sure that the class name:\n" +
+                    " - does not have symbols like _ or $\n" +
+                    " - does not have digits (numbers)");
+
+        var lowerFirstClassName = className.substring(0, 1).toLowerCase() + className.substring(1).replaceFirst("Step$", "");
+        var regExp = lowerFirstClassName.replaceAll("([A-Z])", ".*\\\\s$1").toLowerCase();
+        var content = line.getContent().toLowerCase();
+        if (content.matches(".*" + regExp + ".*")) {
+            if (!className.endsWith("Step"))
+                throw new AssertionError("Matcher found for the current line should follow the naming convention.\n" +
+                        " - postLineStep: " + runner.getClass().getName() + "\n" +
+                        "Its class name should end in \"Step\" but it does not.\n" +
+                        " - rename \""+ runner.getClass().getSimpleName() + "\" to \""+ runner.getClass().getSimpleName() + "Step\"\n");
+            return;
+        }
+
+        throw new AssertionError("Matcher found for the current line should follow the naming convention for PostLineSteps:\n" +
+                " - line:         " + line.getPrettyPrint() + "\n" +
+                " - postLineStep: " + runner.getClass().getName() + "\n" +
+                "It must have as class name the same words from the step, removing matches, and capitalizing instead of spaces."
+                );
     }
 
     private void print(PostLine line) {
@@ -48,10 +82,35 @@ public class PostRunner {
                 .collect(Collectors.toList());
     }
 
+    private boolean isCustomStep(PostLine line) {
+        return line.match("^\\s*<!-.*->\\s*$") == null
+                && line.match("^\\s*$") == null
+                && line.startsWith(" ")
+                && line.endsWith("  ");
+    }
+
+    private boolean isWellFormattedStep(PostLine line) {
+        return line.match("^\\s*<!-.*->\\s*$") != null
+                || line.match("^\\s*$") != null
+                || !line.startsWith(" ")
+                || line.endsWith("  ");
+    }
+
+    private AssertionError newErrorShouldEndWithTwoSpaces(PostLine line) {
+        var prettyLine = line.getPrettyPrint().replace(line.getContent(), "\"" + line.getContent() + "\"");
+        var missingText = "— add two spaces ^";
+        var preMissingText = prettyLine.substring(0, Math.max(0, 3 + prettyLine.length() - missingText.length())).replaceAll(".", " ");
+
+        return new AssertionError("Post lines that begin with one space \" \" should end at least with two spaces \"  \":\n" +
+                "=> " + prettyLine + "\n" +
+                preMissingText + missingText
+        );
+    }
+
     private AssertionError newErrorTooManyMatches(List<PostLineStep> runners, PostLine line) {
         var message = new StringBuilder();
 
-        message.append("Too many PostLineSteps (")
+        message.append("There should be only one matching PostLineStep, but there are too many PostLineSteps (")
             .append(runners.size())
             .append(") matches the instruction:\n");
 
@@ -69,7 +128,7 @@ public class PostRunner {
     }
 
     private AssertionError newErrorNoRunnersFound(PostLine line) {
-        return new AssertionError("There are no PostLineSteps (0) matching the instruction:\n=> " + line.getPrettyPrint());
+        return new AssertionError("There should be a matching PostLineStep, but there are no PostLineSteps (0) matching the instruction:\n=> " + line.getPrettyPrint());
     }
 
 
