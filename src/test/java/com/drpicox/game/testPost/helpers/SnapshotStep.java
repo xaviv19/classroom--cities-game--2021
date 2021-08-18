@@ -6,12 +6,12 @@ import com.drpicox.game.testPost.reader.PostLine;
 import org.springframework.stereotype.Component;
 
 @Component
-public class PLSSnapshot implements PostLineStep {
+public class SnapshotStep implements PostLineStep {
 
     private static final String RE = "SNAPSHOT status=(\\d+)";
     private final SnapshotService snapshotService;
 
-    public PLSSnapshot(SnapshotService SnapshotService) {
+    public SnapshotStep(SnapshotService SnapshotService) {
         this.snapshotService = SnapshotService;
     }
 

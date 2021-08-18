@@ -7,8 +7,17 @@ public class NewPlayerForm {
     private String playerName;
     private String password;
 
+    public NewPlayerForm(String playerName, String password) {
+        this.playerName = playerName;
+        this.password = password;
+    }
+
     public String getPlayerName() {
         return playerName;
+    }
+
+    public String getPassword() {
+        return this.password;
     }
 
     public void verify() {

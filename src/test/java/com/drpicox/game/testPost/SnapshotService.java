@@ -89,6 +89,11 @@ public class SnapshotService {
                     throw new GlobalRestException(error.get("message").toString());
             }
 
+            if (responseStatus == 404) {
+                throw new AssertionError("The requested URL " + snapshot.getMethod() + " " + snapshot.getUrl() + " should exists.\n" +
+                        "Make sure that you have an Api controller registered correctly with the annotations @RequestMapping, @GetMapping, ... for the current method and url");
+            }
+
             return gson.fromJson(responseBody, classOfT);
         } catch (Throwable reason) {
             if (reason instanceof GlobalRestException) {

@@ -1,10 +1,6 @@
-## Examen Practica LS2 2020/21
+## Practica LS2 2021/22
 
-El teu nom:
-
-Usuari de GitHub:
-
-Nom del grup:
+Benvingut!
 
 ## Membres del grup:
 
