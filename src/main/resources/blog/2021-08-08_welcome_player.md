@@ -41,13 +41,51 @@ errors.
 
 ### No player name
 
+It is necessary the player name.
+
  > Go to the signup.  
  > Click the signup button.  
- > You should see an error message saying that "You should add a player name".  
  <!-- SNAPSHOT status=400 -->
+ > You should see an error message saying that "Player name should be present".  
 
-It is necessary the player name,
+### Too short player name
 
-Then
+And it should have at least three characters long
 
- > 
+ > Add "jo" as player name.  
+ > Click the signup button.  
+ <!-- SNAPSHOT status=400 -->
+ > You should see an error message saying that "Player name should be at least three characters long".  
+
+### No password
+
+It should have a password.
+
+ > Add your name as player name.  
+ > Click the signup button.  
+ <!-- SNAPSHOT status=400 -->
+ > You should see an error message saying that "Password should be present".  
+
+### Too weak passwords
+
+It should have at least 6 characters.
+
+ > Set "short" as password.  
+ > Click the signup button.  
+ <!-- SNAPSHOT status=400 -->
+ > You should see an error message saying that "Player password should be at least six characters long".  
+
+And at least one number.
+
+ > Set "nonumbers" as password.  
+ > Click the signup button.  
+ <!-- SNAPSHOT status=400 -->
+ > You should see an error message saying that "Player password should have at least one number".  
+
+And some letters
+
+ > Set "123456" as password.  
+ > Click the signup button.  
+ <!-- SNAPSHOT status=400 -->
+ > You should see an error message saying that "Player password should have at least one letter".  
+

@@ -11,12 +11,19 @@ public class NewPlayerForm {
         return playerName;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
     public void verify() {
-        if (playerName == null)
-            throw new GlobalRestException("You should add a player name");
+        if (playerName.equals(""))
+            throw new GlobalRestException("Player name should be present");
+        if (playerName.length() < 3)
+            throw new GlobalRestException("Player name should be at least three characters long");
+
+        if (password.equals(""))
+            throw new GlobalRestException("Password should be present");
+        if (password.length() < 6)
+            throw new GlobalRestException("Player password should be at least six characters long");
+        if (!password.matches(".*\\d.*"))
+            throw new GlobalRestException("Player password should have at least one number");
+        if (!password.matches(".*[A-Za-z].*"))
+            throw new GlobalRestException("Player password should have at least one letter");
     }
 }

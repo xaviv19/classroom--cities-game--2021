@@ -21,6 +21,8 @@ public class NewPlayerTestView {
     private String password;
 
     public void clear() {
+        playerName = "";
+        password = "";
     }
 
     public void addPlayerName(String playerName) {
