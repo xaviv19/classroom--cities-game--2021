@@ -1,4 +1,4 @@
-package com.drpicox.game.testViews;
+package com.drpicox.game.testSteps.player;
 
 import org.springframework.stereotype.Component;
 

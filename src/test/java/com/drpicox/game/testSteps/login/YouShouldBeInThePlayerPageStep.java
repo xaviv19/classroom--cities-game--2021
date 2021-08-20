@@ -2,8 +2,8 @@ package com.drpicox.game.testSteps.login;
 
 import com.drpicox.game.testPost.reader.PostLine;
 import com.drpicox.game.testSteps.AbstractPostLineStep;
-import com.drpicox.game.testViews.LoginTestView;
-import com.drpicox.game.testViews.PlayerTestView;
+import com.drpicox.game.testSteps.player.PlayerTestView;
+
 import org.springframework.stereotype.Component;
 
 import static com.google.common.truth.Truth.assertThat;

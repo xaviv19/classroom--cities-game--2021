@@ -1,8 +1,10 @@
-package com.drpicox.game.testViews;
+package com.drpicox.game.testSteps.newPlayer;
 
 import com.drpicox.game.common.api.GlobalRestException;
 import com.drpicox.game.common.api.SuccessResponse;
 import com.drpicox.game.testPost.SnapshotService;
+import com.drpicox.game.testSteps.message.MessageTestView;
+
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
@@ -38,11 +40,6 @@ public class NewPlayerTestView {
         data.put("playerName", playerName);
         data.put("password", password);
 
-        try {
-            var response = snapshotService.post("/api/v1/players", data, SuccessResponse.class);
-            messageTestView.reportMessage(response.getMessage());
-        } catch (GlobalRestException g) {
-            messageTestView.reportError(g);
-        }
+        messageTestView.callApi(() -> snapshotService.post("/api/v1/players", data, SuccessResponse.class));
     }
 }

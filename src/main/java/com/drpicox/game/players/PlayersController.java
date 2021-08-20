@@ -31,4 +31,8 @@ public class PlayersController {
                 .filter(playerFound -> playerFound.isPasswordOk(password))
                 .map(playerFound -> playerFound.getToken());
     }
+
+    public Optional<Player> findPlayerByToken(String token) {
+        return playerRepository.findByToken(token);
+    }
 }

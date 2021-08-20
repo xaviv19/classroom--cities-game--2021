@@ -1,9 +1,12 @@
-package com.drpicox.game.testViews;
+package com.drpicox.game.testSteps.login;
 
 import com.drpicox.game.common.api.GlobalRestException;
 import com.drpicox.game.common.api.SuccessResponse;
 import com.drpicox.game.players.api.LoginResponse;
 import com.drpicox.game.testPost.SnapshotService;
+import com.drpicox.game.testSteps.message.MessageTestView;
+import com.drpicox.game.testSteps.player.PlayerTestView;
+
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
@@ -41,16 +44,13 @@ public class LoginTestView {
         data.put("playerName", playerName);
         data.put("password", password);
 
-        try {
+        messageTestView.callApi(() -> {
             var response = snapshotService.post("/api/v1/players/login", data, LoginResponse.class);
             var responsePlayerName = response.getPlayerName();
             var token = response.getToken();
-            var message = response.getMessage();
 
             playerTestView.replaceToken(responsePlayerName, token);
-            messageTestView.reportMessage(message);
-        } catch (GlobalRestException g) {
-            messageTestView.reportError(g);
-        }
+            return response;
+        });
     }
 }

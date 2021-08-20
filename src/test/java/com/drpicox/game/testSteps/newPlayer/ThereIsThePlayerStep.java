@@ -7,23 +7,23 @@ import com.drpicox.game.testSteps.AbstractPostLineStep;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ThereIsThePlayerWithPasswordStep extends AbstractPostLineStep {
+public class ThereIsThePlayerStep extends AbstractPostLineStep {
 
     private PlayersApi playersApi;
 
-    public ThereIsThePlayerWithPasswordStep(PlayersApi playersApi) {
+    public ThereIsThePlayerStep(PlayersApi playersApi) {
         this.playersApi = playersApi;
     }
 
     @Override
     protected String getRegex() {
-        return "there is the player \"([^\"]+)\" with password \"([^\"]+)\"";
+        return "there is the player \"([^\"]+)\"( with password \"([^\"]+)\")?";
     }
 
     @Override
     protected void run(PostLine line, String[] match) {
         var playerName = match[1];
-        var password = match[2];
+        var password = match[3] != null ? match[3] : "tbbt12";
 
         playersApi.newPlayer(new NewPlayerForm(playerName, password));
     }

@@ -6,21 +6,24 @@ import com.drpicox.game.testSteps.AbstractPostLineStep;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ClickTheLoginButtonStep extends AbstractPostLineStep {
+public class YouHaveBeenLoggedInStep extends AbstractPostLineStep {
 
     private LoginTestView loginTestView;
 
-    public ClickTheLoginButtonStep(LoginTestView loginTestView) {
+    public YouHaveBeenLoggedInStep(LoginTestView loginTestView) {
         this.loginTestView = loginTestView;
     }
 
     @Override
     protected String getRegex() {
-        return "Click the login button";
+        return "you have been logged in";
     }
 
     @Override
     protected void run(PostLine line, String[] match) {
+        loginTestView.clear();
+        loginTestView.enterPlayerName("leonard");
+        loginTestView.enterPassword("tbbt12");
         loginTestView.submit();
     }
 }

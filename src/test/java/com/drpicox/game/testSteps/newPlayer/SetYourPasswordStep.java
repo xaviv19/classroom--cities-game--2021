@@ -2,7 +2,7 @@ package com.drpicox.game.testSteps.newPlayer;
 
 import com.drpicox.game.testPost.reader.PostLine;
 import com.drpicox.game.testSteps.AbstractPostLineStep;
-import com.drpicox.game.testViews.NewPlayerTestView;
+
 import org.springframework.stereotype.Component;
 
 @Component

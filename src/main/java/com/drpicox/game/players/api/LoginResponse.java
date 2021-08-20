@@ -1,6 +1,8 @@
 package com.drpicox.game.players.api;
 
-public class LoginResponse {
+import com.drpicox.game.common.api.ResponseWithMessage;
+
+public class LoginResponse implements ResponseWithMessage {
     private String playerName;
     private String token;
     private String message;

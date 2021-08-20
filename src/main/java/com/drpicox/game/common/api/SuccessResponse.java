@@ -1,6 +1,6 @@
 package com.drpicox.game.common.api;
 
-public class SuccessResponse {
+public class SuccessResponse implements ResponseWithMessage {
     private int status = 200;
 
     private String message;
