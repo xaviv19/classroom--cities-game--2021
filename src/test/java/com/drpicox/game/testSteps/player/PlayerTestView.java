@@ -1,12 +1,13 @@
 package com.drpicox.game.testSteps.player;
 
+import com.drpicox.game.testSteps.navigator.NavigableScreen;
 import org.springframework.stereotype.Component;
 
 @Component
-public class PlayerTestView {
+public class PlayerTestView implements NavigableScreen {
     private String playerName;
     private String token;
-    private String friendName = "";
+    private String friendName;
 
     public void replaceToken(String playerName, String token) {
         this.playerName = playerName;
@@ -27,5 +28,15 @@ public class PlayerTestView {
 
     public String getFriendName() {
         return this.friendName;
+    }
+
+    @Override
+    public String getScreenName() {
+        return "player";
+    }
+
+    @Override
+    public void show() {
+        friendName = "";
     }
 }

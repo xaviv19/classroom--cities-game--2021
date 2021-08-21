@@ -3,14 +3,17 @@ package com.drpicox.game.testSteps.login;
 import com.drpicox.game.testPost.reader.PostLine;
 import com.drpicox.game.testSteps.AbstractPostLineStep;
 
+import com.drpicox.game.testSteps.navigator.NavigatorTestView;
 import org.springframework.stereotype.Component;
 
 @Component
 public class HasBeenLoggedInStep extends AbstractPostLineStep {
 
-    private LoginTestView loginTestView;
+    private final NavigatorTestView navigatorTestView;
+    private final LoginTestView loginTestView;
 
-    public HasBeenLoggedInStep(LoginTestView loginTestView) {
+    public HasBeenLoggedInStep(NavigatorTestView navigatorTestView, LoginTestView loginTestView) {
+        this.navigatorTestView = navigatorTestView;
         this.loginTestView = loginTestView;
     }
 
@@ -23,8 +26,8 @@ public class HasBeenLoggedInStep extends AbstractPostLineStep {
     protected void run(PostLine line, String[] match) {
         var playerName = match[1];
         var password = "tbbt12";
-
-        loginTestView.clear();
+        
+        navigatorTestView.pushScreenName("login");
         loginTestView.enterPlayerName(playerName);
         loginTestView.enterPassword(password);
         loginTestView.submit();

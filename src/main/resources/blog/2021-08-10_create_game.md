@@ -5,6 +5,34 @@ alone, or with friends.
 
 This post explains how to create those games.
 
+### Disseny gràfic
+
+```                                                           
+      View Player:                       View Create Game:                  View Player:
+     +--------------------------+       +--------------------------+       +--------------------------+
+     | ©               …topbar… |       | ©               …topbar… |       | ©               …topbar… |
+     +--------------------------+       +--------------------------+       +--------------------------+
+ /-> |  Player leonard!         |       |  Create game!            |       !  Game created            |
+ |   |                          |       |                          |       +--------------------------+
+ |   |  ( Create game )         | ----> |  game name: [          ] |       |  Player leonard!         |
+ |   |  ( My games )            |       |  ( create game ) (cancel)| ----> |                          |
+ |   +--------------------------+       +--------------------------+       |  ( Create game )         |
+ |            |                                                            |  ( My games )            |
+ |            |           View List Games:                                 +--------------------------+
+ |            |          +--------------------------+
+ |            |          | ©               …topbar… |
+ |            |          +--------------------------+
+ |            \------>   |  Games of _leonard_      |
+ |                       |                          |
+ |                       |  * game1                 |
+ |                       |  * game2                 |
+ |                       |                          |
+ \---------------------- |  ( return )              |
+                         +--------------------------+
+
+```                                                                                                              
+
+
 ## Your first Game
 
 ### Login
@@ -18,17 +46,21 @@ To create a game, you need to login first:
  > Click the login button.  
  <!-- SNAPSHOT status=200 -->
 
- > You should be in the player page.    
+ > You should be at the player screen.   
+ > The player should be "leonard".   
  
 ### Creating a game
 
 Do you want to create a game, just:
 
- > Go to create game.  
+ > Go to create game.   
+ > You should be at the create game screen.    
+
  > Add "mygame" as game name.  
  > Click the create game button.  
  <!-- SNAPSHOT status=200 -->
- > You should be in the player page.  
+ > You should be at the player screen.  
+ > The player should be "leonard".  
  > You should see a message saying that "The mygame game has been created successfully".    
 
 ## Listing your games
@@ -38,6 +70,8 @@ You can see your games, if you create a game:
  > Given there is your player.  
  > And you have been logged in.  
   <!-- SNAPSHOT status=200 -->  
+ > You should be at the player screen.  
+ > The player should be "leonard".  
 
  > Go to create game.  
  > Add "mygame" as game name.    
@@ -48,6 +82,7 @@ And go to see the games:
 
  > Go to my games.  
  <!-- SNAPSHOT status=200 -->  
+ > You should be at the list games screen.    
  > There should be 1 game.  
  > You should see the game "mygame".    
 
@@ -72,10 +107,10 @@ And create a second game:
  > Add "secondgame" as game name.  
  > Click the create game button.  
  <!-- SNAPSHOT status=200 -->
- > You should be in the player page.    
+ > You should be at the player screen.    
  > You should see a message saying that "The secondgame game has been created successfully".  
 
-And you can see the game in the game list:
+And you can see the game in the list games:
 
  > Go to my games.  
  <!-- SNAPSHOT status=200 -->  
@@ -93,15 +128,21 @@ The name of the game is mandatory.
  > And you have been logged in.  
  <!-- SNAPSHOT status=200 -->  
  > Go to create game.  
- > Click the create game button.  
+ > You should be at the create game screen.        
+ > Click the create game button.   
  <!-- SNAPSHOT status=400 -->  
 
 But it fails:
 
- > You should be in the player page.      
+ > You should be at the create game screen.      
  > You should see an error message saying that "Game name should be present".  
 
-And game list, is empty:
+And list games...
+
+ > Return from the list games.  
+ > You should be at the player screen.  
+
+is empty:
 
  > Go to my games.  
  <!-- SNAPSHOT status=200 -->
@@ -112,14 +153,12 @@ And game list, is empty:
 
 Create a game:
 
- > Given there is your player.  
- > And you have been logged in.  
- <!-- SNAPSHOT status=200 -->
+ > Return from the list games.    
  > Go to create game.  
  > Add "mygame" as game name.  
  > Click the create game button.  
  <!-- SNAPSHOT status=200 -->  
- > You should be in the player page.      
+ > You should be at the player screen.      
  > You should see a message saying that "The mygame game has been created successfully".  
 
 And try to create the same game again:
@@ -128,11 +167,12 @@ And try to create the same game again:
  > Add "mygame" as game name.  
  > Click the create game button.  
  <!-- SNAPSHOT status=400 -->
- > You should be in the player page.      
+ > You should be at the create game screen.      
  > You should see an error message saying that "The mygame game already exists".  
 
 And check for no duplicates:
 
+ > Cancel create game.  
  > Go to my games.  
  <!-- SNAPSHOT status=200 -->
  > There should be 1 game.  
@@ -146,6 +186,7 @@ but others can use the same name for their own games.
  > Given there is the player "penny".  
  > And "penny" has been logged in.  
  <!-- SNAPSHOT status=200 -->
+ > You should be at the player screen.  
 
 Penny cannot see your games:
 
@@ -153,6 +194,7 @@ Penny cannot see your games:
  <!-- SNAPSHOT status=200 -->
  > There should be no games.  
  > You should see no game "mygame".  
+ > Return from the list games.  
 
 Penny creates the same game:
 
@@ -160,7 +202,7 @@ Penny creates the same game:
  > Add "mygame" as game name.  
  > Click the create game button.  
  <!-- SNAPSHOT status=200 -->  
- > You should be in the player page.      
+ > You should be at the player screen.      
  > You should see a message saying that "The mygame game has been created successfully".  
 
 And she can see her game:

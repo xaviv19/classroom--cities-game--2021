@@ -5,8 +5,6 @@ import com.drpicox.game.common.api.SuccessResponse;
 import com.drpicox.game.players.PlayersController;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Optional;
-
 @RestController
 @RequestMapping("/api/v1/players")
 public class PlayersApi {
@@ -18,7 +16,7 @@ public class PlayersApi {
     }
 
     @PostMapping
-    public SuccessResponse newPlayer(@RequestBody NewPlayerForm form) {
+    public SuccessResponse signup(@RequestBody SignupForm form) {
         form.verify();
 
         var playerName = form.getPlayerName();

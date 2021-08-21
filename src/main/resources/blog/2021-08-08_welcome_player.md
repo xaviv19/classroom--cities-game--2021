@@ -9,6 +9,23 @@ We will publish more blogposts during
 the following days with the instructions
 and new functionalities.
 
+### Disseny gràfic
+
+```
+    View Welcome:                        View Signup:                         View Welcome:
+  +--------------------------+         +--------------------------+         +--------------------------+
+  | ©          ( Singup )    | ---->   | ©          ( Singup )    |         | ©          ( Singup )    |
+  +--------------------------+         +--------------------------+         +--------------------------+
+  |  Welcome!                |         |  Signup!                 |   /-->  ! Signup success           |
+  :                          :         |                          |   |     +--------------------------+  
+  |                          |         |  player name: [        ] |   |     |  Welcome!                |
+  |                          |         |  password:    [        ] |   |     :                          :
+  +--------------------------+         |  [ signup ]              | --/     |                          |
+                                       ----------------------------         |                          |
+                                                                            +--------------------------+                                                
+```
+
+
 ## Entering the game
 
 ### All it's in the browser
@@ -20,16 +37,18 @@ know where the game is. Yes, in your browser.
 
 But before start, you need to create a player.
 
- > You see the welcome page.  
- > Go to the signup.  
+ > You should be at the welcome screen.  
+ > Go to the signup.       
+
+ > You should be at the signup screen.  
  > Add your name as player name.  
  > Set your password.  
  > Click the signup button.  
  <!-- SNAPSHOT status=200 -->
 
 At this point,
- 
- > You should back to the welcome page.  
+
+ > You should be back at the welcome screen.  
  > You should see a message saying that "The leonard player has been added successfully".  
 
 ## Checking data
@@ -45,24 +64,27 @@ It is necessary the player name.
  > Go to the signup.  
  > Click the signup button.  
  <!-- SNAPSHOT status=400 -->
- > You should see an error message saying that "Player name should be present".  
+ > You should be at the signup screen.                                       
+ > You should see an error message saying that "Player name should be present".       
 
 ### Too short player name
 
 And it should have at least three characters long
 
- > Add "jo" as player name.  
- > Click the signup button.  
+ > Add "jo" as player name.              
+ > Click the signup button.            
  <!-- SNAPSHOT status=400 -->
+ > You should be at the signup screen.                                         
  > You should see an error message saying that "Player name should be at least three characters long".  
 
 ### No password
 
 It should have a password.
 
- > Add your name as player name.  
- > Click the signup button.  
+ > Add your name as player name.     
+ > Click the signup button.         
  <!-- SNAPSHOT status=400 -->
+ > You should be at the signup screen.                                         
  > You should see an error message saying that "Password should be present".  
 
 ### Too weak passwords
@@ -72,6 +94,7 @@ It should have at least 6 characters.
  > Set "short" as password.  
  > Click the signup button.  
  <!-- SNAPSHOT status=400 -->
+ > You should be at the signup screen.                                         
  > You should see an error message saying that "Player password should be at least six characters long".  
 
 And at least one number.
@@ -79,6 +102,7 @@ And at least one number.
  > Set "nonumbers" as password.  
  > Click the signup button.  
  <!-- SNAPSHOT status=400 -->
+ > You should be at the signup screen.  
  > You should see an error message saying that "Player password should have at least one number".  
 
 And some letters
@@ -86,5 +110,6 @@ And some letters
  > Set "123456" as password.  
  > Click the signup button.  
  <!-- SNAPSHOT status=400 -->
+ > You should be at the signup screen.                                          
  > You should see an error message saying that "Player password should have at least one letter".  
 

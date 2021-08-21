@@ -8,6 +8,23 @@ and play with your games.
 
 Welcome inside.
 
+### Disseny gràfic
+
+```                                    
+   View Welcome:                         View Login:                          View Player:                             
+  +--------------------------+ login   +--------------------------+         +--------------------------+    
+  | ©        ( S ) ( Login ) | ------> | ©       ( S ) ( Login )  |         | ©       ( S ) ( Login )  |    
+  +--------------------------+         +--------------------------+  succes +--------------------------+    
+  |  Welcome!                |         |  Login!                  |   /-->  ! Login  success           |    
+  :                          :         |                          |   |     +--------------------------+    
+  |                          |         |  player name: [leonard ] |   |     |  Player leonard!         |    
+  |                          |         |  password:    [        ] |   |     :                          :    
+  +--------------------------+         |  ( signup )              | --/     |                          |    
+                ^                      ----------------------------         |                          |    
+                |    if failure: show error          |                      +--------------------------+    
+                \------------------------------------/                                                      
+```                                                                                                              
+
 ## Login the Game
 
 ### Create a player
@@ -21,8 +38,8 @@ But before start, you need to create a player.
  <!-- SNAPSHOT status=200 -->
 
 At this point,
- 
- > You should back to the welcome page.  
+
+ > You should be back at the welcome screen.    
  > You should see a message saying that "The leonard player has been added successfully".  
 
 ### Login inside
@@ -30,12 +47,15 @@ At this point,
 You have now a player, now you can login.
 
  > Go to the login.  
+
+ > You should be at the login screen.                                        
  > Enter your player name.  
  > Enter your password.  
  > Click the login button.  
  <!-- SNAPSHOT status=200 -->
 
- > You should be in the player page.  
+ > You should be at the player screen.   
+ > The player should be "leonard".    
  > You should see a message saying that "The leonard player has been logged successfully".  
 
 ## Multiplayer
@@ -47,25 +67,28 @@ You can have more than one player. So,
 
 Now we have two users, and we can login with each one.
 
+ > You should be at the welcome screen.                                         
  > Go to the login  
  > Enter your player name.  
  > Enter your password.  
  > Click the login button.  
  <!-- SNAPSHOT status=200 -->
 
- > You should be in the player page.  
+ > You should be at the player screen.    
+ > The player should be "leonard".    
  > You should see a message saying that "The leonard player has been logged successfully".  
 
 But you can also login, with "penny" player.
 
- > Go to the login  
+ > Go to the login.  
  > Enter "penny" as player name.  
  > Enter "payforyourmeal12" as password.  
  > Click the login button.  
  <!-- SNAPSHOT status=200 -->
 
- > You should be in the player page.  
- > You should see a message saying that "The penny player has been logged successfully".  
+ > You should be at the player screen.  
+ > The player should be "penny".   
+ > You should see a message saying that "The penny player has been logged successfully".   
 
 ## Checking data
 
@@ -86,6 +109,7 @@ If the player does not exists, you cannot login.
  > Enter your password.  
  > Click the login button.  
  <!-- SNAPSHOT status=400 -->
+ > You should be at the login screen.      
  > You should see an error message saying that "The login credentials are wrong".    
 
 ### Wrong password
@@ -95,9 +119,5 @@ If the player does not exists, you cannot login.
  > Enter "wrongpassword" as password.  
  > Click the login button.  
  <!-- SNAPSHOT status=400 -->
+ > You should be at the login screen.      
  > You should see an error message saying that "The login credentials are wrong".  
-
- > Add "jo" as player name.  
- > Click the signup button.  
- <!-- SNAPSHOT status=400 -->
- > You should see an error message saying that "Player name should be at least three characters long".    

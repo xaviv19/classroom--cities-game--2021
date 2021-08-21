@@ -1,12 +1,7 @@
 package com.drpicox.game.players;
 
-import com.drpicox.game.players.Player;
-import com.drpicox.game.players.api.NewPlayerForm;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 @Controller

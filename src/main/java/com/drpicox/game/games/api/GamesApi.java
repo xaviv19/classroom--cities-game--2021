@@ -21,7 +21,7 @@ public class GamesApi {
     }
 
     @PostMapping
-    public SuccessResponse newGame(@RequestBody NewGameForm form) {
+    public SuccessResponse newGame(@RequestBody CreateGameForm form) {
         form.verify();
 
         var gameName = form.getGameName();
@@ -37,13 +37,13 @@ public class GamesApi {
     }
 
     @PostMapping("/byPlayer")
-    public GamesListResponse listGamesByPlayer(@RequestBody ListGamesByPlayerForm form) {
+    public ListGamesResponse listGamesByCreator(@RequestBody ListGamesByCreatorForm form) {
         form.verify();
 
         var playerName = form.getPlayerName();
         var player = playersController.findPlayer(playerName).orElseThrow(() -> new GlobalRestException("The friend name should be an existing player"));
 
-        var result = new GamesListResponse();
+        var result = new ListGamesResponse();
         var games = gamesController.findByCreator(player);
         games.forEach(game -> result.addGame(game));
 
@@ -51,11 +51,11 @@ public class GamesApi {
     }
 
     @PostMapping("/byJoined")
-    public GamesListResponse listGamesByPlayer(@RequestBody ListGamesByJoinedForm form) {
+    public ListGamesResponse listGamesByJoined(@RequestBody ListGamesByJoinedForm form) {
         var token = form.getToken();
         var player = playersController.findPlayerByToken(token).orElseThrow();
 
-        var result = new GamesListResponse();
+        var result = new ListGamesResponse();
         var games = gamesController.findByJoined(player);
         games.forEach(game -> result.addGame(game));
 
