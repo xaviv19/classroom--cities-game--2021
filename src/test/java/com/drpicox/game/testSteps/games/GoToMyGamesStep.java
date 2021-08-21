@@ -1,4 +1,4 @@
-package com.drpicox.game.testSteps.myGames;
+package com.drpicox.game.testSteps.games;
 
 import com.drpicox.game.testPost.reader.PostLine;
 import com.drpicox.game.testSteps.AbstractPostLineStep;
@@ -7,10 +7,10 @@ import org.springframework.stereotype.Component;
 @Component
 public class GoToMyGamesStep extends AbstractPostLineStep {
 
-    private final MyGamesTestView myGamesTestView;
+    private final GamesTestView gamesTestView;
 
-    public GoToMyGamesStep(MyGamesTestView myGamesTestView) {
-        this.myGamesTestView = myGamesTestView;
+    public GoToMyGamesStep(GamesTestView gamesTestView) {
+        this.gamesTestView = gamesTestView;
     }
 
     @Override
@@ -20,6 +20,6 @@ public class GoToMyGamesStep extends AbstractPostLineStep {
 
     @Override
     protected void run(PostLine line, String[] match) {
-        myGamesTestView.fetch();
+        gamesTestView.fetchMyGames();
     }
 }

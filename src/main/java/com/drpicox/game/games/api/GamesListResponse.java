@@ -4,6 +4,7 @@ import com.drpicox.game.games.Game;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class GamesListResponse {
 
@@ -14,7 +15,13 @@ public class GamesListResponse {
     }
 
     public void addGame(Game game) {
-        var entry = new GameListResponseEntry(game.getGameName(), game.getPlayer().getPlayerName());
+        String gameName = game.getGameName();
+        String playerName = game.getCreator().getPlayerName();
+        var joinedPlayerNames = game.getJoinedPlayers().stream()
+                .map(p -> p.getPlayerName())
+                .collect(Collectors.toList());
+
+        var entry = new GameListResponseEntry(gameName, playerName, joinedPlayerNames);
         games.add(entry);
     }
 }

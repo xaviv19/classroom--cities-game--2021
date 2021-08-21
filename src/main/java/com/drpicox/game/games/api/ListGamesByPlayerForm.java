@@ -1,9 +1,16 @@
 package com.drpicox.game.games.api;
 
-public class ListGamesByPlayerForm {
-    private String token;
+import com.drpicox.game.common.api.GlobalRestException;
 
-    public String getToken() {
-        return token;
+public class ListGamesByPlayerForm {
+    private String playerName;
+
+    public String getPlayerName() {
+        return playerName;
+    }
+
+    public void verify() {
+        if (playerName.equals(""))
+            throw new GlobalRestException("The friend name should be present");
     }
 }

@@ -1,4 +1,4 @@
-package com.drpicox.game.testSteps.myGames;
+package com.drpicox.game.testSteps.games;
 
 import com.drpicox.game.testPost.reader.PostLine;
 import com.drpicox.game.testSteps.AbstractPostLineStep;
@@ -9,10 +9,10 @@ import static com.google.common.truth.Truth.assertThat;
 @Component
 public class ThereShouldBeGameStep extends AbstractPostLineStep {
 
-    private final MyGamesTestView myGamesTestView;
+    private final GamesTestView gamesTestView;
 
-    public ThereShouldBeGameStep(MyGamesTestView myGamesTestView) {
-        this.myGamesTestView = myGamesTestView;
+    public ThereShouldBeGameStep(GamesTestView gamesTestView) {
+        this.gamesTestView = gamesTestView;
     }
 
     @Override
@@ -23,7 +23,7 @@ public class ThereShouldBeGameStep extends AbstractPostLineStep {
     @Override
     protected void run(PostLine line, String[] match) {
         var size = Integer.parseInt(match[1]);
-        var games = myGamesTestView.getGames();
+        var games = gamesTestView.getGames();
         assertThat(games).hasSize(size);
     }
 }

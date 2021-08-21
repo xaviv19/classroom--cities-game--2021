@@ -6,6 +6,11 @@ public class NewGameForm {
     private String gameName;
     private String token;
 
+    public NewGameForm(String gameName, String token) {
+        this.gameName = gameName;
+        this.token = token;
+    }
+
     public String getGameName() {
         return gameName;
     }

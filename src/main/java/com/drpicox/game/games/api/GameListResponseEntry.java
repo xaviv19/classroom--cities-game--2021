@@ -1,15 +1,27 @@
 package com.drpicox.game.games.api;
 
-public class GameListResponseEntry {
-    private String playerName;
-    private String gameName;
+import java.util.List;
 
-    public GameListResponseEntry(String gameName, String playerName) {
+public class GameListResponseEntry {
+    private String creatorName;
+    private String gameName;
+    private List<String> joinedPlayerNames;
+
+    public GameListResponseEntry(String gameName, String creatorName, List<String> joinedPlayerNames) {
+        this.creatorName = creatorName;
         this.gameName = gameName;
-        this.playerName = playerName;
+        this.joinedPlayerNames = joinedPlayerNames;
     }
 
     public String getGameName() {
         return this.gameName;
+    }
+
+    public String getCreatorName() {
+        return this.creatorName;
+    }
+
+    public List<String> getJoinedPlayerNames() {
+        return this.joinedPlayerNames;
     }
 }

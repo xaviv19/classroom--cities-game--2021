@@ -7,5 +7,5 @@ import java.util.List;
 import java.util.Optional;
 
 interface GameRepository extends JpaRepository<Game, String> {
-    List<Game> findByPlayer(Player player);
+    List<Game> findByCreator(Player creator);
 }

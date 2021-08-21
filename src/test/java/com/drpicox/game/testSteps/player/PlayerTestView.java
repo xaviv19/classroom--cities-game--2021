@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 public class PlayerTestView {
     private String playerName;
     private String token;
+    private String friendName = "";
 
     public void replaceToken(String playerName, String token) {
         this.playerName = playerName;
@@ -18,5 +19,13 @@ public class PlayerTestView {
 
     public String getToken() {
         return this.token;
+    }
+
+    public void enterFriendName(String friendName) {
+        this.friendName = friendName;
+    }
+
+    public String getFriendName() {
+        return this.friendName;
     }
 }

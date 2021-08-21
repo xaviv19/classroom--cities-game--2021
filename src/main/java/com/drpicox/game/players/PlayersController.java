@@ -22,7 +22,7 @@ public class PlayersController {
         playerRepository.save(player);
     }
 
-    private Optional<Player> findPlayer(String playerName) {
+    public Optional<Player> findPlayer(String playerName) {
         return playerRepository.findById(playerName);
     }
 

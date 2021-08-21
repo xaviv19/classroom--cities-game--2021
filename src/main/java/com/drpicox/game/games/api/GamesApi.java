@@ -38,13 +38,46 @@ public class GamesApi {
 
     @PostMapping("/byPlayer")
     public GamesListResponse listGamesByPlayer(@RequestBody ListGamesByPlayerForm form) {
-        var token = form.getToken();
-        var player = playersController.findPlayerByToken(token).orElseThrow();
+        form.verify();
+
+        var playerName = form.getPlayerName();
+        var player = playersController.findPlayer(playerName).orElseThrow(() -> new GlobalRestException("The friend name should be an existing player"));
 
         var result = new GamesListResponse();
-        var games = gamesController.findByPlayer(player);
+        var games = gamesController.findByCreator(player);
         games.forEach(game -> result.addGame(game));
 
         return result;
     }
+
+    @PostMapping("/byJoined")
+    public GamesListResponse listGamesByPlayer(@RequestBody ListGamesByJoinedForm form) {
+        var token = form.getToken();
+        var player = playersController.findPlayerByToken(token).orElseThrow();
+
+        var result = new GamesListResponse();
+        var games = gamesController.findByJoined(player);
+        games.forEach(game -> result.addGame(game));
+
+        return result;
+    }
+
+    @PostMapping("/join")
+    public SuccessResponse join(@RequestBody JoinGameForm form) {
+        var gameName = form.getGameName();
+        var creatorName = form.getCreatorName();
+        var token = form.getToken();
+
+        var joiningPlayer = playersController.findPlayerByToken(token).orElseThrow();
+        var creatorPlayer = playersController.findPlayer(creatorName).orElseThrow();
+
+        var game = gamesController.join(gameName, creatorPlayer, joiningPlayer).orElseThrow(
+                () -> new GlobalRestException("You should join games in which are you not joined")
+        );
+
+        return new SuccessResponse("You have joined " + game.getGameName() + " game from " + game.getCreator().getPlayerName() + " successfully");
+    }
+
+
+    // byJoined
 }
