@@ -43,7 +43,7 @@ public class PostRunner {
     }
 
     private void verifyRunnerNaming(PostLineStep runner, PostLine line) {
-        if (!isCustomStep(line)) return;
+        if (runner instanceof SystemPostLineStep) return;
 
         var className = runner.getClass().getSimpleName();
         if (className.contains("_") || className.contains("$") || className.matches(".*\\d.*"))
@@ -82,18 +82,8 @@ public class PostRunner {
                 .collect(Collectors.toList());
     }
 
-    private boolean isCustomStep(PostLine line) {
-        return line.match("^\\s*<!-.*->\\s*$") == null
-                && line.match("^\\s*$") == null
-                && line.startsWith(" ")
-                && line.endsWith("  ");
-    }
-
     private boolean isWellFormattedStep(PostLine line) {
-        return line.match("^\\s*<!-.*->\\s*$") != null
-                || line.match("^\\s*$") != null
-                || !line.startsWith(" ")
-                || line.endsWith("  ");
+        return line.match("^\\s(\\s*>)") == null || line.match("\\s\\s$") != null;
     }
 
     private AssertionError newErrorShouldEndWithTwoSpaces(PostLine line) {

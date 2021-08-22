@@ -35,10 +35,10 @@ know where the game is. Yes, in your browser.
 
 ### Create a player
 
-But before start, you need to create a player.
+But before start, you need to create a player:
 
- > You should be at the welcome screen.  
- > Go to the signup.       
+ * You should be at the welcome screen.
+ * Go to the signup.
 
  > You should be at the signup screen.  
  > Add your name as player name.  

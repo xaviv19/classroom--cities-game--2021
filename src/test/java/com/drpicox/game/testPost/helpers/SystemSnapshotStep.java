@@ -2,16 +2,17 @@ package com.drpicox.game.testPost.helpers;
 
 import com.drpicox.game.testPost.PostLineStep;
 import com.drpicox.game.testPost.SnapshotService;
+import com.drpicox.game.testPost.SystemPostLineStep;
 import com.drpicox.game.testPost.reader.PostLine;
 import org.springframework.stereotype.Component;
 
 @Component
-public class SnapshotStep implements PostLineStep {
+public class SystemSnapshotStep implements SystemPostLineStep {
 
     private static final String RE = "SNAPSHOT status=(\\d+)";
     private final SnapshotService snapshotService;
 
-    public SnapshotStep(SnapshotService SnapshotService) {
+    public SystemSnapshotStep(SnapshotService SnapshotService) {
         this.snapshotService = SnapshotService;
     }
 
