@@ -23,7 +23,7 @@ public class YouShouldHaveJoinedTheGameStep extends AbstractPostLineStep {
 
     @Override
     protected String getRegex() {
-        return "You should have (not )?joined the game \"([^\"]+)\" and creator \"([^\"]+)\"";
+        return "You should have (not )?joined the game \"([^\"]+)\" created by \"([^\"]+)\"";
     }
 
     @Override

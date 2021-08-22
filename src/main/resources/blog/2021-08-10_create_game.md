@@ -15,7 +15,7 @@ This post explains how to create those games.
  /-> |  Player leonard!         |       |  Create game!            |       !  Game created            |
  |   |                          |       |                          |       +--------------------------+
  |   |  ( Create game )         | ----> |  game name: [          ] |       |  Player leonard!         |
- |   |  ( My games )            |       |  ( create game ) (cancel)| ----> |                          |
+ |   |  ( My Created Games )    |       |  ( create game ) (cancel)| ----> |                          |
  |   +--------------------------+       +--------------------------+       |  ( Create game )         |
  |            |                                                            |  ( My games )            |
  |            |           View List Games:                                 +--------------------------+
@@ -80,7 +80,7 @@ You can see your games, if you create a game:
 
 And go to see the games:
 
- > Go to my games.  
+ > Go to my created games.  
  <!-- SNAPSHOT status=200 -->  
  > You should be at the list games screen.    
  > There should be 1 game.  
@@ -112,7 +112,7 @@ And create a second game:
 
 And you can see the game in the list games:
 
- > Go to my games.  
+ > Go to my created games.  
  <!-- SNAPSHOT status=200 -->  
  > There should be 2 games.  
  > You should see the game "mygame".    
@@ -144,7 +144,7 @@ And list games...
 
 is empty:
 
- > Go to my games.  
+ > Go to my created games.  
  <!-- SNAPSHOT status=200 -->
  > There should be no games.  
  > You should see no game "mygame".  
@@ -173,7 +173,7 @@ And try to create the same game again:
 And check for no duplicates:
 
  > Cancel create game.  
- > Go to my games.  
+ > Go to my created games.  
  <!-- SNAPSHOT status=200 -->
  > There should be 1 game.  
  > You should see the game "mygame".  
@@ -190,7 +190,7 @@ but others can use the same name for their own games.
 
 Penny cannot see your games:
 
- > Go to my games.  
+ > Go to my created games.  
  <!-- SNAPSHOT status=200 -->
  > There should be no games.  
  > You should see no game "mygame".  
@@ -207,7 +207,7 @@ Penny creates the same game:
 
 And she can see her game:
 
- > Go to my games.  
+ > Go to my created games.  
  <!-- SNAPSHOT status=200 -->
  > There should be 1 game.  
  > You should see the game "mygame".  

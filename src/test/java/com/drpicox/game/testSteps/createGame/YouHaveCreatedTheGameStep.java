@@ -33,6 +33,6 @@ public class YouHaveCreatedTheGameStep extends AbstractPostLineStep {
         var token = playersApi.login(login).getToken();
 
         var newGame = new CreateGameForm(gameName, token);
-        gamesApi.newGame(newGame);
+        gamesApi.createGame(newGame);
     }
 }

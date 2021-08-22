@@ -1,9 +1,11 @@
 package com.drpicox.game.testSteps.listGames;
 
 import com.drpicox.game.common.api.SuccessResponse;
+import com.drpicox.game.games.api.GameResponse;
 import com.drpicox.game.games.api.ListGamesResponseEntry;
 import com.drpicox.game.games.api.ListGamesResponse;
 import com.drpicox.game.testPost.SnapshotService;
+import com.drpicox.game.testSteps.game.GameTestView;
 import com.drpicox.game.testSteps.message.MessageTestView;
 import com.drpicox.game.testSteps.navigator.NavigableScreen;
 import com.drpicox.game.testSteps.navigator.NavigatorTestView;
@@ -16,12 +18,14 @@ import java.util.List;
 
 @Component
 public class ListGamesTestView implements NavigableScreen {
+    private final GameTestView gameTestView;
     private final NavigatorTestView navigatorTestView;
     private final MessageTestView messageTestView;
     private final PlayerTestView playerTestView;
     private final SnapshotService snapshotService;
 
-    public ListGamesTestView(NavigatorTestView navigatorTestView, MessageTestView messageTestView, PlayerTestView playerTestView, SnapshotService snapshotService) {
+    public ListGamesTestView(GameTestView gameTestView, NavigatorTestView navigatorTestView, MessageTestView messageTestView, PlayerTestView playerTestView, SnapshotService snapshotService) {
+        this.gameTestView = gameTestView;
         this.navigatorTestView = navigatorTestView;
         this.messageTestView = messageTestView;
         this.playerTestView = playerTestView;
@@ -79,6 +83,11 @@ public class ListGamesTestView implements NavigableScreen {
             return response;
         });
         if (ok != null) navigatorTestView.popScreenName();
+    }
+
+    public void play(String gameName, String creatorName) {
+        var ok = gameTestView.fetchGame(gameName, creatorName);
+        if (ok != null) navigatorTestView.pushScreenName("game");
     }
 
     @Override

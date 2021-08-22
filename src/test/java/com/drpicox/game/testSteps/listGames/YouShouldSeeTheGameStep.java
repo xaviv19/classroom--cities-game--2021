@@ -22,7 +22,7 @@ public class YouShouldSeeTheGameStep extends AbstractPostLineStep {
 
     @Override
     protected String getRegex() {
-        return "You should see the game \"([^\"]+)\"( and creator \"([^\"]+)\")?";
+        return "You should see the game \"([^\"]+)\"( created by \"([^\"]+)\")?";
     }
 
     @Override

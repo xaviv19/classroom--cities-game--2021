@@ -5,17 +5,17 @@ import com.drpicox.game.testSteps.AbstractPostLineStep;
 import org.springframework.stereotype.Component;
 
 @Component
-public class GoToMyGamesStep extends AbstractPostLineStep {
+public class GoToMyCreatedGamesStep extends AbstractPostLineStep {
 
     private final ListGamesTestView listGamesTestView;
 
-    public GoToMyGamesStep(ListGamesTestView listGamesTestView) {
+    public GoToMyCreatedGamesStep(ListGamesTestView listGamesTestView) {
         this.listGamesTestView = listGamesTestView;
     }
 
     @Override
     protected String getRegex() {
-        return "Go to my games";
+        return "Go to my created games";
     }
 
     @Override

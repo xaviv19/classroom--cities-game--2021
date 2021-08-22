@@ -40,17 +40,17 @@ public class GamesController {
                 });
     }
 
-    private Optional<Game> findGame(String gameName, Player player) {
+    public Optional<Game> findGame(String gameName, Player player) {
         return gameRepository.findById(computeId(gameName, player));
-    }
-
-    private String computeId(String gameName, Player player) {
-        return player.getPlayerName() + "#" + gameName;
     }
 
     public List<Game> findByJoined(Player player) {
         return gameRepository.findAll().stream()
                 .filter(g -> g.isPlayerJoined(player))
                 .collect(Collectors.toList());
+    }
+
+    private String computeId(String gameName, Player player) {
+        return player.getPlayerName() + "#" + gameName;
     }
 }

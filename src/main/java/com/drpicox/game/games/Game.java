@@ -2,10 +2,7 @@ package com.drpicox.game.games;
 
 import com.drpicox.game.players.Player;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +16,7 @@ public class Game {
     @ManyToOne
     private Player creator;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     private List<Player> joinedPlayers = new ArrayList<>();
 
     public Game(String id, String gameName, Player creator) {

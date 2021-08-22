@@ -4,10 +4,7 @@ import com.drpicox.game.common.api.GlobalRestException;
 import com.drpicox.game.common.api.SuccessResponse;
 import com.drpicox.game.games.GamesController;
 import com.drpicox.game.players.PlayersController;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/games")
@@ -21,7 +18,7 @@ public class GamesApi {
     }
 
     @PostMapping
-    public SuccessResponse newGame(@RequestBody CreateGameForm form) {
+    public SuccessResponse createGame(@RequestBody CreateGameForm form) {
         form.verify();
 
         var gameName = form.getGameName();
@@ -78,6 +75,15 @@ public class GamesApi {
         return new SuccessResponse("You have joined " + game.getGameName() + " game from " + game.getCreator().getPlayerName() + " successfully");
     }
 
+    @GetMapping("/{gameName}/by/{creatorName}")
+    public GameResponse get(@PathVariable String gameName, @PathVariable String creatorName, @RequestParam String token) {
+        var playingPlayer = playersController.findPlayerByToken(token).orElseThrow();
+        var creatorPlayer = playersController.findPlayer(creatorName).orElseThrow();
 
-    // byJoined
+        var game = gamesController.findGame(gameName, creatorPlayer).orElseThrow();
+        if (!game.isPlayerJoined(playingPlayer))
+            throw new GlobalRestException("You should play only games in which you are joined");
+
+        return new GameResponse(gameName, creatorName);
+    }
 }

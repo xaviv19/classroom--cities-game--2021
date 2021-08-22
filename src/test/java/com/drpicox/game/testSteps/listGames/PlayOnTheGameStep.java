@@ -6,17 +6,19 @@ import com.drpicox.game.testSteps.player.PlayerTestView;
 import org.springframework.stereotype.Component;
 
 @Component
-public class JoinOnTheGameStep extends AbstractPostLineStep {
+public class PlayOnTheGameStep extends AbstractPostLineStep {
 
+    private final PlayerTestView playerTestView;
     private final ListGamesTestView listGamesTestView;
 
-    public JoinOnTheGameStep(ListGamesTestView listGamesTestView) {
+    public PlayOnTheGameStep(PlayerTestView playerTestView, ListGamesTestView listGamesTestView) {
+        this.playerTestView = playerTestView;
         this.listGamesTestView = listGamesTestView;
     }
 
     @Override
     protected String getRegex() {
-        return "Join on the game \"([^\"]+)\" created by \"([^\"]+)\"";
+        return "Play on the game \"([^\"]+)\" created by \"([^\"]+)\"";
     }
 
     @Override
@@ -24,6 +26,6 @@ public class JoinOnTheGameStep extends AbstractPostLineStep {
         var gameName = match[1];
         var creatorName = match[2];
 
-        listGamesTestView.join(gameName, creatorName);
+        listGamesTestView.play(gameName, creatorName);
     }
 }
