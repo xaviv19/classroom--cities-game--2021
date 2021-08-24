@@ -1,3 +1,7 @@
+---
+writer: drpicox
+coder: drpicox
+---
 # Login Player
 
 You know how to create your player

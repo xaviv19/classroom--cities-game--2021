@@ -1,3 +1,7 @@
+---
+writer: drpicox
+coder: drpicox
+---
 # Create Game
 
 Every player can create games to play 

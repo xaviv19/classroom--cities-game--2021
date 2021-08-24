@@ -48,7 +48,9 @@ public class PostReader {
 
     private String readPostBody(String postId) {
         try {
-            return blogController.getPost(postId).getBody();
+            return blogController.findPost(postId).orElseThrow(
+                    () -> new AssertionError("Post \"" + postId + "\" does not exists")
+            ).getBody();
         } catch (Exception e) {
             throw new AssertionError("Cannot read postId " + postId, e);
         }
