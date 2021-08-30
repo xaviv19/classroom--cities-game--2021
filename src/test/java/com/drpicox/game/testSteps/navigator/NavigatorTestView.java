@@ -25,9 +25,12 @@ public class NavigatorTestView implements BeforePostTest {
     }
 
     public void pushScreenName(String screenName) {
-        var screen = getNavigableScreen(screenName);
-
         screenNameStack.push(screenName);
+        showScreen(screenName);
+    }
+
+    private void showScreen(String screenName) {
+        var screen = getNavigableScreen(screenName);
         screen.show();
     }
 
@@ -35,7 +38,7 @@ public class NavigatorTestView implements BeforePostTest {
         return navigableScreens.stream()
                 .filter(s -> s.getScreenName().equals(screenName))
                 .findFirst()
-                .get();
+                .orElseThrow(() -> new AssertionError("Cannot found the testView for the screen '" + screenName + "'.\nYou may check that:\n - Do you have a testView that implements NavigableScreen?\n - Does the testView have the @Component annotation?\n - Does the testView method getScreenName() returns '" + screenName + "'?"));
     }
 
     public String peekScreenName() {
@@ -45,7 +48,6 @@ public class NavigatorTestView implements BeforePostTest {
     public void popScreenName() {
         screenNameStack.pop();
         var screenName = screenNameStack.peek();
-        var screen = getNavigableScreen(screenName);
-        screen.show();
+        showScreen(screenName);
     }
 }

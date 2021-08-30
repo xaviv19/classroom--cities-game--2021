@@ -4,6 +4,8 @@ import com.drpicox.game.common.api.GlobalRestException;
 import com.drpicox.game.common.api.SuccessResponse;
 import com.drpicox.game.games.GamesController;
 import com.drpicox.game.players.PlayersController;
+import com.drpicox.game.players.api.LoginForm;
+import com.drpicox.game.players.api.PlayersApi;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -11,10 +13,12 @@ import org.springframework.web.bind.annotation.*;
 public class GamesApi {
     private final GamesController gamesController;
     private final PlayersController playersController;
+    private final PlayersApi playersApi;
 
-    public GamesApi(GamesController gamesController, PlayersController playersController) {
+    public GamesApi(GamesController gamesController, PlayersController playersController, PlayersApi playersApi) {
         this.gamesController = gamesController;
         this.playersController = playersController;
+        this.playersApi = playersApi;
     }
 
     @PostMapping
@@ -42,7 +46,7 @@ public class GamesApi {
 
         var result = new ListGamesResponse();
         var games = gamesController.findByCreator(player);
-        games.forEach(game -> result.addGame(game));
+        games.forEach(result::addGame);
 
         return result;
     }
@@ -54,7 +58,7 @@ public class GamesApi {
 
         var result = new ListGamesResponse();
         var games = gamesController.findByJoined(player);
-        games.forEach(game -> result.addGame(game));
+        games.forEach(result::addGame);
 
         return result;
     }
@@ -75,6 +79,20 @@ public class GamesApi {
         return new SuccessResponse("You have joined " + game.getGameName() + " game from " + game.getCreator().getPlayerName() + " successfully");
     }
 
+    @PostMapping("/joinNext")
+    public GameResponse joinNext(@RequestBody JoinNextForm form) {
+        var playerName = form.getPlayerName();
+        var password = form.getPassword();
+        var loginResponse = playersApi.login(new LoginForm(playerName, password));
+        var token = loginResponse.getToken();
+
+        var gameName = form.getGameName();
+        var creatorName = form.getCreatorName();
+        join(new JoinGameForm(gameName, creatorName, token));
+
+        return get(gameName, creatorName, token);
+    }
+
     @GetMapping("/{gameName}/by/{creatorName}")
     public GameResponse get(@PathVariable String gameName, @PathVariable String creatorName, @RequestParam String token) {
         var playingPlayer = playersController.findPlayerByToken(token).orElseThrow();
@@ -84,6 +102,6 @@ public class GamesApi {
         if (!game.isPlayerJoined(playingPlayer))
             throw new GlobalRestException("You should play only games in which you are joined");
 
-        return new GameResponse(gameName, creatorName);
+        return new GameResponse(gameName, creatorName, playingPlayer.getPlayerName(), token);
     }
 }

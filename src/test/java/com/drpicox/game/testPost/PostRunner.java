@@ -114,6 +114,10 @@ public class PostRunner {
                     .append(runner.getPrettyPrint())
                     .append('\n');
 
+        if (!line.startsWith(" "))
+            message.append("This line in the post do not start with a space, you may forgot to add one space in the beginning.\n")
+                    .append(" => Please check if this post line needs an space in the beginning and add it if it is necessary.\n");
+
         return new AssertionError(message.toString());
     }
 

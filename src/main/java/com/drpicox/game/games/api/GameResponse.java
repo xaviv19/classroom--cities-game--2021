@@ -7,10 +7,14 @@ import java.util.stream.Stream;
 public class GameResponse {
     private String gameName;
     private String creatorName;
+    private String playerName;
+    private String token;
 
-    public GameResponse(String gameName, String creatorName) {
+    public GameResponse(String gameName, String creatorName, String playerName, String token) {
         this.gameName = gameName;
         this.creatorName = creatorName;
+        this.playerName = playerName;
+        this.token = token;
     }
 
     public String getGameName() {
@@ -19,5 +23,13 @@ public class GameResponse {
 
     public String getCreatorName() {
         return this.creatorName;
+    }
+
+    public String getPlayerName() {
+        return this.playerName;
+    }
+
+    public String getToken() {
+        return this.token;
     }
 }

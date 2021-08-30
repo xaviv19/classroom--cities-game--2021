@@ -11,13 +11,13 @@ import org.springframework.stereotype.Component;
 public class GameTestView implements NavigableScreen {
 
     private final MessageTestView messageTestView;
-    private final PlayerTestView playerTestView;
     private final SnapshotService snapshotService;
+    private final PlayerTestView playerTestView;
 
-    public GameTestView(MessageTestView messageTestView, PlayerTestView playerTestView, SnapshotService snapshotService) {
+    public GameTestView(MessageTestView messageTestView, SnapshotService snapshotService, PlayerTestView playerTestView) {
         this.messageTestView = messageTestView;
-        this.playerTestView = playerTestView;
         this.snapshotService = snapshotService;
+        this.playerTestView = playerTestView;
     }
 
     private GameResponse game;
@@ -31,15 +31,19 @@ public class GameTestView implements NavigableScreen {
     public void show() {
     }
 
-    public GameResponse fetchGame(String gameName, String creatorName) {
-        var token = playerTestView.getToken();
-
+    public GameResponse fetchGame(String gameName, String creatorName, String token) {
         var game = messageTestView.callApi(
                 () -> snapshotService.get("/api/v1/games/" + gameName + "/by/" + creatorName + "?token=" + token, null, GameResponse.class)
         );
-        this.game = game;
+        replaceGame(game);
 
         return game;
+    }
+
+    public void replaceGame(GameResponse game) {
+        if (game == null) return;
+        this.game = game;
+        playerTestView.replaceToken(game.getPlayerName(), game.getToken());
     }
 
     public GameResponse getGame() {

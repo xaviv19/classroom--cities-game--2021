@@ -1,7 +1,6 @@
 package com.drpicox.game.testSteps.listGames;
 
 import com.drpicox.game.common.api.SuccessResponse;
-import com.drpicox.game.games.api.GameResponse;
 import com.drpicox.game.games.api.ListGamesResponseEntry;
 import com.drpicox.game.games.api.ListGamesResponse;
 import com.drpicox.game.testPost.SnapshotService;
@@ -85,8 +84,8 @@ public class ListGamesTestView implements NavigableScreen {
         if (ok != null) navigatorTestView.popScreenName();
     }
 
-    public void play(String gameName, String creatorName) {
-        var ok = gameTestView.fetchGame(gameName, creatorName);
+    public void play(String gameName, String creatorName, String token) {
+        var ok = gameTestView.fetchGame(gameName, creatorName, token);
         if (ok != null) navigatorTestView.pushScreenName("game");
     }
 

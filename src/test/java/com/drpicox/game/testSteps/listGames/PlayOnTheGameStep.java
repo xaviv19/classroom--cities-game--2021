@@ -26,6 +26,7 @@ public class PlayOnTheGameStep extends AbstractPostLineStep {
         var gameName = match[1];
         var creatorName = match[2];
 
-        listGamesTestView.play(gameName, creatorName);
+        var token = playerTestView.getToken();
+        listGamesTestView.play(gameName, creatorName, token);
     }
 }

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class EnterYourPasswordStep extends AbstractPostLineStep {
 
-    private LoginTestView loginTestView;
+    private final LoginTestView loginTestView;
 
     public EnterYourPasswordStep(LoginTestView loginTestView) {
         this.loginTestView = loginTestView;
