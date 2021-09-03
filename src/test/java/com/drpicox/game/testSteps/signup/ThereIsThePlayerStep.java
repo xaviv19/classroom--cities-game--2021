@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class ThereIsThePlayerStep extends AbstractPostLineStep {
 
-    private PlayersApi playersApi;
+    private final PlayersApi playersApi;
 
     public ThereIsThePlayerStep(PlayersApi playersApi) {
         this.playersApi = playersApi;

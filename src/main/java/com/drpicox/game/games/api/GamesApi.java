@@ -8,17 +8,21 @@ import com.drpicox.game.players.api.LoginForm;
 import com.drpicox.game.players.api.PlayersApi;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/v1/games")
 public class GamesApi {
     private final GamesController gamesController;
     private final PlayersController playersController;
     private final PlayersApi playersApi;
+    private final List<GameResponder> gameResponders;
 
-    public GamesApi(GamesController gamesController, PlayersController playersController, PlayersApi playersApi) {
+    public GamesApi(GamesController gamesController, PlayersController playersController, PlayersApi playersApi, List<GameResponder> gameResponders) {
         this.gamesController = gamesController;
         this.playersController = playersController;
         this.playersApi = playersApi;
+        this.gameResponders = gameResponders;
     }
 
     @PostMapping
@@ -29,38 +33,12 @@ public class GamesApi {
         var token = form.getToken();
 
         var player = playersController.findPlayerByToken(token).orElseThrow();
-        var newGame = gamesController.newGame(gameName, player);
-        if (newGame.isEmpty())
+        var createdGame = gamesController.createGame(gameName, player);
+        if (createdGame.isEmpty())
             throw new GlobalRestException("The " + gameName + " game already exists");
 
 
         return new SuccessResponse("The " + gameName + " game has been created successfully");
-    }
-
-    @PostMapping("/byPlayer")
-    public ListGamesResponse listGamesByCreator(@RequestBody ListGamesByCreatorForm form) {
-        form.verify();
-
-        var playerName = form.getPlayerName();
-        var player = playersController.findPlayer(playerName).orElseThrow(() -> new GlobalRestException("The friend name should be an existing player"));
-
-        var result = new ListGamesResponse();
-        var games = gamesController.findByCreator(player);
-        games.forEach(result::addGame);
-
-        return result;
-    }
-
-    @PostMapping("/byJoined")
-    public ListGamesResponse listGamesByJoined(@RequestBody ListGamesByJoinedForm form) {
-        var token = form.getToken();
-        var player = playersController.findPlayerByToken(token).orElseThrow();
-
-        var result = new ListGamesResponse();
-        var games = gamesController.findByJoined(player);
-        games.forEach(result::addGame);
-
-        return result;
     }
 
     @PostMapping("/join")
@@ -93,6 +71,32 @@ public class GamesApi {
         return get(gameName, creatorName, token);
     }
 
+    @PostMapping("/byPlayer")
+    public ListGamesResponse listGamesByCreator(@RequestBody ListGamesByCreatorForm form) {
+        form.verify();
+
+        var playerName = form.getPlayerName();
+        var player = playersController.findPlayer(playerName).orElseThrow(() -> new GlobalRestException("The friend name should be an existing player"));
+
+        var result = new ListGamesResponse();
+        var games = gamesController.findByCreator(player);
+        games.forEach(result::addGame);
+
+        return result;
+    }
+
+    @PostMapping("/byJoined")
+    public ListGamesResponse listGamesByJoined(@RequestBody ListGamesByJoinedForm form) {
+        var token = form.getToken();
+        var player = playersController.findPlayerByToken(token).orElseThrow();
+
+        var result = new ListGamesResponse();
+        var games = gamesController.findByJoined(player);
+        games.forEach(result::addGame);
+
+        return result;
+    }
+
     @GetMapping("/{gameName}/by/{creatorName}")
     public GameResponse get(@PathVariable String gameName, @PathVariable String creatorName, @RequestParam String token) {
         var playingPlayer = playersController.findPlayerByToken(token).orElseThrow();
@@ -102,6 +106,8 @@ public class GamesApi {
         if (!game.isPlayerJoined(playingPlayer))
             throw new GlobalRestException("You should play only games in which you are joined");
 
-        return new GameResponse(gameName, creatorName, playingPlayer.getPlayerName(), token);
+        var response = new GameResponse(gameName, creatorName, playingPlayer.getPlayerName(), token);
+        gameResponders.stream().forEach(r -> r.respond(response, game, playingPlayer));
+        return response;
     }
 }

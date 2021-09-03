@@ -7,6 +7,8 @@ import com.drpicox.game.testSteps.navigator.NavigableScreen;
 import com.drpicox.game.testSteps.player.PlayerTestView;
 import org.springframework.stereotype.Component;
 
+import java.util.HashMap;
+
 @Component
 public class GameTestView implements NavigableScreen {
 
@@ -48,5 +50,17 @@ public class GameTestView implements NavigableScreen {
 
     public GameResponse getGame() {
         return game;
+    }
+
+    public GameResponse post(String url, HashMap<String, String> data) {
+        var token = playerTestView.getToken();
+
+        var finalUrl = url + "?token=" + token;
+        var result = messageTestView.callApi(() -> {
+            var response = snapshotService.post(finalUrl, data, GameResponse.class);
+            replaceGame(response);
+            return response;
+        });
+        return result;
     }
 }

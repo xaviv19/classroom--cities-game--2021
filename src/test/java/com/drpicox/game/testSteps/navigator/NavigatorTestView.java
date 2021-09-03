@@ -16,7 +16,7 @@ public class NavigatorTestView implements BeforePostTest {
         this.navigableScreens = navigableScreens;
     }
     
-    private Stack<String> screenNameStack = new Stack<>();
+    private Stack<StackEntry> screenNameStack = new Stack<>();
 
     @Override
     public void beforePostTest() {
@@ -25,7 +25,11 @@ public class NavigatorTestView implements BeforePostTest {
     }
 
     public void pushScreenName(String screenName) {
-        screenNameStack.push(screenName);
+        pushScreenName(screenName, -1);
+    }
+
+    public void pushScreenName(String screenName, long id) {
+        screenNameStack.push(new StackEntry(screenName, id));
         showScreen(screenName);
     }
 
@@ -42,12 +46,26 @@ public class NavigatorTestView implements BeforePostTest {
     }
 
     public String peekScreenName() {
-        return screenNameStack.peek();
+        return screenNameStack.peek().screenName;
+    }
+
+    public long peekId() {
+        return screenNameStack.peek().id;
     }
 
     public void popScreenName() {
         screenNameStack.pop();
-        var screenName = screenNameStack.peek();
-        showScreen(screenName);
+        var top = screenNameStack.peek();
+        showScreen(top.screenName);
+    }
+
+    private static class StackEntry {
+        String screenName;
+        long id;
+
+        public StackEntry(String screenName, long id) {
+            this.screenName = screenName;
+            this.id = id;
+        }
     }
 }
