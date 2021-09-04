@@ -9,4 +9,5 @@ import java.util.Optional;
 
 interface CityRepository extends JpaRepository<City, Long> {
     List<City> findAllByGame(Game game);
+    List<City> findAllByGameAndOwner(Game game, Player owner);
 }

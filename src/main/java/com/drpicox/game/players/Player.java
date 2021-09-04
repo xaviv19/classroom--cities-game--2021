@@ -2,6 +2,7 @@ package com.drpicox.game.players;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.util.Objects;
 import java.util.UUID;
 
 @Entity
@@ -29,5 +30,17 @@ public class Player {
 
     public String getToken() {
         return this.token;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        Player player = (Player) o;
+        return Objects.equals(playerName, player.playerName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(playerName);
     }
 }

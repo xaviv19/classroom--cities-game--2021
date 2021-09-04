@@ -18,6 +18,7 @@ public class Game {
 
     @ManyToMany(fetch = FetchType.EAGER)
     private List<Player> joinedPlayers = new ArrayList<>();
+    private int roundNumber = 1;
 
     public Game(String id, String gameName, Player creator) {
         this.id = id;
@@ -45,5 +46,13 @@ public class Game {
 
     public List<Player> getJoinedPlayers() {
         return this.joinedPlayers;
+    }
+
+    public void endRound() {
+        this.roundNumber += 1;
+    }
+
+    public int getRoundNumber() {
+        return this.roundNumber;
     }
 }

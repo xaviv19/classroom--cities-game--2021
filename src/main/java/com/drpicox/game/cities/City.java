@@ -15,6 +15,7 @@ public class City {
     private Long id;
 
     private String name;
+    private int population;
     @ManyToOne private Player owner;
     @ManyToOne private Game game;
 
@@ -22,6 +23,7 @@ public class City {
         this.name = name;
         this.owner = owner;
         this.game = game;
+        this.population = 10;
     }
 
     protected City() {}
@@ -44,5 +46,17 @@ public class City {
 
     public void changeCityName(String newCityName) {
         this.name = newCityName;
+    }
+
+    public int getPopulation() {
+        return population;
+    }
+
+    public void endRound() {
+        population = Math.min(20, population + 1);
+    }
+
+    public void increasePopulation(int population) {
+        this.population += population;
     }
 }

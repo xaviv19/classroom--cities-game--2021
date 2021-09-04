@@ -8,6 +8,7 @@ import com.drpicox.game.testSteps.player.PlayerTestView;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 @Component
 public class GameTestView implements NavigableScreen {
@@ -62,5 +63,20 @@ public class GameTestView implements NavigableScreen {
             return response;
         });
         return result;
+    }
+
+    public void submitEndTheRound() {
+        var gameName = game.getGameName();
+        var creatorName = game.getCreatorName();
+        var url = "/api/v1/games/" + gameName + "/by/" + creatorName + "/endRound";
+        post(url, new LinkedHashMap<>());
+    }
+
+    public void submitRefresh() {
+        var gameName = game.getGameName();
+        var creatorName = game.getCreatorName();
+        var token = game.getToken();
+
+        fetchGame(gameName, creatorName, token);
     }
 }

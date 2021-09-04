@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Component
-public class CityController implements GameJoiner {
+public class CityController {
 
     private final CityRepository cityRepository;
 
@@ -17,14 +17,12 @@ public class CityController implements GameJoiner {
         this.cityRepository = cityRepository;
     }
 
-    @Override
-    public void joinGame(Player owner, Game game) {
-        var city = new City("Capital", owner, game);
-        cityRepository.save(city);
-    }
-
     public List<City> findAllByGame(Game game) {
         return cityRepository.findAllByGame(game);
+    }
+
+    public List<City> findAllByGameAndOwner(Game game, Player owner) {
+        return cityRepository.findAllByGameAndOwner(game, owner);
     }
 
     public Optional<City> findById(Long cityId) {
@@ -36,5 +34,10 @@ public class CityController implements GameJoiner {
             city.changeCityName(newCityName);
             cityRepository.save(city);
         });
+    }
+
+    public void increasePopulation(City city, int population) {
+        city.increasePopulation(population);
+        cityRepository.save(city);
     }
 }

@@ -166,4 +166,13 @@ public class SnapshotService {
         expectNoPendingSnapshot();
         return gson.toJson(snapshots);
     }
+
+    public void printLastSnapshot() {
+        System.out.println("BEGIN LAST SNAPSHOT ------------------------------------------");
+        if (lastSnapshot == null) {
+            System.out.println("There is not last snapshot (or never was, or it was already committed).");
+        }
+        System.out.println(lastSnapshot.getPrettyPrint());
+        System.out.println("- END LAST SNAPSHOT ------------------------------------------");
+    }
 }

@@ -54,7 +54,7 @@ public class PostRunner {
                     " - does not have digits (numbers)");
 
         var lowerFirstClassName = className.substring(0, 1).toLowerCase() + className.substring(1).replaceFirst("Step$", "");
-        var regExp = lowerFirstClassName.replaceAll("([A-Z])", ".*\\\\s$1").toLowerCase();
+        var regExp = lowerFirstClassName.replaceAll("([A-Z])", ".*[^a-z]$1").toLowerCase();
         var content = line.getContent().toLowerCase();
         if (content.matches(".*" + regExp + ".*")) {
             if (!className.endsWith("Step"))

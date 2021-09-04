@@ -11,10 +11,15 @@ import java.util.stream.Collectors;
 public class GamesController {
     private final GameRepository gameRepository;
     private final List<GameJoiner> gameJoiners;
+    private final List<GameRounder> gameRounders;
 
-    public GamesController(GameRepository gameRepository, List<GameJoiner> gameJoiners) {
+    public GamesController(GameRepository gameRepository, List<GameJoiner> gameJoiners, List<GameRounder> gameRounders) {
         this.gameRepository = gameRepository;
         this.gameJoiners = gameJoiners;
+        this.gameRounders = gameRounders;
+        this.gameRounders.sort((a, b) -> {
+            return a.getClass().getSimpleName().compareTo(b.getClass().getSimpleName());
+        });
     }
 
     public Optional<Game> createGame(String gameName, Player player) {
@@ -41,7 +46,15 @@ public class GamesController {
         gameRepository.save(game);
 
         gameJoiners.stream().forEach(gj -> gj.joinGame(player, game));
-   }
+    }
+
+    public void endRound(String gameName, Player creatorPlayer) {
+        var game = findGame(gameName, creatorPlayer).get();
+        game.endRound();
+        gameRepository.save(game);
+
+        gameRounders.stream().forEach(gr -> gr.endRound(game));
+    }
 
     public Optional<Game> findGame(String gameName, Player player) {
         return gameRepository.findById(computeId(gameName, player));
@@ -60,4 +73,5 @@ public class GamesController {
     private String computeId(String gameName, Player player) {
         return player.getPlayerName() + "#" + gameName;
     }
+
 }

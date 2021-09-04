@@ -106,8 +106,17 @@ public class GamesApi {
         if (!game.isPlayerJoined(playingPlayer))
             throw new GlobalRestException("You should play only games in which you are joined");
 
-        var response = new GameResponse(gameName, creatorName, playingPlayer.getPlayerName(), token);
+        var response = new GameResponse(game, playingPlayer.getPlayerName(), token);
         gameResponders.stream().forEach(r -> r.respond(response, game, playingPlayer));
         return response;
+    }
+
+    @PostMapping("/{gameName}/by/{creatorName}/endRound")
+    public GameResponse endRound(@PathVariable String gameName, @PathVariable String creatorName, @RequestParam String token) {
+        var playingPlayer = playersController.findPlayerByToken(token).orElseThrow();
+        var creatorPlayer = playersController.findPlayer(creatorName).orElseThrow();
+        gamesController.endRound(gameName, creatorPlayer);
+
+        return get(gameName, creatorName, token);
     }
 }

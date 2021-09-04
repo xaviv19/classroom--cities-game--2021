@@ -3,6 +3,7 @@ package com.drpicox.game.testSteps.multiplayer;
 import com.drpicox.game.testPost.BeforePostTest;
 import com.drpicox.game.testSteps.game.GameTestView;
 import com.drpicox.game.testSteps.navigator.NavigableScreen;
+import com.drpicox.game.testSteps.navigator.NavigatorTestView;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -11,10 +12,12 @@ import java.util.List;
 @Component
 public class MultiplayerTestView implements BeforePostTest {
 
-    private GameTestView gameTestView;
+    private final GameTestView gameTestView;
+    private final NavigatorTestView navigatorTestView;
 
-    public MultiplayerTestView(GameTestView gameTestView) {
+    public MultiplayerTestView(GameTestView gameTestView, NavigatorTestView navigatorTestView) {
         this.gameTestView = gameTestView;
+        this.navigatorTestView = navigatorTestView;
     }
 
     private List<String> tokens;
@@ -40,5 +43,6 @@ public class MultiplayerTestView implements BeforePostTest {
         var gameName = game.getGameName();
         var creatorName = game.getCreatorName();
         gameTestView.fetchGame(gameName, creatorName, newToken);
+        navigatorTestView.pushScreenName("game");
     }
 }
