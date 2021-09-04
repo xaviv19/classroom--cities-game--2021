@@ -23,9 +23,10 @@ public class PostParser {
         skipEmptyLines();
         parseTitle();
         skipEmptyLines();
+        int bodyLineNumber = lineIndex + 1;
         parseBody();
 
-        return new Post(postId, frontMatter, title, body.toString());
+        return new Post(postId, frontMatter, title, bodyLineNumber, body.toString());
     }
 
     private void parseFrontMatter() {

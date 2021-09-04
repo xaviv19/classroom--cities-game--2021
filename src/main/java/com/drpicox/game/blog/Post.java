@@ -7,13 +7,15 @@ public class Post implements Comparable<Post> {
 
     private final String id;
     private final String title;
+    private final int bodyLineNumber;
     private final String body;
     private final Map<String, String> frontMatter;
 
-    public Post(String postId, Map<String, String> frontMatter, String title, String body) {
+    public Post(String postId, Map<String, String> frontMatter, String title, int bodyLineNumber, String body) {
         this.id = postId;
         this.frontMatter = frontMatter;
         this.title = title;
+        this.bodyLineNumber = bodyLineNumber;
         this.body = body;
     }
 
@@ -44,5 +46,9 @@ public class Post implements Comparable<Post> {
     @Override
     public int compareTo(Post o) {
         return -id.compareTo(o.id);
+    }
+
+    public int getBodyLineNumber() {
+        return this.bodyLineNumber;
     }
 }

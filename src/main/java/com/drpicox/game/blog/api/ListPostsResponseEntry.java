@@ -7,11 +7,13 @@ import java.util.Map;
 public class ListPostsResponseEntry {
     private final String id;
     private final String title;
+    private final int bodyLineNumber;
     private final Map<String,String> frontMatter;
 
     public ListPostsResponseEntry(Post post) {
         id = post.getId();
         title = post.getTitle();
         frontMatter = post.getFrontMatter();
+        bodyLineNumber = post.getBodyLineNumber();
     }
 }

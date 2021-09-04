@@ -1,6 +1,7 @@
 package com.drpicox.game.testPost.reader;
 
 import com.drpicox.game.blog.BlogController;
+import com.drpicox.game.blog.Post;
 import org.springframework.stereotype.Component;
 
 import java.util.LinkedList;
@@ -35,22 +36,24 @@ public class PostReader {
     }
 
     private List<PostLine> readPostLines(String postId) {
-        String body = readPostBody(postId);
+        var post = readPost(postId);
+        var bodyLineNumber = post.getBodyLineNumber();
+        var body = post.getBody();
         String[] lines = body.split("\\r?\\n");
 
         var result = new LinkedList<PostLine>();
         for (var i = 0; i < lines.length; i++) {
-            result.add(new PostLine(postId, i+1, lines[i]));
+            result.add(new PostLine(postId, i+bodyLineNumber, lines[i]));
         }
 
         return result;
     }
 
-    private String readPostBody(String postId) {
+    private Post readPost(String postId) {
         try {
             return blogController.findPost(postId).orElseThrow(
                     () -> new AssertionError("Post \"" + postId + "\" does not exists")
-            ).getBody();
+            );
         } catch (Exception e) {
             throw new AssertionError("Cannot read postId " + postId, e);
         }

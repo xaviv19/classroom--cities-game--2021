@@ -221,6 +221,17 @@ public class BlogTest {
         });
     }
 
+    @Test
+    public void post_first_line_number_should_be_greater_than_one_because_front_matter() throws Throwable {
+        forEachPost(post -> {
+            var id = post.get("id");
+            var bodyLineNumber = (double) post.get("bodyLineNumber");
+
+            if (bodyLineNumber < 2)
+                throw new AssertionError("Post '" + id + "'.md bodyLineNumber (" + bodyLineNumber + ") must be greater than 2");
+        });
+    }
+
     private void forEachPost(Consumer<Map> consumer) throws Throwable {
         var result = mockMvc.perform(get("/api/v1/posts"))
                 .andExpect(status().isOk())
