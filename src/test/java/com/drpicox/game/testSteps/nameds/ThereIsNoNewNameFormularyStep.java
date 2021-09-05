@@ -1,4 +1,4 @@
-package com.drpicox.game.testSteps.city;
+package com.drpicox.game.testSteps.nameds;
 
 import com.drpicox.game.testPost.reader.PostLine;
 import com.drpicox.game.testSteps.AbstractPostLineStep;
@@ -6,7 +6,7 @@ import com.drpicox.game.testSteps.navigator.NavigatorTestView;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ThereIsNoNewCityNameFormularyStep extends AbstractPostLineStep {
+public class ThereIsNoNewNameFormularyStep extends AbstractPostLineStep {
 
     @Override
     protected String getRegex() {

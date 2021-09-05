@@ -1,7 +1,8 @@
-package com.drpicox.game.testSteps.city;
+package com.drpicox.game.testSteps.nameds;
 
 import com.drpicox.game.testPost.reader.PostLine;
 import com.drpicox.game.testSteps.AbstractPostLineStep;
+import com.drpicox.game.testSteps.city.CityTestView;
 import com.drpicox.game.testSteps.game.GameTestView;
 import com.drpicox.game.testSteps.helpers.CitiesHelper;
 import org.springframework.stereotype.Component;

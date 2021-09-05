@@ -20,7 +20,6 @@ public class ShipTestView implements NavigableScreen {
         this.navigatorTestView = navigatorTestView;
     }
 
-    private String newShipName;
     private int newLoadUnloadAmount;
 
     @Override
@@ -34,27 +33,13 @@ public class ShipTestView implements NavigableScreen {
     }
 
     private void clear() {
-        newShipName = "";
     }
 
     public ShipResponse getShip() {
         var game = gameTestView.getGame();
-        var shipId = navigatorTestView.peekId();
+        String shipId = navigatorTestView.peekId();
 
         return ShipsHelper.findById(game, shipId);
-    }
-
-    public void enterNewShipName(String newShipName) {
-        this.newShipName = newShipName;
-    }
-
-    public void submitChangeShipName() {
-        var shipId = getShip().getId();
-
-        var data = new HashMap<String, String>();
-        data.put("newShipName", newShipName);
-
-        gameTestView.post("/api/v1/ships/" + shipId + "/name", data);
     }
 
     public void enterLoadUnloadAmount(int amount) {
@@ -62,7 +47,7 @@ public class ShipTestView implements NavigableScreen {
     }
 
     public void submitLoad() {
-        var shipId = getShip().getId();
+        String shipId = getShip().getId();
 
         var data = new HashMap<String, String>();
         data.put("newLoadUnloadAmount", "" + newLoadUnloadAmount);
@@ -71,7 +56,7 @@ public class ShipTestView implements NavigableScreen {
     }
 
     public void submitUnload() {
-        var shipId = getShip().getId();
+        String shipId = getShip().getId();
 
         var data = new HashMap<String, String>();
         data.put("newLoadUnloadAmount", "-" + newLoadUnloadAmount);

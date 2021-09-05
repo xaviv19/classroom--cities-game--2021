@@ -23,6 +23,8 @@ public class GamesApi {
         this.playersController = playersController;
         this.playersApi = playersApi;
         this.gameResponders = gameResponders;
+        // TODO: Temporal, removeme
+        gameResponders.sort((a, b) -> a.getClass().getSimpleName().compareTo(b.getClass().getSimpleName()));
     }
 
     @PostMapping

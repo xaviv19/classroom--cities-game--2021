@@ -27,7 +27,7 @@ public class ShipsHelper {
                 .orElseThrow(() -> new AssertionError("Cannot find ship owner:" + ownerName + "name:" + shipName));
     }
 
-    public static ShipResponse findById(GameResponse game, long shipId) {
+    public static ShipResponse findById(GameResponse game, String shipId) {
         return (ShipResponse) game.findEntityById(shipId).orElseThrow(
                 () -> new AssertionError("Cannot find ship by id:" + shipId)
         );

@@ -25,10 +25,10 @@ public class NavigatorTestView implements BeforePostTest {
     }
 
     public void pushScreenName(String screenName) {
-        pushScreenName(screenName, -1);
+        pushScreenName(screenName, null);
     }
 
-    public void pushScreenName(String screenName, long id) {
+    public void pushScreenName(String screenName, String id) {
         screenNameStack.push(new StackEntry(screenName, id));
         showScreen(screenName);
     }
@@ -49,7 +49,7 @@ public class NavigatorTestView implements BeforePostTest {
         return screenNameStack.peek().screenName;
     }
 
-    public long peekId() {
+    public String peekId() {
         return screenNameStack.peek().id;
     }
 
@@ -61,9 +61,9 @@ public class NavigatorTestView implements BeforePostTest {
 
     private static class StackEntry {
         String screenName;
-        long id;
+        String id;
 
-        public StackEntry(String screenName, long id) {
+        public StackEntry(String screenName, String id) {
             this.screenName = screenName;
             this.id = id;
         }

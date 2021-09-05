@@ -1,8 +1,7 @@
 package com.drpicox.game.ships;
 
 import com.drpicox.game.games.Game;
-import com.drpicox.game.games.GameJoiner;
-import com.drpicox.game.players.Player;
+import com.drpicox.game.named.NamedController;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -12,27 +11,22 @@ import java.util.Optional;
 public class ShipController  {
 
     private final ShipRepository shipRepository;
+    private final NamedController namedController;
 
-    public ShipController(ShipRepository shipRepository) {
+    public ShipController(ShipRepository shipRepository, NamedController namedController) {
         this.shipRepository = shipRepository;
+        this.namedController = namedController;
     }
 
     public List<Ship> findAllByGame(Game game) {
         return shipRepository.findAllByGame(game);
     }
 
-    public Optional<Ship> findById(Long shipId) {
+    public Optional<Ship> findById(String shipId) {
         return shipRepository.findById(shipId);
     }
 
-    public void changeShipName(Long shipId, String newShipName) {
-        findById(shipId).ifPresent(ship -> {
-            ship.changeShipName(newShipName);
-            shipRepository.save(ship);
-        });
-    }
-
-    public void changeLoadUnloadAmount(Long shipId, int newLoadUnloadAmount) {
+    public void changeLoadUnloadAmount(String shipId, int newLoadUnloadAmount) {
         findById(shipId).ifPresent(ship -> {
             ship.changeLoadUnloadAmount(newLoadUnloadAmount);
             shipRepository.save(ship);

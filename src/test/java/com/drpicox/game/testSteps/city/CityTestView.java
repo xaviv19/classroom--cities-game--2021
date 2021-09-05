@@ -43,7 +43,7 @@ public class CityTestView implements NavigableScreen {
 
     public CityResponse getCity() {
         var game = gameTestView.getGame();
-        var cityId = navigatorTestView.peekId();
+        String cityId = navigatorTestView.peekId();
 
         return CitiesHelper.findById(game, cityId);
     }
@@ -54,11 +54,11 @@ public class CityTestView implements NavigableScreen {
 
     public void submitChangeCityName() {
         var game = gameTestView.getGame();
-        var cityId = getCity().getId();
+        String cityId = getCity().getId();
 
         var data = new HashMap<String, String>();
-        data.put("newCityName", newCityName);
+        data.put("newName", newCityName);
 
-        gameTestView.post("/api/v1/cities/" + cityId + "/name", data);
+        gameTestView.post("/api/v1/nameds/" + cityId + "/name", data);
     }
 }

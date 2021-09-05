@@ -1,7 +1,7 @@
 package com.drpicox.game.cities;
 
 import com.drpicox.game.games.Game;
-import com.drpicox.game.games.GameJoiner;
+import com.drpicox.game.named.NamedController;
 import com.drpicox.game.players.Player;
 import org.springframework.stereotype.Component;
 
@@ -11,9 +11,11 @@ import java.util.Optional;
 @Component
 public class CityController {
 
+    private final NamedController namedController;
     private final CityRepository cityRepository;
 
-    public CityController(CityRepository cityRepository) {
+    public CityController(NamedController namedController, CityRepository cityRepository) {
+        this.namedController = namedController;
         this.cityRepository = cityRepository;
     }
 
@@ -23,17 +25,6 @@ public class CityController {
 
     public List<City> findAllByGameAndOwner(Game game, Player owner) {
         return cityRepository.findAllByGameAndOwner(game, owner);
-    }
-
-    public Optional<City> findById(Long cityId) {
-        return cityRepository.findById(cityId);
-    }
-
-    public void changeCityName(Long cityId, String newCityName) {
-        findById(cityId).ifPresent(city -> {
-            city.changeCityName(newCityName);
-            cityRepository.save(city);
-        });
     }
 
     public void increasePopulation(City city, int population) {

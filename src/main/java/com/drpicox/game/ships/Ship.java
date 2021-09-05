@@ -2,18 +2,15 @@ package com.drpicox.game.ships;
 
 import com.drpicox.game.cities.City;
 import com.drpicox.game.games.Game;
+import com.drpicox.game.named.Named;
 import com.drpicox.game.players.Player;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
+import java.util.UUID;
 
 @Entity
 public class Ship {
-    @Id
-    @GeneratedValue
-    private Long id;
+    @Id private String id;
 
     private String name;
     private int population;
@@ -21,22 +18,25 @@ public class Ship {
     @ManyToOne private Player owner;
     @ManyToOne private Game game;
     @ManyToOne private City city;
+    @OneToOne private Named named;
 
-    public Ship(String name, Player owner, City city, Game game) {
+    public Ship(String id, String name, Player owner, City city, Game game, Named named) {
+        this.id = id;
         this.name = name;
         this.owner = owner;
         this.game = game;
         this.city = city;
+        this.named = named;
     }
 
     protected Ship() {}
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
     public String getName() {
-        return name;
+        return named.getName();
     }
 
     public Player getOwner() {
@@ -45,10 +45,6 @@ public class Ship {
 
     public Game getGame() {
         return game;
-    }
-
-    public void changeShipName(String newShipName) {
-        this.name = newShipName;
     }
 
     public int getPopulation() {

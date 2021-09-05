@@ -1,51 +1,41 @@
 package com.drpicox.game.cities;
 
 import com.drpicox.game.games.Game;
+import com.drpicox.game.named.Named;
 import com.drpicox.game.players.Player;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
+import java.util.UUID;
 
 @Entity
 public class City {
-    @Id
-    @GeneratedValue
-    private Long id;
+    @Id private String id;
 
-    private String name;
     private int population;
     @ManyToOne private Player owner;
     @ManyToOne private Game game;
+    @OneToOne private Named named;
 
-    public City(String name, Player owner, Game game) {
-        this.name = name;
+    public City(String id, Player owner, Game game, Named named) {
+        this.id = id;
         this.owner = owner;
         this.game = game;
+        this.named = named;
         this.population = 10;
     }
 
     protected City() {}
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
     public String getName() {
-        return name;
+        return named.getName();
     }
 
     public Player getOwner() {
         return owner;
-    }
-
-    public Game getGame() {
-        return game;
-    }
-
-    public void changeCityName(String newCityName) {
-        this.name = newCityName;
     }
 
     public int getPopulation() {
@@ -58,5 +48,9 @@ public class City {
 
     public void increasePopulation(int population) {
         this.population += population;
+    }
+
+    public void replaceNamed(Named named) {
+        this.named = named;
     }
 }

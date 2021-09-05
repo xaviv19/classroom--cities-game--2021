@@ -4,15 +4,21 @@ import com.drpicox.game.JsonDeserializerWithInheritance;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.LinkedHashMap;
+import java.util.Locale;
+import java.util.Map;
+
 @JsonAdapter(JsonDeserializerWithInheritance.class)
 public abstract class EntityResponse {
 
     @SerializedName("type")
     private String typeName;
 
-    private long id;
+    private String id;
 
-    public EntityResponse(long id) {
+    private Map<String, ComponentResponse> components = new LinkedHashMap<>();
+
+    public EntityResponse(String id) {
         this();
         this.id = id;
     }
@@ -21,11 +27,23 @@ public abstract class EntityResponse {
         typeName = getClass().getName();
     }
 
-    public long getId() {
+    public String getId() {
         return id;
     }
 
-    public boolean hasId(long id) {
-        return this.id == id;
+    public void addComponent(ComponentResponse componentResponse) {
+        var componentClass = componentResponse.getClass();
+        this.components.put(getKey(componentClass), componentResponse);
+    }
+
+    private String getKey(Class<? extends ComponentResponse> componentClass) {
+        var capital = componentClass.getSimpleName().replaceFirst("Response$", "");
+        var key = capital.substring(0, 1).toLowerCase() + capital.substring(1);
+        return key;
+    }
+
+    public <T extends ComponentResponse> T getComponent(Class<T> componentClass) {
+        var key = getKey(componentClass);
+        return (T) components.get(key);
     }
 }

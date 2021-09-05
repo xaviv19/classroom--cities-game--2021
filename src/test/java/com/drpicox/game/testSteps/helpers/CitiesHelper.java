@@ -26,7 +26,7 @@ public class CitiesHelper {
         );
     }
 
-    public static CityResponse findById(GameResponse game, long cityId) {
+    public static CityResponse findById(GameResponse game, String cityId) {
         return (CityResponse) game.findEntityById(cityId).orElseThrow(
                 () -> new AssertionError("Cannot find city by id:" + cityId)
         );

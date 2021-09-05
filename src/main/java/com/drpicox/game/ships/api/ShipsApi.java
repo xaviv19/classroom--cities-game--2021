@@ -17,17 +17,8 @@ public class ShipsApi {
         this.gamesApi = gamesApi;
     }
 
-    @PostMapping("/{shipId}/name")
-    public GameResponse changeShipName(@PathVariable Long shipId, @RequestParam String token, @RequestBody NewShipNameForm form) {
-        shipController.changeShipName(shipId, form.getNewShipName());
-
-        var ship = shipController.findById(shipId).get();
-        var game = ship.getGame();
-        return gamesApi.get(game.getGameName(), game.getCreator().getPlayerName(), token);
-    }
-
     @PostMapping("/{shipId}/loadUnloadAmount")
-    public GameResponse changeShipName(@PathVariable Long shipId, @RequestParam String token, @RequestBody NewLoadUnloadAmountForm form) {
+    public GameResponse changeShipName(@PathVariable String shipId, @RequestParam String token, @RequestBody NewLoadUnloadAmountForm form) {
         shipController.changeLoadUnloadAmount(shipId, form.getNewLoadUnloadAmount());
 
         var ship = shipController.findById(shipId).get();

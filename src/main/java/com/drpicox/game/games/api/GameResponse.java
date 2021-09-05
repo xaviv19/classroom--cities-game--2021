@@ -2,9 +2,7 @@ package com.drpicox.game.games.api;
 
 import com.drpicox.game.games.Game;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 public class GameResponse {
     private String gameName;
@@ -12,7 +10,7 @@ public class GameResponse {
     private String playerName;
     private String token;
     private int roundNumber;
-    private List<EntityResponse> entityResponses = new ArrayList<>();
+    private Map<String, EntityResponse> entities = new LinkedHashMap<>();
 
     public GameResponse(Game game, String playerName, String token) {
         this.gameName = game.getGameName();
@@ -39,22 +37,27 @@ public class GameResponse {
     }
 
     public void addEntity(EntityResponse entityResponse) {
-        entityResponses.add(entityResponse);
+        entities.put(entityResponse.getId(), entityResponse);
     }
 
-    public List<EntityResponse> getEntityResponses() {
-        return entityResponses;
+    public Collection<EntityResponse> getEntityResponses() {
+        return entities.values();
     }
 
-    public Optional<EntityResponse> findEntityById(long id) {
-        return entityResponses.stream().filter(e -> e.hasId(id)).findFirst();
+    public Optional<EntityResponse> findEntityById(String id) {
+        return Optional.ofNullable(entities.get(id));
     }
 
     public int getRoundNumber() {
         return roundNumber;
     }
 
-    public <T extends EntityResponse> T getEntityResponse(Long id) {
-        return (T) entityResponses.stream().filter(e -> e.hasId(id)).findFirst().get();
+    public <T extends EntityResponse> T getEntityResponse(String id) {
+        return (T) findEntityById(id).get();
+    }
+
+    public void addComponent(ComponentResponse componentResponse) {
+        var id = componentResponse.getId();
+        entities.get(id).addComponent(componentResponse);
     }
 }
