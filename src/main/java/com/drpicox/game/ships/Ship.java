@@ -2,45 +2,35 @@ package com.drpicox.game.ships;
 
 import com.drpicox.game.cities.City;
 import com.drpicox.game.games.Game;
-import com.drpicox.game.named.Named;
+import com.drpicox.game.nameds.Named;
+import com.drpicox.game.owneds.Owned;
 import com.drpicox.game.players.Player;
 
 import javax.persistence.*;
-import java.util.UUID;
 
 @Entity
 public class Ship {
     @Id private String id;
 
-    private String name;
     private int population;
     private int loadUnloadAmount;
-    @ManyToOne private Player owner;
     @ManyToOne private Game game;
     @ManyToOne private City city;
     @OneToOne private Named named;
+    @OneToOne private Owned owned;
 
-    public Ship(String id, String name, Player owner, City city, Game game, Named named) {
+    public Ship(String id, City city, Game game, Named named, Owned owned) {
         this.id = id;
-        this.name = name;
-        this.owner = owner;
         this.game = game;
         this.city = city;
         this.named = named;
+        this.owned = owned;
     }
 
     protected Ship() {}
 
     public String getId() {
         return id;
-    }
-
-    public String getName() {
-        return named.getName();
-    }
-
-    public Player getOwner() {
-        return owner;
     }
 
     public Game getGame() {

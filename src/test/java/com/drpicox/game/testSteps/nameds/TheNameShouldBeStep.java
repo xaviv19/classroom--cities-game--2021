@@ -5,30 +5,32 @@ import com.drpicox.game.testSteps.AbstractPostLineStep;
 import com.drpicox.game.testSteps.city.CityTestView;
 import com.drpicox.game.testSteps.game.GameTestView;
 import com.drpicox.game.testSteps.helpers.CitiesHelper;
+import com.drpicox.game.testSteps.owneds.OwnedTestView;
 import org.springframework.stereotype.Component;
+
+import javax.naming.Name;
 
 import static com.google.common.truth.Truth.assertThat;
 
 @Component
-public class TheCityShouldBeStep extends AbstractPostLineStep {
+public class TheNameShouldBeStep extends AbstractPostLineStep {
 
+    private final NamedTestView namedTestView;
 
-    private final CityTestView cityTestView;
-
-    public TheCityShouldBeStep(CityTestView cityTestView) {
-        this.cityTestView = cityTestView;
+    public TheNameShouldBeStep(NamedTestView namedTestView) {
+        this.namedTestView = namedTestView;
     }
 
     @Override
     protected String getRegex() {
-        return "The city should be \"([^\"]+)\"";
+        return "The name should be \"([^\"]+)\"";
     }
 
     @Override
     protected void run(PostLine line, String[] match) {
-        var cityName = match[1];
+        var expectedName = match[1];
 
-        var city = cityTestView.getCity();
-        assertThat(city.getName()).isEqualTo(cityName);
+        var name = namedTestView.getNamedName();
+        assertThat(name).isEqualTo(expectedName);
     }
 }

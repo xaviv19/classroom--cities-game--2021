@@ -13,9 +13,11 @@ import static com.google.common.truth.Truth.assertThat;
 public class ThereShouldBeShipsStep extends AbstractPostLineStep {
 
 
+    private final GameTestView gameTestView;
     private final CityTestView cityTestView;
 
-    public ThereShouldBeShipsStep(CityTestView cityTestView) {
+    public ThereShouldBeShipsStep(GameTestView gameTestView, CityTestView cityTestView) {
+        this.gameTestView = gameTestView;
         this.cityTestView = cityTestView;
     }
 
@@ -29,8 +31,9 @@ public class ThereShouldBeShipsStep extends AbstractPostLineStep {
         var count = Integer.parseInt(match[1]);
         var ownerName = match[2];
 
+        var game = gameTestView.getGame();
         var city = cityTestView.getCity();
-        var ships = ShipsHelper.findAllByOwner(city, ownerName);
+        var ships = ShipsHelper.findAllByOwner(game, city, ownerName);
         assertThat(ships).hasSize(count);
     }
 }

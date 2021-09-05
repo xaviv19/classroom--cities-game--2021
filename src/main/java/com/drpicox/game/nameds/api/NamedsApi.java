@@ -1,6 +1,6 @@
-package com.drpicox.game.named.api;
+package com.drpicox.game.nameds.api;
 
-import com.drpicox.game.named.NamedController;
+import com.drpicox.game.nameds.NamedsController;
 import com.drpicox.game.games.api.GameResponse;
 import com.drpicox.game.games.api.GamesApi;
 import org.springframework.web.bind.annotation.*;
@@ -9,17 +9,17 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/v1/nameds")
 public class NamedsApi {
 
-    private final NamedController namedController;
+    private final NamedsController namedsController;
     private final GamesApi gamesApi;
 
-    public NamedsApi(NamedController namedController, GamesApi gamesApi) {
-        this.namedController = namedController;
+    public NamedsApi(NamedsController namedsController, GamesApi gamesApi) {
+        this.namedsController = namedsController;
         this.gamesApi = gamesApi;
     }
 
     @PostMapping("/{entityId}/name")
     public GameResponse changedName(@PathVariable String entityId, @RequestParam String token, @RequestBody NewNamedNameForm form) {
-        var named = namedController.changeName(entityId, form.getNewName());
+        var named = namedsController.changeName(entityId, form.getNewName());
 
 
         var game = named.getGame();

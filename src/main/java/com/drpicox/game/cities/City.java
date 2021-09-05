@@ -1,26 +1,29 @@
 package com.drpicox.game.cities;
 
 import com.drpicox.game.games.Game;
-import com.drpicox.game.named.Named;
+import com.drpicox.game.nameds.Named;
+import com.drpicox.game.owneds.Owned;
 import com.drpicox.game.players.Player;
+import com.drpicox.game.populateds.Populated;
 
 import javax.persistence.*;
-import java.util.UUID;
 
 @Entity
 public class City {
     @Id private String id;
 
     private int population;
-    @ManyToOne private Player owner;
     @ManyToOne private Game game;
     @OneToOne private Named named;
+    @OneToOne private Owned owned;
+    @OneToOne private Populated populated;
 
-    public City(String id, Player owner, Game game, Named named) {
+    public City(String id, Game game, Named named, Owned owned, Populated populated) {
         this.id = id;
-        this.owner = owner;
         this.game = game;
         this.named = named;
+        this.owned = owned;
+        this.populated = populated;
         this.population = 10;
     }
 
@@ -30,27 +33,7 @@ public class City {
         return id;
     }
 
-    public String getName() {
-        return named.getName();
-    }
-
-    public Player getOwner() {
-        return owner;
-    }
-
     public int getPopulation() {
-        return population;
-    }
-
-    public void endRound() {
-        population = Math.min(20, population + 1);
-    }
-
-    public void increasePopulation(int population) {
-        this.population += population;
-    }
-
-    public void replaceNamed(Named named) {
-        this.named = named;
+        return populated.getPopulation();
     }
 }

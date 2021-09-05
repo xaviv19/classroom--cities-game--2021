@@ -1,13 +1,7 @@
-package com.drpicox.game.named.api;
+package com.drpicox.game.nameds.api;
 
-import com.drpicox.game.cities.City;
 import com.drpicox.game.games.api.ComponentResponse;
-import com.drpicox.game.games.api.EntityResponse;
-import com.drpicox.game.named.Named;
-
-import java.awt.*;
-import java.util.ArrayList;
-import java.util.List;
+import com.drpicox.game.nameds.Named;
 
 public class NamedResponse extends ComponentResponse {
     private String name;
@@ -19,5 +13,9 @@ public class NamedResponse extends ComponentResponse {
 
     public String getName() {
         return this.name;
+    }
+
+    public boolean hasName(String name) {
+        return this.name.equals(name);
     }
 }

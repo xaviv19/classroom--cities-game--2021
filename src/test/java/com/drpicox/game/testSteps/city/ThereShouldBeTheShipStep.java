@@ -1,7 +1,9 @@
 package com.drpicox.game.testSteps.city;
 
+import com.drpicox.game.nameds.api.NamedResponse;
 import com.drpicox.game.testPost.reader.PostLine;
 import com.drpicox.game.testSteps.AbstractPostLineStep;
+import com.drpicox.game.testSteps.game.GameTestView;
 import com.drpicox.game.testSteps.helpers.ShipsHelper;
 import org.springframework.stereotype.Component;
 
@@ -12,10 +14,11 @@ import static com.google.common.truth.Truth.assertThat;
 @Component
 public class ThereShouldBeTheShipStep extends AbstractPostLineStep {
 
-
+    private final GameTestView gameTestView;
     private final CityTestView cityTestView;
 
-    public ThereShouldBeTheShipStep(CityTestView cityTestView) {
+    public ThereShouldBeTheShipStep(GameTestView gameTestView, CityTestView cityTestView) {
+        this.gameTestView = gameTestView;
         this.cityTestView = cityTestView;
     }
 
@@ -29,9 +32,10 @@ public class ThereShouldBeTheShipStep extends AbstractPostLineStep {
         var ownerName = match[1];
         var shipName = match[2];
 
+        var game = gameTestView.getGame();
         var city = cityTestView.getCity();
-        var ships = ShipsHelper.findAllByOwner(city, ownerName);
-        var shipNames = ships.stream().map(c -> c.getName()).collect(Collectors.toList());
+        var ships = ShipsHelper.findAllByOwner(game, city, ownerName);
+        var shipNames = ships.stream().map(c -> c.getComponent(NamedResponse.class).getName()).collect(Collectors.toList());
         assertThat(shipNames).contains(shipName);
     }
 }

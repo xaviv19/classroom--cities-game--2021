@@ -13,10 +13,12 @@ public class ClickOnTheShipStep extends AbstractPostLineStep {
 
     private final NavigatorTestView navigatorTestView;
     private final CityTestView cityTestView;
+    private final GameTestView gameTestView;
 
-    public ClickOnTheShipStep(NavigatorTestView navigatorTestView, CityTestView cityTestView) {
+    public ClickOnTheShipStep(NavigatorTestView navigatorTestView, CityTestView cityTestView, GameTestView gameTestView) {
         this.navigatorTestView = navigatorTestView;
         this.cityTestView = cityTestView;
+        this.gameTestView = gameTestView;
     }
 
     @Override
@@ -29,8 +31,9 @@ public class ClickOnTheShipStep extends AbstractPostLineStep {
         var ownerName = match[1];
         var shipName = match[2];
 
+        var game = gameTestView.getGame();
         var city = cityTestView.getCity();
-        var ship = ShipsHelper.findByOwnerAndName(city, ownerName, shipName);
+        var ship = ShipsHelper.findByOwnerAndName(game, city, ownerName, shipName);
         navigatorTestView.pushScreenName("ship", ship.getId());
     }
 }

@@ -1,4 +1,4 @@
-package com.drpicox.game.named.api;
+package com.drpicox.game.nameds.api;
 
 public class NewNamedNameForm {
     private String newName;

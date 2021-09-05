@@ -1,7 +1,10 @@
 package com.drpicox.game.games.api;
 
+import com.drpicox.game.JsonDeserializerWithInheritance;
+import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 
+@JsonAdapter(JsonDeserializerWithInheritance.class)
 public class ComponentResponse {
     @SerializedName("type")
     private String typeName;
@@ -13,19 +16,11 @@ public class ComponentResponse {
         this.id = id;
     }
 
-    public String getTypeName() {
-        return typeName;
-    }
-
     public ComponentResponse() {
         typeName = getClass().getName();
     }
 
     public String getId() {
         return id;
-    }
-
-    public boolean hasId(String id) {
-        return this.id.equals(id);
     }
 }

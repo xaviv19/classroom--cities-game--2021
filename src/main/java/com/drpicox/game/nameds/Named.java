@@ -1,33 +1,20 @@
-package com.drpicox.game.named;
+package com.drpicox.game.nameds;
 
+import com.drpicox.game.ecs.EcsComponent;
 import com.drpicox.game.games.Game;
 
 import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 
 @Entity
-public class Named {
-    @Id private String entityId;
-    @ManyToOne private Game game;
-
+public class Named extends EcsComponent {
     private String name;
 
     public Named(String entityId, Game game, String initialName) {
-        this.entityId = entityId;
-        this.game = game;
+        super(entityId, game);
         this.name = initialName;
     }
 
     protected Named() {}
-
-    public String getEntityId() {
-        return entityId;
-    }
-
-    public Game getGame() {
-        return game;
-    }
 
     public String getName() {
         return name;

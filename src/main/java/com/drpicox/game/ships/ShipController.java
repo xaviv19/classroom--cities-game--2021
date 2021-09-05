@@ -1,7 +1,7 @@
 package com.drpicox.game.ships;
 
 import com.drpicox.game.games.Game;
-import com.drpicox.game.named.NamedController;
+import com.drpicox.game.nameds.NamedsController;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -11,11 +11,11 @@ import java.util.Optional;
 public class ShipController  {
 
     private final ShipRepository shipRepository;
-    private final NamedController namedController;
+    private final NamedsController namedsController;
 
-    public ShipController(ShipRepository shipRepository, NamedController namedController) {
+    public ShipController(ShipRepository shipRepository, NamedsController namedsController) {
         this.shipRepository = shipRepository;
-        this.namedController = namedController;
+        this.namedsController = namedsController;
     }
 
     public List<Ship> findAllByGame(Game game) {

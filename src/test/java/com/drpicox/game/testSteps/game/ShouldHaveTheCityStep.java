@@ -1,5 +1,6 @@
 package com.drpicox.game.testSteps.game;
 
+import com.drpicox.game.nameds.api.NamedResponse;
 import com.drpicox.game.testPost.reader.PostLine;
 import com.drpicox.game.testSteps.AbstractPostLineStep;
 import com.drpicox.game.testSteps.helpers.CitiesHelper;
@@ -31,7 +32,9 @@ public class ShouldHaveTheCityStep extends AbstractPostLineStep {
 
         var game = gameTestView.getGame();
         var cities = CitiesHelper.findAllByOwner(game, playerName);
-        var cityNames = cities.stream().map(c -> c.getName()).collect(Collectors.toList());
+        var cityNames = cities.stream()
+                .map(c -> c.getComponent(NamedResponse.class).getName())
+                .collect(Collectors.toList());
         assertThat(cityNames).contains(cityName);
     }
 }

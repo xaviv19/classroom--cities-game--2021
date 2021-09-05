@@ -7,8 +7,6 @@ import com.drpicox.game.ships.api.ShipResponse;
 import java.util.List;
 
 public class ShipResponse extends EntityResponse {
-    private String name;
-    private String ownerName;
     private int population;
     private int loadUnloadAmount;
     private boolean loadRequested;
@@ -16,8 +14,6 @@ public class ShipResponse extends EntityResponse {
 
     public ShipResponse(Ship ship) {
         super(ship.getId());
-        this.name = ship.getName();
-        this.ownerName = ship.getOwner().getPlayerName();
         this.population = ship.getPopulation();
 
         var loadUnloadAmount = ship.getLoadUnloadAmount();
@@ -26,25 +22,8 @@ public class ShipResponse extends EntityResponse {
         this.unloadRequested = loadUnloadAmount < 0;
     }
 
-    public boolean hasOwner(String playerName) {
-        return this.ownerName.equals(playerName);
-    }
-
-    public String getName() {
-        return this.name;
-    }
-
-    public boolean hasName(String shipName) {
-        return this.name.equals(shipName);
-    }
-
     public  int getPopulation() {
         return this.population;
-    }
-
-    public String getOwnerName() {
-
-        return ownerName;
     }
 
     public int getLoadUnloadAmount() {
