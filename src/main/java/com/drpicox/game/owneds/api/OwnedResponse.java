@@ -1,7 +1,10 @@
 package com.drpicox.game.owneds.api;
 
 import com.drpicox.game.games.api.ComponentResponse;
+import com.drpicox.game.games.api.EntityResponse;
 import com.drpicox.game.owneds.Owned;
+
+import java.util.function.Predicate;
 
 public class OwnedResponse extends ComponentResponse {
     private String ownerName;
@@ -9,6 +12,10 @@ public class OwnedResponse extends ComponentResponse {
     public OwnedResponse(Owned owned) {
         super(owned.getEntityId());
         this.ownerName = owned.getOwner().getPlayerName();
+    }
+
+    public static Predicate<EntityResponse> byOwner(String ownerName) {
+        return e -> e.getComponent(OwnedResponse.class).hasOwner(ownerName);
     }
 
     public String getOwnerName() {

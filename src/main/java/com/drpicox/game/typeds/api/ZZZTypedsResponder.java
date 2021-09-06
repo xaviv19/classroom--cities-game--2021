@@ -1,10 +1,10 @@
-package com.drpicox.game.typed.api;
+package com.drpicox.game.typeds.api;
 
 import com.drpicox.game.games.Game;
 import com.drpicox.game.games.api.GameResponder;
 import com.drpicox.game.games.api.GameResponse;
 import com.drpicox.game.players.Player;
-import com.drpicox.game.typed.TypedsController;
+import com.drpicox.game.typeds.TypedsController;
 import org.springframework.stereotype.Component;
 
 @Component

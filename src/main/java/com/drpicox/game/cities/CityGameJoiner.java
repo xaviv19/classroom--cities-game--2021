@@ -1,5 +1,6 @@
 package com.drpicox.game.cities;
 
+import com.drpicox.game.docks.DocksController;
 import com.drpicox.game.games.Game;
 import com.drpicox.game.games.GameJoiner;
 import com.drpicox.game.growsPopulation.GrowsPopulationsController;
@@ -7,7 +8,7 @@ import com.drpicox.game.nameds.NamedsController;
 import com.drpicox.game.owneds.OwnedsController;
 import com.drpicox.game.players.Player;
 import com.drpicox.game.populateds.PopulatedsController;
-import com.drpicox.game.typed.TypedsController;
+import com.drpicox.game.typeds.TypedsController;
 import org.springframework.stereotype.Component;
 
 import java.util.UUID;
@@ -21,14 +22,16 @@ public class CityGameJoiner implements GameJoiner {
     private final GrowsPopulationsController growsPopulationsController;
     private final CityRepository cityRepository;
     private final TypedsController typedsController;
+    private final DocksController docksController;
 
-    public CityGameJoiner(NamedsController namedsController, OwnedsController ownedsController, PopulatedsController populatedsController, GrowsPopulationsController growsPopulationsController, CityRepository cityRepository, TypedsController typedsController) {
+    public CityGameJoiner(NamedsController namedsController, OwnedsController ownedsController, PopulatedsController populatedsController, GrowsPopulationsController growsPopulationsController, CityRepository cityRepository, TypedsController typedsController, DocksController docksController) {
         this.namedsController = namedsController;
         this.ownedsController = ownedsController;
         this.populatedsController = populatedsController;
         this.growsPopulationsController = growsPopulationsController;
         this.cityRepository = cityRepository;
         this.typedsController = typedsController;
+        this.docksController = docksController;
     }
 
     @Override
@@ -40,6 +43,7 @@ public class CityGameJoiner implements GameJoiner {
         populatedsController.create(entityId, game, 10);
         growsPopulationsController.create(entityId, game);
         typedsController.create(entityId, game, "city");
+        docksController.create(entityId, game);
 
         var city = new City(entityId, game);
         cityRepository.save(city);

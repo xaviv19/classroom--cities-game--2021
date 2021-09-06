@@ -29,8 +29,9 @@ public class ClickOnTheCityStep extends AbstractPostLineStep {
         var ownerName = match[1];
         var cityName = match[2];
 
+        // TODO: search by type
         var game = gameTestView.getGame();
         var city = CitiesHelper.findByOwnerAndName(game, ownerName, cityName);
-        navigatorTestView.pushScreenName("city", city.getId());
+        navigatorTestView.pushScreenName("entity", city.getId());
     }
 }

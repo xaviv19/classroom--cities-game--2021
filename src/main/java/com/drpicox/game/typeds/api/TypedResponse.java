@@ -1,7 +1,7 @@
-package com.drpicox.game.typed.api;
+package com.drpicox.game.typeds.api;
 
 import com.drpicox.game.games.api.ComponentResponse;
-import com.drpicox.game.typed.Typed;
+import com.drpicox.game.typeds.Typed;
 
 public class TypedResponse extends ComponentResponse {
     private String entityType;
@@ -13,5 +13,9 @@ public class TypedResponse extends ComponentResponse {
 
     public boolean hasEntityType(String entityType) {
         return this.entityType.equals(entityType);
+    }
+
+    public String getEntityType() {
+        return entityType;
     }
 }

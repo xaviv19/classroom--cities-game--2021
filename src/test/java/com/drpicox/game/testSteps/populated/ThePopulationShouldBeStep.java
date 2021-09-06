@@ -1,4 +1,4 @@
-package com.drpicox.game.testSteps.city;
+package com.drpicox.game.testSteps.populated;
 
 import com.drpicox.game.testPost.reader.PostLine;
 import com.drpicox.game.testSteps.AbstractPostLineStep;

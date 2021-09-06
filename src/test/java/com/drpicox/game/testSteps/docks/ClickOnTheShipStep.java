@@ -1,24 +1,26 @@
-package com.drpicox.game.testSteps.city;
+package com.drpicox.game.testSteps.docks;
 
+import com.drpicox.game.nameds.api.NamedResponse;
 import com.drpicox.game.testPost.reader.PostLine;
 import com.drpicox.game.testSteps.AbstractPostLineStep;
+import com.drpicox.game.testSteps.game.EntityTestView;
 import com.drpicox.game.testSteps.game.GameTestView;
-import com.drpicox.game.testSteps.helpers.CitiesHelper;
 import com.drpicox.game.testSteps.helpers.ShipsHelper;
 import com.drpicox.game.testSteps.navigator.NavigatorTestView;
 import org.springframework.stereotype.Component;
 
+import static com.drpicox.game.nameds.api.NamedResponse.byName;
+import static com.drpicox.game.owneds.api.OwnedResponse.byOwner;
+
 @Component
 public class ClickOnTheShipStep extends AbstractPostLineStep {
 
+    private final DocksTestView docksTestView;
     private final NavigatorTestView navigatorTestView;
-    private final CityTestView cityTestView;
-    private final GameTestView gameTestView;
 
-    public ClickOnTheShipStep(NavigatorTestView navigatorTestView, CityTestView cityTestView, GameTestView gameTestView) {
+    public ClickOnTheShipStep(DocksTestView docksTestView, NavigatorTestView navigatorTestView) {
+        this.docksTestView = docksTestView;
         this.navigatorTestView = navigatorTestView;
-        this.cityTestView = cityTestView;
-        this.gameTestView = gameTestView;
     }
 
     @Override
@@ -31,9 +33,10 @@ public class ClickOnTheShipStep extends AbstractPostLineStep {
         var ownerName = match[1];
         var shipName = match[2];
 
-        var game = gameTestView.getGame();
-        var city = cityTestView.getCity();
-        var ship = ShipsHelper.findByOwnerAndName(game, city.getId(), ownerName, shipName);
+        var ship = docksTestView.streamDockables()
+                .filter(byOwner(ownerName)).filter(byName(shipName))
+                .findFirst().get();
+
         navigatorTestView.pushScreenName("ship", ship.getId());
     }
 }

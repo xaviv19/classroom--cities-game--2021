@@ -1,4 +1,4 @@
-package com.drpicox.game.typed;
+package com.drpicox.game.typeds;
 
 import com.drpicox.game.ecs.EcsComponent;
 import com.drpicox.game.games.Game;

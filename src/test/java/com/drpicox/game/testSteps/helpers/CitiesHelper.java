@@ -4,7 +4,7 @@ import com.drpicox.game.games.api.EntityResponse;
 import com.drpicox.game.games.api.GameResponse;
 import com.drpicox.game.nameds.api.NamedResponse;
 import com.drpicox.game.owneds.api.OwnedResponse;
-import com.drpicox.game.typed.api.TypedResponse;
+import com.drpicox.game.typeds.api.TypedResponse;
 
 import java.util.List;
 import java.util.stream.Collectors;

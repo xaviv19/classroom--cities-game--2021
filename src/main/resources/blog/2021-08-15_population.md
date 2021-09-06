@@ -36,7 +36,7 @@ Create and start playing one of your games:
  * "leonard" should have 1 cities. 
  * "leonard" should have the "Capital" city.
  * Click on the "leonard" city "Capital"
- * You should be at the city screen.
+ * You should be at the screen of a city.
  * The name should be "Capital".
 
 You can see here the population:

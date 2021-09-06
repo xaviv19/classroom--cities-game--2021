@@ -7,7 +7,7 @@ import com.drpicox.game.nameds.NamedsController;
 import com.drpicox.game.owneds.OwnedsController;
 import com.drpicox.game.players.Player;
 import com.drpicox.game.populateds.PopulatedsController;
-import com.drpicox.game.typed.TypedsController;
+import com.drpicox.game.typeds.TypedsController;
 import org.springframework.stereotype.Component;
 
 import java.util.UUID;
