@@ -41,7 +41,7 @@ Create and start playing one of your games:
 
 You can see here the population:
 
- * The city population should be 10.
+ * The population should be 10.
 
 ### And others players the same
 
@@ -50,7 +50,7 @@ Others players can also see their populations.
  * Given there is the next player "penny".
  <!-- SNAPSHOT status=200 -->
  * Click on the "penny" city "Capital"
- * The city population should be 10.
+ * The population should be 10.
 
 ### New functionality, end round
 
@@ -67,7 +67,7 @@ Each turn each city increases in one population:
 
  * The player should be "penny".
  * Click on the "penny" city "Capital"
- * The city population should be 11.
+ * The population should be 11.
 
 For each player:
  
@@ -76,7 +76,7 @@ For each player:
  * You should be at the game screen.
  * The player should be "leonard".
  * Click on the "leonard" city "Capital"
- * The city population should be 11.
+ * The population should be 11.
 
 ### But with a limit
 
@@ -86,7 +86,7 @@ The maximum population for each city grows:
  <!-- SNAPSHOT status=200 -->
  * The game round should be 3.
  * Click on the "leonard" city "Capital"
- * The city population should be 12.
+ * The population should be 12.
 
 Until it reaches a maximum of 20:
 
@@ -94,7 +94,7 @@ Until it reaches a maximum of 20:
  * The game round should be 11.
  <!-- SNAPSHOT status=200 -->
  * Click on the "leonard" city "Capital"
- * The city population should be 20.
+ * The population should be 20.
 
 And does not matter how many rounds pass, that it will be always 20.
 
@@ -102,7 +102,7 @@ And does not matter how many rounds pass, that it will be always 20.
  <!-- SNAPSHOT status=200 -->
  * The game round should be 12.
  * Click on the "leonard" city "Capital"
- * The city population should be 20.
+ * The population should be 20.
 
 For every player.
 
@@ -112,7 +112,7 @@ For every player.
  * The game round should be 12.
  * The player should be "penny".
  * Click on the "penny" city "Capital"
- * The city population should be 20.
+ * The population should be 20.
 
 
 

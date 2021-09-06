@@ -5,6 +5,7 @@ import com.drpicox.game.games.Game;
 import com.drpicox.game.nameds.Named;
 import com.drpicox.game.owneds.Owned;
 import com.drpicox.game.players.Player;
+import com.drpicox.game.populateds.Populated;
 
 import javax.persistence.*;
 
@@ -18,13 +19,15 @@ public class Ship {
     @ManyToOne private City city;
     @OneToOne private Named named;
     @OneToOne private Owned owned;
+    @OneToOne private Populated populated;
 
-    public Ship(String id, City city, Game game, Named named, Owned owned) {
+    public Ship(String id, City city, Game game, Named named, Owned owned, Populated populated) {
         this.id = id;
         this.game = game;
         this.city = city;
         this.named = named;
         this.owned = owned;
+        this.populated = populated;
     }
 
     protected Ship() {}
@@ -37,10 +40,6 @@ public class Ship {
         return game;
     }
 
-    public int getPopulation() {
-        return population;
-    }
-
     public City getCity() {
         return this.city;
     }
@@ -51,13 +50,6 @@ public class Ship {
 
     public void changeLoadUnloadAmount(int newLoadUnloadAmount) {
         this.loadUnloadAmount = newLoadUnloadAmount;
-    }
-
-    public int increasePopulation(int loadUnloadAmount) {
-        var prevPropulation = this.population;
-        this.population = Math.min(20, Math.max(0, population + loadUnloadAmount));
-        int unfit = prevPropulation + loadUnloadAmount - this.population;
-        return unfit;
     }
 
     public void clearLoadUnloadAmount() {

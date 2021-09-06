@@ -6,6 +6,7 @@ import com.drpicox.game.games.GameJoiner;
 import com.drpicox.game.nameds.NamedsController;
 import com.drpicox.game.owneds.OwnedsController;
 import com.drpicox.game.players.Player;
+import com.drpicox.game.populateds.PopulatedsController;
 import org.springframework.stereotype.Component;
 
 import java.util.UUID;
@@ -17,17 +18,19 @@ public class ShipGameJoiner implements GameJoiner {
     private final CityController cityController;
     private final NamedsController namedsController;
     private final OwnedsController ownedsController;
+    private final PopulatedsController populatedsController;
 
-    public ShipGameJoiner(ShipRepository shipRepository, CityController cityController, NamedsController namedsController, OwnedsController ownedsController) {
+    public ShipGameJoiner(ShipRepository shipRepository, CityController cityController, NamedsController namedsController, OwnedsController ownedsController, PopulatedsController populatedsController) {
         this.shipRepository = shipRepository;
         this.cityController = cityController;
         this.namedsController = namedsController;
         this.ownedsController = ownedsController;
+        this.populatedsController = populatedsController;
     }
 
     @Override
     public void joinGame(Player owner, Game game) {
-        var id = UUID.randomUUID().toString();
+        var entityId = UUID.randomUUID().toString();
         var owneds = ownedsController.findAllByGameAndOwner(game, owner);
         var city = owneds.stream()
                 .map(o -> o.getEntityId())
@@ -35,10 +38,11 @@ public class ShipGameJoiner implements GameJoiner {
                 .findFirst()
                 .get();
 
-        var named = namedsController.createNamed(id, game, "Beagle");
-        var owned = ownedsController.createOwned(id, game, owner);
+        var named = namedsController.create(entityId, game, "Beagle");
+        var owned = ownedsController.create(entityId, game, owner);
+        var populated = populatedsController.create(entityId, game, 0);
 
-        var ship = new Ship(id, city, game, named, owned);
+        var ship = new Ship(entityId, city, game, named, owned, populated);
 
         shipRepository.save(ship);
     }

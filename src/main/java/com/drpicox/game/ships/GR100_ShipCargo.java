@@ -27,11 +27,11 @@ public class GR100_ShipCargo implements GameRounder {
             if (loadUnloadAmount == 0) return;
 
             var city = ship.getCity();
-            var cityPopulation = city.getPopulation();
-            var shipPopulation = ship.getPopulation();
+            var cityPopulation = populatedsController.getPopulation(city.getId());
+            var shipPopulation = populatedsController.getPopulation(ship.getId());
 
             loadUnloadAmount = Math.min(loadUnloadAmount, cityPopulation);
-            var unfit = ship.increasePopulation(loadUnloadAmount);
+            var unfit = populatedsController.increasePopulation(ship.getId(), loadUnloadAmount);
             ship.clearLoadUnloadAmount();
             shipRepository.save(ship);
 

@@ -25,9 +25,15 @@ public class PopulatedsController {
         return populatedsRepository.findAllByGame(game);
     }
 
-    public void increasePopulation(String entityId, int increment) {
+    public int increasePopulation(String entityId, int increment) {
         var populated = populatedsRepository.findById(entityId).get();
-        populated.increasePopulation(increment);
+        var result = populated.increasePopulation(increment);
         populatedsRepository.save(populated);
+        return result;
+    }
+
+    public int getPopulation(String entityId) {
+        var populated = populatedsRepository.findById(entityId).get();
+        return populated.getPopulation();
     }
 }

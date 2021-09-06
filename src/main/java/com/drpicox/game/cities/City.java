@@ -11,29 +11,16 @@ import javax.persistence.*;
 @Entity
 public class City {
     @Id private String id;
-
-    private int population;
     @ManyToOne private Game game;
-    @OneToOne private Named named;
-    @OneToOne private Owned owned;
-    @OneToOne private Populated populated;
 
-    public City(String id, Game game, Named named, Owned owned, Populated populated) {
+    public City(String id, Game game) {
         this.id = id;
         this.game = game;
-        this.named = named;
-        this.owned = owned;
-        this.populated = populated;
-        this.population = 10;
     }
 
     protected City() {}
 
     public String getId() {
         return id;
-    }
-
-    public int getPopulation() {
-        return populated.getPopulation();
     }
 }

@@ -23,9 +23,10 @@ public class Populated extends EcsComponent {
         return population;
     }
 
-    void increasePopulation(int increment) {
-        var prev = population;
-        population = Math.min(MAX_POPULATION, population + increment);
-        System.out.println(getEntityId() + " #### POPULATED: " + prev + " => " + population);
+    int increasePopulation(int increment) {
+        var prevPropulation = this.population;
+        this.population = Math.min(MAX_POPULATION, Math.max(0, population + increment));
+        int unfit = prevPropulation + increment - this.population;
+        return unfit;
     }
 }

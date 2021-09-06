@@ -15,7 +15,7 @@ public class OwnedsController {
         this.ownedsRepository = ownedsRepository;
     }
 
-    public Owned createOwned(String entityId, Game game, Player owner) {
+    public Owned create(String entityId, Game game, Player owner) {
         var owned = new Owned(entityId, game, owner);
         ownedsRepository.save(owned);
         return owned;
