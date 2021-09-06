@@ -33,7 +33,7 @@ public class ClickOnTheShipStep extends AbstractPostLineStep {
 
         var game = gameTestView.getGame();
         var city = cityTestView.getCity();
-        var ship = ShipsHelper.findByOwnerAndName(game, city, ownerName, shipName);
+        var ship = ShipsHelper.findByOwnerAndName(game, city.getId(), ownerName, shipName);
         navigatorTestView.pushScreenName("ship", ship.getId());
     }
 }

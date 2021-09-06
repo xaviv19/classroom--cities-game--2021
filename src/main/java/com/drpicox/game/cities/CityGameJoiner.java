@@ -7,6 +7,7 @@ import com.drpicox.game.nameds.NamedsController;
 import com.drpicox.game.owneds.OwnedsController;
 import com.drpicox.game.players.Player;
 import com.drpicox.game.populateds.PopulatedsController;
+import com.drpicox.game.typed.TypedsController;
 import org.springframework.stereotype.Component;
 
 import java.util.UUID;
@@ -19,13 +20,15 @@ public class CityGameJoiner implements GameJoiner {
     private final PopulatedsController populatedsController;
     private final GrowsPopulationsController growsPopulationsController;
     private final CityRepository cityRepository;
+    private final TypedsController typedsController;
 
-    public CityGameJoiner(NamedsController namedsController, OwnedsController ownedsController, PopulatedsController populatedsController, GrowsPopulationsController growsPopulationsController, CityRepository cityRepository) {
+    public CityGameJoiner(NamedsController namedsController, OwnedsController ownedsController, PopulatedsController populatedsController, GrowsPopulationsController growsPopulationsController, CityRepository cityRepository, TypedsController typedsController) {
         this.namedsController = namedsController;
         this.ownedsController = ownedsController;
         this.populatedsController = populatedsController;
         this.growsPopulationsController = growsPopulationsController;
         this.cityRepository = cityRepository;
+        this.typedsController = typedsController;
     }
 
     @Override
@@ -36,6 +39,7 @@ public class CityGameJoiner implements GameJoiner {
         ownedsController.create(entityId, game, owner);
         populatedsController.create(entityId, game, 10);
         growsPopulationsController.create(entityId, game);
+        typedsController.create(entityId, game, "city");
 
         var city = new City(entityId, game);
         cityRepository.save(city);

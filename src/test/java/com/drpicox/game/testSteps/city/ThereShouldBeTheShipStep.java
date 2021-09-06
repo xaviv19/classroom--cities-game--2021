@@ -34,7 +34,7 @@ public class ThereShouldBeTheShipStep extends AbstractPostLineStep {
 
         var game = gameTestView.getGame();
         var city = cityTestView.getCity();
-        var ships = ShipsHelper.findAllByOwner(game, city, ownerName);
+        var ships = ShipsHelper.findAllByOwner(game, city.getId(), ownerName);
         var shipNames = ships.stream().map(c -> c.getComponent(NamedResponse.class).getName()).collect(Collectors.toList());
         assertThat(shipNames).contains(shipName);
     }

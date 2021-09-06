@@ -1,6 +1,6 @@
 package com.drpicox.game.testSteps.city;
 
-import com.drpicox.game.cities.api.CityResponse;
+import com.drpicox.game.games.api.EntityResponse;
 import com.drpicox.game.games.api.GameResponse;
 import com.drpicox.game.players.api.LoginResponse;
 import com.drpicox.game.testPost.SnapshotService;
@@ -41,7 +41,7 @@ public class CityTestView implements NavigableScreen {
         newCityName = "";
     }
 
-    public CityResponse getCity() {
+    public EntityResponse getCity() {
         var game = gameTestView.getGame();
         String cityId = navigatorTestView.peekId();
 

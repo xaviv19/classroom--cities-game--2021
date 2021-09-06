@@ -33,7 +33,7 @@ public class ThereShouldBeShipsStep extends AbstractPostLineStep {
 
         var game = gameTestView.getGame();
         var city = cityTestView.getCity();
-        var ships = ShipsHelper.findAllByOwner(game, city, ownerName);
+        var ships = ShipsHelper.findAllByOwner(game, city.getId(), ownerName);
         assertThat(ships).hasSize(count);
     }
 }

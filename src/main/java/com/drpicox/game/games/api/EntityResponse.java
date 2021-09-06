@@ -9,7 +9,7 @@ import java.util.Locale;
 import java.util.Map;
 
 @JsonAdapter(JsonDeserializerWithInheritance.class)
-public abstract class EntityResponse {
+public abstract class EntityResponse extends AbstractResponse {
 
     @SerializedName("type")
     private String typeName;
@@ -23,7 +23,7 @@ public abstract class EntityResponse {
         this.id = id;
     }
 
-    public EntityResponse() {
+    private EntityResponse() {
         typeName = getClass().getName();
     }
 

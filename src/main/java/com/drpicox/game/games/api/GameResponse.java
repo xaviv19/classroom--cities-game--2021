@@ -58,6 +58,11 @@ public class GameResponse {
 
     public void addComponent(ComponentResponse componentResponse) {
         var id = componentResponse.getId();
-        entities.get(id).addComponent(componentResponse);
+        var entity = entities.get(id);
+        if (entity == null) {
+            entity = new DummyEntityResponse(id);
+            entities.put(id, entity);
+        }
+        entity.addComponent(componentResponse);
     }
 }

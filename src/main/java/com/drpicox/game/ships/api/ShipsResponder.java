@@ -1,6 +1,5 @@
 package com.drpicox.game.ships.api;
 
-import com.drpicox.game.cities.api.CityResponse;
 import com.drpicox.game.ships.Ship;
 import com.drpicox.game.ships.ShipController;
 import com.drpicox.game.games.Game;
@@ -22,11 +21,6 @@ public class ShipsResponder implements GameResponder {
     public void respond(GameResponse response, Game game, Player playingPlayer) {
         shipController.findAllByGame(game).forEach(ship -> {
             var shipResponse = new ShipResponse(ship);
-
-            var city = ship.getCity();
-            CityResponse cityResponse = response.getEntityResponse(city.getId());
-            cityResponse.addEntity(shipResponse);
-
             response.addEntity(shipResponse);
         });
     }
