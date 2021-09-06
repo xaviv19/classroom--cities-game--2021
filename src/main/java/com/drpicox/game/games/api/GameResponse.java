@@ -3,6 +3,7 @@ package com.drpicox.game.games.api;
 import com.drpicox.game.games.Game;
 
 import java.util.*;
+import java.util.stream.Stream;
 
 public class GameResponse {
     private String gameName;
@@ -40,8 +41,8 @@ public class GameResponse {
         entities.put(entityResponse.getId(), entityResponse);
     }
 
-    public Collection<EntityResponse> getEntityResponses() {
-        return entities.values();
+    public Stream<EntityResponse> streamEntities() {
+        return entities.values().stream();
     }
 
     public Optional<EntityResponse> findEntityById(String id) {

@@ -30,7 +30,7 @@ public class OwnedTestView {
         String entityId = navigatorTestView.peekId();
 
         var entity = game.getEntityResponse(entityId);
-        var named = entity.getComponent(OwnedResponse.class);
+        var named = entity.getComponent(OwnedResponse.class).get();
 
         return named.getOwnerName();
     }

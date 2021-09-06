@@ -1,14 +1,12 @@
 package com.drpicox.game.testSteps.game;
 
-import com.drpicox.game.nameds.api.NamedResponse;
 import com.drpicox.game.testPost.reader.PostLine;
 import com.drpicox.game.testSteps.AbstractPostLineStep;
 import com.drpicox.game.testSteps.helpers.CitiesHelper;
 import org.springframework.stereotype.Component;
 
-import java.util.stream.Collectors;
-
-import static com.google.common.truth.Truth.assertThat;
+import static com.drpicox.game.nameds.api.NamedResponse.toName;
+import static com.google.common.truth.Truth8.assertThat;
 
 @Component
 public class ShouldHaveTheCityStep extends AbstractPostLineStep {
@@ -32,9 +30,7 @@ public class ShouldHaveTheCityStep extends AbstractPostLineStep {
 
         var game = gameTestView.getGame();
         var cities = CitiesHelper.findAllByOwner(game, playerName);
-        var cityNames = cities.stream()
-                .map(c -> c.getComponent(NamedResponse.class).getName())
-                .collect(Collectors.toList());
+        var cityNames = cities.stream().map(toName());
         assertThat(cityNames).contains(cityName);
     }
 }

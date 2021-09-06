@@ -7,6 +7,7 @@ import com.google.gson.annotations.SerializedName;
 import java.util.LinkedHashMap;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Optional;
 
 @JsonAdapter(JsonDeserializerWithInheritance.class)
 public abstract class EntityResponse extends AbstractResponse {
@@ -42,8 +43,8 @@ public abstract class EntityResponse extends AbstractResponse {
         return key;
     }
 
-    public <T extends ComponentResponse> T getComponent(Class<T> componentClass) {
+    public <T extends ComponentResponse> Optional<T> getComponent(Class<T> componentClass) {
         var key = getKey(componentClass);
-        return (T) components.get(key);
+        return Optional.ofNullable((T) components.get(key));
     }
 }

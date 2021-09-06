@@ -17,18 +17,12 @@ public class PopulatedTestView {
         this.navigatorTestView = navigatorTestView;
     }
 
-    private String newName;
-
-    private void clear() {
-        newName = "";
-    }
-
     public int getPopulation() {
         var game = gameTestView.getGame();
         String entityId = navigatorTestView.peekId();
 
         var entity = game.getEntityResponse(entityId);
-        var component = entity.getComponent(PopulatedResponse.class);
+        var component = entity.getComponent(PopulatedResponse.class).get();
 
         return component.getPopulation();
     }

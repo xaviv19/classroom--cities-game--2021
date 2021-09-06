@@ -9,23 +9,26 @@ import com.drpicox.game.typeds.api.TypedResponse;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static com.drpicox.game.nameds.api.NamedResponse.byName;
+import static com.drpicox.game.owneds.api.OwnedResponse.byOwner;
+import static com.drpicox.game.typeds.api.TypedResponse.byEntityType;
+
 public class CitiesHelper {
     public static List<EntityResponse> findAllByOwner(GameResponse gameResponse, String playerName) {
         return findAll(gameResponse).stream()
-                .filter(c -> c.getComponent(OwnedResponse.class).hasOwner(playerName))
+                .filter(byOwner(playerName))
                 .collect(Collectors.toList());
     }
 
     private static List<EntityResponse> findAll(GameResponse gameResponse) {
-        return gameResponse.getEntityResponses().stream()
-                .filter(e -> e.getComponent(TypedResponse.class).hasEntityType("city"))
-                .map(c -> (EntityResponse) c)
+        return gameResponse.streamEntities()
+                .filter(byEntityType("city"))
                 .collect(Collectors.toList());
     }
 
     public static EntityResponse findByOwnerAndName(GameResponse game, String ownerName, String cityName) {
         return findAllByOwner(game, ownerName).stream()
-                .filter(c -> c.getComponent(NamedResponse.class).hasName(cityName))
+                .filter(byName(cityName))
                 .findFirst().orElseThrow(
                 () -> new AssertionError("Cannot find city owner:" + ownerName + ", name:" + cityName)
         );

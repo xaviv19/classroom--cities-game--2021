@@ -29,9 +29,9 @@ public class NamedTestView {
         String entityId = navigatorTestView.peekId();
 
         var entity = game.getEntityResponse(entityId);
-        var named = entity.getComponent(NamedResponse.class);
+        var name = entity.getComponent(NamedResponse.class).get().getName();
 
-        return named.getName();
+        return name;
     }
 
     public void enterNewName(String newName) {

@@ -37,6 +37,6 @@ public class EntityTestView implements NavigableScreen {
     }
 
     public <T extends ComponentResponse> T getComponent(Class<T> responseClass) {
-        return getEntity().getComponent(responseClass);
+        return getEntity().getComponent(responseClass).get();
     }
 }

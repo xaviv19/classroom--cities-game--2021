@@ -16,7 +16,7 @@ public class NamedResponse extends ComponentResponse {
     }
 
     public static Predicate<EntityResponse> byName(String shipName) {
-        return e -> e.getComponent(NamedResponse.class).getName().equals(shipName);
+        return e -> e.getComponent(NamedResponse.class).map(c -> c.getName().equals(shipName)).orElse(false);
     }
 
 
@@ -29,7 +29,9 @@ public class NamedResponse extends ComponentResponse {
     }
 
     public static Function<EntityResponse,String> toName() {
-        return e -> e.getComponent(NamedResponse.class).getName();
+        return e -> e.getComponent(NamedResponse.class)
+                .orElseThrow(() -> new AssertionError("The entity '"+e.getId()+"' do not have a Named component"))
+                .getName();
     }
 
 }

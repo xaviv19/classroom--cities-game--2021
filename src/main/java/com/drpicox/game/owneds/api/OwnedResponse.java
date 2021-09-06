@@ -15,7 +15,7 @@ public class OwnedResponse extends ComponentResponse {
     }
 
     public static Predicate<EntityResponse> byOwner(String ownerName) {
-        return e -> e.getComponent(OwnedResponse.class).hasOwner(ownerName);
+        return e -> e.getComponent(OwnedResponse.class).map(c -> c.hasOwner(ownerName)).orElse(false);
     }
 
     public String getOwnerName() {
