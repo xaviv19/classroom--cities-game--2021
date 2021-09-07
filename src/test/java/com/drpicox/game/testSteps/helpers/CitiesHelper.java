@@ -1,17 +1,14 @@
 package com.drpicox.game.testSteps.helpers;
 
-import com.drpicox.game.games.api.EntityResponse;
+import com.drpicox.game.ecs.EntityResponse;
 import com.drpicox.game.games.api.GameResponse;
-import com.drpicox.game.nameds.api.NamedResponse;
-import com.drpicox.game.owneds.api.OwnedResponse;
-import com.drpicox.game.typeds.api.TypedResponse;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static com.drpicox.game.nameds.api.NamedResponse.byName;
-import static com.drpicox.game.owneds.api.OwnedResponse.byOwner;
-import static com.drpicox.game.typeds.api.TypedResponse.byEntityType;
+import static com.drpicox.game.nameds.NamedResponse.byName;
+import static com.drpicox.game.owneds.OwnedResponse.byOwner;
+import static com.drpicox.game.typeds.TypedResponse.byEntityType;
 
 public class CitiesHelper {
     public static List<EntityResponse> findAllByOwner(GameResponse gameResponse, String playerName) {

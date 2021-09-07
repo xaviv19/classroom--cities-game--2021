@@ -1,18 +1,17 @@
-package com.drpicox.game.dockables.api;
+package com.drpicox.game.dockables;
 
 import com.drpicox.game.games.Game;
 import com.drpicox.game.games.api.GameResponder;
 import com.drpicox.game.games.api.GameResponse;
 import com.drpicox.game.players.Player;
-import com.drpicox.game.dockables.DockablesController;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ZZZDockablesResponder implements GameResponder {
+public class DockablesResponder implements GameResponder {
 
     private final DockablesController dockablesController;
 
-    public ZZZDockablesResponder(DockablesController dockablesController) {
+    public DockablesResponder(DockablesController dockablesController) {
         this.dockablesController = dockablesController;
     }
 

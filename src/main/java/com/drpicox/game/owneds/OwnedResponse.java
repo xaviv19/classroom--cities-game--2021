@@ -1,8 +1,7 @@
-package com.drpicox.game.owneds.api;
+package com.drpicox.game.owneds;
 
-import com.drpicox.game.games.api.ComponentResponse;
-import com.drpicox.game.games.api.EntityResponse;
-import com.drpicox.game.owneds.Owned;
+import com.drpicox.game.ecs.ComponentResponse;
+import com.drpicox.game.ecs.EntityResponse;
 
 import java.util.function.Predicate;
 

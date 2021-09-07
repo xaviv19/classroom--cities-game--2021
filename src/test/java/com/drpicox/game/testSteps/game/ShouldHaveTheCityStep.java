@@ -5,7 +5,7 @@ import com.drpicox.game.testSteps.AbstractPostLineStep;
 import com.drpicox.game.testSteps.helpers.CitiesHelper;
 import org.springframework.stereotype.Component;
 
-import static com.drpicox.game.nameds.api.NamedResponse.toName;
+import static com.drpicox.game.nameds.NamedResponse.toName;
 import static com.google.common.truth.Truth8.assertThat;
 
 @Component

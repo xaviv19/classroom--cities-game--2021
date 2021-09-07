@@ -1,6 +1,5 @@
-package com.drpicox.game.nameds.api;
+package com.drpicox.game.nameds;
 
-import com.drpicox.game.nameds.NamedsController;
 import com.drpicox.game.games.Game;
 import com.drpicox.game.games.api.GameResponder;
 import com.drpicox.game.games.api.GameResponse;
@@ -8,11 +7,11 @@ import com.drpicox.game.players.Player;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ZZZNamedsResponder implements GameResponder {
+public class NamedsResponder implements GameResponder {
 
     private final NamedsController namedsController;
 
-    public ZZZNamedsResponder(NamedsController namedsController) {
+    public NamedsResponder(NamedsController namedsController) {
         this.namedsController = namedsController;
     }
 

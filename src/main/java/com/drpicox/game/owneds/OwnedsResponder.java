@@ -1,18 +1,17 @@
-package com.drpicox.game.owneds.api;
+package com.drpicox.game.owneds;
 
 import com.drpicox.game.games.Game;
 import com.drpicox.game.games.api.GameResponder;
 import com.drpicox.game.games.api.GameResponse;
-import com.drpicox.game.owneds.OwnedsController;
 import com.drpicox.game.players.Player;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ZZZOwnedsResponder implements GameResponder {
+public class OwnedsResponder implements GameResponder {
 
     private final OwnedsController ownedsController;
 
-    public ZZZOwnedsResponder(OwnedsController ownedsController) {
+    public OwnedsResponder(OwnedsController ownedsController) {
         this.ownedsController = ownedsController;
     }
 

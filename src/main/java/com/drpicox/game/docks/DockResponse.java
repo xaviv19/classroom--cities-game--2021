@@ -1,6 +1,6 @@
-package com.drpicox.game.docks.api;
+package com.drpicox.game.docks;
 
-import com.drpicox.game.games.api.ComponentResponse;
+import com.drpicox.game.ecs.ComponentResponse;
 import com.drpicox.game.docks.Dock;
 
 public class DockResponse extends ComponentResponse {

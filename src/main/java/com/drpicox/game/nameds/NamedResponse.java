@@ -1,8 +1,7 @@
-package com.drpicox.game.nameds.api;
+package com.drpicox.game.nameds;
 
-import com.drpicox.game.games.api.ComponentResponse;
-import com.drpicox.game.games.api.EntityResponse;
-import com.drpicox.game.nameds.Named;
+import com.drpicox.game.ecs.ComponentResponse;
+import com.drpicox.game.ecs.EntityResponse;
 
 import java.util.function.Function;
 import java.util.function.Predicate;

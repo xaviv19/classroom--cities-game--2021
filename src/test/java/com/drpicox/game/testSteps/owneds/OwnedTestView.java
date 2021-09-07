@@ -1,12 +1,9 @@
 package com.drpicox.game.testSteps.owneds;
 
-import com.drpicox.game.nameds.api.NamedResponse;
-import com.drpicox.game.owneds.api.OwnedResponse;
+import com.drpicox.game.owneds.OwnedResponse;
 import com.drpicox.game.testSteps.game.GameTestView;
 import com.drpicox.game.testSteps.navigator.NavigatorTestView;
 import org.springframework.stereotype.Component;
-
-import java.util.HashMap;
 
 @Component
 public class OwnedTestView {

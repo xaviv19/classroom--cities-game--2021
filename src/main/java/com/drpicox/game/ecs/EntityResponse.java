@@ -1,31 +1,16 @@
-package com.drpicox.game.games.api;
-
-import com.drpicox.game.JsonDeserializerWithInheritance;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
+package com.drpicox.game.ecs;
 
 import java.util.LinkedHashMap;
-import java.util.Locale;
 import java.util.Map;
 import java.util.Optional;
 
-@JsonAdapter(JsonDeserializerWithInheritance.class)
-public abstract class EntityResponse extends AbstractResponse {
-
-    @SerializedName("type")
-    private String typeName;
+public class EntityResponse {
 
     private String id;
-
     private Map<String, ComponentResponse> components = new LinkedHashMap<>();
 
     public EntityResponse(String id) {
-        this();
         this.id = id;
-    }
-
-    private EntityResponse() {
-        typeName = getClass().getName();
     }
 
     public String getId() {

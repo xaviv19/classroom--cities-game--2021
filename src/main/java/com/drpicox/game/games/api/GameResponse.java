@@ -1,5 +1,7 @@
 package com.drpicox.game.games.api;
 
+import com.drpicox.game.ecs.ComponentResponse;
+import com.drpicox.game.ecs.EntityResponse;
 import com.drpicox.game.games.Game;
 
 import java.util.*;
@@ -61,7 +63,7 @@ public class GameResponse {
         var id = componentResponse.getId();
         var entity = entities.get(id);
         if (entity == null) {
-            entity = new DummyEntityResponse(id);
+            entity = new EntityResponse(id);
             entities.put(id, entity);
         }
         entity.addComponent(componentResponse);

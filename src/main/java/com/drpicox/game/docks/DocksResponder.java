@@ -1,18 +1,17 @@
-package com.drpicox.game.docks.api;
+package com.drpicox.game.docks;
 
 import com.drpicox.game.games.Game;
 import com.drpicox.game.games.api.GameResponder;
 import com.drpicox.game.games.api.GameResponse;
-import com.drpicox.game.docks.DocksController;
 import com.drpicox.game.players.Player;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ZZZDocksResponder implements GameResponder {
+public class DocksResponder implements GameResponder {
 
     private final DocksController docksController;
 
-    public ZZZDocksResponder(DocksController docksController) {
+    public DocksResponder(DocksController docksController) {
         this.docksController = docksController;
     }
 

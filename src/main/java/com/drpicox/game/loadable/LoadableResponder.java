@@ -1,18 +1,17 @@
-package com.drpicox.game.loadable.api;
+package com.drpicox.game.loadable;
 
 import com.drpicox.game.games.Game;
 import com.drpicox.game.games.api.GameResponder;
 import com.drpicox.game.games.api.GameResponse;
-import com.drpicox.game.loadable.LoadablesController;
 import com.drpicox.game.players.Player;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ZZZLoadableResponder implements GameResponder {
+public class LoadableResponder implements GameResponder {
 
     private final LoadablesController loadablesController;
 
-    public ZZZLoadableResponder(LoadablesController loadablesController) {
+    public LoadableResponder(LoadablesController loadablesController) {
         this.loadablesController = loadablesController;
     }
 

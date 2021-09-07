@@ -1,7 +1,6 @@
-package com.drpicox.game.loadable.api;
+package com.drpicox.game.loadable;
 
-import com.drpicox.game.games.api.ComponentResponse;
-import com.drpicox.game.loadable.Loadable;
+import com.drpicox.game.ecs.ComponentResponse;
 
 public class LoadableResponse extends ComponentResponse {
     private int loadUnloadAmount;

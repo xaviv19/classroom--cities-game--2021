@@ -1,8 +1,7 @@
-package com.drpicox.game.dockables.api;
+package com.drpicox.game.dockables;
 
-import com.drpicox.game.games.api.ComponentResponse;
-import com.drpicox.game.dockables.Dockable;
-import com.drpicox.game.games.api.EntityResponse;
+import com.drpicox.game.ecs.ComponentResponse;
+import com.drpicox.game.ecs.EntityResponse;
 
 import java.util.function.Predicate;
 

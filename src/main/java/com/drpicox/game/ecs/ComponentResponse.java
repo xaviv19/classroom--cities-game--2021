@@ -1,4 +1,4 @@
-package com.drpicox.game.games.api;
+package com.drpicox.game.ecs;
 
 import com.drpicox.game.JsonDeserializerWithInheritance;
 import com.google.gson.annotations.JsonAdapter;

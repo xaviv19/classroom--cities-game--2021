@@ -1,8 +1,7 @@
-package com.drpicox.game.typeds.api;
+package com.drpicox.game.typeds;
 
-import com.drpicox.game.games.api.ComponentResponse;
-import com.drpicox.game.games.api.EntityResponse;
-import com.drpicox.game.typeds.Typed;
+import com.drpicox.game.ecs.ComponentResponse;
+import com.drpicox.game.ecs.EntityResponse;
 
 import java.util.function.Predicate;
 

@@ -1,7 +1,6 @@
-package com.drpicox.game.populateds.api;
+package com.drpicox.game.populateds;
 
-import com.drpicox.game.games.api.ComponentResponse;
-import com.drpicox.game.owneds.Owned;
+import com.drpicox.game.ecs.ComponentResponse;
 import com.drpicox.game.populateds.Populated;
 
 public class PopulatedResponse extends ComponentResponse {

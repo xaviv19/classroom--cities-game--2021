@@ -1,13 +1,13 @@
 package com.drpicox.game.testSteps.docks;
 
-import com.drpicox.game.games.api.EntityResponse;
+import com.drpicox.game.ecs.EntityResponse;
 import com.drpicox.game.testSteps.game.GameTestView;
 import com.drpicox.game.testSteps.navigator.NavigatorTestView;
 import org.springframework.stereotype.Component;
 
 import java.util.stream.Stream;
 
-import static com.drpicox.game.dockables.api.DockableResponse.byDockId;
+import static com.drpicox.game.dockables.DockableResponse.byDockId;
 
 @Component
 public class DocksTestView {
