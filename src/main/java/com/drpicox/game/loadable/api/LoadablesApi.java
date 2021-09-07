@@ -3,19 +3,16 @@ package com.drpicox.game.loadable.api;
 import com.drpicox.game.games.api.GameResponse;
 import com.drpicox.game.games.api.GamesApi;
 import com.drpicox.game.loadable.LoadablesController;
-import com.drpicox.game.ships.ShipController;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/loadables")
 public class LoadablesApi {
 
-    private final ShipController shipController;
     private final LoadablesController loadablesController;
     private final GamesApi gamesApi;
 
-    public LoadablesApi(ShipController shipController, LoadablesController loadablesController, GamesApi gamesApi) {
-        this.shipController = shipController;
+    public LoadablesApi(LoadablesController loadablesController, GamesApi gamesApi) {
         this.loadablesController = loadablesController;
         this.gamesApi = gamesApi;
     }
@@ -23,9 +20,9 @@ public class LoadablesApi {
     @PostMapping("/{entityId}/loadUnloadAmount")
     public GameResponse changeShipName(@PathVariable String entityId, @RequestParam String token, @RequestBody NewLoadUnloadAmountForm form) {
         loadablesController.changeLoadUnloadAmount(entityId, form.getNewLoadUnloadAmount());
+        var loadable = loadablesController.findById(entityId).get();
 
-        var ship = shipController.findById(entityId).get();
-        var game = ship.getGame();
+        var game = loadable.getGame();
         return gamesApi.get(game.getGameName(), game.getCreator().getPlayerName(), token);
     }
 }

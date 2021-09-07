@@ -23,4 +23,8 @@ public class Typed extends EcsComponent {
     public void changeName(String newName) {
         this.entityType = newName;
     }
+
+    public boolean isEntityType(String entityType) {
+        return this.entityType.equals(entityType);
+    }
 }

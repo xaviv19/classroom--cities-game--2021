@@ -1,10 +1,8 @@
 package com.drpicox.game.loadable;
 
-import com.drpicox.game.cities.CityController;
 import com.drpicox.game.dockables.DockablesController;
 import com.drpicox.game.games.Game;
 import com.drpicox.game.games.GameRounder;
-import com.drpicox.game.loadable.LoadablesController;
 import com.drpicox.game.populateds.PopulatedsController;
 import org.springframework.stereotype.Component;
 

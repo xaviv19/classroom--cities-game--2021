@@ -1,9 +1,11 @@
 package com.drpicox.game.loadable;
 
 import com.drpicox.game.games.Game;
+import com.drpicox.game.games.api.GamesApi;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Optional;
 
 @Component
 public class LoadablesController {
@@ -33,5 +35,9 @@ public class LoadablesController {
         var loadable = loadablesRepository.findById(entityId).get();
         loadable.clearLoadUnloadAmount();
         loadablesRepository.save(loadable);
+    }
+
+    public Optional<Loadable> findById(String entityId) {
+        return loadablesRepository.findById(entityId);
     }
 }
