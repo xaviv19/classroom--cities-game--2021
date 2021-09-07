@@ -1,5 +1,6 @@
 package com.drpicox.game.games;
 
+import com.drpicox.game.ecs.EcsSystem;
 import com.drpicox.game.players.Player;
 import org.springframework.stereotype.Controller;
 
@@ -11,9 +12,9 @@ import java.util.stream.Collectors;
 public class GamesController {
     private final GameRepository gameRepository;
     private final List<GameJoiner> gameJoiners;
-    private final List<GameRounder> gameRounders;
+    private final List<EcsSystem> gameRounders;
 
-    public GamesController(GameRepository gameRepository, List<GameJoiner> gameJoiners, List<GameRounder> gameRounders) {
+    public GamesController(GameRepository gameRepository, List<GameJoiner> gameJoiners, List<EcsSystem> gameRounders) {
         this.gameRepository = gameRepository;
         this.gameJoiners = gameJoiners;
         this.gameRounders = gameRounders;
@@ -53,7 +54,7 @@ public class GamesController {
         game.endRound();
         gameRepository.save(game);
 
-        gameRounders.stream().forEach(gr -> gr.endRound(game));
+        gameRounders.stream().forEach(gr -> gr.act(game));
     }
 
     public Optional<Game> findGame(String gameName, Player player) {
