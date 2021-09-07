@@ -1,6 +1,6 @@
 package com.drpicox.game.testSteps.nameds;
 
-import com.drpicox.game.nameds.NamedResponse;
+import com.drpicox.game.components.nameds.NamedResponse;
 import com.drpicox.game.testSteps.game.GameTestView;
 import com.drpicox.game.testSteps.navigator.NavigatorTestView;
 import org.springframework.stereotype.Component;

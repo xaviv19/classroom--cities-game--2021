@@ -1,6 +1,6 @@
 package com.drpicox.game.testSteps.populated;
 
-import com.drpicox.game.populateds.PopulatedResponse;
+import com.drpicox.game.components.populateds.PopulatedResponse;
 import com.drpicox.game.testSteps.game.GameTestView;
 import com.drpicox.game.testSteps.navigator.NavigatorTestView;
 import org.springframework.stereotype.Component;

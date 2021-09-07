@@ -6,9 +6,9 @@ import com.drpicox.game.games.api.GameResponse;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static com.drpicox.game.nameds.NamedResponse.byName;
-import static com.drpicox.game.owneds.OwnedResponse.byOwner;
-import static com.drpicox.game.typeds.TypedResponse.byEntityType;
+import static com.drpicox.game.components.nameds.NamedResponse.byName;
+import static com.drpicox.game.components.owneds.OwnedResponse.byOwner;
+import static com.drpicox.game.components.typeds.TypedResponse.byEntityType;
 
 public class CitiesHelper {
     public static List<EntityResponse> findAllByOwner(GameResponse gameResponse, String playerName) {

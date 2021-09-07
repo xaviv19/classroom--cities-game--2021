@@ -1,6 +1,6 @@
 package com.drpicox.game.testSteps.loadable;
 
-import com.drpicox.game.loadable.LoadableResponse;
+import com.drpicox.game.components.loadables.LoadableResponse;
 import com.drpicox.game.testSteps.game.GameTestView;
 import com.drpicox.game.testSteps.navigator.NavigatorTestView;
 import org.springframework.stereotype.Component;

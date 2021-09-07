@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.stream.Stream;
 
-import static com.drpicox.game.dockables.DockableResponse.byDockId;
+import static com.drpicox.game.components.dockables.DockableResponse.byDockId;
 
 @Component
 public class DocksTestView {

@@ -1,6 +1,6 @@
 package com.drpicox.game.testSteps.owneds;
 
-import com.drpicox.game.owneds.OwnedResponse;
+import com.drpicox.game.components.owneds.OwnedResponse;
 import com.drpicox.game.testSteps.game.GameTestView;
 import com.drpicox.game.testSteps.navigator.NavigatorTestView;
 import org.springframework.stereotype.Component;
