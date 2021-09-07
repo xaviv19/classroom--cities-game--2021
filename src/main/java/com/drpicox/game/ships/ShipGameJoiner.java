@@ -5,6 +5,7 @@ import com.drpicox.game.dockables.Dockable;
 import com.drpicox.game.dockables.DockablesController;
 import com.drpicox.game.games.Game;
 import com.drpicox.game.games.GameJoiner;
+import com.drpicox.game.loadable.LoadablesController;
 import com.drpicox.game.nameds.NamedsController;
 import com.drpicox.game.owneds.OwnedsController;
 import com.drpicox.game.players.Player;
@@ -24,8 +25,9 @@ public class ShipGameJoiner implements GameJoiner {
     private final PopulatedsController populatedsController;
     private final TypedsController typedsController;
     private final DockablesController dockablesController;
+    private final LoadablesController loadablesController;
 
-    public ShipGameJoiner(ShipRepository shipRepository, CityController cityController, NamedsController namedsController, OwnedsController ownedsController, PopulatedsController populatedsController, TypedsController typedsController, DockablesController dockablesController) {
+    public ShipGameJoiner(ShipRepository shipRepository, CityController cityController, NamedsController namedsController, OwnedsController ownedsController, PopulatedsController populatedsController, TypedsController typedsController, DockablesController dockablesController, LoadablesController loadablesController) {
         this.shipRepository = shipRepository;
         this.cityController = cityController;
         this.namedsController = namedsController;
@@ -33,6 +35,7 @@ public class ShipGameJoiner implements GameJoiner {
         this.populatedsController = populatedsController;
         this.typedsController = typedsController;
         this.dockablesController = dockablesController;
+        this.loadablesController = loadablesController;
     }
 
     @Override
@@ -50,6 +53,7 @@ public class ShipGameJoiner implements GameJoiner {
         populatedsController.create(entityId, game, 0);
         typedsController.create(entityId, game, "ship");
         dockablesController.create(entityId, game, city.getId());
+        loadablesController.create(entityId, game);
 
         var ship = new Ship(entityId, game);
 

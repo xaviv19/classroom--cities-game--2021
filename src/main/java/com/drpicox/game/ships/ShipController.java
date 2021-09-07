@@ -26,10 +26,4 @@ public class ShipController  {
         return shipRepository.findById(shipId);
     }
 
-    public void changeLoadUnloadAmount(String shipId, int newLoadUnloadAmount) {
-        findById(shipId).ifPresent(ship -> {
-            ship.changeLoadUnloadAmount(newLoadUnloadAmount);
-            shipRepository.save(ship);
-        });
-    }
 }

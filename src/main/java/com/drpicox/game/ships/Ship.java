@@ -8,8 +8,6 @@ import javax.persistence.*;
 @Entity
 public class Ship {
     @Id private String id;
-
-    private int loadUnloadAmount;
     @ManyToOne private Game game;
 
     public Ship(String id, Game game) {
@@ -25,17 +23,5 @@ public class Ship {
 
     public Game getGame() {
         return game;
-    }
-
-    public int getLoadUnloadAmount() {
-        return this.loadUnloadAmount;
-    }
-
-    public void changeLoadUnloadAmount(int newLoadUnloadAmount) {
-        this.loadUnloadAmount = newLoadUnloadAmount;
-    }
-
-    public void clearLoadUnloadAmount() {
-        this.loadUnloadAmount = 0;
     }
 }

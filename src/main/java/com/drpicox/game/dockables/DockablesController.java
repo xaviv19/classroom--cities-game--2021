@@ -14,10 +14,9 @@ public class DockablesController {
         this.dockablesRepository = dockablesRepository;
     }
 
-    public Dockable create(String entityId, Game game, String dockId) {
-        var named = new Dockable(entityId, game, dockId);
-        dockablesRepository.save(named);
-        return named;
+    public void create(String entityId, Game game, String dockId) {
+        var component = new Dockable(entityId, game, dockId);
+        dockablesRepository.save(component);
     }
 
     public List<Dockable> findAllByGame(Game game) {

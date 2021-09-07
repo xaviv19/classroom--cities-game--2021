@@ -10,15 +10,15 @@ import org.springframework.stereotype.Component;
 @Component
 public class ZZZPopulatedResponder implements GameResponder {
 
-    private final PopulatedsController ownedsController;
+    private final PopulatedsController populatedsController;
 
-    public ZZZPopulatedResponder(PopulatedsController ownedsController) {
-        this.ownedsController = ownedsController;
+    public ZZZPopulatedResponder(PopulatedsController populatedsController) {
+        this.populatedsController = populatedsController;
     }
 
     @Override
     public void respond(GameResponse response, Game game, Player playingPlayer) {
-        var components = ownedsController.findAllByGame(game);
+        var components = populatedsController.findAllByGame(game);
         components.forEach(c -> response.addComponent(new PopulatedResponse(c)));
     }
 }

@@ -1,17 +1,16 @@
-package com.drpicox.game.ships.api;
+package com.drpicox.game.loadable.api;
 
-import com.drpicox.game.dockables.api.DockableResponse;
-import com.drpicox.game.ships.Ship;
-import com.drpicox.game.games.api.EntityResponse;
+import com.drpicox.game.games.api.ComponentResponse;
+import com.drpicox.game.loadable.Loadable;
 
-public class ShipResponse extends EntityResponse {
+public class LoadableResponse extends ComponentResponse {
     private int loadUnloadAmount;
     private boolean loadRequested;
     private boolean unloadRequested;
 
-    public ShipResponse(Ship ship) {
-        super(ship.getId());
-        var loadUnloadAmount = ship.getLoadUnloadAmount();
+    public LoadableResponse(Loadable loadable) {
+        super(loadable.getEntityId());
+        var loadUnloadAmount = loadable.getLoadUnloadAmount();
         this.loadUnloadAmount = Math.abs(loadUnloadAmount);
         this.loadRequested = loadUnloadAmount > 0;
         this.unloadRequested = loadUnloadAmount < 0;

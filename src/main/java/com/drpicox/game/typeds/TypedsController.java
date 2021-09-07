@@ -14,10 +14,9 @@ public class TypedsController {
         this.typedsRepository = typedsRepository;
     }
 
-    public Typed create(String entityId, Game game, String entityType) {
-        var named = new Typed(entityId, game, entityType);
-        typedsRepository.save(named);
-        return named;
+    public void create(String entityId, Game game, String entityType) {
+        var component = new Typed(entityId, game, entityType);
+        typedsRepository.save(component);
     }
 
     public List<Typed> findAllByGame(Game game) {

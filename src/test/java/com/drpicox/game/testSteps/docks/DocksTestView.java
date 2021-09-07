@@ -1,8 +1,6 @@
 package com.drpicox.game.testSteps.docks;
 
-import com.drpicox.game.dockables.api.DockableResponse;
 import com.drpicox.game.games.api.EntityResponse;
-import com.drpicox.game.ships.api.ShipResponse;
 import com.drpicox.game.testSteps.game.GameTestView;
 import com.drpicox.game.testSteps.navigator.NavigatorTestView;
 import org.springframework.stereotype.Component;

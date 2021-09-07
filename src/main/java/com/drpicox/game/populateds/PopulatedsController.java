@@ -15,10 +15,9 @@ public class PopulatedsController {
         this.populatedsRepository = populatedsRepository;
     }
 
-    public Populated create(String entityId, Game game, int initialPopulation) {
+    public void create(String entityId, Game game, int initialPopulation) {
         var component = new Populated(entityId, game, initialPopulation);
         populatedsRepository.save(component);
-        return component;
     }
 
     public List<Populated> findAllByGame(Game game) {

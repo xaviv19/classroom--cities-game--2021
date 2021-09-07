@@ -1,4 +1,4 @@
-package com.drpicox.game.testSteps.ship;
+package com.drpicox.game.testSteps.loadable;
 
 import com.drpicox.game.testPost.reader.PostLine;
 import com.drpicox.game.testSteps.AbstractPostLineStep;
@@ -7,10 +7,10 @@ import org.springframework.stereotype.Component;
 @Component
 public class ClickTheUnloadButtonStep extends AbstractPostLineStep {
 
-    private final ShipTestView shipTestView;
+    private final LoadableTestView loadableTestView;
 
-    public ClickTheUnloadButtonStep(ShipTestView shipTestView) {
-        this.shipTestView = shipTestView;
+    public ClickTheUnloadButtonStep(LoadableTestView loadableTestView) {
+        this.loadableTestView = loadableTestView;
     }
 
     @Override
@@ -20,6 +20,6 @@ public class ClickTheUnloadButtonStep extends AbstractPostLineStep {
 
     @Override
     protected void run(PostLine line, String[] match) {
-        shipTestView.submitUnload();
+        loadableTestView.submitUnload();
     }
 }

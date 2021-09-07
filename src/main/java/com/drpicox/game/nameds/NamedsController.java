@@ -14,10 +14,9 @@ public class NamedsController {
         this.namedsRepository = namedsRepository;
     }
 
-    public Named create(String entityId, Game game, String initialName) {
-        var named = new Named(entityId, game, initialName);
-        namedsRepository.save(named);
-        return named;
+    public void create(String entityId, Game game, String initialName) {
+        var component = new Named(entityId, game, initialName);
+        namedsRepository.save(component);
     }
 
     public Named changeName(String entityId, String newName) {

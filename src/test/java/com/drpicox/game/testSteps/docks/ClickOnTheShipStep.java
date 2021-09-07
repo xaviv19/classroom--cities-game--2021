@@ -1,11 +1,7 @@
 package com.drpicox.game.testSteps.docks;
 
-import com.drpicox.game.nameds.api.NamedResponse;
 import com.drpicox.game.testPost.reader.PostLine;
 import com.drpicox.game.testSteps.AbstractPostLineStep;
-import com.drpicox.game.testSteps.game.EntityTestView;
-import com.drpicox.game.testSteps.game.GameTestView;
-import com.drpicox.game.testSteps.helpers.ShipsHelper;
 import com.drpicox.game.testSteps.navigator.NavigatorTestView;
 import org.springframework.stereotype.Component;
 
@@ -37,6 +33,6 @@ public class ClickOnTheShipStep extends AbstractPostLineStep {
                 .filter(byOwner(ownerName)).filter(byName(shipName))
                 .findFirst().get();
 
-        navigatorTestView.pushScreenName("ship", ship.getId());
+        navigatorTestView.pushScreenName("entity", ship.getId());
     }
 }

@@ -15,10 +15,9 @@ public class OwnedsController {
         this.ownedsRepository = ownedsRepository;
     }
 
-    public Owned create(String entityId, Game game, Player owner) {
-        var owned = new Owned(entityId, game, owner);
-        ownedsRepository.save(owned);
-        return owned;
+    public void create(String entityId, Game game, Player owner) {
+        var component = new Owned(entityId, game, owner);
+        ownedsRepository.save(component);
     }
 
     public List<Owned> findAllByGame(Game game) {

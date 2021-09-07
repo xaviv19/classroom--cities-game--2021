@@ -1,4 +1,4 @@
-package com.drpicox.game.testSteps.ship;
+package com.drpicox.game.testSteps.loadable;
 
 import com.drpicox.game.testPost.reader.PostLine;
 import com.drpicox.game.testSteps.AbstractPostLineStep;
@@ -10,10 +10,10 @@ import static com.google.common.truth.Truth.assertThat;
 public class EnterAsLoadUnloadAmountStep extends AbstractPostLineStep {
 
 
-    private final ShipTestView shipTestView;
+    private final LoadableTestView loadableTestView;
 
-    public EnterAsLoadUnloadAmountStep(ShipTestView shipTestView) {
-        this.shipTestView = shipTestView;
+    public EnterAsLoadUnloadAmountStep(LoadableTestView loadableTestView) {
+        this.loadableTestView = loadableTestView;
     }
 
     @Override
@@ -25,6 +25,6 @@ public class EnterAsLoadUnloadAmountStep extends AbstractPostLineStep {
     protected void run(PostLine line, String[] match) {
         var amount = Integer.parseInt(match[1]);
 
-        shipTestView.enterLoadUnloadAmount(amount);
+        loadableTestView.enterLoadUnloadAmount(amount);
     }
 }

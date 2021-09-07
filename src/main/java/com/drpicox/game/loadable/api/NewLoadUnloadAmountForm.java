@@ -1,4 +1,4 @@
-package com.drpicox.game.ships.api;
+package com.drpicox.game.loadable.api;
 
 public class NewLoadUnloadAmountForm {
     private int newLoadUnloadAmount;

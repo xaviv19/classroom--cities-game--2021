@@ -1,4 +1,4 @@
-package com.drpicox.game.testSteps.ship;
+package com.drpicox.game.testSteps.loadable;
 
 import com.drpicox.game.testPost.reader.PostLine;
 import com.drpicox.game.testSteps.AbstractPostLineStep;
@@ -10,10 +10,10 @@ import static com.google.common.truth.Truth.assertThat;
 public class TheLoadButtonShouldBeStep extends AbstractPostLineStep {
 
 
-    private final ShipTestView shipTestView;
+    private final LoadableTestView loadableTestView;
 
-    public TheLoadButtonShouldBeStep(ShipTestView shipTestView) {
-        this.shipTestView = shipTestView;
+    public TheLoadButtonShouldBeStep(LoadableTestView loadableTestView) {
+        this.loadableTestView = loadableTestView;
     }
 
     @Override
@@ -25,7 +25,7 @@ public class TheLoadButtonShouldBeStep extends AbstractPostLineStep {
     protected void run(PostLine line, String[] match) {
         var isRequested = match[1].equals("highlighted");
 
-        var ship = shipTestView.getShip();
-        assertThat(ship.isLoadRequested()).isEqualTo(isRequested);
+        var loadable = loadableTestView.getLoadable();
+        assertThat(loadable.isLoadRequested()).isEqualTo(isRequested);
     }
 }
