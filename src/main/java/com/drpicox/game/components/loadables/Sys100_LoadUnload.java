@@ -1,6 +1,7 @@
 package com.drpicox.game.components.loadables;
 
-import com.drpicox.game.components.dockables.DockablesController;
+import com.drpicox.game.components.locateds.LocatedsController;
+import com.drpicox.game.components.typeds.TypedsController;
 import com.drpicox.game.ecs.EcsSystem;
 import com.drpicox.game.games.Game;
 import com.drpicox.game.components.populateds.PopulatedsController;
@@ -10,13 +11,15 @@ import org.springframework.stereotype.Component;
 public class Sys100_LoadUnload implements EcsSystem {
 
     private final PopulatedsController populatedsController;
-    private final DockablesController dockablesController;
     private final LoadablesController loadablesController;
+    private final LocatedsController locatedsController;
+    private final TypedsController typedsController;
 
-    public Sys100_LoadUnload(PopulatedsController populatedsController, DockablesController dockablesController, LoadablesController loadablesController) {
+    public Sys100_LoadUnload(PopulatedsController populatedsController, LoadablesController loadablesController, LocatedsController locatedsController, TypedsController typedsController) {
         this.populatedsController = populatedsController;
-        this.dockablesController = dockablesController;
         this.loadablesController = loadablesController;
+        this.locatedsController = locatedsController;
+        this.typedsController = typedsController;
     }
 
     @Override
@@ -27,17 +30,27 @@ public class Sys100_LoadUnload implements EcsSystem {
             var loadUnloadAmount = loadable.getLoadUnloadAmount();
             if (loadUnloadAmount == 0) return;
 
-            var dockId = dockablesController.getDockId(entityId);
-            var dockPopulation = populatedsController.getPopulation(dockId);
-            var shipPopulation = populatedsController.getPopulation(entityId);
+            var targetId = getTargetId(game, entityId);
+            var dockPopulation = populatedsController.getPopulation(targetId);
 
             loadUnloadAmount = Math.min(loadUnloadAmount, dockPopulation);
             var unfit = populatedsController.increasePopulation(entityId, loadUnloadAmount);
-            loadablesController.clearLoadUnloadAmount(entityId);
+            loadablesController.clearLoadUnloadOrder(entityId);
 
             var delta = -(loadUnloadAmount - unfit);
-            populatedsController.increasePopulation(dockId, delta);
+            populatedsController.increasePopulation(targetId, delta);
         });
 
+    }
+
+    private String getTargetId(Game game, String entityId) {
+        var myLocation = locatedsController.getLocation(entityId);
+        var coLocateds = locatedsController.findByGameAndLocation(game, myLocation);
+        var target = coLocateds.stream()
+                .filter(l -> l.getLocation() == myLocation)
+                .filter(l -> typedsController.isTyped(l.getEntityId(), "city"))
+                .findFirst().get();
+
+        return target.getEntityId();
     }
 }

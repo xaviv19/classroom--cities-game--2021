@@ -19,7 +19,7 @@ public class LoadablesApi {
 
     @PostMapping("/{entityId}/loadUnloadAmount")
     public GameResponse changeShipName(@PathVariable String entityId, @RequestParam String token, @RequestBody NewLoadUnloadAmountForm form) {
-        loadablesController.changeLoadUnloadAmount(entityId, form.getNewLoadUnloadAmount());
+        loadablesController.orderLoadUnload(entityId, form.getNewLoadUnloadAmount(), form.getSourceEntityId());
         var loadable = loadablesController.findById(entityId).get();
 
         var game = loadable.getGame();

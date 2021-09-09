@@ -28,12 +28,12 @@ public class YouShouldBeAtTheScreenOfStep extends AbstractPostLineStep {
     @Override
     protected void run(PostLine line, String[] match) {
         var expectedScreenName = "entity";
-        var expectedEntityType = match[1].trim();
+        var expectedType = match[1].trim();
 
         var screenName = navigatorTestView.peekScreenName();
-        var entityType = typedTestView.getEntityType();
+        var type = typedTestView.getType();
 
         assertThat(screenName).isEqualTo(expectedScreenName);
-        assertThat(entityType).isEqualTo(expectedEntityType);
+        assertThat(type).isEqualTo(expectedType);
     }
 }

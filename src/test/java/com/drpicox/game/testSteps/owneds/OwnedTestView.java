@@ -20,6 +20,6 @@ public class OwnedTestView {
     }
 
     public String getOnwerName() {
-        return (String) entityTestView.getEntityProperty("ownerName");
+        return entityTestView.getEntityPropertyString("ownerName");
     }
 }

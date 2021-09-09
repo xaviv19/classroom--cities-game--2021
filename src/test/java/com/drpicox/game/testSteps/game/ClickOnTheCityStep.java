@@ -5,7 +5,7 @@ import com.drpicox.game.testSteps.AbstractPostLineStep;
 import com.drpicox.game.testSteps.navigator.NavigatorTestView;
 import org.springframework.stereotype.Component;
 
-import static com.drpicox.game.testSteps.game.TypedTestView.byEntityType;
+import static com.drpicox.game.testSteps.game.TypedTestView.byType;
 import static com.drpicox.game.testSteps.nameds.NamedTestView.byName;
 import static com.drpicox.game.testSteps.owneds.OwnedTestView.byOwner;
 
@@ -32,7 +32,7 @@ public class ClickOnTheCityStep extends AbstractPostLineStep {
 
         // TODO: search by type
         var game = gameTestView.getGame();
-        var city = gameTestView.findEntity(byEntityType("city").and(byOwner(ownerName)).and(byName(cityName))).get();
+        var city = gameTestView.findEntity(byType("city").and(byOwner(ownerName)).and(byName(cityName))).get();
 
         navigatorTestView.pushScreenName("entity", city.getId());
     }

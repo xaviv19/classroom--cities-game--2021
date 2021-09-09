@@ -21,7 +21,7 @@ public class TypedsResponder implements GameResponder {
         components.forEach(c -> {
             var entityId = c.getEntityId();
             response.putEntityProperty(entityId, "isTyped", true);
-            response.putEntityProperty(entityId, "entityType", c.getEntityType());
+            response.putEntityProperty(entityId, "type", c.getEntityType());
         });
     }
 }

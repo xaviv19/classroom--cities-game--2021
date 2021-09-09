@@ -1,12 +1,10 @@
 package com.drpicox.game;
 
 import com.drpicox.game.blog.AuthorsController;
-import com.drpicox.game.tools.GsonSubject;
 import com.drpicox.game.tools.JsonOld;
 import com.google.common.truth.Truth;
 import static com.google.common.truth.Truth.assertThat;
 import com.google.gson.Gson;
-import com.google.gson.JsonObject;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -232,6 +230,21 @@ public class BlogTest {
         });
     }
 
+    @Test
+    public void posts_cannot_ask_to_print_the_last_snapshot() throws Throwable {
+        var ids = new LinkedList();
+        forEachPost(postMetadata -> ids.add(postMetadata.get("id")));
+
+        for (var id: ids) {
+            var post = fetchPost(id);
+            var body = (String) post.get("body");
+            var containsPrintLastSnapshot = body.toUpperCase().lines().anyMatch(line -> line.contains("PRINT LAST SNAPSHOT"));
+            if (!containsPrintLastSnapshot) return;
+
+            throw new AssertionError("Post '" + id + "'.md body cannot contain a line with the text 'PRINT LAST SNAPSHOT'");
+        }
+    }
+
     private void forEachPost(Consumer<Map> consumer) throws Throwable {
         var result = mockMvc.perform(get("/api/v1/posts"))
                 .andExpect(status().isOk())
@@ -245,5 +258,15 @@ public class BlogTest {
             var post = (Map) posts.get(i);
             consumer.accept(post);
         }
+    }
+
+    private Map fetchPost(Object postId) throws Throwable {
+        var result = mockMvc.perform(get("/api/v1/posts/" + postId))
+                .andExpect(status().isOk())
+                .andReturn();
+
+        var jsonResponse = result.getResponse().getContentAsString();
+        var response = gson.fromJson(jsonResponse, Map.class);
+        return response;
     }
 }

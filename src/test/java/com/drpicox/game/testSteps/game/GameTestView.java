@@ -75,7 +75,7 @@ public class GameTestView implements NavigableScreen {
         return game;
     }
 
-    public GameResponse post(String url, HashMap<String, String> data) {
+    public GameResponse post(String url, HashMap data) {
         var token = playerTestView.getToken();
 
         var finalUrl = url + "?token=" + token;

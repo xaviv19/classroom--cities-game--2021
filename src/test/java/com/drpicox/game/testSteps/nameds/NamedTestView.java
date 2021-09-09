@@ -34,7 +34,7 @@ public class NamedTestView {
     }
 
     public String getNamedName() {
-        return (String) entityTestView.getEntityProperty("name");
+        return entityTestView.getEntityPropertyString("name");
     }
 
     public void enterNewName(String newName) {

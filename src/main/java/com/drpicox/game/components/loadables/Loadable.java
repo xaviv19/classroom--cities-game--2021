@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 @Entity
 public class Loadable extends EcsComponent {
     private int loadUnloadAmount;
+    private String sourceEntityId;
 
     public Loadable(String entityId, Game game) {
         super(entityId, game);
@@ -19,11 +20,17 @@ public class Loadable extends EcsComponent {
         return this.loadUnloadAmount;
     }
 
-    void changeLoadUnloadAmount(int newLoadUnloadAmount) {
-        this.loadUnloadAmount = newLoadUnloadAmount;
+    public String getSourceEntityId() {
+        return sourceEntityId;
     }
 
-    void clearLoadUnloadAmount() {
+    void orderLoadUnload(int newLoadUnloadAmount, String sourceEntityId) {
+        this.loadUnloadAmount = newLoadUnloadAmount;
+        this.sourceEntityId = sourceEntityId;
+    }
+
+    void clearLoadUnloadOrder() {
         this.loadUnloadAmount = 0;
+        this.sourceEntityId = null;
     }
 }

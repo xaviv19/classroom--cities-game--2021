@@ -2,6 +2,7 @@ package com.drpicox.game.testSteps.docks;
 
 import com.drpicox.game.testPost.reader.PostLine;
 import com.drpicox.game.testSteps.AbstractPostLineStep;
+import com.drpicox.game.testSteps.locateds.LocatedTestView;
 import com.drpicox.game.testSteps.nameds.NamedTestView;
 import org.springframework.stereotype.Component;
 
@@ -11,10 +12,10 @@ import static com.google.common.truth.Truth8.assertThat;
 @Component
 public class ThereShouldBeTheShipStep extends AbstractPostLineStep {
 
-    private final DocksTestView docksTestView;
+    private final LocatedTestView locatedTestView;
 
-    public ThereShouldBeTheShipStep(DocksTestView docksTestView) {
-        this.docksTestView = docksTestView;
+    public ThereShouldBeTheShipStep(LocatedTestView locatedTestView) {
+        this.locatedTestView = locatedTestView;
     }
 
     @Override
@@ -27,7 +28,7 @@ public class ThereShouldBeTheShipStep extends AbstractPostLineStep {
         var ownerName = match[1];
         var expectedName = match[2];
 
-        var names = docksTestView.streamDockables()
+        var names = locatedTestView.streamCoLocateds()
                 .filter(byOwner(ownerName))
                 .map(NamedTestView.toName());
         assertThat(names).contains(expectedName);

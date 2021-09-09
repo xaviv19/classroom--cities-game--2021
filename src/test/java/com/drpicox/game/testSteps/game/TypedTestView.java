@@ -14,11 +14,11 @@ public class TypedTestView {
         this.entityTestView = entityTestView;
     }
 
-    public static Predicate<EntityResponse> byEntityType(String entityType) {
-        return e -> e.getOrDefault("entityType", "").equals(entityType);
+    public static Predicate<EntityResponse> byType(String type) {
+        return e -> e.getOrDefault("type", "").equals(type);
     }
 
-    public String getEntityType() {
-        return (String) entityTestView.getEntityProperty("entityType");
+    public String getType() {
+        return entityTestView.getEntityPropertyString("type");
     }
 }

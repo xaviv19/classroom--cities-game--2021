@@ -35,7 +35,15 @@ public class EntityTestView implements NavigableScreen {
         return game.getEntityResponse(entityId);
     }
 
-    public Object getEntityProperty(String key) {
-        return getEntity().get(key);
+    public int getEntityPropertyInt(String key) {
+        return getEntity().getInt(key);
+    }
+
+    public String getEntityPropertyString(String key) {
+        return getEntity().get(key, String.class);
+    }
+
+    public boolean getEntityPropertyBoolean(String key) {
+        return getEntity().get(key, Boolean.class);
     }
 }

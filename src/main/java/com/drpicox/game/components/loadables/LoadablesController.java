@@ -24,15 +24,15 @@ public class LoadablesController {
         return loadablesRepository.findAllByGame(game);
     }
 
-    public void changeLoadUnloadAmount(String entityId, int newLoadUnloadAmount) {
+    public void orderLoadUnload(String entityId, int newLoadUnloadAmount, String sourceEntityId) {
         var loadable = loadablesRepository.findById(entityId).get();
-        loadable.changeLoadUnloadAmount(newLoadUnloadAmount);
+        loadable.orderLoadUnload(newLoadUnloadAmount, sourceEntityId);
         loadablesRepository.save(loadable);
     }
 
-    public void clearLoadUnloadAmount(String entityId) {
+    public void clearLoadUnloadOrder(String entityId) {
         var loadable = loadablesRepository.findById(entityId).get();
-        loadable.clearLoadUnloadAmount();
+        loadable.clearLoadUnloadOrder();
         loadablesRepository.save(loadable);
     }
 

@@ -4,7 +4,7 @@ import com.drpicox.game.testPost.reader.PostLine;
 import com.drpicox.game.testSteps.AbstractPostLineStep;
 import org.springframework.stereotype.Component;
 
-import static com.drpicox.game.testSteps.game.TypedTestView.byEntityType;
+import static com.drpicox.game.testSteps.game.TypedTestView.byType;
 import static com.drpicox.game.testSteps.owneds.OwnedTestView.byOwner;
 import static com.google.common.truth.Truth8.assertThat;
 
@@ -28,7 +28,7 @@ public class ShouldHaveCitiesStep extends AbstractPostLineStep {
         var playerName = match[1];
         var count = Integer.parseInt(match[2]);
 
-        var cities = gameTestView.streamEntities(byOwner(playerName).and(byEntityType("city")));
+        var cities = gameTestView.streamEntities(byOwner(playerName).and(byType("city")));
         assertThat(cities).hasSize(count);
     }
 }

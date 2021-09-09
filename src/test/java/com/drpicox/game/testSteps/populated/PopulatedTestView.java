@@ -15,6 +15,6 @@ public class PopulatedTestView {
     }
 
     public int getPopulation() {
-        return ((Double) entityTestView.getEntityProperty("population")).intValue();
+        return entityTestView.getEntityPropertyInt("population");
     }
 }
