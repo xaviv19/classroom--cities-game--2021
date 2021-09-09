@@ -2,10 +2,11 @@ package com.drpicox.game.testSteps.game;
 
 import com.drpicox.game.testPost.reader.PostLine;
 import com.drpicox.game.testSteps.AbstractPostLineStep;
-import com.drpicox.game.testSteps.helpers.CitiesHelper;
 import org.springframework.stereotype.Component;
 
-import static com.drpicox.game.components.nameds.NamedResponse.toName;
+import static com.drpicox.game.testSteps.game.TypedTestView.byEntityType;
+import static com.drpicox.game.testSteps.nameds.NamedTestView.toName;
+import static com.drpicox.game.testSteps.owneds.OwnedTestView.byOwner;
 import static com.google.common.truth.Truth8.assertThat;
 
 @Component
@@ -28,9 +29,7 @@ public class ShouldHaveTheCityStep extends AbstractPostLineStep {
         var playerName = match[1];
         var cityName = match[2];
 
-        var game = gameTestView.getGame();
-        var cities = CitiesHelper.findAllByOwner(game, playerName);
-        var cityNames = cities.stream().map(toName());
+        var cityNames = gameTestView.streamEntities(byEntityType("city").and(byOwner(playerName))).map(toName());
         assertThat(cityNames).contains(cityName);
     }
 }

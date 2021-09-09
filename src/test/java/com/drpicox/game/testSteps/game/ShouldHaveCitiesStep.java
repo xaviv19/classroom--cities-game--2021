@@ -1,18 +1,12 @@
 package com.drpicox.game.testSteps.game;
 
-import com.drpicox.game.games.api.CreateGameForm;
-import com.drpicox.game.games.api.GamesApi;
-import com.drpicox.game.players.api.LoginForm;
-import com.drpicox.game.players.api.PlayersApi;
 import com.drpicox.game.testPost.reader.PostLine;
 import com.drpicox.game.testSteps.AbstractPostLineStep;
-import com.drpicox.game.testSteps.helpers.CitiesHelper;
-import com.drpicox.game.testSteps.listGames.ListGamesTestView;
-import com.drpicox.game.testSteps.login.LoginTestView;
-import com.drpicox.game.testSteps.navigator.NavigatorTestView;
 import org.springframework.stereotype.Component;
 
-import static com.google.common.truth.Truth.assertThat;
+import static com.drpicox.game.testSteps.game.TypedTestView.byEntityType;
+import static com.drpicox.game.testSteps.owneds.OwnedTestView.byOwner;
+import static com.google.common.truth.Truth8.assertThat;
 
 @Component
 public class ShouldHaveCitiesStep extends AbstractPostLineStep {
@@ -34,8 +28,7 @@ public class ShouldHaveCitiesStep extends AbstractPostLineStep {
         var playerName = match[1];
         var count = Integer.parseInt(match[2]);
 
-        var game = gameTestView.getGame();
-        var cities = CitiesHelper.findAllByOwner(game, playerName);
+        var cities = gameTestView.streamEntities(byOwner(playerName).and(byEntityType("city")));
         assertThat(cities).hasSize(count);
     }
 }

@@ -1,6 +1,6 @@
 package com.drpicox.game.testSteps.populated;
 
-import com.drpicox.game.components.populateds.PopulatedResponse;
+import com.drpicox.game.testSteps.game.EntityTestView;
 import com.drpicox.game.testSteps.game.GameTestView;
 import com.drpicox.game.testSteps.navigator.NavigatorTestView;
 import org.springframework.stereotype.Component;
@@ -8,21 +8,13 @@ import org.springframework.stereotype.Component;
 @Component
 public class PopulatedTestView {
 
-    private final GameTestView gameTestView;
-    private final NavigatorTestView navigatorTestView;
+    private final EntityTestView entityTestView;
 
-    public PopulatedTestView(GameTestView gameTestView, NavigatorTestView navigatorTestView) {
-        this.gameTestView = gameTestView;
-        this.navigatorTestView = navigatorTestView;
+    public PopulatedTestView(EntityTestView entityTestView) {
+        this.entityTestView = entityTestView;
     }
 
     public int getPopulation() {
-        var game = gameTestView.getGame();
-        String entityId = navigatorTestView.peekId();
-
-        var entity = game.getEntityResponse(entityId);
-        var component = entity.getComponent(PopulatedResponse.class).get();
-
-        return component.getPopulation();
+        return ((Double) entityTestView.getEntityProperty("population")).intValue();
     }
 }

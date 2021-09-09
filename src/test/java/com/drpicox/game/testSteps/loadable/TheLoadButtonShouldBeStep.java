@@ -25,7 +25,7 @@ public class TheLoadButtonShouldBeStep extends AbstractPostLineStep {
     protected void run(PostLine line, String[] match) {
         var isRequested = match[1].equals("highlighted");
 
-        var loadable = loadableTestView.getLoadable();
-        assertThat(loadable.isLoadRequested()).isEqualTo(isRequested);
+        var isLoadRequested = loadableTestView.isLoadRequested();
+        assertThat(isLoadRequested).isEqualTo(isRequested);
     }
 }

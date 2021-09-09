@@ -1,34 +1,25 @@
 package com.drpicox.game.testSteps.owneds;
 
-import com.drpicox.game.components.owneds.OwnedResponse;
-import com.drpicox.game.testSteps.game.GameTestView;
-import com.drpicox.game.testSteps.navigator.NavigatorTestView;
+import com.drpicox.game.ecs.EntityResponse;
+import com.drpicox.game.testSteps.game.EntityTestView;
 import org.springframework.stereotype.Component;
+
+import java.util.function.Predicate;
 
 @Component
 public class OwnedTestView {
 
-    private final GameTestView gameTestView;
-    private final NavigatorTestView navigatorTestView;
+    private final EntityTestView entityTestView;
 
-    public OwnedTestView(GameTestView gameTestView, NavigatorTestView navigatorTestView) {
-        this.gameTestView = gameTestView;
-        this.navigatorTestView = navigatorTestView;
+    public OwnedTestView(EntityTestView entityTestView) {
+        this.entityTestView = entityTestView;
     }
 
-    private String newName;
-
-    private void clear() {
-        newName = "";
+    public static Predicate<EntityResponse> byOwner(String ownerName) {
+        return e -> e.getOrDefault("ownerName", "").equals(ownerName);
     }
 
     public String getOnwerName() {
-        var game = gameTestView.getGame();
-        String entityId = navigatorTestView.peekId();
-
-        var entity = game.getEntityResponse(entityId);
-        var named = entity.getComponent(OwnedResponse.class).get();
-
-        return named.getOwnerName();
+        return (String) entityTestView.getEntityProperty("ownerName");
     }
 }

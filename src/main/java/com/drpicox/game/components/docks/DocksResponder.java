@@ -18,6 +18,9 @@ public class DocksResponder implements GameResponder {
     @Override
     public void respond(GameResponse response, Game game, Player playingPlayer) {
         var components = docksController.findAllByGame(game);
-        components.forEach(c -> response.addComponent(new DockResponse(c)));
+        components.forEach(c -> {
+            var entityId = c.getEntityId();
+            response.putEntityProperty(entityId, "isDock", true);
+        });
     }
 }

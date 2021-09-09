@@ -1,11 +1,11 @@
 package com.drpicox.game.testSteps.docks;
 
-import com.drpicox.game.components.nameds.NamedResponse;
 import com.drpicox.game.testPost.reader.PostLine;
 import com.drpicox.game.testSteps.AbstractPostLineStep;
+import com.drpicox.game.testSteps.nameds.NamedTestView;
 import org.springframework.stereotype.Component;
 
-import static com.drpicox.game.components.owneds.OwnedResponse.byOwner;
+import static com.drpicox.game.testSteps.owneds.OwnedTestView.byOwner;
 import static com.google.common.truth.Truth8.assertThat;
 
 @Component
@@ -29,7 +29,7 @@ public class ThereShouldBeTheShipStep extends AbstractPostLineStep {
 
         var names = docksTestView.streamDockables()
                 .filter(byOwner(ownerName))
-                .map(NamedResponse.toName());
+                .map(NamedTestView.toName());
         assertThat(names).contains(expectedName);
     }
 }

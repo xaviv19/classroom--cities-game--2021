@@ -5,12 +5,15 @@ import com.drpicox.game.testSteps.game.GameTestView;
 import com.drpicox.game.testSteps.navigator.NavigatorTestView;
 import org.springframework.stereotype.Component;
 
+import java.util.function.Predicate;
 import java.util.stream.Stream;
-
-import static com.drpicox.game.components.dockables.DockableResponse.byDockId;
 
 @Component
 public class DocksTestView {
+
+    public static Predicate<EntityResponse> byDockId(String dockId) {
+        return e -> e.getOrDefault("dockId", "").equals(dockId);
+    }
 
     private final GameTestView gameTestView;
     private final NavigatorTestView navigatorTestView;

@@ -18,6 +18,10 @@ public class PopulatedResponder implements GameResponder {
     @Override
     public void respond(GameResponse response, Game game, Player playingPlayer) {
         var components = populatedsController.findAllByGame(game);
-        components.forEach(c -> response.addComponent(new PopulatedResponse(c)));
+        components.forEach(c -> {
+            var entityId = c.getEntityId();
+            response.putEntityProperty(entityId, "isPopulated", true);
+            response.putEntityProperty(entityId, "population", c.getPopulation());
+        });
     }
 }

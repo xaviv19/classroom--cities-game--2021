@@ -5,8 +5,8 @@ import com.drpicox.game.testSteps.AbstractPostLineStep;
 import com.drpicox.game.testSteps.navigator.NavigatorTestView;
 import org.springframework.stereotype.Component;
 
-import static com.drpicox.game.components.nameds.NamedResponse.byName;
-import static com.drpicox.game.components.owneds.OwnedResponse.byOwner;
+import static com.drpicox.game.testSteps.nameds.NamedTestView.byName;
+import static com.drpicox.game.testSteps.owneds.OwnedTestView.byOwner;
 
 @Component
 public class ClickOnTheShipStep extends AbstractPostLineStep {

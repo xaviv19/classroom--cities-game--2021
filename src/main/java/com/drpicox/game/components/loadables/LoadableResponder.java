@@ -18,6 +18,12 @@ public class LoadableResponder implements GameResponder {
     @Override
     public void respond(GameResponse response, Game game, Player playingPlayer) {
         var components = loadablesController.findAllByGame(game);
-        components.forEach(c -> response.addComponent(new LoadableResponse(c)));
+        components.forEach(c -> {
+            var entityId = c.getEntityId();
+            var loadUnloadAmount = c.getLoadUnloadAmount();
+            response.putEntityProperty(entityId, "loadUnloadAmount", Math.abs(loadUnloadAmount));
+            response.putEntityProperty(entityId, "loadRequested", loadUnloadAmount > 0);
+            response.putEntityProperty(entityId, "unloadRequested", loadUnloadAmount < 0);
+        });
     }
 }

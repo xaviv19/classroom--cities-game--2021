@@ -25,7 +25,7 @@ public class TheUnloadButtonShouldBeStep extends AbstractPostLineStep {
     protected void run(PostLine line, String[] match) {
         var isRequested = match[1].equals("highlighted");
 
-        var loadable = loadableTestView.getLoadable();
-        assertThat(loadable.isUnloadRequested()).isEqualTo(isRequested);
+        var isUnloadRequested = loadableTestView.isUnloadRequested();
+        assertThat(isUnloadRequested).isEqualTo(isRequested);
     }
 }

@@ -18,6 +18,10 @@ public class NamedsResponder implements GameResponder {
     @Override
     public void respond(GameResponse response, Game game, Player playingPlayer) {
         var cities = namedsController.findAllByGame(game);
-        cities.forEach(c -> response.addComponent(new NamedResponse(c)));
+        cities.forEach(c -> {
+            var entityId = c.getEntityId();
+            response.putEntityProperty(entityId, "isNamed", true);
+            response.putEntityProperty(entityId, "name", c.getName());
+        });
     }
 }

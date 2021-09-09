@@ -1,4 +1,4 @@
-package com.drpicox.game.components.growsPopulation;
+package com.drpicox.game.components.growingsPopulation;
 
 import com.drpicox.game.ecs.EcsSystem;
 import com.drpicox.game.games.Game;
@@ -9,9 +9,9 @@ import org.springframework.stereotype.Component;
 public class Sys900_GrowsPopulation implements EcsSystem {
 
     private final PopulatedsController populatedsController;
-    private final GrowsPopulationsController growsPopulationController;
+    private final GrowingsPopulationsController growsPopulationController;
 
-    public Sys900_GrowsPopulation(PopulatedsController populatedsController, GrowsPopulationsController growsPopulationController) {
+    public Sys900_GrowsPopulation(PopulatedsController populatedsController, GrowingsPopulationsController growsPopulationController) {
         this.populatedsController = populatedsController;
         this.growsPopulationController = growsPopulationController;
     }

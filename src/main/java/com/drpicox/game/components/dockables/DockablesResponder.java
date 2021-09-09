@@ -18,6 +18,10 @@ public class DockablesResponder implements GameResponder {
     @Override
     public void respond(GameResponse response, Game game, Player playingPlayer) {
         var components = dockablesController.findAllByGame(game);
-        components.forEach(c -> response.addComponent(new DockableResponse(c)));
+        components.forEach(c -> {
+            var entityId = c.getEntityId();
+            response.putEntityProperty(entityId, "isDockable", true);
+            response.putEntityProperty(entityId, "dockId", c.getDockId());
+        });
     }
 }

@@ -1,6 +1,5 @@
 package com.drpicox.game.testSteps.game;
 
-import com.drpicox.game.ecs.ComponentResponse;
 import com.drpicox.game.ecs.EntityResponse;
 import com.drpicox.game.testSteps.navigator.NavigableScreen;
 import com.drpicox.game.testSteps.navigator.NavigatorTestView;
@@ -36,7 +35,7 @@ public class EntityTestView implements NavigableScreen {
         return game.getEntityResponse(entityId);
     }
 
-    public <T extends ComponentResponse> T getComponent(Class<T> responseClass) {
-        return getEntity().getComponent(responseClass).get();
+    public Object getEntityProperty(String key) {
+        return getEntity().get(key);
     }
 }

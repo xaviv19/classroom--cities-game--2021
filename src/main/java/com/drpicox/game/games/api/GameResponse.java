@@ -1,6 +1,5 @@
 package com.drpicox.game.games.api;
 
-import com.drpicox.game.ecs.ComponentResponse;
 import com.drpicox.game.ecs.EntityResponse;
 import com.drpicox.game.games.Game;
 
@@ -13,7 +12,7 @@ public class GameResponse {
     private String playerName;
     private String token;
     private int roundNumber;
-    private Map<String, EntityResponse> entities = new LinkedHashMap<>();
+    private Map<String, EntityResponse> entities = new TreeMap<>();
 
     public GameResponse(Game game, String playerName, String token) {
         this.gameName = game.getGameName();
@@ -59,13 +58,18 @@ public class GameResponse {
         return (T) findEntityById(id).get();
     }
 
-    public void addComponent(ComponentResponse componentResponse) {
-        var id = componentResponse.getId();
+    private EntityResponse ensureEntityResponse(String id) {
         var entity = entities.get(id);
         if (entity == null) {
             entity = new EntityResponse(id);
+            entity.put("id", id);
             entities.put(id, entity);
         }
-        entity.addComponent(componentResponse);
+        return entity;
+    }
+
+    public void putEntityProperty(String entityId, String key, Object value) {
+        var entity = ensureEntityResponse(entityId);
+        entity.put(key, value);
     }
 }

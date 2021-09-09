@@ -18,6 +18,10 @@ public class OwnedsResponder implements GameResponder {
     @Override
     public void respond(GameResponse response, Game game, Player playingPlayer) {
         var components = ownedsController.findAllByGame(game);
-        components.forEach(c -> response.addComponent(new OwnedResponse(c)));
+        components.forEach(c -> {
+            var entityId = c.getEntityId();
+            response.putEntityProperty(entityId, "isOwned", true);
+            response.putEntityProperty(entityId, "ownerName", c.getOwner().getPlayerName());
+        });
     }
 }

@@ -2,7 +2,6 @@ package com.drpicox.game.testSteps.game;
 
 import com.drpicox.game.testPost.reader.PostLine;
 import com.drpicox.game.testSteps.AbstractPostLineStep;
-import com.drpicox.game.testSteps.helpers.CitiesHelper;
 import org.springframework.stereotype.Component;
 
 import java.util.stream.Collectors;

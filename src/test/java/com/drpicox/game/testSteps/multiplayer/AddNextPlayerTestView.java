@@ -62,11 +62,7 @@ public class AddNextPlayerTestView implements NavigableScreen {
         data.put("playerName", nextPlayerName);
         data.put("password", nextPlayerPassword);
 
-        var ok = messageTestView.callApi(() -> {
-            var response = snapshotService.post("/api/v1/games/joinNext", data, GameResponse.class);
-            gameTestView.replaceGame(response);
-            return response;
-        });
+        var ok = gameTestView.post("/api/v1/games/joinNext", data);
         if (ok != null) navigatorTestView.pushScreenName("game");
         return ok;
     }

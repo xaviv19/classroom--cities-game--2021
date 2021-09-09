@@ -23,9 +23,9 @@ public class TheLoadUnloadAmountShouldBeStep extends AbstractPostLineStep {
 
     @Override
     protected void run(PostLine line, String[] match) {
-        var amount = Integer.parseInt(match[1]);
+        var expectedAmount = Integer.parseInt(match[1]);
 
-        var loadable = loadableTestView.getLoadable();
-        assertThat(loadable.getLoadUnloadAmount()).isEqualTo(amount);
+        var loadUnloadAmount = loadableTestView.getLoadUnloadAmount();
+        assertThat(loadUnloadAmount).isEqualTo(expectedAmount);
     }
 }

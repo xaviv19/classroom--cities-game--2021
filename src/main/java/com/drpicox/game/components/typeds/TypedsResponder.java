@@ -18,6 +18,10 @@ public class TypedsResponder implements GameResponder {
     @Override
     public void respond(GameResponse response, Game game, Player playingPlayer) {
         var components = typedsController.findAllByGame(game);
-        components.forEach(c -> response.addComponent(new TypedResponse(c)));
+        components.forEach(c -> {
+            var entityId = c.getEntityId();
+            response.putEntityProperty(entityId, "isTyped", true);
+            response.putEntityProperty(entityId, "entityType", c.getEntityType());
+        });
     }
 }
