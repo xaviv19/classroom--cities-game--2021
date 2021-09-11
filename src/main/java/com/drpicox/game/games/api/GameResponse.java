@@ -38,10 +38,6 @@ public class GameResponse {
         return this.token;
     }
 
-    public void addEntity(EntityResponse entityResponse) {
-        entities.put(entityResponse.getId(), entityResponse);
-    }
-
     public Stream<EntityResponse> streamEntities() {
         return entities.values().stream();
     }

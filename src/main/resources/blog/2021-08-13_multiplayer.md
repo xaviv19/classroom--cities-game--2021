@@ -38,8 +38,8 @@ Create and start playing one of your games:
  * And "leonard" is playing their game "together",    
  <!-- SNAPSHOT status=200 -->  
  * You should be at the game screen.  
- * The player should be "leonard".
- * The playing game should be "together" created by "leonard".
+ * "leonard" should be the current player.
+ * Playing game should be "together" created by "leonard".
 
 ### Adding a new player
 
@@ -51,8 +51,8 @@ Create and start playing one of your games:
  <!-- SNAPSHOT status=200 -->  
 
  * You should be at the game screen.  
- * The player should be "penny".
- * The playing game should be "together" created by "leonard".
+ * "penny" should be the current player.
+ * Playing game should be "together" created by "leonard".
  
 ### Returning to your player
 
@@ -61,8 +61,8 @@ You can cycle around joined players.
  * Go to Next player.
  <!-- SNAPSHOT status=200 -->  
  * You should be at the game screen.
- * The player should be "leonard".
- * The playing game should be "together" created by "leonard".
+ * "leonard" should be the current player.
+ * Playing game should be "together" created by "leonard".
                                     
 ### Adding more players
           
@@ -75,8 +75,8 @@ Not was everyone in? Well, you are always in time to add new friends.
  * Click the Join Next button.
  <!-- SNAPSHOT status=200 -->             
  * You should be at the game screen.
- * The player should be "sheldon".
- * The playing game should be "together" created by "leonard".
+ * "sheldon" should be the current player.
+ * Playing game should be "together" created by "leonard".
 
 ### The next order
 
@@ -87,32 +87,32 @@ The first is leonard:
  * Go to Next player.
  <!-- SNAPSHOT status=200 -->  
  * You should be at the game screen.
- * The player should be "leonard".
- * The playing game should be "together" created by "leonard".
+ * "leonard" should be the current player.
+ * Playing game should be "together" created by "leonard".
 
 The second is penny:
 
  * Go to Next player.
  <!-- SNAPSHOT status=200 -->  
  * You should be at the game screen.
- * The player should be "penny".
- * The playing game should be "together" created by "leonard".
+ * "penny" should be the current player.
+ * Playing game should be "together" created by "leonard".
  
 The third is sheldon:
 
  * Go to Next player.
  <!-- SNAPSHOT status=200 -->  
  * You should be at the game screen.
- * The player should be "sheldon".
- * The playing game should be "together" created by "leonard".
+ * "sheldon" should be the current player.
+ * Playing game should be "together" created by "leonard".
 
 And cycle back to leonard:
 
  * Go to Next player.
  <!-- SNAPSHOT status=200 -->  
  * You should be at the game screen.
- * The player should be "leonard".
- * The playing game should be "together" created by "leonard".
+ * "leonard" should be the current player.
+ * Playing game should be "together" created by "leonard".
 
 ### And back
 
@@ -123,8 +123,8 @@ We just cancel, and return to the player screen.
  * You should be at the add next player screen.
  * Cancel add next player.
  * You should be at the game screen.
- * The player should be "leonard".
- * The playing game should be "together" created by "leonard".
+ * "leonard" should be the current player.
+ * Playing game should be "together" created by "leonard".
 
 ## Safe for humans
 
@@ -135,7 +135,7 @@ so you can realize when you are wrong.
  * And "leonard" is playing their game "together",
  <!-- SNAPSHOT status=200 -->  
  * You should be at the game screen.
- * The player should be "leonard".
+ * "leonard" should be the current player.
 
 ### Trying wrong name
  
@@ -180,14 +180,14 @@ Is not affected.
 
  * Cancel add next player.
  * You should be at the game screen.
- * The player should be "leonard".
- * The playing game should be "together" created by "leonard".
+ * "leonard" should be the current player.
+ * Playing game should be "together" created by "leonard".
 
 And cycle back to leonard:
 
  * Go to Next player.
  <!-- SNAPSHOT status=200 -->  
  * You should be at the game screen.
- * The player should be "leonard".
- * The playing game should be "together" created by "leonard".
+ * "leonard" should be the current player.
+ * Playing game should be "together" created by "leonard".
 

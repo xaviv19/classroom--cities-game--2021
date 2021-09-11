@@ -18,55 +18,30 @@ public class LoadableTestView {
 
     private final EntityTestView entityTestView;
     private final GameTestView gameTestView;
-    private final NavigatorTestView navigatorTestView;
     private final LocatedTestView locatedTestView;
 
-    public LoadableTestView(EntityTestView entityTestView, GameTestView gameTestView, NavigatorTestView navigatorTestView, LocatedTestView locatedTestView) {
+    public LoadableTestView(EntityTestView entityTestView, GameTestView gameTestView, LocatedTestView locatedTestView) {
         this.entityTestView = entityTestView;
         this.gameTestView = gameTestView;
-        this.navigatorTestView = navigatorTestView;
         this.locatedTestView = locatedTestView;
     }
 
-    private int newLoadUnloadAmount;
-
-    public void enterLoadUnloadAmount(int amount) {
-        newLoadUnloadAmount = amount;
-    }
-
     public void submitLoad() {
-        submitUnloadUnload(newLoadUnloadAmount);
+        submitUnloadUnload("load");
     }
 
     public void submitUnload() {
-        submitUnloadUnload(-newLoadUnloadAmount);
+        submitUnloadUnload("unload");
     }
 
-    private void submitUnloadUnload(int loadUnloadAmount) {
-        var entityId = navigatorTestView.peekId();
+    private void submitUnloadUnload(String action) {
         var sourceEntityId = getSourceEntityId();
-
-        var data = new HashMap<String, Object>();
-        data.put("newLoadUnloadAmount", loadUnloadAmount);
-        data.put("sourceEntityId", sourceEntityId);
-
-        gameTestView.post("/api/v1/loadables/" + entityId + "/loadUnloadAmount", data);
+        entityTestView.putFormKey("sourceEntityId", sourceEntityId);
+        entityTestView.post("loadables", action);
     }
 
     private String getSourceEntityId() {
         return gameTestView.streamEntities(isDock().and(locatedTestView.byCoLocation()))
                 .findFirst().get().getId();
-    }
-
-    public boolean isUnloadRequested() {
-        return entityTestView.getEntityPropertyBoolean("unloadRequested");
-    }
-
-    public boolean isLoadRequested() {
-        return entityTestView.getEntityPropertyBoolean("loadRequested");
-    }
-
-    public int getLoadUnloadAmount() {
-        return entityTestView.getEntityPropertyInt("loadUnloadAmount");
     }
 }

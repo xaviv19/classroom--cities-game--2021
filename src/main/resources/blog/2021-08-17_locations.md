@@ -93,14 +93,14 @@ Ships are with their cities
 
  * Go to Next player.
  <!-- SNAPSHOT status=200 -->
- * The player should be "leonard".
+ * "leonard" should be the current player.
  * Click on the "leonard" city "Capital"
  * Click on the "leonard" ship "Beagle".
  * It should be at the location 0.
  
  * Go to Next player.
  <!-- SNAPSHOT status=200 -->
- * The player should be "penny".
+ * "penny" should be the current player.
  * Click on the "penny" city "Capital"
  * Click on the "penny" ship "Beagle".
  * It should be at the location 5.

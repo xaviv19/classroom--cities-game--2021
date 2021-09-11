@@ -51,7 +51,7 @@ To create a game, you need to login first:
  <!-- SNAPSHOT status=200 -->
 
  > You should be at the player screen.   
- > The player should be "leonard".   
+ > "leonard" should be the current player.   
  
 ### Creating a game
 
@@ -64,7 +64,7 @@ Do you want to create a game, just:
  > Click the create game button.  
  <!-- SNAPSHOT status=200 -->
  > You should be at the player screen.  
- > The player should be "leonard".  
+ > "leonard" should be the current player.  
  > You should see a message saying that "The mygame game has been created successfully".    
 
 ## Listing your games
@@ -75,7 +75,7 @@ You can see your games, if you create a game:
  > And you have been logged in.  
   <!-- SNAPSHOT status=200 -->  
  > You should be at the player screen.  
- > The player should be "leonard".  
+ > "leonard" should be the current player.  
 
  > Go to create game.  
  > Add "mygame" as game name.    

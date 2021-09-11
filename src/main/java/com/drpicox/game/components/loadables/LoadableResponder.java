@@ -9,15 +9,15 @@ import org.springframework.stereotype.Component;
 @Component
 public class LoadableResponder implements GameResponder {
 
-    private final LoadablesController loadablesController;
+    private final LoadablesRepository loadablesRepository;
 
-    public LoadableResponder(LoadablesController loadablesController) {
-        this.loadablesController = loadablesController;
+    public LoadableResponder(LoadablesRepository loadablesRepository) {
+        this.loadablesRepository = loadablesRepository;
     }
 
     @Override
     public void respond(GameResponse response, Game game, Player playingPlayer) {
-        var components = loadablesController.findAllByGame(game);
+        var components = loadablesRepository.findAllByGame(game);
         components.forEach(c -> {
             var entityId = c.getEntityId();
             var loadUnloadAmount = c.getLoadUnloadAmount();

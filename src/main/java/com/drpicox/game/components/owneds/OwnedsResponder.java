@@ -9,19 +9,19 @@ import org.springframework.stereotype.Component;
 @Component
 public class OwnedsResponder implements GameResponder {
 
-    private final OwnedsController ownedsController;
+    private final OwnedsRepository ownedsRepository;
 
-    public OwnedsResponder(OwnedsController ownedsController) {
-        this.ownedsController = ownedsController;
+    public OwnedsResponder(OwnedsRepository ownedsRepository) {
+        this.ownedsRepository = ownedsRepository;
     }
 
     @Override
     public void respond(GameResponse response, Game game, Player playingPlayer) {
-        var components = ownedsController.findAllByGame(game);
+        var components = ownedsRepository.findAllByGame(game);
         components.forEach(c -> {
             var entityId = c.getEntityId();
             response.putEntityProperty(entityId, "isOwned", true);
-            response.putEntityProperty(entityId, "ownerName", c.getOwner().getPlayerName());
+            response.putEntityProperty(entityId, "owner", c.getOwner().getPlayerName());
         });
     }
 }

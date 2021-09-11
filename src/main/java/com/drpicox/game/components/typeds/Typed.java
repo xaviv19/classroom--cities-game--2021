@@ -20,10 +20,6 @@ public class Typed extends EcsComponent {
         return entityType;
     }
 
-    public void changeName(String newName) {
-        this.entityType = newName;
-    }
-
     public boolean isEntityType(String entityType) {
         return this.entityType.equals(entityType);
     }

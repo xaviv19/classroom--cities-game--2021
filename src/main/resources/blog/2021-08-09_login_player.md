@@ -59,7 +59,7 @@ You have now a player, now you can login.
  <!-- SNAPSHOT status=200 -->
 
  > You should be at the player screen.   
- > The player should be "leonard".    
+ > "leonard" should be the current player.    
  > You should see a message saying that "The leonard player has been logged successfully".  
 
 ## Multiplayer
@@ -79,7 +79,7 @@ Now we have two users, and we can login with each one.
  <!-- SNAPSHOT status=200 -->
 
  > You should be at the player screen.    
- > The player should be "leonard".    
+ > "leonard" should be the current player.    
  > You should see a message saying that "The leonard player has been logged successfully".  
 
 But you can also login, with "penny" player.
@@ -91,7 +91,7 @@ But you can also login, with "penny" player.
  <!-- SNAPSHOT status=200 -->
 
  > You should be at the player screen.  
- > The player should be "penny".   
+ > "penny" should be the current player.   
  > You should see a message saying that "The penny player has been logged successfully".   
 
 ## Checking data

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
@@ -75,7 +76,7 @@ public class GameTestView implements NavigableScreen {
         return game;
     }
 
-    public GameResponse post(String url, HashMap data) {
+    public GameResponse post(String url, Map data) {
         var token = playerTestView.getToken();
 
         var finalUrl = url + "?token=" + token;

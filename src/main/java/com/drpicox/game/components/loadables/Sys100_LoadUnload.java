@@ -11,46 +11,32 @@ import org.springframework.stereotype.Component;
 public class Sys100_LoadUnload implements EcsSystem {
 
     private final PopulatedsController populatedsController;
-    private final LoadablesController loadablesController;
-    private final LocatedsController locatedsController;
-    private final TypedsController typedsController;
+    private final LoadablesRepository loadablesRepository;
 
-    public Sys100_LoadUnload(PopulatedsController populatedsController, LoadablesController loadablesController, LocatedsController locatedsController, TypedsController typedsController) {
+    public Sys100_LoadUnload(PopulatedsController populatedsController, LoadablesRepository loadablesRepository) {
         this.populatedsController = populatedsController;
-        this.loadablesController = loadablesController;
-        this.locatedsController = locatedsController;
-        this.typedsController = typedsController;
+        this.loadablesRepository = loadablesRepository;
     }
 
     @Override
     public void act(Game game) {
-        var loadables = loadablesController.findAllByGame(game);
+        var loadables = loadablesRepository.findAllByGame(game);
         loadables.forEach(loadable -> {
             var entityId = loadable.getEntityId();
             var loadUnloadAmount = loadable.getLoadUnloadAmount();
             if (loadUnloadAmount == 0) return;
 
-            var targetId = getTargetId(game, entityId);
+            var targetId = loadable.getSourceEntityId();
             var dockPopulation = populatedsController.getPopulation(targetId);
 
             loadUnloadAmount = Math.min(loadUnloadAmount, dockPopulation);
             var unfit = populatedsController.increasePopulation(entityId, loadUnloadAmount);
-            loadablesController.clearLoadUnloadOrder(entityId);
+            loadable.clearLoadUnloadOrder();
+            loadablesRepository.save(loadable);
 
             var delta = -(loadUnloadAmount - unfit);
             populatedsController.increasePopulation(targetId, delta);
         });
 
-    }
-
-    private String getTargetId(Game game, String entityId) {
-        var myLocation = locatedsController.getLocation(entityId);
-        var coLocateds = locatedsController.findByGameAndLocation(game, myLocation);
-        var target = coLocateds.stream()
-                .filter(l -> l.getLocation() == myLocation)
-                .filter(l -> typedsController.isTyped(l.getEntityId(), "city"))
-                .findFirst().get();
-
-        return target.getEntityId();
     }
 }

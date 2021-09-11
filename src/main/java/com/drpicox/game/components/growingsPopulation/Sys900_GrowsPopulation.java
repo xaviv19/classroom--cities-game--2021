@@ -8,17 +8,19 @@ import org.springframework.stereotype.Component;
 @Component
 public class Sys900_GrowsPopulation implements EcsSystem {
 
-    private final PopulatedsController populatedsController;
+    private final GrowingsPopulationsRepository growingsPopulationsRepository;
     private final GrowingsPopulationsController growsPopulationController;
+    private final PopulatedsController populatedsController;
 
-    public Sys900_GrowsPopulation(PopulatedsController populatedsController, GrowingsPopulationsController growsPopulationController) {
-        this.populatedsController = populatedsController;
+    public Sys900_GrowsPopulation(GrowingsPopulationsRepository growingsPopulationsRepository, GrowingsPopulationsController growsPopulationController, PopulatedsController populatedsController) {
+        this.growingsPopulationsRepository = growingsPopulationsRepository;
         this.growsPopulationController = growsPopulationController;
+        this.populatedsController = populatedsController;
     }
 
     @Override
     public void act(Game game) {
-        var cities = growsPopulationController.findAllByGame(game);
+        var cities = growingsPopulationsRepository.findAllByGame(game);
         cities.forEach(growsPopulation -> {
             populatedsController.increasePopulation(growsPopulation.getEntityId(), 1);
         });

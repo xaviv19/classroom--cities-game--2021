@@ -20,10 +20,6 @@ public class OwnedsController {
         ownedsRepository.save(component);
     }
 
-    public List<Owned> findAllByGame(Game game) {
-        return ownedsRepository.findAllByGame(game);
-    }
-
     public List<Owned> findAllByGameAndOwner(Game game, Player owner) {
         return ownedsRepository.findAllByGameAndOwner(game, owner);
     }

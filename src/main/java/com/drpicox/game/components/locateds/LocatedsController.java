@@ -19,16 +19,18 @@ public class LocatedsController {
         var component = new Located(entityId, game, initialLocation);
         locatedsRepository.save(component);
     }
-
-    public List<Located> findAllByGame(Game game) {
-        return locatedsRepository.findAllByGame(game);
-    }
-
+    
     public List<Located> findByGameAndLocation(Game game, int location) {
         return locatedsRepository.findByGameAndLocation(game, location);
     }
 
     public int getLocation(String entityId) {
         return locatedsRepository.findById(entityId).get().getLocation();
+    }
+
+    public void moveTo(String entityId, int destination) {
+        var located = locatedsRepository.findById(entityId).get();
+        located.moveTo(destination);
+        locatedsRepository.save(located);
     }
 }

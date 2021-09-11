@@ -9,15 +9,15 @@ import org.springframework.stereotype.Component;
 @Component
 public class NamedsResponder implements GameResponder {
 
-    private final NamedsController namedsController;
+    private final NamedsRepository namedsRepository;
 
-    public NamedsResponder(NamedsController namedsController) {
-        this.namedsController = namedsController;
+    public NamedsResponder(NamedsRepository namedsRepository) {
+        this.namedsRepository = namedsRepository;
     }
 
     @Override
     public void respond(GameResponse response, Game game, Player playingPlayer) {
-        var cities = namedsController.findAllByGame(game);
+        var cities = namedsRepository.findAllByGame(game);
         cities.forEach(c -> {
             var entityId = c.getEntityId();
             response.putEntityProperty(entityId, "isNamed", true);

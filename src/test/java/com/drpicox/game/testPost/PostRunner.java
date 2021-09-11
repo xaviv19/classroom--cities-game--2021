@@ -108,7 +108,7 @@ public class PostRunner {
                 .append(line.getPrettyPrint())
                 .append("\n");
 
-        message.append("They are:\n");
+        message.append("The " + runners.size() + " matchers that conflict for the same line are:\n");
         for (var runner: runners)
             message.append("  - ")
                     .append(runner.getPrettyPrint())

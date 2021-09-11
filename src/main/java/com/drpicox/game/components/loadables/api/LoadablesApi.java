@@ -17,10 +17,17 @@ public class LoadablesApi {
         this.gamesApi = gamesApi;
     }
 
-    @PostMapping("/{entityId}/loadUnloadAmount")
-    public GameResponse changeShipName(@PathVariable String entityId, @RequestParam String token, @RequestBody NewLoadUnloadAmountForm form) {
-        loadablesController.orderLoadUnload(entityId, form.getNewLoadUnloadAmount(), form.getSourceEntityId());
-        var loadable = loadablesController.findById(entityId).get();
+    @PostMapping("/{entityId}/load")
+    public GameResponse load(@PathVariable String entityId, @RequestParam String token, @RequestBody LoadableForm form) {
+        var loadable = loadablesController.orderLoad(entityId, form.getLoadUnloadAmount(), form.getSourceEntityId());
+
+        var game = loadable.getGame();
+        return gamesApi.get(game.getGameName(), game.getCreator().getPlayerName(), token);
+    }
+
+    @PostMapping("/{entityId}/unload")
+    public GameResponse unload(@PathVariable String entityId, @RequestParam String token, @RequestBody LoadableForm form) {
+        var loadable = loadablesController.orderUnload(entityId, form.getLoadUnloadAmount(), form.getSourceEntityId());
 
         var game = loadable.getGame();
         return gamesApi.get(game.getGameName(), game.getCreator().getPlayerName(), token);

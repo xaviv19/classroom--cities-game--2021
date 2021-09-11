@@ -7,17 +7,17 @@ import org.springframework.stereotype.Component;
 import static com.google.common.truth.Truth.assertThat;
 
 @Component
-public class ThePlayerShouldBeStep extends AbstractPostLineStep {
+public class ShouldBeTheCurrentPlayerStep extends AbstractPostLineStep {
 
     private final PlayerTestView playerTestView;
 
-    public ThePlayerShouldBeStep(PlayerTestView playerTestView) {
+    public ShouldBeTheCurrentPlayerStep(PlayerTestView playerTestView) {
         this.playerTestView = playerTestView;
     }
 
     @Override
     protected String getRegex() {
-        return "The player should be \"([^\"]*)\"";
+        return "\"([^\"]*)\" should be the current player";
     }
 
     @Override

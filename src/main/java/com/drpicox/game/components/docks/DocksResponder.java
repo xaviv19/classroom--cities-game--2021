@@ -9,15 +9,15 @@ import org.springframework.stereotype.Component;
 @Component
 public class DocksResponder implements GameResponder {
 
-    private final DocksController docksController;
+    private final DocksRepository docksRepository;
 
-    public DocksResponder(DocksController docksController) {
-        this.docksController = docksController;
+    public DocksResponder(DocksRepository docksRepository) {
+        this.docksRepository = docksRepository;
     }
 
     @Override
     public void respond(GameResponse response, Game game, Player playingPlayer) {
-        var components = docksController.findAllByGame(game);
+        var components = docksRepository.findAllByGame(game);
         components.forEach(c -> {
             var entityId = c.getEntityId();
             response.putEntityProperty(entityId, "isDock", true);

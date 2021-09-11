@@ -26,7 +26,4 @@ public class NamedsController {
         return named;
     }
 
-    public List<Named> findAllByGame(Game game) {
-        return namedsRepository.findAllByGame(game);
-    }
 }

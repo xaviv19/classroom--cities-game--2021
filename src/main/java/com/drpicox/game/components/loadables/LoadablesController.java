@@ -20,23 +20,17 @@ public class LoadablesController {
         loadablesRepository.save(component);
     }
 
-    public List<Loadable> findAllByGame(Game game) {
-        return loadablesRepository.findAllByGame(game);
-    }
-
-    public void orderLoadUnload(String entityId, int newLoadUnloadAmount, String sourceEntityId) {
+    public Loadable orderLoad(String entityId, int loadAmount, String sourceEntityId) {
         var loadable = loadablesRepository.findById(entityId).get();
-        loadable.orderLoadUnload(newLoadUnloadAmount, sourceEntityId);
+        loadable.orderLoadUnload(loadAmount, sourceEntityId);
         loadablesRepository.save(loadable);
+        return loadable;
     }
 
-    public void clearLoadUnloadOrder(String entityId) {
+    public Loadable orderUnload(String entityId, int loadAmount, String sourceEntityId) {
         var loadable = loadablesRepository.findById(entityId).get();
-        loadable.clearLoadUnloadOrder();
+        loadable.orderLoadUnload(-loadAmount, sourceEntityId);
         loadablesRepository.save(loadable);
-    }
-
-    public Optional<Loadable> findById(String entityId) {
-        return loadablesRepository.findById(entityId);
+        return loadable;
     }
 }

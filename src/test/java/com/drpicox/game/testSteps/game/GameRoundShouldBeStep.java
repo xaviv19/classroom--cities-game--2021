@@ -9,17 +9,17 @@ import java.util.stream.Collectors;
 import static com.google.common.truth.Truth.assertThat;
 
 @Component
-public class TheGameRoundShouldBeStep extends AbstractPostLineStep {
+public class GameRoundShouldBeStep extends AbstractPostLineStep {
 
     private final GameTestView gameTestView;
 
-    public TheGameRoundShouldBeStep(GameTestView gameTestView) {
+    public GameRoundShouldBeStep(GameTestView gameTestView) {
         this.gameTestView = gameTestView;
     }
 
     @Override
     protected String getRegex() {
-        return "The game round should be (\\d+)";
+        return "Game round should be (\\d+)";
     }
 
     @Override

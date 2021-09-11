@@ -9,15 +9,15 @@ import org.springframework.stereotype.Component;
 @Component
 public class PopulatedResponder implements GameResponder {
 
-    private final PopulatedsController populatedsController;
+    private final PopulatedsRepository populatedsRepository;
 
-    public PopulatedResponder(PopulatedsController populatedsController) {
-        this.populatedsController = populatedsController;
+    public PopulatedResponder(PopulatedsRepository populatedsRepository) {
+        this.populatedsRepository = populatedsRepository;
     }
 
     @Override
     public void respond(GameResponse response, Game game, Player playingPlayer) {
-        var components = populatedsController.findAllByGame(game);
+        var components = populatedsRepository.findAllByGame(game);
         components.forEach(c -> {
             var entityId = c.getEntityId();
             response.putEntityProperty(entityId, "isPopulated", true);

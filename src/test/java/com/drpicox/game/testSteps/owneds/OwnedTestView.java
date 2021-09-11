@@ -16,10 +16,14 @@ public class OwnedTestView {
     }
 
     public static Predicate<EntityResponse> byOwner(String ownerName) {
-        return e -> e.getOrDefault("ownerName", "").equals(ownerName);
+        return e -> e.getOrDefault("owner", "").equals(ownerName);
     }
 
-    public String getOnwerName() {
-        return entityTestView.getEntityPropertyString("ownerName");
+    public String getOnwer() {
+        return getOnwer(entityTestView.getEntityId());
+    }
+
+    public String getOnwer(String entityId) {
+        return entityTestView.getEntityPropertyString(entityId, "owner");
     }
 }

@@ -1,11 +1,11 @@
 package com.drpicox.game.components.loadables.api;
 
-public class NewLoadUnloadAmountForm {
-    private int newLoadUnloadAmount;
+public class LoadableForm {
+    private int loadUnloadAmount;
     private String sourceEntityId;
 
-    public int getNewLoadUnloadAmount() {
-        return newLoadUnloadAmount;
+    public int getLoadUnloadAmount() {
+        return loadUnloadAmount;
     }
 
     public String getSourceEntityId() {

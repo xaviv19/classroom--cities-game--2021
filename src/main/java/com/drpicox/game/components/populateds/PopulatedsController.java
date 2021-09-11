@@ -19,10 +19,6 @@ public class PopulatedsController {
         populatedsRepository.save(component);
     }
 
-    public List<Populated> findAllByGame(Game game) {
-        return populatedsRepository.findAllByGame(game);
-    }
-
     public int increasePopulation(String entityId, int increment) {
         var populated = populatedsRepository.findById(entityId).get();
         var result = populated.increasePopulation(increment);

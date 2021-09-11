@@ -19,4 +19,8 @@ public class Located extends EcsComponent {
     public int getLocation() {
         return location;
     }
+
+    public void moveTo(int destination) {
+        location += destination < location ? -1 : +1;
+    }
 }

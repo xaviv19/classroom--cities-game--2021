@@ -20,8 +20,4 @@ public class GrowingsPopulationsController {
         return component;
     }
 
-    public List<GrowingPopulation> findAllByGame(Game game) {
-        return growingsPopulationsRepository.findAllByGame(game);
-    }
-
 }

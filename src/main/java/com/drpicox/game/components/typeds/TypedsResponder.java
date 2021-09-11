@@ -9,15 +9,15 @@ import org.springframework.stereotype.Component;
 @Component
 public class TypedsResponder implements GameResponder {
 
-    private final TypedsController typedsController;
+    private final TypedsRepository typedsRepository;
 
-    public TypedsResponder(TypedsController typedsController) {
-        this.typedsController = typedsController;
+    public TypedsResponder(TypedsRepository typedsRepository) {
+        this.typedsRepository = typedsRepository;
     }
 
     @Override
     public void respond(GameResponse response, Game game, Player playingPlayer) {
-        var components = typedsController.findAllByGame(game);
+        var components = typedsRepository.findAllByGame(game);
         components.forEach(c -> {
             var entityId = c.getEntityId();
             response.putEntityProperty(entityId, "isTyped", true);

@@ -7,17 +7,17 @@ import org.springframework.stereotype.Component;
 import static com.google.common.truth.Truth.assertThat;
 
 @Component
-public class ThePlayingGameShouldBeCreatedByStep extends AbstractPostLineStep {
+public class PlayingGameShouldBeCreatedByStep extends AbstractPostLineStep {
 
     private final GameTestView gameTestView;
 
-    public ThePlayingGameShouldBeCreatedByStep(GameTestView gameTestView) {
+    public PlayingGameShouldBeCreatedByStep(GameTestView gameTestView) {
         this.gameTestView = gameTestView;
     }
 
     @Override
     protected String getRegex() {
-        return "The playing game should be \"([^\"]+)\" created by \"([^\"]+)\"";
+        return "Playing game should be \"([^\"]+)\" created by \"([^\"]+)\"";
     }
 
     @Override

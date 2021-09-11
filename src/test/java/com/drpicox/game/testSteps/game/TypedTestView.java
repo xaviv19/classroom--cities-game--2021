@@ -19,6 +19,10 @@ public class TypedTestView {
     }
 
     public String getType() {
-        return entityTestView.getEntityPropertyString("type");
+        return getType(entityTestView.getEntityId());
+    }
+
+    public String getType(String entityId) {
+        return entityTestView.getEntityPropertyString(entityId, "type");
     }
 }

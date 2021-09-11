@@ -32,10 +32,6 @@ public class EntityResponse {
         properties.put(key, value);
     }
 
-    public boolean containsKey(String key) {
-        return properties.containsKey(key);
-    }
-
     // Sugar syntax
 
     public Object getOrDefault(String key, Object defaultValue) {
@@ -62,7 +58,7 @@ public class EntityResponse {
         builder.append(properties.get("id"));
         builder.append("' ");
         builder.append(message);
-        builder.append("The entity contents are:\n");
+        builder.append(".\nThe entity contents are:\n");
 
         var maxSpace = new StringBuilder();
         properties.keySet().forEach(key -> {
@@ -84,5 +80,9 @@ public class EntityResponse {
         });
 
         throw new AssertionError(builder.toString());
+    }
+
+    public boolean containsKey(String key) {
+        return properties.containsKey(key);
     }
 }
