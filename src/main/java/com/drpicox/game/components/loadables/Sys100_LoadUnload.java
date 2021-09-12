@@ -1,7 +1,5 @@
 package com.drpicox.game.components.loadables;
 
-import com.drpicox.game.components.locateds.LocatedsController;
-import com.drpicox.game.components.typeds.TypedsController;
 import com.drpicox.game.ecs.EcsSystem;
 import com.drpicox.game.games.Game;
 import com.drpicox.game.components.populateds.PopulatedsController;

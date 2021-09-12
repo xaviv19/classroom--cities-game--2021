@@ -7,20 +7,20 @@ import javax.persistence.Entity;
 
 @Entity
 public class Typed extends EcsComponent {
-    private String entityType;
+    private String type;
 
-    public Typed(String entityId, Game game, String entityType) {
+    public Typed(String entityId, Game game, String type) {
         super(entityId, game);
-        this.entityType = entityType;
+        this.type = type;
     }
 
     protected Typed() {}
 
-    public String getEntityType() {
-        return entityType;
+    public String getType() {
+        return type;
     }
 
-    public boolean isEntityType(String entityType) {
-        return this.entityType.equals(entityType);
+    public boolean isType(String type) {
+        return this.type.equals(type);
     }
 }

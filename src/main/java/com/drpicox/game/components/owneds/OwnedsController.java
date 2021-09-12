@@ -1,5 +1,6 @@
 package com.drpicox.game.components.owneds;
 
+import com.drpicox.game.ecs.EcsComponent;
 import com.drpicox.game.games.Game;
 import com.drpicox.game.players.Player;
 import org.springframework.stereotype.Component;

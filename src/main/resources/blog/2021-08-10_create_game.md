@@ -150,7 +150,7 @@ is empty:
 
  > Go to my created games.  
  <!-- SNAPSHOT status=200 -->
- > There should be no games.  
+ > Games list should be empty.  
  > You should see no game "mygame".  
 
 ### Game name cannot be repeated
@@ -196,7 +196,7 @@ Penny cannot see your games:
 
  > Go to my created games.  
  <!-- SNAPSHOT status=200 -->
- > There should be no games.  
+ > Games list should be empty.  
  > You should see no game "mygame".  
  > Return from the list games.  
 

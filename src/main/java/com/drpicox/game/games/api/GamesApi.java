@@ -2,6 +2,8 @@ package com.drpicox.game.games.api;
 
 import com.drpicox.game.common.api.GlobalRestException;
 import com.drpicox.game.common.api.SuccessResponse;
+import com.drpicox.game.ecs.GameData;
+import com.drpicox.game.ecs.GameDataGenerator;
 import com.drpicox.game.games.GamesController;
 import com.drpicox.game.players.PlayersController;
 import com.drpicox.game.players.api.LoginForm;
@@ -16,15 +18,13 @@ public class GamesApi {
     private final GamesController gamesController;
     private final PlayersController playersController;
     private final PlayersApi playersApi;
-    private final List<GameResponder> gameResponders;
+    private final GameDataGenerator gameDataGenerator;
 
-    public GamesApi(GamesController gamesController, PlayersController playersController, PlayersApi playersApi, List<GameResponder> gameResponders) {
+    public GamesApi(GamesController gamesController, PlayersController playersController, PlayersApi playersApi, GameDataGenerator gameDataGenerator) {
         this.gamesController = gamesController;
         this.playersController = playersController;
         this.playersApi = playersApi;
-        this.gameResponders = gameResponders;
-        // TODO: Temporal, removeme
-        gameResponders.sort((a, b) -> a.getClass().getSimpleName().compareTo(b.getClass().getSimpleName()));
+        this.gameDataGenerator = gameDataGenerator;
     }
 
     @PostMapping
@@ -60,7 +60,7 @@ public class GamesApi {
     }
 
     @PostMapping("/joinNext")
-    public GameResponse joinNext(@RequestBody JoinNextForm form) {
+    public GameData joinNext(@RequestBody JoinNextForm form) {
         var playerName = form.getPlayerName();
         var password = form.getPassword();
         var loginResponse = playersApi.login(new LoginForm(playerName, password));
@@ -100,7 +100,7 @@ public class GamesApi {
     }
 
     @GetMapping("/{gameName}/by/{creatorName}")
-    public GameResponse get(@PathVariable String gameName, @PathVariable String creatorName, @RequestParam String token) {
+    public GameData get(@PathVariable String gameName, @PathVariable String creatorName, @RequestParam String token) {
         var playingPlayer = playersController.findPlayerByToken(token).orElseThrow();
         var creatorPlayer = playersController.findPlayer(creatorName).orElseThrow();
 
@@ -108,13 +108,12 @@ public class GamesApi {
         if (!game.isPlayerJoined(playingPlayer))
             throw new GlobalRestException("You should play only games in which you are joined");
 
-        var response = new GameResponse(game, playingPlayer.getPlayerName(), token);
-        gameResponders.stream().forEach(r -> r.respond(response, game, playingPlayer));
-        return response;
+        return gameDataGenerator.generate(game, playingPlayer, token);
+        // return gameDataGenerator.generateResponse(game, playingPlayer, token);
     }
 
     @PostMapping("/{gameName}/by/{creatorName}/endRound")
-    public GameResponse endRound(@PathVariable String gameName, @PathVariable String creatorName, @RequestParam String token) {
+    public GameData endRound(@PathVariable String gameName, @PathVariable String creatorName, @RequestParam String token) {
         var playingPlayer = playersController.findPlayerByToken(token).orElseThrow();
         var creatorPlayer = playersController.findPlayer(creatorName).orElseThrow();
         gamesController.endRound(gameName, creatorPlayer);

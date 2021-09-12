@@ -1,6 +1,6 @@
 package com.drpicox.game.testSteps.nameds;
 
-import com.drpicox.game.ecs.EntityResponse;
+import com.drpicox.game.testSteps.game.EntityResponse;
 import com.drpicox.game.testSteps.game.EntityTestView;
 import com.drpicox.game.testSteps.game.GameTestView;
 import com.drpicox.game.testSteps.navigator.NavigatorTestView;

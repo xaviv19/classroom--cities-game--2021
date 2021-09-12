@@ -7,4 +7,5 @@ import java.util.List;
 
 interface NamedsRepository extends JpaRepository<Named, String> {
     List<Named> findAllByGame(Game game);
+    List<Named> findAllByGameAndName(Game game, String name);
 }

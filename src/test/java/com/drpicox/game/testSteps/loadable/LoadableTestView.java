@@ -1,17 +1,11 @@
 package com.drpicox.game.testSteps.loadable;
 
-import com.drpicox.game.ecs.EntityResponse;
 import com.drpicox.game.testSteps.game.EntityTestView;
 import com.drpicox.game.testSteps.game.GameTestView;
 import com.drpicox.game.testSteps.locateds.LocatedTestView;
-import com.drpicox.game.testSteps.navigator.NavigatorTestView;
 import org.springframework.stereotype.Component;
 
-import java.util.HashMap;
-import java.util.function.Predicate;
-
 import static com.drpicox.game.testSteps.docks.DockTestView.isDock;
-import static com.drpicox.game.testSteps.game.TypedTestView.byType;
 
 @Component
 public class LoadableTestView {

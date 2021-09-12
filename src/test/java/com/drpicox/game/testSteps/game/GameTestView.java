@@ -1,14 +1,11 @@
 package com.drpicox.game.testSteps.game;
 
-import com.drpicox.game.ecs.EntityResponse;
-import com.drpicox.game.games.api.GameResponse;
 import com.drpicox.game.testPost.SnapshotService;
 import com.drpicox.game.testSteps.message.MessageTestView;
 import com.drpicox.game.testSteps.navigator.NavigableScreen;
 import com.drpicox.game.testSteps.player.PlayerTestView;
 import org.springframework.stereotype.Component;
 
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Optional;

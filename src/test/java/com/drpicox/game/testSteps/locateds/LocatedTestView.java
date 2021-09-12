@@ -1,9 +1,8 @@
 package com.drpicox.game.testSteps.locateds;
 
-import com.drpicox.game.ecs.EntityResponse;
+import com.drpicox.game.testSteps.game.EntityResponse;
 import com.drpicox.game.testSteps.game.EntityTestView;
 import com.drpicox.game.testSteps.game.GameTestView;
-import com.drpicox.game.tools.JsonOld;
 import org.springframework.stereotype.Component;
 
 import java.util.function.Predicate;
@@ -30,6 +29,7 @@ public class LocatedTestView {
 
     public Predicate<EntityResponse> byCoLocation() {
         return e -> {
+            if (!e.containsKey("location")) return false;
             var myLocation = getLocation();
             var location = e.getInt("location");
             return myLocation == location;

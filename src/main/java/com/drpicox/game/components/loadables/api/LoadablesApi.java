@@ -1,6 +1,6 @@
 package com.drpicox.game.components.loadables.api;
 
-import com.drpicox.game.games.api.GameResponse;
+import com.drpicox.game.ecs.GameData;
 import com.drpicox.game.games.api.GamesApi;
 import com.drpicox.game.components.loadables.LoadablesController;
 import org.springframework.web.bind.annotation.*;
@@ -18,7 +18,7 @@ public class LoadablesApi {
     }
 
     @PostMapping("/{entityId}/load")
-    public GameResponse load(@PathVariable String entityId, @RequestParam String token, @RequestBody LoadableForm form) {
+    public GameData load(@PathVariable String entityId, @RequestParam String token, @RequestBody LoadableForm form) {
         var loadable = loadablesController.orderLoad(entityId, form.getLoadUnloadAmount(), form.getSourceEntityId());
 
         var game = loadable.getGame();
@@ -26,7 +26,7 @@ public class LoadablesApi {
     }
 
     @PostMapping("/{entityId}/unload")
-    public GameResponse unload(@PathVariable String entityId, @RequestParam String token, @RequestBody LoadableForm form) {
+    public GameData unload(@PathVariable String entityId, @RequestParam String token, @RequestBody LoadableForm form) {
         var loadable = loadablesController.orderUnload(entityId, form.getLoadUnloadAmount(), form.getSourceEntityId());
 
         var game = loadable.getGame();

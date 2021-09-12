@@ -1,6 +1,6 @@
 package com.drpicox.game.testSteps.docks;
 
-import com.drpicox.game.ecs.EntityResponse;
+import com.drpicox.game.testSteps.game.EntityResponse;
 import com.drpicox.game.testSteps.locateds.LocatedTestView;
 import org.springframework.stereotype.Component;
 

@@ -1,6 +1,5 @@
-package com.drpicox.game.games.api;
+package com.drpicox.game.testSteps.game;
 
-import com.drpicox.game.ecs.EntityResponse;
 import com.drpicox.game.games.Game;
 
 import java.util.*;
@@ -50,8 +49,8 @@ public class GameResponse {
         return roundNumber;
     }
 
-    public <T extends EntityResponse> T getEntityResponse(String id) {
-        return (T) findEntityById(id).get();
+    public EntityResponse getEntityResponse(String id) {
+        return entities.get(id);
     }
 
     private EntityResponse ensureEntityResponse(String id) {

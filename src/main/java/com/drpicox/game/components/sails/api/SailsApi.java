@@ -1,7 +1,7 @@
 package com.drpicox.game.components.sails.api;
 
 import com.drpicox.game.components.sails.SailsController;
-import com.drpicox.game.games.api.GameResponse;
+import com.drpicox.game.ecs.GameData;
 import com.drpicox.game.games.api.GamesApi;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,7 +18,7 @@ public class SailsApi {
     }
 
     @PostMapping("/{entityId}/sail")
-    public GameResponse sail(@PathVariable String entityId, @RequestParam String token, @RequestBody DestinationForm form) {
+    public GameData sail(@PathVariable String entityId, @RequestParam String token, @RequestBody DestinationForm form) {
         var sail = sailsController.orderSail(entityId, form.getDestinationLocation());
 
         var game = sail.getGame();
@@ -26,7 +26,7 @@ public class SailsApi {
     }
 
     @PostMapping("/{entityId}/halt")
-    public GameResponse halt(@PathVariable String entityId, @RequestParam String token) {
+    public GameData halt(@PathVariable String entityId, @RequestParam String token) {
         var sail = sailsController.orderHalt(entityId);
 
         var game = sail.getGame();

@@ -20,6 +20,10 @@ public class TypedsController {
     }
 
     public boolean isTyped(String entityId, String entityType) {
-        return typedsRepository.findById(entityId).map(c -> c.isEntityType(entityType)).orElse(false);
+        return typedsRepository.findById(entityId).map(c -> c.isType(entityType)).orElse(false);
+    }
+
+    public List<Typed> findAllByGameAndType(Game game, String type) {
+        return typedsRepository.findAllByGameAndType(game, type);
     }
 }

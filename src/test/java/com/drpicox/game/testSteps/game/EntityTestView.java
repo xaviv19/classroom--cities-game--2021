@@ -1,7 +1,5 @@
 package com.drpicox.game.testSteps.game;
 
-import com.drpicox.game.ecs.EntityResponse;
-import com.drpicox.game.games.api.GameResponse;
 import com.drpicox.game.testSteps.navigator.NavigableScreen;
 import com.drpicox.game.testSteps.navigator.NavigatorTestView;
 import org.springframework.stereotype.Component;

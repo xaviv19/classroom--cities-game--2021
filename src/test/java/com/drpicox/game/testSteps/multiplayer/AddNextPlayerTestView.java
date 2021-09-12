@@ -1,9 +1,7 @@
 package com.drpicox.game.testSteps.multiplayer;
 
-import com.drpicox.game.games.api.GameResponse;
-import com.drpicox.game.testPost.SnapshotService;
+import com.drpicox.game.testSteps.game.GameResponse;
 import com.drpicox.game.testSteps.game.GameTestView;
-import com.drpicox.game.testSteps.message.MessageTestView;
 import com.drpicox.game.testSteps.navigator.NavigableScreen;
 import com.drpicox.game.testSteps.navigator.NavigatorTestView;
 import org.springframework.stereotype.Component;
@@ -14,15 +12,11 @@ import java.util.HashMap;
 public class AddNextPlayerTestView implements NavigableScreen {
 
     private final GameTestView gameTestView;
-    private final MessageTestView messageTestView;
     private final NavigatorTestView navigatorTestView;
-    private final SnapshotService snapshotService;
 
-    public AddNextPlayerTestView(GameTestView gameTestView, MessageTestView messageTestView, NavigatorTestView navigatorTestView, SnapshotService snapshotService) {
+    public AddNextPlayerTestView(GameTestView gameTestView, NavigatorTestView navigatorTestView) {
         this.gameTestView = gameTestView;
-        this.messageTestView = messageTestView;
         this.navigatorTestView = navigatorTestView;
-        this.snapshotService = snapshotService;
     }
 
     private String nextPlayerName;

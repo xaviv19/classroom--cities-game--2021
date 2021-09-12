@@ -8,17 +8,17 @@ import org.springframework.stereotype.Component;
 import static com.google.common.truth.Truth.assertThat;
 
 @Component
-public class ThereShouldBeNoGamesStep extends AbstractPostLineStep {
+public class GamesListShouldBeEmptyStep extends AbstractPostLineStep {
 
     private final ListGamesTestView listGamesTestView;
 
-    public ThereShouldBeNoGamesStep(ListGamesTestView listGamesTestView) {
+    public GamesListShouldBeEmptyStep(ListGamesTestView listGamesTestView) {
         this.listGamesTestView = listGamesTestView;
     }
 
     @Override
     protected String getRegex() {
-        return "There should be no games";
+        return "Games list should be empty";
     }
 
     @Override

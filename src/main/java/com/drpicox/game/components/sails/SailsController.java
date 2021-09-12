@@ -3,7 +3,6 @@ package com.drpicox.game.components.sails;
 import com.drpicox.game.games.Game;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
 import java.util.Optional;
 
 @Component
@@ -33,5 +32,10 @@ public class SailsController {
         sailsRepository.save(sail);
 
         return sail;
+    }
+
+    public boolean isSailing(String entityId) {
+        var sail = sailsRepository.findById(entityId).get();
+        return sail.isDestinationSail();
     }
 }

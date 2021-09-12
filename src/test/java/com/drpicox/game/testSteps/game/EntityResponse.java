@@ -1,4 +1,4 @@
-package com.drpicox.game.ecs;
+package com.drpicox.game.testSteps.game;
 
 import com.google.gson.annotations.JsonAdapter;
 
@@ -44,6 +44,10 @@ public class EntityResponse {
 
     public int getInt(String key) {
         return get(key, Double.class).intValue();
+    }
+
+    public Object get(String key) {
+        return properties.get(key);
     }
 
     public <T> T get(String key, Class<T> as) {

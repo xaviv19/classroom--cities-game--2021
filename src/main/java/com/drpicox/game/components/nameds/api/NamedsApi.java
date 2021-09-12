@@ -1,7 +1,7 @@
 package com.drpicox.game.components.nameds.api;
 
 import com.drpicox.game.components.nameds.NamedsController;
-import com.drpicox.game.games.api.GameResponse;
+import com.drpicox.game.ecs.GameData;
 import com.drpicox.game.games.api.GamesApi;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,7 +18,7 @@ public class NamedsApi {
     }
 
     @PostMapping("/{entityId}/name")
-    public GameResponse changedName(@PathVariable String entityId, @RequestParam String token, @RequestBody NewNamedNameForm form) {
+    public GameData changedName(@PathVariable String entityId, @RequestParam String token, @RequestBody NewNamedNameForm form) {
         var named = namedsController.changeName(entityId, form.getNewName());
 
 

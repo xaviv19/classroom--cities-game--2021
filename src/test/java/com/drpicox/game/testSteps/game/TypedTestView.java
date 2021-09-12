@@ -1,6 +1,5 @@
 package com.drpicox.game.testSteps.game;
 
-import com.drpicox.game.ecs.EntityResponse;
 import org.springframework.stereotype.Component;
 
 import java.util.function.Predicate;

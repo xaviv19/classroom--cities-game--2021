@@ -19,4 +19,12 @@ public class DocksController {
         var component = new Dock(entityId, game);
         docksRepository.save(component);
     }
+
+    public List<Dock> findAllByGame(Game game) {
+        return docksRepository.findAllByGame(game);
+    }
+
+    public List<Dock> findAllById(List<String> entityIds) {
+        return docksRepository.findAllById(entityIds);
+    }
 }
