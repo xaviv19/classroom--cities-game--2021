@@ -1,19 +1,43 @@
-import { PostLine } from "./reader";
+import { PostLine } from "./PostLine";
 
 export class PostLineStep {
-  constructor() {
-    throw new Error("Cannot instantiate an interface");
+  #matchRe: RegExp;
+  #run: (
+    postLine: PostLine,
+    match: Exclude<ReturnType<string["match"]>, null>
+  ) => void;
+
+  constructor(
+    matchRe: RegExp,
+    run: (
+      postLine: PostLine,
+      match: Exclude<ReturnType<string["match"]>, null>
+    ) => void | Promise<void>
+  ) {
+    this.#matchRe = matchRe;
+    this.#run = run;
   }
 
-  match(line: PostLine): boolean {
-    throw new Error("Cannot call an abstract method");
+  matches(postLine: PostLine): boolean {
+    return postLine.match(this.#matchRe) != null;
   }
 
-  async run(line: PostLine) {
-    throw new Error("Cannot call an abstract method");
+  async run(postLine: PostLine) {
+    var match = postLine.match(this.#matchRe);
+    return this.#run(postLine, match!);
   }
 
-  getPrettyPrint() {
-    throw new Error("Cannot call an abstract method");
+  toPrettyString(): any {
+    return `/${this.#matchRe.source}/ ${this.#run.toString()}`;
   }
 }
+
+export const step = (
+  matchRe: RegExp,
+  run: (
+    postLine: PostLine,
+    match: Exclude<ReturnType<string["match"]>, null>
+  ) => void
+): PostLineStep => {
+  return new PostLineStep(matchRe, run);
+};

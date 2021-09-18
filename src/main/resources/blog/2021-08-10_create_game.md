@@ -22,7 +22,7 @@ This post explains how to create those games.
  |   |  ( My Created Games )    |       |  ( create game ) (cancel)| ----> |                          |
  |   +--------------------------+       +--------------------------+       |  ( Create game )         |
  |            |                                                            |  ( My games )            |
- |            |           View List Games:                                 +--------------------------+
+ |            |           View Games List:                                 +--------------------------+
  |            |          +--------------------------+
  |            |          | ©               …topbar… |
  |            |          +--------------------------+
@@ -143,7 +143,7 @@ But it fails:
 
 And list games...
 
- > Return from the list games.  
+ > Cancel the create game.  
  > You should be at the player screen.  
 
 is empty:

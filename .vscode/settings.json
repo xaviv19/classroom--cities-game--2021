@@ -1,10 +1,14 @@
 {
-  // Set the default
-  "editor.formatOnSave": false,
-  // Enable per-language
-  "[javascript]": {
-      "editor.formatOnSave": true
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "[markdown]": {
+    "editor.defaultFormatter": null,
+    "editor.formatOnSave": false,
+    "editor.formatOnPaste": false,
+    "editor.formatOnType": false
   },
-  "git.ignoreLimitWarning": true,
-  "cSpell.language": "ca,en"
+  "editor.rulers": [80],
+  "editor.formatOnPaste": true,
+  "editor.formatOnType": true,
+  "cSpell.language": "en"
 }
