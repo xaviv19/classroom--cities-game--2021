@@ -39,6 +39,11 @@ export interface GamePlayedAction {
   };
 }
 
+export const GAME_REFRESHED = "game/REFRESHED";
+export interface GameRefreshedAction {
+  type: typeof GAME_REFRESHED;
+}
+
 export const GAME_REPLACED = "game/REPLACED";
 export interface GameReplacedAction {
   type: typeof GAME_REPLACED;
@@ -49,4 +54,5 @@ export type GameActionTypes =
   | GameCreatedAction
   | GameJoinedAction
   | GamePlayedAction
+  | GameRefreshedAction
   | GameReplacedAction;

@@ -88,6 +88,12 @@ class SnapshotService {
     }
   }
 
+  getToken(): string | null {
+    const snapshot = this.#snapshots[this.#snapshotIndex];
+    const token = new URL("https:/" + snapshot.url).searchParams.get("token");
+    return token;
+  }
+
   async nextSnapshot() {
     const startTs = Date.now();
     while (!this.#isSnapshotConsumed) {

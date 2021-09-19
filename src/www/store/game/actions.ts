@@ -4,10 +4,14 @@ import {
   GamePlayedAction,
   GameReplacedAction,
   GameState,
+  NextPlayerAddedAction,
   GAME_CREATED,
   GAME_JOINED,
   GAME_PLAYED,
   GAME_REPLACED,
+  NEXT_PLAYER_ADDED,
+  GameRefreshedAction,
+  GAME_REFRESHED,
 } from "./types";
 
 export function gameCreated(gameName: string): GameCreatedAction {
@@ -49,5 +53,11 @@ export function gameReplaced(game: GameState): GameReplacedAction {
   return {
     type: GAME_REPLACED,
     game,
+  };
+}
+
+export function gameRefreshed(): GameRefreshedAction {
+  return {
+    type: GAME_REFRESHED,
   };
 }

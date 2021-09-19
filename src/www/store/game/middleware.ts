@@ -11,11 +11,13 @@ import {
   GAME_CREATED,
   GAME_JOINED,
   GAME_PLAYED,
+  GAME_REFRESHED,
   GAME_REPLACED,
 } from "./types";
 import { getPlayerToken } from "../player/selectors";
-import { gameReplaced } from "./actions";
+import { gamePlayed, gameReplaced } from "./actions";
 import { playerReplaced } from "../player/actions";
+import { getGame } from "./selectors";
 
 export const gameMiddleware: Middleware<{}, AppState> =
   (store: any) => (next) => async (action) => {
@@ -29,6 +31,9 @@ export const gameMiddleware: Middleware<{}, AppState> =
     }
     if (action.type === GAME_PLAYED) {
       await playGame(store, action);
+    }
+    if (action.type === GAME_REFRESHED) {
+      await refreshGame(store, action);
     }
     if (action.type === GAME_REPLACED) {
       await replacePlayer(store, action);
@@ -74,7 +79,12 @@ async function playGame(store: any, action: any) {
   store.dispatch(loadingFinished());
 }
 
-function replacePlayer(store: any, action: any) {
+async function refreshGame(store: any, action: any) {
+  const { gameName, creatorName } = getGame(store.getState())!;
+  store.dispatch(gamePlayed(gameName, creatorName));
+}
+
+async function replacePlayer(store: any, action: any) {
   const { game } = action as GameReplacedAction;
   store.dispatch(playerReplaced(game!.playerName, game!.token));
 }

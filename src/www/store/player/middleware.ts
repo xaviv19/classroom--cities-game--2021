@@ -1,13 +1,19 @@
 import { fetchAndDispatchMessage } from "www/widgets/MessageWidget/fetchAndDispatchMessage";
 import { Middleware } from "redux";
 import { AppState, AppStore } from "www/store";
-import { LOGGED_IN, SIGNED_UP } from "./types";
+import {
+  LOGGED_IN,
+  NextPlayerAddedAction,
+  NEXT_PLAYER_ADDED,
+  SIGNED_UP,
+} from "./types";
 import {
   loadingFinished,
   loadingStarted,
 } from "www/widgets/LoadingWidget/actions";
 import { screenPushed } from "www/widgets/ScreenStackWidget/actions";
 import { playerReplaced } from "./actions";
+import { getPlayerName, getPlayerToken } from "./selectors";
 
 export const playerMiddleware: Middleware<{}, AppState> =
   (store: any) => (next) => async (action) => {
@@ -21,17 +27,6 @@ export const playerMiddleware: Middleware<{}, AppState> =
     }
   };
 
-async function signup(store: any, action: any) {
-  store.dispatch(loadingStarted());
-  var result = await fetchAndDispatchMessage(
-    "/api/v1/players",
-    { method: "POST", body: action.form },
-    store.dispatch
-  );
-  if (!result.isError) store.dispatch(screenPushed("welcome"));
-  store.dispatch(loadingFinished());
-}
-
 async function login(store: AppStore, action: any) {
   store.dispatch(loadingStarted());
   var result = await fetchAndDispatchMessage(
@@ -43,5 +38,16 @@ async function login(store: AppStore, action: any) {
     store.dispatch(screenPushed("player"));
     store.dispatch(playerReplaced(result.playerName, result.token));
   }
+  store.dispatch(loadingFinished());
+}
+
+async function signup(store: any, action: any) {
+  store.dispatch(loadingStarted());
+  var result = await fetchAndDispatchMessage(
+    "/api/v1/players",
+    { method: "POST", body: action.form },
+    store.dispatch
+  );
+  if (!result.isError) store.dispatch(screenPushed("welcome"));
   store.dispatch(loadingFinished());
 }
