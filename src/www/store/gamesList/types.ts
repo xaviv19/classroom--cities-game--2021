@@ -14,6 +14,11 @@ export interface GamesByCreatorListedAction {
   form: { playerName: string };
 }
 
+export const GAMES_BY_PLAYER_LISTED = "gamesList/GAMES_BY_PLAYER_LISTED";
+export interface GamesByPlayerListedAction {
+  type: typeof GAMES_BY_PLAYER_LISTED;
+}
+
 export const GAMES_LIST_REPLACED = "gamesList/GAMES_LIST_REPLACED";
 export interface GamesListReplacedAction {
   type: typeof GAMES_LIST_REPLACED;
@@ -25,7 +30,14 @@ export interface MyCreatedGamesListedAction {
   type: typeof MY_CREATED_GAMES_LISTED;
 }
 
+export const MY_PLAYING_GAMES_LISTED = "gamesList/MY_PLAYING_GAMES_LISTED";
+export interface MyPlayingGamesListedAction {
+  type: typeof MY_PLAYING_GAMES_LISTED;
+}
+
 export type GamesListActionTypes =
   | GamesByCreatorListedAction
+  | GamesByPlayerListedAction
   | GamesListReplacedAction
-  | MyCreatedGamesListedAction;
+  | MyCreatedGamesListedAction
+  | MyPlayingGamesListedAction;

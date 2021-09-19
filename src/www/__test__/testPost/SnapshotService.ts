@@ -130,7 +130,12 @@ export const snapshotService = new SnapshotService();
 
 const server = setupServer(
   rest.get("/*", (req, res, ctx) => {
-    console.log({ x: 1 });
+    const [status, response] = snapshotService.respond(
+      "GET",
+      req.url.pathname + req.url.search,
+      null
+    );
+    return res(ctx.status(status), ctx.json(response));
   }),
   rest.post("/*", (req, res, ctx) => {
     const [status, response] = snapshotService.respond(

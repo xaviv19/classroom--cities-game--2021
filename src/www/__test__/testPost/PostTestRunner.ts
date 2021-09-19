@@ -36,11 +36,18 @@ export class PostTestRunner {
       lastLine,
       chalk.green
     );
+    const nextLines = this.#postTest.toPrettyStringNextLines(
+      lastLine,
+      chalk.dim,
+      chalk.dim
+    );
     throw new Error(
       "\nError found at: " +
         ["", ...previousLines].join(chalk.green("\n✓ ")) +
         chalk.red.bold("\n✘ ") +
         lastLine.toPrettyString(chalk.red.bold) +
+        ["", ...nextLines.slice(0, 3)].join(chalk.dim("\n☐ ")) +
+        (nextLines.length > 3 ? chalk.dim("\n☐ ...") : "") +
         "\n\n" +
         e.stack +
         chalk.keyword("brown")(

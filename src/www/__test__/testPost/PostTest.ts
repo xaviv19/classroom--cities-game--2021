@@ -54,4 +54,22 @@ export class PostTest {
     }
     return result;
   }
+
+  toPrettyStringNextLines(
+    stopLine: PostLine,
+    colorizeLine: Chalk,
+    colorizePosition: Chalk
+  ) {
+    let result = [];
+    let index = 0;
+    while (index < this.#lines.length && this.#lines[index] !== stopLine)
+      index += 1;
+    index += 1;
+    for (; index < this.#lines.length; index++) {
+      result.push(
+        this.#lines[index].toPrettyString(colorizeLine, colorizePosition)
+      );
+    }
+    return result;
+  }
 }

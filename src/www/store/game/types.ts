@@ -1,4 +1,17 @@
-export type GameState = null;
+type EntityState = {
+  id: string;
+};
+
+export type GameState = null | {
+  gameName: string;
+  creatorName: string;
+  roundNumber: number;
+  playerName: string;
+  token: string;
+  entities: {
+    [id: string]: EntityState;
+  };
+};
 
 export const GAME_CREATED = "game/CREATED";
 export interface GameCreatedAction {
@@ -8,4 +21,32 @@ export interface GameCreatedAction {
   };
 }
 
-export type GameActionTypes = GameCreatedAction;
+export const GAME_JOINED = "game/JOINED";
+export interface GameJoinedAction {
+  type: typeof GAME_JOINED;
+  form: {
+    gameName: string;
+    creatorName: string;
+  };
+}
+
+export const GAME_PLAYED = "game/PLAYED";
+export interface GamePlayedAction {
+  type: typeof GAME_PLAYED;
+  form: {
+    gameName: string;
+    creatorName: string;
+  };
+}
+
+export const GAME_REPLACED = "game/REPLACED";
+export interface GameReplacedAction {
+  type: typeof GAME_REPLACED;
+  game: GameState;
+}
+
+export type GameActionTypes =
+  | GameCreatedAction
+  | GameJoinedAction
+  | GamePlayedAction
+  | GameReplacedAction;

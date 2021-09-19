@@ -3,16 +3,19 @@ import { screen } from "@testing-library/dom";
 import userEvent from "@testing-library/user-event";
 import { getByRole, queryByRole } from "@testing-library/react";
 
-export const gameListTestSteps: PostLineStep[] = [
-  step(/Go to my created games/, () => {
-    const link = screen.getByRole("link", { name: "My created games" });
-    userEvent.click(link);
+export const gameTestSteps: PostLineStep[] = [
+  step(/You should be at the game screen/, () => {
+    expect(screen.getByRole("heading", { name: "Game!" })).toBeInTheDocument();
   }),
-  step(/You should be at the list games screen/, () => {
-    expect(
-      screen.getByRole("heading", { name: "Games List!" })
-    ).toBeInTheDocument();
-  }),
+  step(
+    /Playing game should be "([^"]+)" created by "([^"]+)"/,
+    (title, [, gameName, creatorName]) => {
+      const header = screen.getByTestId("game-header");
+      expect(header).toHaveTextContent(`${gameName} created by ${creatorName}`);
+    }
+  ),
+
+  /*
   step(/There should be (\d)+ game/, (line, match) => {
     const count = +match[1];
 
@@ -49,14 +52,14 @@ export const gameListTestSteps: PostLineStep[] = [
     /You should have joined the game "([^"]+)" created by "([^"]+)"/,
     (line, [, gameName, creatorName]) => {
       const item = getGameListItemByNameAndCreator(gameName, creatorName);
-      expect(item).toHaveTextContent("joined");
+      expect(getByRole(item, "button", { name: "Play" })).toBeInTheDocument();
     }
   ),
   step(
     /You should have not joined the game "([^"]+)" created by "([^"]+)"/,
     (line, [, gameName, creatorName]) => {
       const item = getGameListItemByNameAndCreator(gameName, creatorName);
-      expect(item).not.toHaveTextContent("joined");
+      expect(queryByRole(item, "button", { name: "Play" })).toBeNull();
     }
   ),
   step(/Play on the game "([^"]+)" created by "([^"]+)"/, (line, match) => {
@@ -65,32 +68,5 @@ export const gameListTestSteps: PostLineStep[] = [
     const button = getByRole(item, "button", { name: "Play" });
     userEvent.click(button);
   }),
+  */
 ];
-
-function getGameListItemByNameAndCreator(
-  gameName: string,
-  creatorName: string
-): HTMLElement {
-  const allGames = getAllGameListItems();
-
-  const game = allGames
-    .filter((item) => item.textContent?.includes(gameName))
-    .find((item) => item.textContent?.includes(creatorName));
-
-  if (!game)
-    throw new Error(
-      `Could not find any game in the games list with name "${gameName}" and creator "${creatorName}".\n` +
-        `Available items are:\n- ` +
-        allGames.map((g) => g.textContent).join("\n- ")
-    );
-
-  return game;
-}
-
-function queryAllGameListItems(): HTMLElement[] {
-  return screen.queryAllByRole("listitem");
-}
-
-function getAllGameListItems(): HTMLElement[] {
-  return screen.getAllByRole("listitem");
-}

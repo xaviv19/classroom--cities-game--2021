@@ -1,12 +1,11 @@
 import { useCallback } from "react";
-import { useSelector } from "react-redux";
 import { getGamesList } from "www/store/gamesList/selectors";
-import { useAppDispatch } from "www/store/hooks";
+import { useAppDispatch, useAppSelector } from "www/store/hooks";
 import { screenPopped } from "www/widgets/ScreenStackWidget/actions";
 import { GamesListItem } from "./GamesListItem";
 
 export function GamesListScreen() {
-  const list = useSelector(getGamesList);
+  const list = useAppSelector(getGamesList);
   const dispatch = useAppDispatch();
   const cancel = useCallback(() => dispatch(screenPopped()), [dispatch]);
 
