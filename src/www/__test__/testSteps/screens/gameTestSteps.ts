@@ -2,8 +2,9 @@ import { PostLineStep, step } from "../../testPost";
 import { testDispatch } from "../../testStore";
 import { snapshotService } from "../../testPost/SnapshotService";
 import { screen } from "@testing-library/dom";
-import { gamePlayed } from "www/store/game/actions";
+import { gamePlayed, gameRefreshed } from "www/store/game/actions";
 import { playerReplaced } from "www/store/player/actions";
+import userEvent from "@testing-library/user-event";
 
 export const gameTestSteps: PostLineStep[] = [
   step(/You should be at the game screen/, () => {
@@ -40,4 +41,15 @@ export const gameTestSteps: PostLineStep[] = [
       testDispatch(gamePlayed(gameName, creatorName));
     }
   ),
+  step(/Game round should be (\d+)/, (title, [, round]) => {
+    const header = screen.getByTestId("game-header");
+    expect(header).toHaveTextContent(`round ${round}`);
+  }),
+  step(/End the round/, endRound),
+  step(/Skip \d+ rounds/, endRound),
 ];
+
+function endRound() {
+  const button = screen.getByRole("link", { name: "End Round" });
+  userEvent.click(button);
+}

@@ -90,11 +90,11 @@ The maximum population for each city grows:
 
 Until it reaches a maximum of 20:
 
- * Skip 8 rounds.
- * Game round should be 11.
- <!-- SNAPSHOT status=200 -->
- * Click on the "leonard" city "Capital"
- * The population should be 20.
+ * Skip 8 rounds.  
+ <!-- SNAPSHOT status=200 -->  
+ * Game round should be 11.  
+ * Click on the "leonard" city "Capital"  
+ * The population should be 20.  
 
 And does not matter how many rounds pass, that it will be always 20.
 

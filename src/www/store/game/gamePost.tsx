@@ -5,8 +5,14 @@ import {
 } from "www/widgets/LoadingWidget/actions";
 import { getPlayerToken } from "../player/selectors";
 import { gameReplaced } from "./actions";
+import { GameState } from "./types";
 
-export async function gamePost(store: any, url: string, body: any) {
+export async function gamePost(
+  store: any,
+  url: string,
+  body: any,
+  success: (game: GameState) => Promise<void> | void = () => {}
+) {
   store.dispatch(loadingStarted());
   const token = getPlayerToken(store.getState());
   const result = await fetchAndDispatchMessage(
@@ -16,6 +22,7 @@ export async function gamePost(store: any, url: string, body: any) {
   );
   if (!result.isError) {
     store.dispatch(gameReplaced(result));
+    await success(result);
   }
   store.dispatch(loadingFinished());
 }

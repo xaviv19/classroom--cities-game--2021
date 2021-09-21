@@ -1,4 +1,4 @@
-import { Components } from "./index";
+import { Components } from "www/components/index";
 
 export function EntityComponents({ entity }: { entity: any }) {
   return (

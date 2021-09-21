@@ -51,9 +51,15 @@ export interface GameReplacedAction {
   game: GameState;
 }
 
+export const ROUND_ENDED = "game/ROUND_ENDED";
+export interface RoundEndedAction {
+  type: typeof ROUND_ENDED;
+}
+
 export type GameActionTypes =
   | GameCreatedAction
   | GameJoinedAction
   | GamePlayedAction
   | GameRefreshedAction
-  | GameReplacedAction;
+  | GameReplacedAction
+  | RoundEndedAction;

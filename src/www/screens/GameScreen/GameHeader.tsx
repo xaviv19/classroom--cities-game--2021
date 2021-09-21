@@ -1,3 +1,4 @@
+import { roundEnded } from "www/store/game/actions";
 import { getGame } from "www/store/game/selectors";
 import { useAppSelector } from "www/store/hooks";
 import { LinkDispatch } from "www/widgets/LinkDispatchWidget";
@@ -7,7 +8,7 @@ import { getCurrentScreenName } from "www/widgets/ScreenStackWidget/selectors";
 export function GameHeader() {
   const isGameScreen = useAppSelector(getCurrentScreenName) === "game";
   const game = useAppSelector(getGame)!;
-  const { gameName, creatorName } = game;
+  const { gameName, creatorName, roundNumber } = game;
 
   return (
     <div data-testid="game-header">
@@ -16,7 +17,8 @@ export function GameHeader() {
           <LinkDispatch createAction={screenPopped}>« Back</LinkDispatch>
         </>
       )}{" "}
-      | Game {gameName} created by {creatorName}
+      <LinkDispatch createAction={roundEnded}>End Round</LinkDispatch> | Game{" "}
+      {gameName} created by {creatorName}, round {roundNumber}
     </div>
   );
 }
