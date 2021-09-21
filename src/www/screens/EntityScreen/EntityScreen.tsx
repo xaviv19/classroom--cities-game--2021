@@ -8,6 +8,7 @@ import { EntityComponents } from "./EntityComponents";
 export function EntityScreen() {
   const entityId = useAppSelector(getCurrentScreenId)!;
   const entity = useAppSelector((s) => getEntityById(s, { entityId }))!;
+  if (!entity) return null;
 
   return (
     <div>

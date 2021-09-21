@@ -12,7 +12,7 @@ import {
   NEXT_PLAYER_ADDED,
   NEXT_PLAYER_CHANGED,
 } from "./types";
-import { getPlayerName, getPlayerToken } from "../player/selectors";
+import { getPlayerToken } from "../player/selectors";
 import { getGame } from "../game/selectors";
 import { gamePlayed, gameReplaced, gameRefreshed } from "../game/actions";
 import { nextPlayerPushed } from "./actions";
@@ -35,8 +35,7 @@ async function addNextPlayer(store: any, action: NextPlayerAddedAction) {
   store.dispatch(loadingStarted());
   const state = store.getState();
   const token = getPlayerToken(state)!;
-  const creatorName = getPlayerName(state)!;
-  const { gameName } = getGame(state)!;
+  const { gameName, creatorName } = getGame(state)!;
 
   var result = await fetchAndDispatchMessage(
     `/api/v1/games/joinNext?token=${token}`,
@@ -65,4 +64,5 @@ async function changeNextPlayer(store: any, action: NextPlayerChangedAction) {
 
   store.dispatch(playerReplaced(playerName, token));
   store.dispatch(gamePlayed(gameName, creatorName));
+  // store.dispatch(screenPushed("game"));
 }

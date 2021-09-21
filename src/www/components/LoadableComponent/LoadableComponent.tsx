@@ -4,7 +4,7 @@ import { loadOrdered, unloadOrdered } from "./actions";
 import { makeGetDockByLocation } from "../DockComponent/selectors";
 
 export function LoadableComponent({ entity }: any) {
-  const newLoadUnloadAmount = useInputRef();
+  const newLoadUnloadAmountRef = useInputRef();
   const getDockByLocation = useMemo(makeGetDockByLocation, []);
   const sourceEntityId = useAppSelector((state) =>
     getDockByLocation(state, entity)
@@ -13,22 +13,21 @@ export function LoadableComponent({ entity }: any) {
     loadOrdered,
     entity.id,
     sourceEntityId,
-    newLoadUnloadAmount
+    newLoadUnloadAmountRef
   );
   const unload = useDispatchForm(
     unloadOrdered,
     entity.id,
     sourceEntityId,
-    newLoadUnloadAmount
+    newLoadUnloadAmountRef
   );
 
   return (
     <>
       <div>Load/unload amount: {entity.loadUnloadAmount}</div>
-      <pre>{JSON.stringify(entity, null, 2)}</pre>
       <label>
         Load/unload amount:
-        <input type="number" ref={newLoadUnloadAmount} />
+        <input type="number" ref={newLoadUnloadAmountRef} />
       </label>
       <button onClick={load} disabled={entity.loadRequested}>
         Load

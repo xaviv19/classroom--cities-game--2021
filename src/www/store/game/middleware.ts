@@ -16,7 +16,7 @@ import {
   ROUND_ENDED,
 } from "./types";
 import { getPlayerToken } from "../player/selectors";
-import { gamePlayed, gameReplaced } from "./actions";
+import { gameReplaced } from "./actions";
 import { playerReplaced } from "../player/actions";
 import { getGame } from "./selectors";
 import { gamePost } from "./gamePost";

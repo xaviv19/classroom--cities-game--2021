@@ -32,8 +32,8 @@ export const entityListTestSteps: PostLineStep[] = [
     }
   ),
   step(
-    /Click on the "([^"]+)" ([a-z]+) "([^"]+)"/,
-    (line, [, owner, type, name]) => {
+    /Click on the "([^"]+)" (owned )?([a-z]+) "([^"]+)"/,
+    (line, [, owner, , type, name]) => {
       var item = getEntityListItemByContents([owner, type, name]);
       userEvent.click(item);
     }
