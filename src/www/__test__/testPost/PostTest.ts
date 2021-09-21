@@ -13,7 +13,8 @@ export class PostTest {
     this.#testId = title
       .toLowerCase()
       .replace(/[^a-z]+/g, "-")
-      .replace(/^-/, "");
+      .replace(/^-/, "")
+      .replace(/-$/, "");
   }
 
   addLine(line: string, lineNumber: number) {

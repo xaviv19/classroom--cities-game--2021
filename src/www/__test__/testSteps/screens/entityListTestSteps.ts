@@ -6,12 +6,25 @@ export const entityListTestSteps: PostLineStep[] = [
   step(
     /"([^"]+)" should have (\d+) ([a-z]+)/,
     (line, [, owner, count, type]) => {
-      var entities = getAllEntityListItemByContents([owner, type]);
-      expect(entities).toHaveLength(+count);
+      expectToHaveEntitiesByContentsAndCount([owner, type], +count);
+    }
+  ),
+  step(
+    /There should be (\d+) "([^"]+)" ([a-z]+)/,
+    (line, [, count, owner, type]) => {
+      expectToHaveEntitiesByContentsAndCount([owner, type], +count);
     }
   ),
   step(
     /"([^"]+)" should have the "([^"]+)" ([a-z]+)/,
+    (line, [, owner, name, type]) => {
+      expect(
+        getEntityListItemByContents([owner, type, name])
+      ).toBeInTheDocument();
+    }
+  ),
+  step(
+    /There should be the "([^"]+)" "([^"]+)" ([a-z]+)/,
     (line, [, owner, name, type]) => {
       expect(
         getEntityListItemByContents([owner, type, name])
@@ -27,12 +40,34 @@ export const entityListTestSteps: PostLineStep[] = [
   ),
 ];
 
-function getAllEntityListItems(): HTMLElement[] {
-  return screen.getAllByRole("listitem");
+function expectToHaveEntitiesByContentsAndCount(
+  contents: string[],
+  count: number
+) {
+  let entities =
+    count > 0
+      ? getAllEntityListItemByContents(contents)
+      : queryAllEntityListItemByContents(contents);
+
+  expect(entities).toHaveLength(count);
+}
+
+function queryAllEntityListItems(): HTMLElement[] {
+  return screen.queryAllByRole("listitem");
+}
+
+function queryAllEntityListItemByContents(contents: string[]): HTMLElement[] {
+  const allEntities = queryAllEntityListItems();
+
+  const result = allEntities.filter((entity) =>
+    contents.every((match) => entity.textContent!.includes(match))
+  );
+
+  return result;
 }
 
 function getAllEntityListItemByContents(contents: string[]): HTMLElement[] {
-  const allEntities = getAllEntityListItems();
+  const allEntities = queryAllEntityListItemByContents(contents);
 
   const result = allEntities.filter((entity) =>
     contents.every((match) => entity.textContent!.includes(match))
@@ -44,7 +79,9 @@ function getAllEntityListItemByContents(contents: string[]): HTMLElement[] {
         '"", "'
       )}".\n` +
         `Available items are:\n- ` +
-        allEntities.map((g) => g.textContent).join("\n- ")
+        queryAllEntityListItems()
+          .map((g) => g.textContent)
+          .join("\n- ")
     );
 
   return result;
@@ -58,7 +95,9 @@ function getEntityListItemByContents(contents: string[]): HTMLElement {
         '"", "'
       )}".\n` +
         `Available items are:\n- ` +
-        allEntities.map((g) => g.textContent).join("\n- ")
+        queryAllEntityListItems()
+          .map((g) => g.textContent)
+          .join("\n- ")
     );
 
   return allEntities[0];

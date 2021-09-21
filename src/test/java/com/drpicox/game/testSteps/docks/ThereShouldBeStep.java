@@ -10,26 +10,27 @@ import static com.drpicox.game.testSteps.owneds.OwnedTestView.byOwner;
 import static com.google.common.truth.Truth8.assertThat;
 
 @Component
-public class ThereShouldBeShipsStep extends AbstractPostLineStep {
+public class ThereShouldBeStep extends AbstractPostLineStep {
 
 
     private final LocatedTestView locatedTestView;
 
-    public ThereShouldBeShipsStep(LocatedTestView locatedTestView) {
+    public ThereShouldBeStep(LocatedTestView locatedTestView) {
         this.locatedTestView = locatedTestView;
     }
 
     @Override
     protected String getRegex() {
-        return "There should be (\\d+) \"([^\"]+)\" ships";
+        return "There should be (\\d+) \"([^\"]+)\" ([a-z]+)";
     }
 
     @Override
     protected void run(PostLine line, String[] match) {
         var expectedSize = Integer.parseInt(match[1]);
         var ownerName = match[2];
+        var type = match[3];
 
-        var ships = locatedTestView.streamCoLocateds().filter(byOwner(ownerName).and(byType("ship")));
+        var ships = locatedTestView.streamCoLocateds().filter(byOwner(ownerName).and(byType(type)));
         assertThat(ships).hasSize(expectedSize);
     }
 }

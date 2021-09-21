@@ -47,9 +47,13 @@ export const gameTestSteps: PostLineStep[] = [
   }),
   step(/End the round/, endRound),
   step(/Skip \d+ rounds/, endRound),
+  step(/Refresh the game/, () => {
+    const button = screen.getByRole("button", { name: "Refresh" });
+    userEvent.click(button);
+  }),
 ];
 
 function endRound() {
-  const button = screen.getByRole("link", { name: "End Round" });
+  const button = screen.getByRole("button", { name: "End Round" });
   userEvent.click(button);
 }

@@ -13,6 +13,11 @@ export const entityTestSteps: PostLineStep[] = [
       screen.getByRole("heading", { name: new RegExp(name, "i") })
     ).toBeInTheDocument();
   }),
+  step(/The owner should be "([^"]+)"/, (line, [, owner]) => {
+    expect(
+      screen.getByRole("heading", { name: new RegExp(owner, "i") })
+    ).toBeInTheDocument();
+  }),
   step(/Go back to the previous screen/, (line, [, name]) => {
     const button = screen.getByRole("link", { name: "« Back" });
     userEvent.click(button);

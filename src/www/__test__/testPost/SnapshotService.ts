@@ -24,7 +24,7 @@ class SnapshotService {
   #snapshotIndex: number = 0;
   #isSnapshotConsumed: boolean = false;
   #lastError: any;
-  #snapshotId: string;
+  #snapshotId: string = "unread";
 
   read(postId: string, testId: string) {
     const content = readResource("snapshots", `${postId}.json`);
@@ -33,6 +33,11 @@ class SnapshotService {
     this.#snapshotIndex = 0;
     this.#isSnapshotConsumed = false;
     this.#snapshotId = `${postId}.md#${testId}`;
+    if (!this.#snapshots)
+      throw new Error(
+        `Cannot read snapshots from "target/classes/snapshots/${postId}.json" and testId "${testId}".\n` +
+          `- Make sure that the backend tests have run before and both versions match`
+      );
   }
 
   respond(method: string, url: string, body: any) {

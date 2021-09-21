@@ -9,7 +9,7 @@ export function getEntityById(
   state: AppState,
   { entityId }: { entityId: string }
 ) {
-  return state.game?.entities[entityId];
+  return getGame(state)?.entities[entityId];
 }
 
 export function makeGetAllGameEntities() {

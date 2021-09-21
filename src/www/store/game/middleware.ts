@@ -86,7 +86,17 @@ async function playGame(store: any, action: any) {
 
 async function refreshGame(store: any, action: any) {
   const { gameName, creatorName } = getGame(store.getState())!;
-  store.dispatch(gamePlayed(gameName, creatorName));
+  store.dispatch(loadingStarted());
+  const token = getPlayerToken(store.getState());
+  const result = await fetchAndDispatchMessage(
+    `/api/v1/games/${gameName}/by/${creatorName}?token=${token}`,
+    { method: "GET" },
+    store.dispatch
+  );
+  if (!result.isError) {
+    store.dispatch(gameReplaced(result));
+  }
+  store.dispatch(loadingFinished());
 }
 
 async function replacePlayer(store: any, action: any) {
