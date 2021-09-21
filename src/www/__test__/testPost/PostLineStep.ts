@@ -1,19 +1,15 @@
 import { PostLine } from "./PostLine";
 
+type StepRunFn = (
+  postLine: PostLine,
+  match: Exclude<ReturnType<string["match"]>, null>
+) => void | Promise<void>;
+
 export class PostLineStep {
   #matchRe: RegExp;
-  #run: (
-    postLine: PostLine,
-    match: Exclude<ReturnType<string["match"]>, null>
-  ) => void;
+  #run: StepRunFn;
 
-  constructor(
-    matchRe: RegExp,
-    run: (
-      postLine: PostLine,
-      match: Exclude<ReturnType<string["match"]>, null>
-    ) => void | Promise<void>
-  ) {
+  constructor(matchRe: RegExp, run: StepRunFn) {
     this.#matchRe = matchRe;
     this.#run = run;
   }
@@ -22,7 +18,7 @@ export class PostLineStep {
     return postLine.match(this.#matchRe) != null;
   }
 
-  async run(postLine: PostLine) {
+  run(postLine: PostLine) {
     var match = postLine.match(this.#matchRe);
     return this.#run(postLine, match!);
   }
@@ -32,12 +28,6 @@ export class PostLineStep {
   }
 }
 
-export const step = (
-  matchRe: RegExp,
-  run: (
-    postLine: PostLine,
-    match: Exclude<ReturnType<string["match"]>, null>
-  ) => void
-): PostLineStep => {
+export const step = (matchRe: RegExp, run: StepRunFn): PostLineStep => {
   return new PostLineStep(matchRe, run);
 };
