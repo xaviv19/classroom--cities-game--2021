@@ -9,11 +9,13 @@ export const useAppSelector: TypedUseSelectorHook<AppState> = useSelector;
 export const useInputRef = () => useRef<null | HTMLInputElement>(null);
 export const useDispatchForm = (
   actionCreator: Function,
-  ...refs: MutableRefObject<null | HTMLInputElement>[]
+  ...refs: (string | MutableRefObject<null | HTMLInputElement>)[]
 ) => {
   var dispatch = useAppDispatch();
   return useCallback(() => {
-    const values = refs.map((ref) => ref.current?.value);
+    const values = refs.map((ref) =>
+      typeof ref === "string" ? ref : ref.current?.value
+    );
     dispatch(actionCreator(...values));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch, actionCreator, ...refs]);

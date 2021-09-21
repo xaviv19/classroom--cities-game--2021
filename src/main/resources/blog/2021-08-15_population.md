@@ -33,7 +33,7 @@ Create and start playing one of your games:
  * Given there is "leonard" playing their game "together".
  <!-- SNAPSHOT status=200 -->  
  * Game round should be 1.
- * "leonard" should have 1 cities. 
+ * "leonard" should have 1 city. 
  * "leonard" should have the "Capital" city.
  * Click on the "leonard" city "Capital"
  * You should be at the screen of a city.

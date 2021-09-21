@@ -1,5 +1,6 @@
 type EntityState = {
   id: string;
+  [key: string]: any;
 };
 
 export type GameState = null | {

@@ -1,7 +1,7 @@
-import { PostLineStep, step } from "../testPost";
+import { PostLineStep, step } from "../../testPost";
 import { screen } from "@testing-library/dom";
 import userEvent from "@testing-library/user-event";
-import { getByRole, queryByRole } from "@testing-library/react";
+import { getByRole } from "@testing-library/react";
 
 export const gameListTestSteps: PostLineStep[] = [
   step(/Go to my created games/, () => {

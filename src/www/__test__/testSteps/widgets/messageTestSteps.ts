@@ -1,4 +1,4 @@
-import { PostLineStep, step } from "../testPost";
+import { PostLineStep, step } from "../../testPost";
 import { getByRole, screen } from "@testing-library/dom";
 
 function dismissMessage() {

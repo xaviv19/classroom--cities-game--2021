@@ -1,4 +1,4 @@
-import { PostLineStep, step } from "../testPost";
+import { PostLineStep, step } from "../../testPost";
 import { screen } from "@testing-library/dom";
 import userEvent from "@testing-library/user-event";
 

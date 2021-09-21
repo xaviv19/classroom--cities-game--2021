@@ -1,9 +1,13 @@
-import { PostLineStep, step } from "../testPost";
+import { PostLineStep, step } from "../../testPost";
+import { testDispatch } from "../../testStore";
 import { screen } from "@testing-library/dom";
 import userEvent from "@testing-library/user-event";
-import { getState } from "../testStore";
+import { nextPlayerAdded } from "www/store/multiplayer/actions";
 
 export const multiplayerTestSteps: PostLineStep[] = [
+  step(/there is the next player "([^"]+)"/, (title, [, playerName]) => {
+    testDispatch(nextPlayerAdded(playerName, "tbbt12"));
+  }),
   step(/Go to Multiplayer/, () => {
     const button = screen.getByRole("link", { name: "Multiplayer" });
     userEvent.click(button);

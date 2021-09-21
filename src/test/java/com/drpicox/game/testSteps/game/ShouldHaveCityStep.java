@@ -9,18 +9,18 @@ import static com.drpicox.game.testSteps.owneds.OwnedTestView.byOwner;
 import static com.google.common.truth.Truth8.assertThat;
 
 @Component
-public class ShouldHaveCitiesStep extends AbstractPostLineStep {
+public class ShouldHaveCityStep extends AbstractPostLineStep {
 
 
     private final GameTestView gameTestView;
 
-    public ShouldHaveCitiesStep(GameTestView gameTestView) {
+    public ShouldHaveCityStep(GameTestView gameTestView) {
         this.gameTestView = gameTestView;
     }
 
     @Override
     protected String getRegex() {
-        return "\"([^\"]+)\" should have (\\d+) cities";
+        return "\"([^\"]+)\" should have (\\d+) city";
     }
 
     @Override
