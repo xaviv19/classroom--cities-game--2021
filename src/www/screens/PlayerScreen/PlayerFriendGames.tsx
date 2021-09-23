@@ -8,9 +8,11 @@ export function PlayerFriendGames() {
   return (
     <div>
       <label>
-        Friend name
+        Friend name:
+        <br />
         <input ref={friendNameRef} />
       </label>
+      <br />
       <button onClick={goFriendGames}>Friend games</button>
     </div>
   );

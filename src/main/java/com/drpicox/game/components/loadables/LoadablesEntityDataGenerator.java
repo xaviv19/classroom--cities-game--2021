@@ -23,6 +23,7 @@ public class LoadablesEntityDataGenerator implements EntityOwnDataGenerator {
         for (var component : components) {
             var entityId = component.getEntityId();
             var loadUnloadAmount = component.getLoadUnloadAmount();
+            data.putEntityProperty(entityId, "isLoadable", true);
             data.putEntityProperty(entityId, "loadUnloadAmount", Math.abs(loadUnloadAmount));
             data.putEntityProperty(entityId, "loadRequested", loadUnloadAmount > 0);
             data.putEntityProperty(entityId, "unloadRequested", loadUnloadAmount < 0);

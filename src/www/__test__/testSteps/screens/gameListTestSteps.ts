@@ -5,7 +5,7 @@ import { getByRole } from "@testing-library/react";
 
 export const gameListTestSteps: PostLineStep[] = [
   step(/Go to my created games/, () => {
-    const link = screen.getByRole("link", { name: "My created games" });
+    const link = screen.getByRole("link", { name: /My created games/ });
     userEvent.click(link);
   }),
   step(/You should be at the list games screen/, () => {

@@ -5,6 +5,7 @@ export function SailComponent({ entity }: any) {
   const destinationLocationRef = useInputRef();
   const sail = useDispatchForm(sailOrdered, entity.id, destinationLocationRef);
   const halt = useDispatchForm(haltOrdered, entity.id);
+  if (!entity.isSail) return null;
 
   return (
     <div>
@@ -13,10 +14,11 @@ export function SailComponent({ entity }: any) {
       )}
       <label>
         Destination location:
+        <br />
         <input type="number" ref={destinationLocationRef} />
       </label>
-      <button onClick={sail}>Sail</button>
-      <button onClick={halt}>Halt</button>
+      <br />
+      <button onClick={sail}>Sail</button> <button onClick={halt}>Halt</button>
     </div>
   );
 }

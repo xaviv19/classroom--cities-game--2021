@@ -10,11 +10,16 @@ export function NamedComponent({ entity }: any) {
 
   return (
     <>
+      <br />
       <label>
-        New name
+        New name:
+        <br />
         <input ref={newNameRef} />
       </label>
+      <br />
       <button onClick={changeName}>Change name</button>
+      <br />
+      <br />
     </>
   );
 }

@@ -12,11 +12,10 @@ export function GamesListScreen() {
   if (!list) return null;
 
   return (
-    <div>
+    <main>
       <h1>Games List!</h1>
-      <div>{JSON.stringify(list)}</div>
       <ul>
-        {list.map((item) => (
+        {list?.map((item) => (
           <GamesListItem
             key={item.gameName + "#" + item.creatorName}
             item={item}
@@ -24,6 +23,6 @@ export function GamesListScreen() {
         ))}
       </ul>
       <button onClick={cancel}>Cancel</button>
-    </div>
+    </main>
   );
 }

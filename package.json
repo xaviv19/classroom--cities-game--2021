@@ -52,5 +52,6 @@
     "chalk": "^4.1.2",
     "jest-diff": "^27.2.0",
     "msw": "^0.35.0"
-  }
+  },
+  "proxy": "http://localhost:8080"
 }

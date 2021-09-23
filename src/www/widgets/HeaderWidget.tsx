@@ -1,12 +1,17 @@
 import { LinkTo } from "./LinkToWidget";
 import { LoadingWidget } from "./LoadingWidget";
+import { Bar } from "www/theme/Bar";
+import { Spacer } from "www/theme/Spacer";
 
 export function HeaderWidget() {
   return (
-    <div>
-      Header | <LinkTo name="login">Login</LinkTo>|{" "}
-      <LinkTo name="addNextPlayer">Multiplayer</LinkTo>
+    <Bar>
       <LoadingWidget />
-    </div>
+      City Game!
+      <Spacer />
+      <LinkTo name="login">Login</LinkTo>
+      <span>&nbsp;|&nbsp;</span>
+      <LinkTo name="addNextPlayer">Multiplayer</LinkTo>
+    </Bar>
   );
 }

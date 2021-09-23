@@ -12,7 +12,7 @@ export const playerTestSteps: PostLineStep[] = [
     expect(screen.getByTestId("player-header")).toHaveTextContent(playerName);
   }),
   step(/Enter "([^"]*)" as friend name/, (line, [, text]) => {
-    var input = screen.getByLabelText("Friend name");
+    var input = screen.getByLabelText("Friend name:");
     userEvent.clear(input);
     userEvent.type(input, text);
   }),
@@ -22,7 +22,7 @@ export const playerTestSteps: PostLineStep[] = [
   }),
   step(/Go to my playing games/, () => {
     const link = screen.getByRole("link", {
-      name: "My playing games",
+      name: /My playing games/,
     });
     userEvent.click(link);
   }),

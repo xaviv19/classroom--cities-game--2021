@@ -10,5 +10,10 @@ export function DockComponent({ entity }: any) {
   );
   if (!entity.isDock) return null;
 
-  return <EntityList entities={coLocateds} />;
+  return (
+    <div>
+      Dockeds:
+      <EntityList entities={coLocateds} />
+    </div>
+  );
 }

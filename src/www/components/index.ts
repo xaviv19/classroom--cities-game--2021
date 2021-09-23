@@ -7,12 +7,11 @@ import { PopulatedComponent } from "./PopulatedComponent";
 import { SailComponent } from "./SailComponent";
 
 export const Components = [
-  // the order is relevant
+  LocatedComponent,
+  PopulatedComponent,
   DockComponent,
   DockedComponent,
   LoadableComponent,
-  LocatedComponent,
   NamedComponent,
-  PopulatedComponent,
   SailComponent,
 ];

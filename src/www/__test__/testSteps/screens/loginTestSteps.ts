@@ -40,19 +40,19 @@ function goToTheLogin() {
 }
 
 function enterPlayerName(playerName: string) {
-  var input = screen.getByLabelText("Player name") as HTMLInputElement;
+  var input = screen.getByLabelText("Player name:") as HTMLInputElement;
   userEvent.clear(input);
   userEvent.type(input, playerName);
 }
 
 function enterPassword(password: string) {
-  var input = screen.getByLabelText("Password");
+  var input = screen.getByLabelText("Password:");
   userEvent.clear(input);
   userEvent.type(input, password);
 }
 
 function clickTheLoginButton() {
-  const button = screen.getByRole("button", { name: "Signup" });
+  const button = screen.getByRole("button", { name: "Login" });
   userEvent.click(button);
 }
 

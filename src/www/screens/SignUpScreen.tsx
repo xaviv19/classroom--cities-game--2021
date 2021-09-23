@@ -7,20 +7,30 @@ export function SignUpScreen() {
   const singUp = useDispatchForm(signedUp, playerNameRef, passwordRef);
 
   return (
-    <div>
+    <main>
       <h1>Sign up!</h1>
 
       <label>
-        Player name
+        Player name:
+        <br />
         <input ref={playerNameRef} />
       </label>
 
+      <br />
+      <br />
       <label>
-        Password
-        <input ref={passwordRef} type="password" />
+        Password:
+        <br />
+        <input
+          ref={passwordRef}
+          type="password"
+          autoComplete="current-password"
+        />
       </label>
 
+      <br />
+      <br />
       <button onClick={singUp}>Signup</button>
-    </div>
+    </main>
   );
 }

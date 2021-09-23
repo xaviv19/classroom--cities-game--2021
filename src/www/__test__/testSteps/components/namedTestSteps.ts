@@ -4,7 +4,7 @@ import userEvent from "@testing-library/user-event";
 
 export const namedTestSteps: PostLineStep[] = [
   step(/Enter new name "([^"]+)"/, (line, [, text]) => {
-    const input = screen.getByLabelText("New name");
+    const input = screen.getByLabelText("New name:");
     userEvent.clear(input);
     userEvent.type(input, text);
   }),

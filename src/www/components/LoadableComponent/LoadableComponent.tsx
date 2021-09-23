@@ -22,6 +22,8 @@ export function LoadableComponent({ entity }: any) {
     newLoadUnloadAmountRef
   );
 
+  if (!entity.isLoadable) return null;
+
   return (
     <>
       <div>Load/unload amount: {entity.loadUnloadAmount}</div>

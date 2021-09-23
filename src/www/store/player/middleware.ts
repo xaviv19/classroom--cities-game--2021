@@ -1,19 +1,13 @@
 import { fetchAndDispatchMessage } from "www/widgets/MessageWidget/fetchAndDispatchMessage";
 import { Middleware } from "redux";
 import { AppState, AppStore } from "www/store";
-import {
-  LOGGED_IN,
-  NextPlayerAddedAction,
-  NEXT_PLAYER_ADDED,
-  SIGNED_UP,
-} from "./types";
+import { LOGGED_IN, SIGNED_UP } from "./types";
 import {
   loadingFinished,
   loadingStarted,
 } from "www/widgets/LoadingWidget/actions";
 import { screenPushed } from "www/widgets/ScreenStackWidget/actions";
 import { playerReplaced } from "./actions";
-import { getPlayerName, getPlayerToken } from "./selectors";
 
 export const playerMiddleware: Middleware<{}, AppState> =
   (store: any) => (next) => async (action) => {

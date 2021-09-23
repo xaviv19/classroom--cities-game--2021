@@ -6,7 +6,12 @@ export async function fetchAndDispatchMessage(
   options: Parameters<typeof fetch>[1],
   dispatch: AppDispatch
 ): Promise<any> {
-  const response = await fetch(url, options);
+  const newOptions = {
+    ...options,
+    body: JSON.stringify(options?.body),
+    headers: { "Content-Type": "application/json" },
+  };
+  const response = await fetch(url, newOptions);
 
   const body = await response.json();
   if (typeof body.message === "string") {

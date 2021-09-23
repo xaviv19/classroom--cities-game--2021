@@ -37,13 +37,13 @@ export const multiplayerTestSteps: PostLineStep[] = [
 ];
 
 function enterNextPlayerName(playerName: string) {
-  var input = screen.getByLabelText("Next player name");
+  var input = screen.getByLabelText("Next player name:");
   userEvent.clear(input);
   userEvent.type(input, playerName);
 }
 
 function enterNextPlayerPassword(password: string) {
-  var input = screen.getByLabelText("Next player password");
+  var input = screen.getByLabelText("Next player password:");
   userEvent.clear(input);
   userEvent.type(input, password);
 }

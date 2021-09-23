@@ -10,11 +10,13 @@ export function GameScreen() {
   const entities = useAppSelector(getAllGameEntities);
 
   return (
-    <div>
-      <PlayerHeader />
+    <>
+      <PlayerHeader color="white" />
       <GameHeader />
-      <h1>Game!</h1>
-      <EntityList entities={entities} />
-    </div>
+      <main>
+        <h1>Game!</h1>
+        <EntityList entities={entities} />
+      </main>
+    </>
   );
 }

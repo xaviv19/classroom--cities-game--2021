@@ -21,7 +21,7 @@ export const messageTestSteps: PostLineStep[] = [
     (line, match) => {
       const text = match[1];
       const messageElement = screen.getByRole("alert");
-      expect(messageElement).toHaveClass("error");
+      expect(messageElement).toHaveTextContent("⚠");
       expect(messageElement).toHaveTextContent(text);
       dismissMessage();
     }

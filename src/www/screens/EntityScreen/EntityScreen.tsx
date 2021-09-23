@@ -14,10 +14,10 @@ export function EntityScreen() {
     <div>
       <PlayerHeader />
       <GameHeader />
-      <h1>
-        Entity {entity.type} {entity.name} of {entity.owner}
-      </h1>
       <main>
+        <h1>
+          {entity.name} {entity.type} of {entity.owner}
+        </h1>
         <EntityComponents entity={entity} />
       </main>
     </div>

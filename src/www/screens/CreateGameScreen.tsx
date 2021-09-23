@@ -10,16 +10,17 @@ export function CreateGameScreen() {
   const cancel = useCallback(() => dispatch(screenPopped()), [dispatch]);
 
   return (
-    <div>
+    <main>
       <h1>Create game!</h1>
-
       <label>
-        Game name
+        Game name:
+        <br />
         <input ref={gameNameRef} />
       </label>
-
-      <button onClick={createGame}>Create game</button>
+      <br />
+      <br />
+      <button onClick={createGame}>Create game</button>{" "}
       <button onClick={cancel}>Cancel</button>
-    </div>
+    </main>
   );
 }

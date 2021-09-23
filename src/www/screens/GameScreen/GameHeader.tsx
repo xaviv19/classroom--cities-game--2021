@@ -5,6 +5,8 @@ import { ButtonDispatch } from "www/widgets/ButtonDispatchWidget";
 import { LinkDispatch } from "www/widgets/LinkDispatchWidget";
 import { screenPopped } from "www/widgets/ScreenStackWidget/actions";
 import { getCurrentScreenName } from "www/widgets/ScreenStackWidget/selectors";
+import { Bar } from "www/theme/Bar";
+import { Spacer } from "www/theme/Spacer";
 
 export function GameHeader() {
   const isGameScreen = useAppSelector(getCurrentScreenName) === "game";
@@ -12,15 +14,19 @@ export function GameHeader() {
   const { gameName, creatorName, roundNumber } = game;
 
   return (
-    <div data-testid="game-header">
+    <Bar color="lightgray">
       {!isGameScreen && (
         <>
           <LinkDispatch createAction={screenPopped}>« Back</LinkDispatch>
+          &nbsp;|&nbsp;
         </>
       )}{" "}
-      <ButtonDispatch createAction={roundEnded}>End Round</ButtonDispatch> |{" "}
-      <ButtonDispatch createAction={gameRefreshed}>Refresh</ButtonDispatch> |
-      Game {gameName} created by {creatorName}, round {roundNumber}
-    </div>
+      <span data-testid="game-header">
+        Game {gameName} created by {creatorName}, round {roundNumber}
+      </span>
+      <Spacer />
+      <ButtonDispatch createAction={roundEnded}>End Round</ButtonDispatch>&nbsp;
+      <ButtonDispatch createAction={gameRefreshed}>Refresh</ButtonDispatch>
+    </Bar>
   );
 }

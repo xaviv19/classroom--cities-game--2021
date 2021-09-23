@@ -16,8 +16,9 @@ export function DockedComponent({ entity }: any) {
 
   return (
     <div>
-      Docked at: {dock.type} {dock.name} of {dock.owner}.
-      <button onClick={seeTheDock}>See the dock</button>
+      Docked at: {dock.type} {dock.name} of {dock.owner}
+      &nbsp;
+      <button onClick={seeTheDock}>See the dock</button>.
     </div>
   );
 }

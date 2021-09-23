@@ -17,7 +17,7 @@ export const createGameTestSteps: PostLineStep[] = [
     userEvent.click(button);
   }),
   step(/Add "([^"]+)" as game name/, (line, [, gameName]) => {
-    var input = screen.getByLabelText("Game name") as HTMLInputElement;
+    var input = screen.getByLabelText("Game name:") as HTMLInputElement;
     userEvent.clear(input);
     userEvent.type(input, gameName);
   }),
