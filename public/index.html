@@ -32,12 +32,25 @@
         text-decoration: underline;
         cursor: pointer;
       }
+      .content {
+        max-width: 40rem;
+        padding-top: 0.5rem;
+        margin: 1rem auto;
+      }
       main {
         padding: 0.5rem 2rem 2rem;
         max-width: 40rem;
         margin: 1rem auto;
         border: solid 4px #ccc;
         background: #eee;
+      }
+      .content + main {
+        padding-top: 0;
+        margin-top: -1rem;
+      }
+      pre {
+        overflow: auto;
+        background: rgba(255, 255, 255, 0.5);
       }
     </style>
     <title>React App</title>

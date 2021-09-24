@@ -1,3 +1,4 @@
+import { blogListTestSteps } from "./blogListTestSteps";
 import { createGameTestSteps } from "./createGameTestSteps";
 import { entityTestSteps } from "./entityTestSteps";
 import { entityListTestSteps } from "./entityListTestSteps";
@@ -6,10 +7,12 @@ import { gameListTestSteps } from "./gameListTestSteps";
 import { loginTestSteps } from "./loginTestSteps";
 import { multiplayerTestSteps } from "./multiplayerTestSteps";
 import { playerTestSteps } from "./playerTestSteps";
+import { postListTestSteps } from "./postListTestSteps";
 import { signupTestSteps } from "./signupTestSteps";
 import { welcomeTestSteps } from "./welcomeTestSteps";
 
 export const screensTestSteps = [
+  blogListTestSteps,
   createGameTestSteps,
   entityTestSteps,
   entityListTestSteps,
@@ -18,6 +21,7 @@ export const screensTestSteps = [
   loginTestSteps,
   multiplayerTestSteps,
   playerTestSteps,
+  postListTestSteps,
   signupTestSteps,
   welcomeTestSteps,
 ];

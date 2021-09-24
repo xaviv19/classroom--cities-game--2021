@@ -16,4 +16,12 @@ public class ListPostsResponseEntry {
         frontMatter = post.getFrontMatter();
         bodyLineNumber = post.getBodyLineNumber();
     }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getId() {
+        return id;
+    }
 }

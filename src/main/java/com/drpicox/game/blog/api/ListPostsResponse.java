@@ -13,4 +13,8 @@ public class ListPostsResponse {
         var entry = new ListPostsResponseEntry(post);
         posts.add(entry);
     }
+
+    public List<ListPostsResponseEntry> getPosts() {
+        return posts;
+    }
 }
