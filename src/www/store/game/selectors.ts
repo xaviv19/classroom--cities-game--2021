@@ -13,7 +13,5 @@ export function getEntityById(
 }
 
 export function makeGetAllGameEntities() {
-  return createSelector(getGame, (game) =>
-    game ? Object.values(game.entities) : []
-  );
+  return createSelector(getGame, (game) => Object.values(game!.entities));
 }

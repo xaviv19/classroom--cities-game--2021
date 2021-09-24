@@ -6,7 +6,7 @@ export type GamesListItem = {
 
 export type GamesList = GamesListItem[];
 
-export type GamesListState = null;
+export type GamesListState = GamesList;
 
 export const GAMES_BY_CREATOR_LISTED = "gamesList/GAMES_BY_CREATOR_LISTED";
 export interface GamesByCreatorListedAction {

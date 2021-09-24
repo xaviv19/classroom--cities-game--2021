@@ -93,9 +93,7 @@ async function refreshGame(store: any, action: any) {
     { method: "GET" },
     store.dispatch
   );
-  if (!result.isError) {
-    store.dispatch(gameReplaced(result));
-  }
+  store.dispatch(gameReplaced(result));
   store.dispatch(loadingFinished());
 }
 

@@ -54,5 +54,16 @@
     "jest-diff": "^27.2.0",
     "msw": "^0.35.0"
   },
-  "proxy": "http://localhost:8080"
+  "proxy": "http://localhost:8080",
+  "jest": {
+    "collectCoverageFrom": [
+      "src/www/**/*.{js,jsx,ts,tsx}",
+      "!src/www/__test__"
+    ],
+    "coveragePathIgnorePatterns": [
+      "src/www/__test__",
+      "src/www/index.tsx",
+      "src/www/widgets/ScreenStackWidget/ScreenStackWidget.tsx"
+    ]
+  }
 }

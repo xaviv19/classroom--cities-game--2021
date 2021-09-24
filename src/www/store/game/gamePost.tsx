@@ -20,9 +20,9 @@ export async function gamePost(
     { method: "POST", body },
     store.dispatch
   );
-  if (!result.isError) {
-    store.dispatch(gameReplaced(result));
-    await success(result);
-  }
+
+  store.dispatch(gameReplaced(result));
+  await success(result);
+
   store.dispatch(loadingFinished());
 }

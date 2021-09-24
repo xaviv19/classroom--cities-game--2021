@@ -15,7 +15,7 @@ export function widgetScreenStackReducer(
     case SCREEN_PUSHED:
       return [...state, action.screen];
     case SCREEN_POPPED:
-      return state.length > 1 ? state.slice(0, state.length - 1) : state;
+      return state.slice(0, state.length - 1);
     default:
       return state;
   }

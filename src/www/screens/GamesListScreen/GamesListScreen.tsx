@@ -9,8 +9,6 @@ export function GamesListScreen() {
   const dispatch = useAppDispatch();
   const cancel = useCallback(() => dispatch(screenPopped()), [dispatch]);
 
-  if (!list) return null;
-
   return (
     <main>
       <h1>Games List!</h1>

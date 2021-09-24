@@ -68,9 +68,7 @@ async function listByPlayer(store: any, action: any) {
     { method: "POST", body: { token } as any },
     store.dispatch
   );
-  if (!result.isError) {
-    store.dispatch(gamesListReplaced(result.games));
-    store.dispatch(screenPushed("gamesList"));
-  }
+  store.dispatch(gamesListReplaced(result.games));
+  store.dispatch(screenPushed("gamesList"));
   store.dispatch(loadingFinished());
 }

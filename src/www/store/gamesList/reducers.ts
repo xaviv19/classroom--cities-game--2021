@@ -5,7 +5,7 @@ import {
 } from "./types";
 
 export function gamesListReducer(
-  state: GamesListState = null,
+  state: GamesListState = [],
   action: GamesListActionTypes
 ) {
   switch (action.type) {
