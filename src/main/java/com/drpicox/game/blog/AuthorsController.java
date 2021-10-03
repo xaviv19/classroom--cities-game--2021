@@ -5,7 +5,8 @@ import org.springframework.stereotype.Component;
 import java.io.File;
 import java.io.FileReader;
 import java.io.LineNumberReader;
-import java.net.URL;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
@@ -72,14 +73,13 @@ public class AuthorsController {
         return result;
     }
 
-    private File[] getResourceAuthorsFiles() {
-        String path = getAuthorsPath();
-        return new File(path).listFiles();
+    private File[] getResourceAuthorsFiles() throws URISyntaxException {
+        var uri = getAuthorsUri();
+        return new File(uri).listFiles();
     }
 
-    private String getAuthorsPath() {
+    private URI getAuthorsUri() throws URISyntaxException {
         ClassLoader loader = Thread.currentThread().getContextClassLoader();
-        URL url = loader.getResource("authors");
-        return url.getPath().replaceAll("%20", " ");
+        return loader.getResource("authors").toURI();
     }
 }

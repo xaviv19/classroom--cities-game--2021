@@ -4,9 +4,9 @@ import org.springframework.stereotype.Component;
 
 import java.io.File;
 import java.io.FileReader;
-import java.io.IOException;
 import java.io.LineNumberReader;
-import java.net.URL;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.*;
 
 @Component
@@ -58,14 +58,13 @@ public class BlogController {
         }
     }
 
-    private File[] getResourceBlogFiles() {
-        String path = getBlogPath();
-        return new File(path).listFiles();
+    private File[] getResourceBlogFiles() throws URISyntaxException {
+        var uri = getBlogUri();
+        return new File(uri).listFiles();
     }
 
-    private String getBlogPath() {
+    private URI getBlogUri() throws URISyntaxException {
         ClassLoader loader = Thread.currentThread().getContextClassLoader();
-        URL url = loader.getResource("blog");
-        return url.getPath().replaceAll("%20", " ");
+        return loader.getResource("blog").toURI();
     }
 }
