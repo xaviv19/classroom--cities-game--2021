@@ -1,21 +1,17 @@
 package com.drpicox.game.entities.cities;
 
-import com.drpicox.game.components.docks.Dock;
 import com.drpicox.game.components.docks.DocksController;
-import com.drpicox.game.components.locateds.LocatedsController;
-import com.drpicox.game.ecs.EcsComponent;
-import com.drpicox.game.ecs.EntityIdGenerator;
-import com.drpicox.game.games.Game;
 import com.drpicox.game.components.growingsPopulation.GrowingsPopulationsController;
+import com.drpicox.game.components.locateds.LocatedsController;
 import com.drpicox.game.components.nameds.NamedsController;
 import com.drpicox.game.components.owneds.OwnedsController;
-import com.drpicox.game.players.Player;
 import com.drpicox.game.components.populateds.PopulatedsController;
 import com.drpicox.game.components.typeds.TypedsController;
+import com.drpicox.game.components.withBuildings.WithBuildingsController;
+import com.drpicox.game.ecs.EntityIdGenerator;
+import com.drpicox.game.games.Game;
+import com.drpicox.game.players.Player;
 import org.springframework.stereotype.Component;
-
-import java.util.function.Function;
-import java.util.stream.Collectors;
 
 @Component
 public class CityFactory {
@@ -28,8 +24,9 @@ public class CityFactory {
     private final GrowingsPopulationsController growingsPopulationsController;
     private final TypedsController typedsController;
     private final LocatedsController locatedsController;
+    private final WithBuildingsController withBuildingsController;
 
-    public CityFactory(DocksController docksController, EntityIdGenerator entityIdGenerator, NamedsController namedsController, OwnedsController ownedsController, PopulatedsController populatedsController, GrowingsPopulationsController growingsPopulationsController, TypedsController typedsController, LocatedsController locatedsController) {
+    public CityFactory(DocksController docksController, EntityIdGenerator entityIdGenerator, NamedsController namedsController, OwnedsController ownedsController, PopulatedsController populatedsController, GrowingsPopulationsController growingsPopulationsController, TypedsController typedsController, LocatedsController locatedsController, WithBuildingsController withBuildingsController) {
         this.docksController = docksController;
         this.entityIdGenerator = entityIdGenerator;
         this.namedsController = namedsController;
@@ -38,6 +35,7 @@ public class CityFactory {
         this.growingsPopulationsController = growingsPopulationsController;
         this.typedsController = typedsController;
         this.locatedsController = locatedsController;
+        this.withBuildingsController = withBuildingsController;
     }
 
     public void buildCity(Game game, Player owner, String initialName, int initialPopulation) {
@@ -50,6 +48,7 @@ public class CityFactory {
         growingsPopulationsController.create(entityId, game);
         typedsController.create(entityId, game, "city");
         locatedsController.create(entityId, game, initialLocation);
+        withBuildingsController.create(entityId, game);
     }
 
     private int getInitialLocation(Game game) {

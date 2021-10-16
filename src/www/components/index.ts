@@ -5,6 +5,7 @@ import { LocatedComponent } from "./LocatedComponent";
 import { NamedComponent } from "./NamedComponent";
 import { PopulatedComponent } from "./PopulatedComponent";
 import { SailComponent } from "./SailComponent";
+import { WithBuildingsComponent } from "./WithBuildingsComponent";
 
 export const Components = [
   LocatedComponent,
@@ -14,4 +15,5 @@ export const Components = [
   LoadableComponent,
   NamedComponent,
   SailComponent,
+  WithBuildingsComponent,
 ];
