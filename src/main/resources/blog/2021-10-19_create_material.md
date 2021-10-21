@@ -1,8 +1,8 @@
 ---
 writer: Belda7
-coder:
+coder: amoratoi
 ---
-# Materials
+# Create Material
 
 Until this moment cities were a little bit too sad,
 but now, we add materials.
@@ -31,24 +31,29 @@ You can also trade materials with other players.
 
 Create and start playing one of your games:
 
-* Given there is "leonard" playing their game "together".
+ * Given there is "leonard" playing their game "together".
  <!-- SNAPSHOT status=200 -->  
-* Game round should be 1.
-* "leonard" should have 1 city.
-* "leonard" should have the "Capital" city.
-* Click on the "leonard" city "Capital"
-* You should be at the screen of a city.
-* The name should be "Capital".
+ * Game round should be 1.
+ * "leonard" should have 1 city.
+ * "leonard" should have the "Capital" city.
+
 
 You can see here the materials:
 
-* The materials should be gold,iron,wheat and stone.
+ * "leonard" should have a quantity of 20 material "GOLD".
+ * "leonard" should have a quantity of 20 material "IRON".
+ * "leonard" should have a quantity of 35 material "WOOD".
+ * "leonard" should have a quantity of 50 material "WHEAT".
+ * "leonard" should have a quantity of 25 material "STONE".
 
 ### And others players the same
 
 Others players can also see their materials.
 
-* Given there is the next player "penny".
+ * Given there is the next player "penny".
  <!-- SNAPSHOT status=200 -->
-* Click on the "penny" city "Capital"
-* The materials should be gold,iron,wheat and stone.
+ * "penny" should have a quantity of 20 material "GOLD".
+ * "penny" should have a quantity of 20 material "IRON".
+ * "penny" should have a quantity of 35 material "WOOD".
+ * "penny" should have a quantity of 50 material "WHEAT".
+ * "penny" should have a quantity of 25 material "STONE".
