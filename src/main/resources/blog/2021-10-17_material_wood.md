@@ -1,8 +1,8 @@
 ---
 writer: amoratoi
-coder: -
+coder: mpique
 ---
-# Materials
+# Material Wood
 
 Finally you have some way to create buildings and objects. Materials have come to stay!
 Build everything you want and upgrade your city to destroy others!
@@ -42,8 +42,8 @@ And back.
 
 You can see your materials in the game screen.
 
- * "arnau" should have 35 wood. 
- * "marta" should have 35 wood.
+* arnau should have a quantity of 35 material WOOD.
+* marta should have a quantity of 35 material WOOD.
 
 And marta can see yours:
 
@@ -51,30 +51,34 @@ And marta can see yours:
  <!-- SNAPSHOT status=200 -->
  * You should be at the game screen.
  * "marta" should be the current player.
- * "arnau" should have 35 wood.
- * "marta" should have 35 wood.
+ * "arnau" should have a quantity of 35 material "WOOD".
+ * "marta" should have a quantity of 35 material "WOOD".
  
 And also in the general list.
 
  * You should be at the game screen.
  * "marta" should be the current player.
- * "arnau" should have 35 wood.
- * "marta" should have 35 wood.
+ * "arnau" should have a quantity of 35 material "WOOD".
+ * "marta" should have a quantity of 35 material "WOOD".
 
 ### Obtaining Materials
 
 Every player will get 35 wood each turn.
 
- * Go to Next player.
+ * End the round.
  <!-- SNAPSHOT status=200 -->
  * You should be at the game screen.
+ * Game round should be 2.
+ * Go to Next player.
+ <!-- SNAPSHOT status=200 -->
  * "arnau" should be the current player.
- * "arnau" should have 70 wood.
- * "marta" should have 35 wood.
+ * "arnau" should have a quantity of 70 material "WOOD".
+ * "marta" should have a quantity of 35 material "WOOD".
 
  * Go to Next player.
  <!-- SNAPSHOT status=200 -->
  * You should be at the game screen.
  * "marta" should be the current player.
- * "arnau" should have 70 wood.
- * "marta" should have 70 wood.
+ * "arnau" should have a quantity of 70 material "WOOD".
+ * "marta" should have a quantity of 70 material "WOOD".
+
