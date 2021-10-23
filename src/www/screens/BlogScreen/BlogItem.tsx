@@ -11,7 +11,7 @@ export function BlogItem({ post }: { post: BlogEntry }) {
   const { writer, coder } = post.frontMatter;
 
   return (
-    <li onClick={goToPost} style={{ color: !coder ? "red" : "inherit" }}>
+    <li onClick={goToPost}>
       <code>[{post.id.slice(0, 10)}]</code>{" "}
       <span role="link">{post.title}</span>
       <small> by {writer}</small>

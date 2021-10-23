@@ -64,6 +64,14 @@
       "src/www/__test__",
       "src/www/index.tsx",
       "src/www/widgets/ScreenStackWidget/ScreenStackWidget.tsx"
-    ]
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 100,
+        "functions": 100,
+        "lines": 100,
+        "statements": 100
+      }
+    }
   }
 }
