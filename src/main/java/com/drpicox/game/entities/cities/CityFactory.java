@@ -2,6 +2,7 @@ package com.drpicox.game.entities.cities;
 
 import com.drpicox.game.components.docks.DocksController;
 import com.drpicox.game.components.growingsPopulation.GrowingsPopulationsController;
+import com.drpicox.game.components.informeds.InformedsController;
 import com.drpicox.game.components.locateds.LocatedsController;
 import com.drpicox.game.components.nameds.NamedsController;
 import com.drpicox.game.components.owneds.OwnedsController;
@@ -25,8 +26,9 @@ public class CityFactory {
     private final TypedsController typedsController;
     private final LocatedsController locatedsController;
     private final WithBuildingsController withBuildingsController;
+    private final InformedsController informedsController;
 
-    public CityFactory(DocksController docksController, EntityIdGenerator entityIdGenerator, NamedsController namedsController, OwnedsController ownedsController, PopulatedsController populatedsController, GrowingsPopulationsController growingsPopulationsController, TypedsController typedsController, LocatedsController locatedsController, WithBuildingsController withBuildingsController) {
+    public CityFactory(DocksController docksController, EntityIdGenerator entityIdGenerator, NamedsController namedsController, OwnedsController ownedsController, PopulatedsController populatedsController, GrowingsPopulationsController growingsPopulationsController, TypedsController typedsController, LocatedsController locatedsController, WithBuildingsController withBuildingsController, InformedsController informedsController) {
         this.docksController = docksController;
         this.entityIdGenerator = entityIdGenerator;
         this.namedsController = namedsController;
@@ -36,6 +38,7 @@ public class CityFactory {
         this.typedsController = typedsController;
         this.locatedsController = locatedsController;
         this.withBuildingsController = withBuildingsController;
+        this.informedsController = informedsController;
     }
 
     public void buildCity(Game game, Player owner, String initialName, int initialPopulation) {
@@ -49,6 +52,7 @@ public class CityFactory {
         typedsController.create(entityId, game, "city");
         locatedsController.create(entityId, game, initialLocation);
         withBuildingsController.create(entityId, game);
+        informedsController.create(entityId, game);
     }
 
     private int getInitialLocation(Game game) {

@@ -16,4 +16,8 @@ export const namedTestSteps: PostLineStep[] = [
     const button = screen.queryByRole("button", { name: "Change name" });
     expect(button).toBeNull();
   }),
+  step(/The change name option should be active/, () => {
+    const button = screen.queryByRole("button", { name: "Change name" });
+    expect(button).toBeEnabled();
+  }),
 ];

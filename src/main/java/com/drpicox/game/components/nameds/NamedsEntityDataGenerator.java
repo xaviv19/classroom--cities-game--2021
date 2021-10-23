@@ -22,6 +22,11 @@ public class NamedsEntityDataGenerator implements EntityOwnDataGenerator, Entity
     @Override
     public void generateOwnData(GameData data, Game game, Player playingPlayer, List<String> ownedEntityIds) {
         generateNamedsData(data, ownedEntityIds);
+        var components = namedsRepository.findAllById(ownedEntityIds);
+        components.forEach(component -> {
+            var entityId = component.getEntityId();
+            data.putEntityProperty(entityId, "changeNameOption", true);
+        });
     }
 
     @Override
