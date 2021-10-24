@@ -1,5 +1,6 @@
 package com.drpicox.game.entities.materials;
 
+import com.drpicox.game.components.growingsGold.GrowingsGoldController;
 import com.drpicox.game.components.growingsIron.GrowingsIronController;
 import com.drpicox.game.components.growingsStone.GrowingsStoneController;
 import com.drpicox.game.components.growingsWood.GrowingsWoodController;
@@ -23,8 +24,9 @@ public class MaterialFactory {
     private final GrowingsWoodController growingsWoodController;
     private final GrowingsIronController growingsIronController;
     private final GrowingsStoneController growingsStoneController;
+    private final GrowingsGoldController growingsGoldController;
 
-    public MaterialFactory(NamedsController namedsController, OwnedsController ownedsController, EntityIdGenerator entityIdGenerator, TypedsController typedsController, QuantityController quantityController, GrowingsWoodController growingsWoodController, GrowingsIronController growingsIronController, GrowingsStoneController growingsStoneController) {
+    public MaterialFactory(NamedsController namedsController, OwnedsController ownedsController, EntityIdGenerator entityIdGenerator, TypedsController typedsController, QuantityController quantityController, GrowingsWoodController growingsWoodController, GrowingsIronController growingsIronController, GrowingsStoneController growingsStoneController, GrowingsGoldController growingsGoldController) {
         this.namedsController = namedsController;
         this.ownedsController = ownedsController;
         this.entityIdGenerator = entityIdGenerator;
@@ -33,6 +35,7 @@ public class MaterialFactory {
         this.growingsWoodController = growingsWoodController;
         this.growingsIronController = growingsIronController;
         this.growingsStoneController = growingsStoneController;
+        this.growingsGoldController = growingsGoldController;
     }
 
     public void createMaterials(Game game, Player owner, String materialName, int initialQuantity) {
@@ -54,6 +57,9 @@ public class MaterialFactory {
                 break;
             case "STONE":
                 growingsStoneController.create(entityId, game);
+                break;
+            case "GOLD":
+                growingsGoldController.create(entityId, game);
                 break;
         }
     }
