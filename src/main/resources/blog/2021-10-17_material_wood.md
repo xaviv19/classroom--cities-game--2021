@@ -42,7 +42,7 @@ And back.
 
 You can see your materials in the game screen.
 
-* arnau should have a quantity of 35 material WOOD.
+ * "arnau" should have a quantity of 35 material "WOOD".
 
  * Go to Next player.
  <!-- SNAPSHOT status=200 -->

@@ -42,19 +42,19 @@ And back.
 
 You can see your materials in the game screen.
 
- * "arnau" should have a quantity of 20 material IRON. 
+ * "arnau" should have a quantity of 20 material "IRON". 
  
  * Go to Next player.
  <!-- SNAPSHOT status=200 -->
  * You should be at the game screen.
  * "marta" should be the current player.
- * "marta" should have a quantity of 20 material IRON.
+ * "marta" should have a quantity of 20 material "IRON".
  
 And also in the general list.
 
  * You should be at the game screen.
  * "marta" should be the current player.
- * "marta" should have a quantity of 20 material IRON.
+ * "marta" should have a quantity of 20 material "IRON".
 
 ### Obtaining Materials
 
@@ -66,10 +66,10 @@ Every player will get 20 iron each turn.
  * Go to Next player.
  * <!-- SNAPSHOT status=200 -->
  * "arnau" should be the current player.
- * "arnau" should have a quantity of 40 material IRON.
+ * "arnau" should have a quantity of 40 material "IRON".
 
  * Go to Next player.
  <!-- SNAPSHOT status=200 -->
  * You should be at the game screen.
  * "marta" should be the current player.
- * "marta" should have a quantity of 40 material IRON.
+ * "marta" should have a quantity of 40 material "IRON".
