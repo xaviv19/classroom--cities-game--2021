@@ -27,7 +27,7 @@ public class QuantityController {
         quantityRepository.save(quantity);
         return result;
     }
-
+/*
     public int decreaseQuantity(String entityId, int decrease) {
         var quantity = quantityRepository.findById(entityId).get();
         var result = quantity.decreaseQuantity(decrease);
@@ -39,7 +39,7 @@ public class QuantityController {
         var quantity = quantityRepository.findById(entityId).get();
         return quantity.getQuantity();
     }
-
+*/
     public List<Quantity> findAllByGameAndQuantity(Game game, int quantity) {
         return quantityRepository.findAllByGameAndQuantity(game, quantity);
     }

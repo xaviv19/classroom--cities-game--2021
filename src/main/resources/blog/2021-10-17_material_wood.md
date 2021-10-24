@@ -43,22 +43,17 @@ And back.
 You can see your materials in the game screen.
 
 * arnau should have a quantity of 35 material WOOD.
-* marta should have a quantity of 35 material WOOD.
-
-And marta can see yours:
 
  * Go to Next player.
  <!-- SNAPSHOT status=200 -->
  * You should be at the game screen.
  * "marta" should be the current player.
- * "arnau" should have a quantity of 35 material "WOOD".
  * "marta" should have a quantity of 35 material "WOOD".
  
 And also in the general list.
 
  * You should be at the game screen.
  * "marta" should be the current player.
- * "arnau" should have a quantity of 35 material "WOOD".
  * "marta" should have a quantity of 35 material "WOOD".
 
 ### Obtaining Materials
@@ -73,12 +68,10 @@ Every player will get 35 wood each turn.
  <!-- SNAPSHOT status=200 -->
  * "arnau" should be the current player.
  * "arnau" should have a quantity of 70 material "WOOD".
- * "marta" should have a quantity of 70 material "WOOD".
 
  * Go to Next player.
  <!-- SNAPSHOT status=200 -->
  * You should be at the game screen.
  * "marta" should be the current player.
- * "arnau" should have a quantity of 70 material "WOOD".
  * "marta" should have a quantity of 70 material "WOOD".
 

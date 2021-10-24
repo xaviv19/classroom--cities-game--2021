@@ -12,4 +12,5 @@ public class GrowingWood extends EcsComponent {
     }
 
     protected GrowingWood() {}
+
 }
