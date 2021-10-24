@@ -1,0 +1,3 @@
+name: No one
+email: nobody
+github: nobody

@@ -2,7 +2,7 @@
 writer: amoratoi
 coder: garagon4
 ---
-# Materials
+# Material Iron
 
 Finally you have some way to create buildings and objects. Materials have come to stay!
 Build everything you want and upgrade your city to destroy others!
@@ -42,39 +42,34 @@ And back.
 
 You can see your materials in the game screen.
 
- * "arnau" should have 20 iron. 
- * "marta" should have 20 iron.
-
-And marta can see yours:
-
+ * "arnau" should have a quantity of 20 material IRON. 
+ 
  * Go to Next player.
  <!-- SNAPSHOT status=200 -->
  * You should be at the game screen.
  * "marta" should be the current player.
- * "arnau" should have 20 iron.
- * "marta" should have 20 iron.
+ * "marta" should have a quantity of 20 material IRON.
  
 And also in the general list.
 
  * You should be at the game screen.
  * "marta" should be the current player.
- * "arnau" should have 20 iron.
- * "marta" should have 20 iron.
+ * "marta" should have a quantity of 20 material IRON.
 
 ### Obtaining Materials
 
 Every player will get 20 iron each turn.
 
+ * End the round.
+ * <!-- SNAPSHOT status=200 -->
+ * Game round should be 2.
  * Go to Next player.
- <!-- SNAPSHOT status=200 -->
- * You should be at the game screen.
+ * <!-- SNAPSHOT status=200 -->
  * "arnau" should be the current player.
- * "arnau" should have 40 iron.
- * "marta" should have 20 iron.
+ * "arnau" should have a quantity of 40 material IRON.
 
  * Go to Next player.
  <!-- SNAPSHOT status=200 -->
  * You should be at the game screen.
  * "marta" should be the current player.
- * "arnau" should have 40 iron.
- * "marta" should have 40 iron.
+ * "marta" should have a quantity of 40 material IRON.
