@@ -73,7 +73,7 @@ Every player will get 35 wood each turn.
  <!-- SNAPSHOT status=200 -->
  * "arnau" should be the current player.
  * "arnau" should have a quantity of 70 material "WOOD".
- * "marta" should have a quantity of 35 material "WOOD".
+ * "marta" should have a quantity of 70 material "WOOD".
 
  * Go to Next player.
  <!-- SNAPSHOT status=200 -->
