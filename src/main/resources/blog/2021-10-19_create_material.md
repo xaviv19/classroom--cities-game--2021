@@ -44,7 +44,7 @@ You can see here the materials:
  * "leonard" should have a quantity of 20 material "IRON".
  * "leonard" should have a quantity of 35 material "WOOD".
  * "leonard" should have a quantity of 50 material "WHEAT".
- * "leonard" should have a quantity of 25 material "STONE".
+ * "leonard" should have a quantity of 50 material "STONE".
 
 ### And others players the same
 
@@ -56,4 +56,4 @@ Others players can also see their materials.
  * "penny" should have a quantity of 20 material "IRON".
  * "penny" should have a quantity of 35 material "WOOD".
  * "penny" should have a quantity of 50 material "WHEAT".
- * "penny" should have a quantity of 25 material "STONE".
+ * "penny" should have a quantity of 50 material "STONE".
