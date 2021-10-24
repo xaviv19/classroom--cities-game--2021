@@ -1,0 +1,3 @@
+name:David Belda Marín
+email: dbelda@edu.tecnocampus.cat
+github: Belda7
