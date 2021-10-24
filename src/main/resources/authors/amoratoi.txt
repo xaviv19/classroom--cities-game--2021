@@ -1,0 +1,3 @@
+name: Arnald Morató i Catafal
+email: amoratoi@edu.tecnocampus.cat
+github: amoratoi

@@ -1,0 +1,3 @@
+name: Marc Pique Fernandez
+email: mpique@edu.tecnocampus.cat
+github: mpique

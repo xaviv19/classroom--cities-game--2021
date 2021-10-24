@@ -5,13 +5,17 @@ import { LocatedComponent } from "./LocatedComponent";
 import { NamedComponent } from "./NamedComponent";
 import { PopulatedComponent } from "./PopulatedComponent";
 import { SailComponent } from "./SailComponent";
+import { QuantityComponent } from "./QuantityComponent";
+import { MaterialWoodComponent } from "./MaterialWoodComponent";
 
 export const Components = [
   LocatedComponent,
   PopulatedComponent,
   DockComponent,
+  QuantityComponent,
   DockedComponent,
   LoadableComponent,
   NamedComponent,
   SailComponent,
+  MaterialWoodComponent,
 ];
