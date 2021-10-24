@@ -1,5 +1,6 @@
 package com.drpicox.game.entities.materials;
 
+import com.drpicox.game.components.growingsIron.GrowingsIronController;
 import com.drpicox.game.components.growingsWood.GrowingsWoodController;
 import com.drpicox.game.components.nameds.NamedsController;
 import com.drpicox.game.components.owneds.OwnedsController;
@@ -19,14 +20,16 @@ public class MaterialFactory {
     private final EntityIdGenerator entityIdGenerator;
     private final TypedsController typedsController;
     private final GrowingsWoodController growingsWoodController;
+    private final GrowingsIronController growingsIronController;
 
-    public MaterialFactory(NamedsController namedsController, OwnedsController ownedsController, EntityIdGenerator entityIdGenerator, TypedsController typedsController, QuantityController quantityController, GrowingsWoodController growingsWoodController) {
+    public MaterialFactory(NamedsController namedsController, OwnedsController ownedsController, EntityIdGenerator entityIdGenerator, TypedsController typedsController, QuantityController quantityController, GrowingsWoodController growingsWoodController, GrowingsIronController growingsIronController) {
         this.namedsController = namedsController;
         this.ownedsController = ownedsController;
         this.entityIdGenerator = entityIdGenerator;
         this.quantityController = quantityController;
         this.typedsController = typedsController;
         this.growingsWoodController = growingsWoodController;
+        this.growingsIronController = growingsIronController;
     }
 
     public void createMaterials(Game game, Player owner, String materialName, int initialQuantity) {
@@ -35,7 +38,18 @@ public class MaterialFactory {
         ownedsController.create(entityId, game, owner);
         typedsController.create(entityId, game, "material");
         quantityController.create(entityId, game, initialQuantity);
-        growingsWoodController.create(entityId, game);
+        materialChose(materialName, entityId, game);
+
+    }
+    public void materialChose(String materialName, String entityId, Game game){
+        switch(materialName){
+            case "IRON":
+                growingsIronController.create(entityId, game);
+                break;
+            case "WOOD":
+                growingsWoodController.create(entityId, game);
+                break;
+        }
     }
 
 }
