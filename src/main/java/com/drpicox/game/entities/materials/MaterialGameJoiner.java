@@ -24,7 +24,7 @@ public class MaterialGameJoiner implements GameJoiner {
         materialFactory.createMaterials(game, owner,"GOLD", 20);
         materialFactory.createMaterials(game, owner,"WHEAT", 50);
         materialFactory.createMaterials(game, owner,"WOOD", 35);
-        materialFactory.createMaterials(game, owner,"STONE", 25);
+        materialFactory.createMaterials(game, owner,"STONE", 50);
     }
 
 }

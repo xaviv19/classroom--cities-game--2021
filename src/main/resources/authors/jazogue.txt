@@ -1,0 +1,3 @@
+name: Juan Azogue Mulders
+email: jazogue@edu.tecnocampus.cat
+github: jazogue

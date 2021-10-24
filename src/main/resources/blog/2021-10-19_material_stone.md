@@ -1,8 +1,8 @@
 ---
 writer: Belda7
-coder: -
+coder: jazogue
 ---
-# Materials
+# Material Stone
 
 Finally you have some way to create buildings and objects. Materials have come to stay!
 Build everything you want and upgrade your city to destroy others!
@@ -44,65 +44,61 @@ View Player:                       View Player:               │
 
 Create and start playing one of your games:
 
-* Given there is "arnau" playing their game "together".
+ * Given there is "arnau" playing their game "together".
  <!-- SNAPSHOT status=200 -->  
-* You should be at the game screen.
-* "arnau" should be the current player.
-* Playing game should be "together" created by "arnau".
+ * You should be at the game screen.
+ * "arnau" should be the current player.
+ * Playing game should be "together" created by "arnau".
 
 Just make sure, that the next player is marta.
 
-* Given there is the next player "marta".
+ * Given there is the next player "marta".
  <!-- SNAPSHOT status=200 -->
-* You should be at the game screen.
-* "marta" should be the current player.
-* Playing game should be "together" created by "arnau".
+ * You should be at the game screen.
+ * "marta" should be the current player.
+ * Playing game should be "together" created by "arnau".
 
 And back.
 
-* Go to Next player.
+ * Go to Next player.
  <!-- SNAPSHOT status=200 -->
-* You should be at the game screen.
-* "arnau" should be the current player.
-* Playing game should be "together" created by "arnau".
+ * You should be at the game screen.
+ * "arnau" should be the current player.
+ * Playing game should be "together" created by "arnau".
 
 ### See your materials
 
 You can see your materials in the game screen.
 
-* "arnau" should have 50 stone.
-* "marta" should have 50 stone.
+ * "arnau" should have a quantity of 50 material "STONE".
 
-And marta can see yours:
-
-* Go to Next player.
+ * Go to Next player.
  <!-- SNAPSHOT status=200 -->
-* You should be at the game screen.
-* "marta" should be the current player.
-* "arnau" should have 50 stone.
-* "marta" should have 50 stone.
+ * You should be at the game screen.
+ * "marta" should be the current player.
+ * "marta" should have a quantity of 50 material "STONE".
 
-* And also in the general list.
+And also in the general list.
 
-* You should be at the game screen.
-* "marta" should be the current player.
-* "arnau" should have 50 stone.
-* "marta" should have 50 stone.
+ * You should be at the game screen.
+ * "marta" should be the current player.
+ * "marta" should have a quantity of 50 material "STONE".
 
 ### Obtaining Materials
 
-Every player will get 25 stone each turn.
+Every player will get 25 wood each turn.
 
-* Go to Next player.
+ * End the round.
  <!-- SNAPSHOT status=200 -->
-* You should be at the game screen.
-* "arnau" should be the current player.
-* "arnau" should have 75 stone.
-* "marta" should have 50 stone.
+ * You should be at the game screen.
+ * Game round should be 2.
+ * Go to Next player.
+ <!-- SNAPSHOT status=200 -->
+ * "arnau" should be the current player.
+ * "arnau" should have a quantity of 75 material "STONE".
 
-* Go to Next player.
+ * Go to Next player.
  <!-- SNAPSHOT status=200 -->
-* You should be at the game screen.
-* "marta" should be the current player.
-* "arnau" should have 75 stone.
-* "marta" should have 75 stone.
+ * You should be at the game screen.
+ * "marta" should be the current player.
+ * "marta" should have a quantity of 75 material "STONE".
