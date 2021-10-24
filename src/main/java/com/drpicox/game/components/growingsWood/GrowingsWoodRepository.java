@@ -1,4 +1,4 @@
-package com.drpicox.game.components.growingsMaterials;
+package com.drpicox.game.components.growingsWood;
 
 import com.drpicox.game.games.Game;
 import org.springframework.data.jpa.repository.JpaRepository;

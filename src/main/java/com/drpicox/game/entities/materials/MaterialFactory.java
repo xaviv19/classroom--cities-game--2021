@@ -1,6 +1,6 @@
 package com.drpicox.game.entities.materials;
 
-import com.drpicox.game.components.growingsMaterials.GrowingsWoodController;
+import com.drpicox.game.components.growingsWood.GrowingsWoodController;
 import com.drpicox.game.components.nameds.NamedsController;
 import com.drpicox.game.components.owneds.OwnedsController;
 import com.drpicox.game.components.quantity.QuantityController;
