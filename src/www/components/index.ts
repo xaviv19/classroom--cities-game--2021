@@ -7,6 +7,8 @@ import { PopulatedComponent } from "./PopulatedComponent";
 import { SailComponent } from "./SailComponent";
 import { QuantityComponent } from "./QuantityComponent";
 import { MaterialWoodComponent } from "./MaterialWoodComponent";
+import { MaterialIronComponent } from "./MaterialIronComponent";
+
 
 export const Components = [
   LocatedComponent,
@@ -18,4 +20,5 @@ export const Components = [
   NamedComponent,
   SailComponent,
   MaterialWoodComponent,
+  MaterialIronComponent
 ];
