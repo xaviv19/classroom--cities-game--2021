@@ -20,14 +20,14 @@ public class QuantityController {
         var component = new Quantity(entityId, game, initialQuantity);
         quantityRepository.save(component);
     }
-/*
+
     public int increaseQuantity(String entityId, int increment) {
         var quantity = quantityRepository.findById(entityId).get();
         var result = quantity.increaseQuantity(increment);
         quantityRepository.save(quantity);
         return result;
     }
-
+/*
     public int decreaseQuantity(String entityId, int decrease) {
         var quantity = quantityRepository.findById(entityId).get();
         var result = quantity.decreaseQuantity(decrease);
