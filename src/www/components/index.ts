@@ -9,6 +9,7 @@ import { QuantityComponent } from "./QuantityComponent";
 import { MaterialWoodComponent } from "./MaterialWoodComponent";
 import { MaterialIronComponent } from "./MaterialIronComponent";
 import { MaterialStoneComponent } from "./MaterialStoneComponent";
+import { MaterialGoldComponent } from "./MaterialGoldComponent";
 
 
 export const Components = [
@@ -22,5 +23,6 @@ export const Components = [
   SailComponent,
   MaterialWoodComponent,
   MaterialIronComponent,
-  MaterialStoneComponent
+  MaterialStoneComponent,
+  MaterialGoldComponent
 ];
