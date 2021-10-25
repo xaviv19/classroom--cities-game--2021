@@ -3,6 +3,7 @@ package com.drpicox.game.entities.materials;
 import com.drpicox.game.components.growingsGold.GrowingsGoldController;
 import com.drpicox.game.components.growingsIron.GrowingsIronController;
 import com.drpicox.game.components.growingsStone.GrowingsStoneController;
+import com.drpicox.game.components.growingsWheat.GrowingsWheatController;
 import com.drpicox.game.components.growingsWood.GrowingsWoodController;
 import com.drpicox.game.components.nameds.NamedsController;
 import com.drpicox.game.components.owneds.OwnedsController;
@@ -25,8 +26,9 @@ public class MaterialFactory {
     private final GrowingsIronController growingsIronController;
     private final GrowingsStoneController growingsStoneController;
     private final GrowingsGoldController growingsGoldController;
+    private final GrowingsWheatController growingsWheatController;
 
-    public MaterialFactory(NamedsController namedsController, OwnedsController ownedsController, EntityIdGenerator entityIdGenerator, TypedsController typedsController, QuantityController quantityController, GrowingsWoodController growingsWoodController, GrowingsIronController growingsIronController, GrowingsStoneController growingsStoneController, GrowingsGoldController growingsGoldController) {
+    public MaterialFactory(NamedsController namedsController, OwnedsController ownedsController, EntityIdGenerator entityIdGenerator, TypedsController typedsController, QuantityController quantityController, GrowingsWoodController growingsWoodController, GrowingsIronController growingsIronController, GrowingsStoneController growingsStoneController, GrowingsGoldController growingsGoldController, GrowingsWheatController growingsWheatController) {
         this.namedsController = namedsController;
         this.ownedsController = ownedsController;
         this.entityIdGenerator = entityIdGenerator;
@@ -36,6 +38,7 @@ public class MaterialFactory {
         this.growingsIronController = growingsIronController;
         this.growingsStoneController = growingsStoneController;
         this.growingsGoldController = growingsGoldController;
+        this.growingsWheatController = growingsWheatController;
     }
 
     public void createMaterials(Game game, Player owner, String materialName, int initialQuantity) {
@@ -61,7 +64,9 @@ public class MaterialFactory {
             case "GOLD":
                 growingsGoldController.create(entityId, game);
                 break;
+            case "WHEAT":
+                growingsWheatController.create(entityId, game);
+                break;
         }
     }
-
 }
