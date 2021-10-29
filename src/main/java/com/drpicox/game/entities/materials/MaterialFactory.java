@@ -51,7 +51,7 @@ public class MaterialFactory {
 
     }
     public void materialChose(String materialName, String entityId, Game game){
-        switch(materialName){
+        switch (materialName) {
             case "IRON":
                 growingsIronController.create(entityId, game);
                 break;
@@ -64,7 +64,7 @@ public class MaterialFactory {
             case "GOLD":
                 growingsGoldController.create(entityId, game);
                 break;
-            case "WHEAT":
+            default:
                 growingsWheatController.create(entityId, game);
                 break;
         }
