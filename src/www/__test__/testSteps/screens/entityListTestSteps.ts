@@ -4,6 +4,14 @@ import userEvent from "@testing-library/user-event";
 
 export const entityListTestSteps: PostLineStep[] = [
   step(
+    /"([^"]+)" should have a quantity of (\d+) ([a-z]+) "([^"]+)"/,
+    (line, [, owner, count, type, name]) => {
+      expect(
+        getEntityListItemByContents([owner,type, name])
+      ).toBeInTheDocument();
+    }
+  ),
+  step(
     /"([^"]+)" should have (\d+) ([a-z]+)/,
     (line, [, owner, count, type]) => {
       expectToHaveEntitiesByContentsAndCount([owner, type], +count);
@@ -76,7 +84,7 @@ function getAllEntityListItemByContents(contents: string[]): HTMLElement[] {
   if (result.length === 0)
     throw new Error(
       `Could not find any entity in the games with "${contents.join(
-        '"", "'
+        '", "'
       )}".\n` +
         `Available items are:\n- ` +
         queryAllEntityListItems()
