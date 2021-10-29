@@ -51,7 +51,7 @@ public class MaterialFactory {
 
     }
     public void materialChose(String materialName, String entityId, Game game){
-        switch(materialName){
+        switch (materialName) {
             case "IRON":
                 growingsIronController.create(entityId, game);
                 break;
