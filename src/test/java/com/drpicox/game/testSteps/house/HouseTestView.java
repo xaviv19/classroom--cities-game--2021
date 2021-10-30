@@ -32,9 +32,11 @@ public class HouseTestView {
 
     public void createHouse() {
         var sourceEntityIdHouse = getHouseSourceEntityId();
+        /*
         var sourceEntityIdWood = getMaterialSourceEntityId("WOOD");
         var sourceEntityIdStone = getMaterialSourceEntityId("STONE");
-        entityTestView.createHouse("quantity", "createHouse", sourceEntityIdHouse, sourceEntityIdWood, 20, sourceEntityIdStone, 35);
+         */
+        entityTestView.createHouse("quantity", "createHouse", sourceEntityIdHouse);
     }
 
     private String getHouseSourceEntityId() {

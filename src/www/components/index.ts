@@ -11,7 +11,7 @@ import { MaterialIronComponent } from "./MaterialIronComponent";
 import { MaterialStoneComponent } from "./MaterialStoneComponent";
 import { MaterialGoldComponent } from "./MaterialGoldComponent";
 import { MaterialWheatComponent } from "./MaterialWheatComponent";
-import { HouseComponent } from "./HouseComponent";
+import { HouseComponent } from "./HouseComponent/HouseComponent";
 
 export const Components = [
   LocatedComponent,
@@ -27,5 +27,5 @@ export const Components = [
   MaterialStoneComponent,
   MaterialGoldComponent,
   MaterialWheatComponent,
-  HouseComponent
+  HouseComponent,
 ];

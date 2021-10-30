@@ -15,7 +15,6 @@ export function GameScreen() {
       <GameHeader />
       <main>
         <h1>Game!</h1>
-        <button >Create House</button>
         <EntityList entities={entities} />
       </main>
     </>

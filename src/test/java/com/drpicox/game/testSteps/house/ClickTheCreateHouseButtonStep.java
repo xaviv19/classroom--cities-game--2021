@@ -15,7 +15,7 @@ public class ClickTheCreateHouseButtonStep extends AbstractPostLineStep {
 
     @Override
     protected String getRegex() {
-        return "Click the Create House button";
+        return "Click the Create house button";
     }
 
     @Override

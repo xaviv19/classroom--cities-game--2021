@@ -10,7 +10,6 @@ import { playerTestSteps } from "./playerTestSteps";
 import { postListTestSteps } from "./postListTestSteps";
 import { signupTestSteps } from "./signupTestSteps";
 import { welcomeTestSteps } from "./welcomeTestSteps";
-import { houseTestSteps } from "./houseTestSteps";
 
 export const screensTestSteps = [
   blogListTestSteps,
@@ -25,5 +24,4 @@ export const screensTestSteps = [
   postListTestSteps,
   signupTestSteps,
   welcomeTestSteps,
-  houseTestSteps,
 ];

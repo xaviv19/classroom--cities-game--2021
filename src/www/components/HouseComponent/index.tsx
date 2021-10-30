@@ -1,0 +1,1 @@
+export { HouseComponent } from "./HouseComponent";
