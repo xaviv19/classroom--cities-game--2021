@@ -64,7 +64,7 @@ public class MaterialFactory {
             case "GOLD":
                 growingsGoldController.create(entityId, game);
                 break;
-            case "WHEAT":
+            default:
                 growingsWheatController.create(entityId, game);
                 break;
         }
