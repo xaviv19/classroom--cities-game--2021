@@ -24,4 +24,8 @@ public class OwnedsController {
     public List<Owned> findAllByGameAndOwner(Game game, Player owner) {
         return ownedsRepository.findAllByGameAndOwner(game, owner);
     }
+
+    public List<Owned> findAllByGame(Game game) {
+        return ownedsRepository.findAllByGame(game);
+    }
 }

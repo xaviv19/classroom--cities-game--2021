@@ -16,30 +16,35 @@ public class QuantityController {
         this.quantityRepository = quantityRepository;
     }
 
+    public int getQuantity(String entityId) {
+        return quantityRepository.findById(entityId).get().getQuantity();
+    }
+
     public void create(String entityId, Game game, int initialQuantity) {
         var component = new Quantity(entityId, game, initialQuantity);
         quantityRepository.save(component);
     }
 
-    public int increaseQuantity(String entityId, int increment) {
+    public Quantity increaseQuantity(String entityId, int increment) {
         var quantity = quantityRepository.findById(entityId).get();
-        var result = quantity.increaseQuantity(increment);
+        quantity.increaseQuantity(increment);
         quantityRepository.save(quantity);
-        return result;
+        return quantity;
     }
-/*
-    public int decreaseQuantity(String entityId, int decrease) {
+
+    public Quantity decreaseQuantity(String entityId, int decrease) {
         var quantity = quantityRepository.findById(entityId).get();
         var result = quantity.decreaseQuantity(decrease);
         quantityRepository.save(quantity);
-        return result;
+        return quantity;
     }
 
-    public int getQuantity(String entityId) {
-        var quantity = quantityRepository.findById(entityId).get();
-        return quantity.getQuantity();
-    }
-*/
+    /*
+        public int getQuantity(String entityId) {
+            var quantity = quantityRepository.findById(entityId).get();
+            return quantity.getQuantity();
+        }
+    */
     public List<Quantity> findAllByGameAndQuantity(Game game, int quantity) {
         return quantityRepository.findAllByGameAndQuantity(game, quantity);
     }

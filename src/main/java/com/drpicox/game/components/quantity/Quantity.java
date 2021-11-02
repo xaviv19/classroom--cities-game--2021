@@ -28,11 +28,11 @@ public class Quantity extends EcsComponent {
         int unfit = prevQuantity + increment - this.quantity;
         return unfit;
     }
-/*
+
     int decreaseQuantity(int decrease) {
         var prevQuantity = this.quantity;
         this.quantity = Math.max(MIN_QUANTITY, quantity - decrease);
         int unfit = prevQuantity - decrease - this.quantity;
         return unfit;
-    }*/
+    }
 }
