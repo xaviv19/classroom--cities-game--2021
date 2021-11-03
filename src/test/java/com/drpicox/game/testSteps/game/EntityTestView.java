@@ -80,4 +80,8 @@ public class EntityTestView implements NavigableScreen {
         return gameTestView.post(url, data);
     }
 
+    public GameResponse createHouse(String collection, String action, String entityId) {
+        return this.post("/api/v1/" + collection + "/" + entityId + "/" + action, new TreeMap<>());
+    }
+
 }

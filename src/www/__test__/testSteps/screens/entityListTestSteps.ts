@@ -3,6 +3,14 @@ import { screen } from "@testing-library/dom";
 import userEvent from "@testing-library/user-event";
 
 export const entityListTestSteps: PostLineStep[] = [
+
+  step(
+    /"([^"]+)" should have a quantity of (\d+) house/,
+    (line, [, owner, count]) => {
+      expectToHaveEntitiesByContentsAndCount([owner, "HOUSE"], +count);
+    }
+  ),
+
   step(
     /"([^"]+)" should have a quantity of (\d+) ([a-z]+) "([^"]+)"/,
     (line, [, owner, count, type, name]) => {
@@ -11,6 +19,7 @@ export const entityListTestSteps: PostLineStep[] = [
       ).toBeInTheDocument();
     }
   ),
+
   step(
     /"([^"]+)" should have (\d+) ([a-z]+)/,
     (line, [, owner, count, type]) => {
