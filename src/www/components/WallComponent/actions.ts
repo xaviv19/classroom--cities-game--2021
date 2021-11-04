@@ -1,13 +1,13 @@
 import {
-  HOUSE_ORDERED, HouseOrderedAction,
+  WALL_ORDERED, WallOrderedAction,
 } from "./types";
 
-export function houseOrdered(
+export function wallOrdered(
   entityId: string,
   type: string
-): HouseOrderedAction {
+): WallOrderedAction {
   return {
-    type: HOUSE_ORDERED,
+    type: WALL_ORDERED,
     entityId,
     form: {
       type

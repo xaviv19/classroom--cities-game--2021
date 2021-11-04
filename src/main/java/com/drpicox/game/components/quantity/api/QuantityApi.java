@@ -28,21 +28,22 @@ public class QuantityApi {
         this.namedsController = namedsController;
         this.ownedsController = ownedsController;
     }
-/*
-    @PostMapping("/{entityId}/increaseQuantity")
-    public GameData increaseQuantity(@PathVariable String entityId, @RequestParam String token) {
-        var quantity = quantityController.increaseQuantity(entityId, 1);
-        var game = quantity.getGame();
-        return gamesApi.get(game.getGameName(), game.getCreator().getPlayerName(), token);
-    }
 
-    @PostMapping("/{entityId}/decreaseQuantity")
-    public GameData decreaseQuantity(@PathVariable String entityId, @RequestParam String token) {
-        var quantity = quantityController.decreaseQuantity(entityId, 1);
-        var game = quantity.getGame();
-        return gamesApi.get(game.getGameName(), game.getCreator().getPlayerName(), token);
-    }
-*/
+    /*
+        @PostMapping("/{entityId}/increaseQuantity")
+        public GameData increaseQuantity(@PathVariable String entityId, @RequestParam String token) {
+            var quantity = quantityController.increaseQuantity(entityId, 1);
+            var game = quantity.getGame();
+            return gamesApi.get(game.getGameName(), game.getCreator().getPlayerName(), token);
+        }
+
+        @PostMapping("/{entityId}/decreaseQuantity")
+        public GameData decreaseQuantity(@PathVariable String entityId, @RequestParam String token) {
+            var quantity = quantityController.decreaseQuantity(entityId, 1);
+            var game = quantity.getGame();
+            return gamesApi.get(game.getGameName(), game.getCreator().getPlayerName(), token);
+        }
+    */
     @PostMapping("/{entityId}/createHouse")
     public GameData createHouse(@PathVariable String entityId, @RequestParam String token) {
         var quantity = quantityController.increaseQuantity(entityId, 1);
@@ -51,13 +52,33 @@ public class QuantityApi {
 
         var owneds = ownedsController.findAllByGame(game);
         owneds.forEach(owned -> {
-            if(owned.getEntityId().equals(entityId)){
+            if (owned.getEntityId().equals(entityId)) {
                 var stoneId1 = namedsController.findAllByGameAndName(game, "STONE").get(0).getEntityId();
                 var woodId1 = namedsController.findAllByGameAndName(game, "WOOD").get(0).getEntityId();
 
                 quantityController.decreaseQuantity(stoneId1, 35);
 
                 quantityController.decreaseQuantity(woodId1, 20);
+            }
+        });
+        return gamesApi.get(game.getGameName(), game.getCreator().getPlayerName(), token);
+    }
+
+    @PostMapping("/{entityId}/createWall")
+    public GameData createWall(@PathVariable String entityId, @RequestParam String token) {
+        var quantity = quantityController.increaseQuantity(entityId, 1);
+        var game = quantity.getGame();
+
+
+        var owneds = ownedsController.findAllByGame(game);
+        owneds.forEach(owned -> {
+            if (owned.getEntityId().equals(entityId)) {
+                var woodId1 = namedsController.findAllByGameAndName(game, "WOOD").get(0).getEntityId();
+                var stoneId1 = namedsController.findAllByGameAndName(game, "STONE").get(0).getEntityId();
+
+                quantityController.decreaseQuantity(woodId1, 35);
+                quantityController.decreaseQuantity(stoneId1, 50);
+
             }
         });
         return gamesApi.get(game.getGameName(), game.getCreator().getPlayerName(), token);

@@ -1,13 +1,13 @@
-export type ComponentHouseState = null;
+export type ComponentWallState = null;
 
 
-export const HOUSE_ORDERED = "componentHouse/HOUSE_ORDERED";
-export interface HouseOrderedAction{
-  type: typeof HOUSE_ORDERED
+export const WALL_ORDERED = "componentWall/WALL_ORDERED";
+export interface WallOrderedAction{
+  type: typeof WALL_ORDERED
   entityId: String;
   form: {
     type: string;
   };
 }
 
-export type ComponentHouseActionTypes = HouseOrderedAction;
+export type ComponentWallActionTypes = WallOrderedAction;

@@ -12,6 +12,7 @@ import { MaterialStoneComponent } from "./MaterialStoneComponent";
 import { MaterialGoldComponent } from "./MaterialGoldComponent";
 import { MaterialWheatComponent } from "./MaterialWheatComponent";
 import { HouseComponent } from "./HouseComponent/HouseComponent";
+import { WallComponent } from "./WallComponent/WallComponent";
 
 export const Components = [
   LocatedComponent,
@@ -28,4 +29,5 @@ export const Components = [
   MaterialGoldComponent,
   MaterialWheatComponent,
   HouseComponent,
+  WallComponent,
 ];

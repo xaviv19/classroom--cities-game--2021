@@ -1,12 +1,12 @@
 import {useDispatchForm} from "../../store/hooks";
-import {houseOrdered} from "./actions"
+import {wallOrdered} from "./actions"
 
-export function HouseComponent({ entity }: any) {
-  const buildHouse = useDispatchForm(houseOrdered, entity.id, "HOUSE")
+export function WallComponent({ entity }: any) {
+  const buildWall = useDispatchForm(wallOrdered, entity.id, "WALL")
   return (
     <div>
-      House: {entity.quantity}<br />
-      <button onClick ={buildHouse}>Create house</button>
+      Wall: {entity.quantity}<br />
+      <button onClick ={buildWall}>Create wall</button>
     </div>
   );
 }

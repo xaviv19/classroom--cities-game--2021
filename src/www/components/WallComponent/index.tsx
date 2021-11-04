@@ -1,1 +1,1 @@
-export { HouseComponent } from "./HouseComponent";
+export { WallComponent } from "./WallComponent";

@@ -84,4 +84,8 @@ public class EntityTestView implements NavigableScreen {
         return this.post("/api/v1/" + collection + "/" + entityId + "/" + action, new TreeMap<>());
     }
 
+    public GameResponse createWall(String collection, String action, String entityId) {
+        return this.post("/api/v1/" + collection + "/" + entityId + "/" + action, new TreeMap<>());
+    }
+
 }

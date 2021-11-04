@@ -5,6 +5,13 @@ import userEvent from "@testing-library/user-event";
 export const entityListTestSteps: PostLineStep[] = [
 
   step(
+      /"([^"]+)" should have a quantity of (\d+) wall/,
+      (line, [, owner, count]) => {
+        expectToHaveEntitiesByContentsAndCount([owner, "WALL"], +count);
+      }
+    ),
+
+  step(
     /"([^"]+)" should have a quantity of (\d+) house/,
     (line, [, owner, count]) => {
       expectToHaveEntitiesByContentsAndCount([owner, "HOUSE"], +count);

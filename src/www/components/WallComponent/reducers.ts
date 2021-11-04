@@ -1,8 +1,8 @@
-import {ComponentHouseActionTypes, ComponentHouseState} from "./types";
+import {ComponentWallActionTypes, ComponentWallState} from "./types";
 
-export function componentHouseReducer(
-  state: ComponentHouseState = null,
-  action: ComponentHouseActionTypes
+export function componentWallReducer(
+  state: ComponentWallState = null,
+  action: ComponentWallActionTypes
 ) {
   switch (action.type) {
     default:
