@@ -1,9 +1,10 @@
 package com.drpicox.game.testSteps.typeds;
 
-import com.drpicox.game.testSteps.game.EntityResponse;
-import com.drpicox.game.testSteps.game.EntityTestView;
+import com.drpicox.game.testSteps.game.entities.EntityResponse;
+import com.drpicox.game.testSteps.game.entities.EntityTestView;
 import org.springframework.stereotype.Component;
 
+import java.util.function.Function;
 import java.util.function.Predicate;
 
 @Component
@@ -17,6 +18,10 @@ public class TypedTestView {
 
     public static Predicate<EntityResponse> byType(String type) {
         return e -> e.getOrDefault("type", "").equals(type);
+    }
+
+    public static Function<EntityResponse,String> toType() {
+        return e -> (String) e.getOrDefault("type", "-without type-");
     }
 
     public String getType() {

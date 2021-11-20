@@ -7,7 +7,11 @@ public abstract class AbstractPostLineStep implements PostLineStep {
     private final String regex;
 
     public AbstractPostLineStep() {
-        this.regex = getRegex();
+        var regex = getRegex();
+        if (regex.matches(".*[a-zA-Z][a-z]$")) regex += "\\b";
+        if (regex.matches("^[A-Z][a-z].*")) regex = "\\b" + regex;
+
+        this.regex = regex;
     }
 
     @Override

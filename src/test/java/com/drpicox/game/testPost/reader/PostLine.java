@@ -58,4 +58,12 @@ public class PostLine {
     public boolean endsWith(String suffix) {
         return content.endsWith(suffix);
     }
+
+    public boolean isSnapshot() {
+        return content.contains("SNAPSHOT") && content.contains("status=");
+    }
+
+    public int getLineNumber() {
+        return line;
+    }
 }

@@ -1,17 +1,17 @@
 package com.drpicox.game.components.loadables;
 
 import com.drpicox.game.ecs.EcsSystem;
-import com.drpicox.game.components.populateds.PopulatedsController;
+import com.drpicox.game.components.resourceds.ResourcedsController;
 import org.springframework.stereotype.Component;
 
 @Component
 public class Sys100_LoadUnload implements EcsSystem {
 
-    private final PopulatedsController populatedsController;
+    private final ResourcedsController resourcedsController;
     private final LoadablesRepository loadablesRepository;
 
-    public Sys100_LoadUnload(PopulatedsController populatedsController, LoadablesRepository loadablesRepository) {
-        this.populatedsController = populatedsController;
+    public Sys100_LoadUnload(ResourcedsController resourcedsController, LoadablesRepository loadablesRepository) {
+        this.resourcedsController = resourcedsController;
         this.loadablesRepository = loadablesRepository;
     }
 
@@ -24,15 +24,15 @@ public class Sys100_LoadUnload implements EcsSystem {
             if (loadUnloadAmount == 0) return;
 
             var targetId = loadable.getSourceEntityId();
-            var dockPopulation = populatedsController.getPopulation(targetId);
+            var dockPopulation = resourcedsController.getPopulation(targetId);
 
             loadUnloadAmount = Math.min(loadUnloadAmount, dockPopulation);
-            var unfit = populatedsController.increasePopulation(entityId, loadUnloadAmount);
+            var unfit = resourcedsController.increasePopulation(entityId, loadUnloadAmount);
             loadable.clearLoadUnloadOrder();
             loadablesRepository.save(loadable);
 
             var delta = -(loadUnloadAmount - unfit);
-            populatedsController.increasePopulation(targetId, delta);
+            resourcedsController.increasePopulation(targetId, delta);
         });
 
     }

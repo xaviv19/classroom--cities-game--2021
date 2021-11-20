@@ -1,6 +1,7 @@
 package com.drpicox.game.testSteps.game;
 
 import com.drpicox.game.testPost.SnapshotService;
+import com.drpicox.game.testSteps.game.entities.EntityResponse;
 import com.drpicox.game.testSteps.message.MessageTestView;
 import com.drpicox.game.testSteps.screenStack.Screen;
 import org.springframework.stereotype.Component;
@@ -55,6 +56,10 @@ public class GameTestView implements Screen {
 
     public Stream<EntityResponse> streamEntities(Predicate<EntityResponse> predicate) {
         return streamEntities().filter(predicate);
+    }
+
+    public EntityResponse getEntity(String entityId) {
+        return game.findEntityById(entityId).orElseThrow(() -> new IllegalArgumentException("There is no entity '"+entityId+"'"));
     }
 
     public Optional<EntityResponse> findEntity(Predicate<EntityResponse> predicate) {

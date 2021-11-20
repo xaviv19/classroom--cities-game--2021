@@ -10,9 +10,11 @@ import java.util.stream.Collectors;
 @Component
 public class PostRunner {
     private final List<PostLineStep> postLineSteps;
+    private final SnapshotService snapshotService;
 
-    public PostRunner(List<PostLineStep> postLineSteps) {
+    public PostRunner(List<PostLineStep> postLineSteps, SnapshotService snapshotService) {
         this.postLineSteps = postLineSteps;
+        this.snapshotService = snapshotService;
     }
 
     public void runSection(PostSection section) {
@@ -28,6 +30,10 @@ public class PostRunner {
 
     private void runLine(PostLine line) {
         print(line);
+
+        if (!line.isSnapshot() && snapshotService.hasPendingSnapshot())
+            throw new AssertionError("Previous Step generated an snapshot but current step is not a SNAPSHOT.\nPlease modify the post to add the <!-- SNAPSHOT status=XXX --> between lines :"+(line.getLineNumber()-1)+" and :"+line.getLineNumber()+".");
+
         if (!isWellFormattedStep(line))
             throw newErrorShouldEndWithTwoSpaces(line);
 

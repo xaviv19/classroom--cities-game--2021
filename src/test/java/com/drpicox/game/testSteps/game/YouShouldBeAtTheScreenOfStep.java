@@ -2,6 +2,7 @@ package com.drpicox.game.testSteps.game;
 
 import com.drpicox.game.testPost.reader.PostLine;
 import com.drpicox.game.testSteps.AbstractPostLineStep;
+import com.drpicox.game.testSteps.game.entities.EntityTestView;
 import com.drpicox.game.testSteps.screenStack.ScreenStackTestView;
 import com.drpicox.game.testSteps.typeds.TypedTestView;
 import org.springframework.stereotype.Component;
@@ -28,13 +29,12 @@ public class YouShouldBeAtTheScreenOfStep extends AbstractPostLineStep {
 
     @Override
     protected void run(PostLine line, String[] match) {
-        var expectedScreenName = "entity";
         var expectedType = match[1].trim();
 
         var screenName = screenStackTestView.peekScreenName();
-        var type = typedTestView.getType();
+        assertThat(screenName).isEqualTo("entity");
 
-        assertThat(screenName).isEqualTo(expectedScreenName);
+        var type = typedTestView.getType();
         assertThat(type).isEqualTo(expectedType);
     }
 }

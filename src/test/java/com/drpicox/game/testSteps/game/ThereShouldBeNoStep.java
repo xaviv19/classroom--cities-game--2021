@@ -2,6 +2,7 @@ package com.drpicox.game.testSteps.game;
 
 import com.drpicox.game.testPost.reader.PostLine;
 import com.drpicox.game.testSteps.AbstractPostLineStep;
+import com.drpicox.game.testSteps.game.entities.EntityTestView;
 import org.springframework.stereotype.Component;
 
 import static com.google.common.truth.Truth.assertThat;

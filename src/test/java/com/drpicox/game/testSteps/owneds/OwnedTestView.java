@@ -1,9 +1,10 @@
 package com.drpicox.game.testSteps.owneds;
 
-import com.drpicox.game.testSteps.game.EntityResponse;
-import com.drpicox.game.testSteps.game.EntityTestView;
+import com.drpicox.game.testSteps.game.entities.EntityResponse;
+import com.drpicox.game.testSteps.game.entities.EntityTestView;
 import org.springframework.stereotype.Component;
 
+import java.util.function.Function;
 import java.util.function.Predicate;
 
 @Component
@@ -17,6 +18,10 @@ public class OwnedTestView {
 
     public static Predicate<EntityResponse> byOwner(String ownerName) {
         return e -> e.getOrDefault("owner", "").equals(ownerName);
+    }
+
+    public static Function<EntityResponse,String> toOwner() {
+        return e -> (String) e.getOrDefault("owner", "-without owner-");
     }
 
     public String getOnwer() {

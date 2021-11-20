@@ -1,6 +1,6 @@
 package com.drpicox.game.testSteps.withBuildings;
 
-import com.drpicox.game.testSteps.game.EntityTestView;
+import com.drpicox.game.testSteps.game.entities.EntityTestView;
 import org.springframework.stereotype.Component;
 
 @Component

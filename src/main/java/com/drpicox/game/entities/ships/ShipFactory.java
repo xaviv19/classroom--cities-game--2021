@@ -4,7 +4,8 @@ import com.drpicox.game.components.loadables.LoadablesController;
 import com.drpicox.game.components.locateds.LocatedsController;
 import com.drpicox.game.components.nameds.NamedsController;
 import com.drpicox.game.components.owneds.OwnedsController;
-import com.drpicox.game.components.populateds.PopulatedsController;
+import com.drpicox.game.components.resourceds.ResourceType;
+import com.drpicox.game.components.resourceds.ResourcedsController;
 import com.drpicox.game.components.sails.SailsController;
 import com.drpicox.game.components.typeds.TypedsController;
 import com.drpicox.game.ecs.EntityIdGenerator;
@@ -16,17 +17,17 @@ public class ShipFactory {
 
     private final NamedsController namedsController;
     private final OwnedsController ownedsController;
-    private final PopulatedsController populatedsController;
+    private final ResourcedsController resourcedsController;
     private final TypedsController typedsController;
     private final LoadablesController loadablesController;
     private final EntityIdGenerator entityIdGenerator;
     private final LocatedsController locatedsController;
     private final SailsController sailsController;
 
-    public ShipFactory(NamedsController namedsController, OwnedsController ownedsController, PopulatedsController populatedsController, TypedsController typedsController, LoadablesController loadablesController, EntityIdGenerator entityIdGenerator, LocatedsController locatedsController, SailsController sailsController) {
+    public ShipFactory(NamedsController namedsController, OwnedsController ownedsController, ResourcedsController resourcedsController, TypedsController typedsController, LoadablesController loadablesController, EntityIdGenerator entityIdGenerator, LocatedsController locatedsController, SailsController sailsController) {
         this.namedsController = namedsController;
         this.ownedsController = ownedsController;
-        this.populatedsController = populatedsController;
+        this.resourcedsController = resourcedsController;
         this.typedsController = typedsController;
         this.loadablesController = loadablesController;
         this.entityIdGenerator = entityIdGenerator;
@@ -39,7 +40,7 @@ public class ShipFactory {
 
         namedsController.create(entityId, shipName);
         ownedsController.create(entityId, owner);
-        populatedsController.create(entityId, 0);
+        resourcedsController.create(entityId).with(ResourceType.POPULATION, 0, 5, 0);
         typedsController.create(entityId, "ship");
         loadablesController.create(entityId);
         locatedsController.create(entityId, initialLocation);

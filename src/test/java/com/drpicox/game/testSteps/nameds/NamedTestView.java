@@ -1,7 +1,7 @@
 package com.drpicox.game.testSteps.nameds;
 
-import com.drpicox.game.testSteps.game.EntityResponse;
-import com.drpicox.game.testSteps.game.EntityTestView;
+import com.drpicox.game.testSteps.game.entities.EntityResponse;
+import com.drpicox.game.testSteps.game.entities.EntityTestView;
 import com.drpicox.game.testSteps.game.GameTestView;
 import com.drpicox.game.testSteps.screenStack.ScreenStackTestView;
 import org.springframework.stereotype.Component;

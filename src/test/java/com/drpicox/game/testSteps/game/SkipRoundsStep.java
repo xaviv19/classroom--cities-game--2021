@@ -30,11 +30,10 @@ public class SkipRoundsStep extends AbstractPostLineStep {
         var game = gameTestView.getGame();
         var playerName = game.getPlayerName();
 
-        for (var i = 0; i < count - 1; i++) {
+        for (var i = 0; i < count; i++) {
             gamesApi.endRound(playerName);
         }
 
-        gameTestView.endTheRound();
-        screenStackTestView.pushScreenName("game");
+        gameTestView.refreshGame();
     }
 }

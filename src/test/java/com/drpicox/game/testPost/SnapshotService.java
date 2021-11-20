@@ -3,20 +3,19 @@ package com.drpicox.game.testPost;
 import com.drpicox.game.common.api.GlobalRestException;
 import com.google.gson.Gson;
 import org.springframework.http.MediaType;
+import org.springframework.stereotype.Component;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.web.context.WebApplicationContext;
 
 import java.nio.charset.StandardCharsets;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-
-import org.springframework.stereotype.Component;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.web.context.WebApplicationContext;
 
 @Component
 public class SnapshotService {
@@ -174,5 +173,9 @@ public class SnapshotService {
         }
         System.out.println(lastSnapshot.getPrettyPrint());
         System.out.println("- END LAST SNAPSHOT ------------------------------------------");
+    }
+
+    public boolean hasPendingSnapshot() {
+        return lastSnapshot != null;
     }
 }
