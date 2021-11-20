@@ -4,9 +4,6 @@ import com.drpicox.game.testPost.reader.PostLine;
 import com.drpicox.game.testSteps.AbstractPostLineStep;
 import org.springframework.stereotype.Component;
 
-import java.util.Arrays;
-import java.util.stream.Collectors;
-
 import static com.google.common.truth.Truth.assertThat;
 
 @Component
@@ -20,7 +17,7 @@ public class TheShouldBeStep extends AbstractPostLineStep {
 
     @Override
     protected String getRegex() {
-        return "The ([a-z ]+) should be ((\\d+)|(active|inactive)|(\"([^\"]+)\"))";
+        return "The _([^_]+)_ should be ((\\d+)|(active|inactive)|(\"([^\"]+)\"))";
     }
 
     @Override

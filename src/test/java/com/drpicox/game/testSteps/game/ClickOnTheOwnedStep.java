@@ -5,7 +5,7 @@ import com.drpicox.game.testSteps.AbstractPostLineStep;
 import com.drpicox.game.testSteps.screenStack.ScreenStackTestView;
 import org.springframework.stereotype.Component;
 
-import static com.drpicox.game.testSteps.game.TypedTestView.byType;
+import static com.drpicox.game.testSteps.typeds.TypedTestView.byType;
 import static com.drpicox.game.testSteps.nameds.NamedTestView.byName;
 import static com.drpicox.game.testSteps.owneds.OwnedTestView.byOwner;
 

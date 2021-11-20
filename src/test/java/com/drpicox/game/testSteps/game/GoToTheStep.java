@@ -5,35 +5,36 @@ import com.drpicox.game.testSteps.AbstractPostLineStep;
 import com.drpicox.game.testSteps.screenStack.ScreenStackTestView;
 import org.springframework.stereotype.Component;
 
-import static com.drpicox.game.testSteps.game.TypedTestView.byType;
+import static com.drpicox.game.testSteps.typeds.TypedTestView.byType;
 import static com.drpicox.game.testSteps.nameds.NamedTestView.byName;
 import static com.drpicox.game.testSteps.owneds.OwnedTestView.byOwner;
 
 @Component
-public class ClickOnTheCityStep extends AbstractPostLineStep {
+public class GoToTheStep extends AbstractPostLineStep {
 
     private final ScreenStackTestView screenStackTestView;
     private final GameTestView gameTestView;
 
-    public ClickOnTheCityStep(ScreenStackTestView screenStackTestView, GameTestView gameTestView) {
+    public GoToTheStep(ScreenStackTestView screenStackTestView, GameTestView gameTestView) {
         this.screenStackTestView = screenStackTestView;
         this.gameTestView = gameTestView;
     }
 
     @Override
     protected String getRegex() {
-        return "Click on the \"([^\"]+)\" city \"([^\"]+)\"";
+        return "Go to the \"([^\"]+)\" \"([^\"]+)\" \"([^\"]+)\"";
     }
 
     @Override
     protected void run(PostLine line, String[] match) {
-        var ownerName = match[1];
-        var cityName = match[2];
+        var owner = match[1];
+        var type = match[2];
+        var name = match[3];
 
-        // TODO: search by type
-        var game = gameTestView.getGame();
-        var city = gameTestView.findEntity(byType("city").and(byOwner(ownerName)).and(byName(cityName))).get();
+        var entity = gameTestView.findEntity(
+                byType(type).and(byOwner(owner)).and(byName(name))
+        ).get();
 
-        screenStackTestView.pushScreenName("entity", city.getId());
+        screenStackTestView.pushScreenName("entity", entity.getId());
     }
 }

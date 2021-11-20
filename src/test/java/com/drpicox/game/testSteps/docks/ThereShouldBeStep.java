@@ -5,7 +5,7 @@ import com.drpicox.game.testSteps.AbstractPostLineStep;
 import com.drpicox.game.testSteps.locateds.LocatedTestView;
 import org.springframework.stereotype.Component;
 
-import static com.drpicox.game.testSteps.game.TypedTestView.byType;
+import static com.drpicox.game.testSteps.typeds.TypedTestView.byType;
 import static com.drpicox.game.testSteps.owneds.OwnedTestView.byOwner;
 import static com.google.common.truth.Truth8.assertThat;
 
