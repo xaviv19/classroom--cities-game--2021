@@ -4,12 +4,10 @@ import com.drpicox.game.games.Game;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
-import java.util.TreeSet;
+import java.util.Set;
 
 interface LocatedsRepository extends JpaRepository<Located, String> {
-    List<Located> findAllByGame(Game game);
+    List<Located> findByLocation(int location);
 
-    List<Located> findByGameAndLocation(Game game, int location);
-
-    List<Located> findAllByLocationIn(TreeSet<Integer> locations);
+    List<Located> findAllByLocationIn(Set<Integer> locations);
 }

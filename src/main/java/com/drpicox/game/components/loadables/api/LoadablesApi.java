@@ -18,18 +18,16 @@ public class LoadablesApi {
     }
 
     @PostMapping("/{entityId}/load")
-    public GameData load(@PathVariable String entityId, @RequestParam String token, @RequestBody LoadableForm form) {
+    public GameData load(@PathVariable String entityId, @RequestParam String playerName, @RequestBody LoadableForm form) {
         var loadable = loadablesController.orderLoad(entityId, form.getLoadUnloadAmount(), form.getSourceEntityId());
 
-        var game = loadable.getGame();
-        return gamesApi.get(game.getGameName(), game.getCreator().getPlayerName(), token);
+        return gamesApi.play(playerName);
     }
 
     @PostMapping("/{entityId}/unload")
-    public GameData unload(@PathVariable String entityId, @RequestParam String token, @RequestBody LoadableForm form) {
+    public GameData unload(@PathVariable String entityId, @RequestParam String playerName, @RequestBody LoadableForm form) {
         var loadable = loadablesController.orderUnload(entityId, form.getLoadUnloadAmount(), form.getSourceEntityId());
 
-        var game = loadable.getGame();
-        return gamesApi.get(game.getGameName(), game.getCreator().getPlayerName(), token);
+        return gamesApi.play(playerName);
     }
 }

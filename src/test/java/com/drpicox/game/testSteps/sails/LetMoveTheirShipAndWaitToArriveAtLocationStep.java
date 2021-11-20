@@ -1,14 +1,11 @@
 package com.drpicox.game.testSteps.sails;
 
-import com.drpicox.game.components.locateds.LocatedsController;
 import com.drpicox.game.components.nameds.NamedsController;
 import com.drpicox.game.components.owneds.OwnedsController;
 import com.drpicox.game.components.sails.SailsController;
-import com.drpicox.game.components.sails.SailsEntityDataGenerator;
 import com.drpicox.game.components.typeds.TypedsController;
 import com.drpicox.game.ecs.EcsComponent;
 import com.drpicox.game.games.GamesController;
-import com.drpicox.game.games.api.GamesApi;
 import com.drpicox.game.players.PlayersController;
 import com.drpicox.game.testPost.reader.PostLine;
 import com.drpicox.game.testSteps.AbstractPostLineStep;
@@ -54,14 +51,11 @@ public class LetMoveTheirShipAndWaitToArriveAtLocationStep extends AbstractPostL
         var destination = Integer.parseInt(match[4]);
 
         var gameResponse = gameTestView.getGame();
-        String gameName = gameResponse.getGameName();
-        var creator = playersController.findPlayer(gameResponse.getCreatorName()).get();
-        var game = gamesController.findGame(gameName, creator).get();
 
         var owner = playersController.findPlayer(ownerName).get();
-        var owneds = getIds(ownedsController.findAllByGameAndOwner(game, owner));
-        var types = getIds(typedsController.findAllByGameAndType(game, type));
-        var nameds = getIds(namedsController.findAllByGameAndName(game, name));
+        var owneds = getIds(ownedsController.findAllByOwner(owner));
+        var types = getIds(typedsController.findAllByType(type));
+        var nameds = getIds(namedsController.findAllByName(name));
 
         var intersection = owneds.stream()
                 .filter(types::contains)
@@ -72,9 +66,9 @@ public class LetMoveTheirShipAndWaitToArriveAtLocationStep extends AbstractPostL
         var entityId = intersection.stream().findAny().get();
         sailsController.orderSail(entityId, destination);
         while (sailsController.isSailing(entityId))
-            gamesController.endRound(gameName, creator);
+            gamesController.endRound();
 
-        gameTestView.submitRefresh();
+        gameTestView.refreshGame();
     }
 
     private <T extends EcsComponent> List<String> getIds(List<T> components) {

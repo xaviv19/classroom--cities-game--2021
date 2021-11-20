@@ -4,20 +4,20 @@ import com.drpicox.game.blog.Post;
 import com.drpicox.game.blog.api.ListPostsResponse;
 import com.drpicox.game.blog.api.ListPostsResponseEntry;
 import com.drpicox.game.testPost.SnapshotService;
-import com.drpicox.game.testSteps.navigator.NavigableScreen;
-import com.drpicox.game.testSteps.navigator.NavigatorTestView;
+import com.drpicox.game.testSteps.screenStack.Screen;
+import com.drpicox.game.testSteps.screenStack.ScreenStackTestView;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 @Component
-public class BlogTestView implements NavigableScreen {
+public class BlogTestView implements Screen {
 
-    private final NavigatorTestView navigatorTestView;
+    private final ScreenStackTestView screenStackTestView;
     private final SnapshotService snapshotService;
 
-    public BlogTestView(NavigatorTestView navigatorTestView, SnapshotService snapshotService) {
-        this.navigatorTestView = navigatorTestView;
+    public BlogTestView(ScreenStackTestView screenStackTestView, SnapshotService snapshotService) {
+        this.screenStackTestView = screenStackTestView;
         this.snapshotService = snapshotService;
     }
 
@@ -38,7 +38,7 @@ public class BlogTestView implements NavigableScreen {
 
     public void fetchPosts() {
         listPostsResponse = snapshotService.get("/api/v1/posts", null, ListPostsResponse.class);
-        navigatorTestView.pushScreenName("blog");
+        screenStackTestView.pushScreenName("blog");
     }
 
     public List<ListPostsResponseEntry> getListPostsResponse() {
@@ -47,6 +47,6 @@ public class BlogTestView implements NavigableScreen {
 
     public void fetchPost(String postId) {
         this.post = snapshotService.get("/api/v1/posts/" + postId, null, Post.class);
-        navigatorTestView.pushScreenName("post");
+        screenStackTestView.pushScreenName("post");
     }
 }

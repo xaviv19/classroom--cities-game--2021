@@ -1,6 +1,5 @@
 package com.drpicox.game.components.nameds;
 
-import com.drpicox.game.games.Game;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -14,8 +13,8 @@ public class NamedsController {
         this.namedsRepository = namedsRepository;
     }
 
-    public void create(String entityId, Game game, String initialName) {
-        var component = new Named(entityId, game, initialName);
+    public void create(String entityId, String initialName) {
+        var component = new Named(entityId, initialName);
         namedsRepository.save(component);
     }
 
@@ -26,7 +25,7 @@ public class NamedsController {
         return named;
     }
 
-    public List<Named> findAllByGameAndName(Game game, String name) {
-        return namedsRepository.findAllByGameAndName(game, name);
+    public List<Named> findAllByName(String name) {
+        return namedsRepository.findAllByName(name);
     }
 }

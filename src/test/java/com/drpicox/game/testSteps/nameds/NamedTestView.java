@@ -3,7 +3,7 @@ package com.drpicox.game.testSteps.nameds;
 import com.drpicox.game.testSteps.game.EntityResponse;
 import com.drpicox.game.testSteps.game.EntityTestView;
 import com.drpicox.game.testSteps.game.GameTestView;
-import com.drpicox.game.testSteps.navigator.NavigatorTestView;
+import com.drpicox.game.testSteps.screenStack.ScreenStackTestView;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
@@ -15,12 +15,12 @@ public class NamedTestView {
 
     private final EntityTestView entityTestView;
     private final GameTestView gameTestView;
-    private final NavigatorTestView navigatorTestView;
+    private final ScreenStackTestView screenStackTestView;
 
-    public NamedTestView(EntityTestView entityTestView, GameTestView gameTestView, NavigatorTestView navigatorTestView) {
+    public NamedTestView(EntityTestView entityTestView, GameTestView gameTestView, ScreenStackTestView screenStackTestView) {
         this.entityTestView = entityTestView;
         this.gameTestView = gameTestView;
-        this.navigatorTestView = navigatorTestView;
+        this.screenStackTestView = screenStackTestView;
     }
 
     private String newName;
@@ -46,7 +46,7 @@ public class NamedTestView {
     }
 
     public void submitChangeCityName() {
-        String entityId = navigatorTestView.peekId();
+        String entityId = screenStackTestView.peekId();
 
         var data = new HashMap<String, String>();
         data.put("newName", newName);

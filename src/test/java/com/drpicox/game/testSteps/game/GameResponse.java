@@ -6,35 +6,17 @@ import java.util.*;
 import java.util.stream.Stream;
 
 public class GameResponse {
-    private String gameName;
-    private String creatorName;
     private String playerName;
-    private String token;
     private int roundNumber;
     private Map<String, EntityResponse> entities = new TreeMap<>();
 
-    public GameResponse(Game game, String playerName, String token) {
-        this.gameName = game.getGameName();
-        this.creatorName = game.getCreator().getPlayerName();
+    public GameResponse(Game game, String playerName) {
         this.roundNumber = game.getRoundNumber();
         this.playerName = playerName;
-        this.token = token;
-    }
-
-    public String getGameName() {
-        return this.gameName;
-    }
-
-    public String getCreatorName() {
-        return this.creatorName;
     }
 
     public String getPlayerName() {
         return this.playerName;
-    }
-
-    public String getToken() {
-        return this.token;
     }
 
     public Stream<EntityResponse> streamEntities() {

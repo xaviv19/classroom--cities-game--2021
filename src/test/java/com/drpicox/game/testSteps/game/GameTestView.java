@@ -2,7 +2,7 @@ package com.drpicox.game.testSteps.game;
 
 import com.drpicox.game.testPost.SnapshotService;
 import com.drpicox.game.testSteps.message.MessageTestView;
-import com.drpicox.game.testSteps.navigator.NavigableScreen;
+import com.drpicox.game.testSteps.screenStack.Screen;
 import com.drpicox.game.testSteps.player.PlayerTestView;
 import org.springframework.stereotype.Component;
 
@@ -13,7 +13,7 @@ import java.util.function.Predicate;
 import java.util.stream.Stream;
 
 @Component
-public class GameTestView implements NavigableScreen {
+public class GameTestView implements Screen {
 
     private final MessageTestView messageTestView;
     private final SnapshotService snapshotService;
@@ -27,7 +27,7 @@ public class GameTestView implements NavigableScreen {
 
     private GameResponse game;
 
-    /////////// --- NavigableScreen
+    /////////// --- Screen
 
     @Override
     public String getScreenName() {
@@ -38,16 +38,18 @@ public class GameTestView implements NavigableScreen {
     public void show() {
     }
 
+    /////////// --- NextPlayerInput
+
+    private String nextPlayerName;
+
+    public void replaceNextPlayerName(String playerName) {
+        this.nextPlayerName = playerName;
+    }
+
     /////////// --- Current Saved Game
 
     public GameResponse getGame() {
         return game;
-    }
-
-    private void replaceGame(GameResponse game) {
-        if (game == null) return;
-        this.game = game;
-        playerTestView.replaceToken(game.getPlayerName(), game.getToken());
     }
 
     public Stream<EntityResponse> streamEntities() {
@@ -64,19 +66,14 @@ public class GameTestView implements NavigableScreen {
 
     /////////// --- RestMethods
 
-    public GameResponse fetchGame(String gameName, String creatorName, String token) {
-        var game = messageTestView.callApi(
-                () -> snapshotService.get("/api/v1/games/" + gameName + "/by/" + creatorName + "?token=" + token, null, GameResponse.class)
-        );
-        replaceGame(game);
-
-        return game;
+    private void replaceGame(GameResponse game) {
+        this.game = game;
     }
 
     public GameResponse post(String url, Map data) {
-        var token = playerTestView.getToken();
+        var playerName = game.getPlayerName();
 
-        var finalUrl = url + "?token=" + token;
+        var finalUrl = url + "?playerName=" + playerName;
         var result = messageTestView.callApi(() -> {
             var response = snapshotService.post(finalUrl, data, GameResponse.class);
             replaceGame(response);
@@ -85,18 +82,24 @@ public class GameTestView implements NavigableScreen {
         return result;
     }
 
-    public void submitEndTheRound() {
-        var gameName = game.getGameName();
-        var creatorName = game.getCreatorName();
-        var url = "/api/v1/games/" + gameName + "/by/" + creatorName + "/endRound";
-        post(url, new LinkedHashMap<>());
+    public void endTheRound() {
+        post("/api/v1/games/endRound", new LinkedHashMap<>());
     }
 
-    public void submitRefresh() {
-        var gameName = game.getGameName();
-        var creatorName = game.getCreatorName();
-        var token = game.getToken();
+    public void refreshGame() {
+        nextPlayer(game.getPlayerName());
+    }
 
-        fetchGame(gameName, creatorName, token);
+    public void nextPlayer(String playerName) {
+        var url = "/api/v1/games/play/" + playerName;
+        messageTestView.callApi(() -> {
+            var response = snapshotService.get(url, null, GameResponse.class);
+            replaceGame(response);
+            return response;
+        });
+    }
+
+    public void playGame() {
+        nextPlayer(nextPlayerName);
     }
 }

@@ -1,10 +1,6 @@
 package com.drpicox.game.components.loadables;
 
-import com.drpicox.game.games.Game;
 import org.springframework.stereotype.Component;
-
-import java.util.List;
-import java.util.Optional;
 
 @Component
 public class LoadablesController {
@@ -15,8 +11,8 @@ public class LoadablesController {
         this.loadablesRepository = loadablesRepository;
     }
 
-    public void create(String entityId, Game game) {
-        var component = new Loadable(entityId, game);
+    public void create(String entityId) {
+        var component = new Loadable(entityId);
         loadablesRepository.save(component);
     }
 

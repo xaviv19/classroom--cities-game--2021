@@ -1,9 +1,6 @@
 package com.drpicox.game.components.populateds;
 
-import com.drpicox.game.games.Game;
 import org.springframework.stereotype.Component;
-
-import java.util.List;
 
 @Component
 public class PopulatedsController {
@@ -14,8 +11,8 @@ public class PopulatedsController {
         this.populatedsRepository = populatedsRepository;
     }
 
-    public void create(String entityId, Game game, int initialPopulation) {
-        var component = new Populated(entityId, game, initialPopulation);
+    public void create(String entityId, int initialPopulation) {
+        var component = new Populated(entityId, initialPopulation);
         populatedsRepository.save(component);
     }
 

@@ -2,7 +2,6 @@ package com.drpicox.game.components.sails;
 
 import com.drpicox.game.ecs.EntityOwnDataGenerator;
 import com.drpicox.game.ecs.GameData;
-import com.drpicox.game.games.Game;
 import com.drpicox.game.players.Player;
 import org.springframework.stereotype.Component;
 
@@ -18,7 +17,7 @@ public class SailsEntityDataGenerator implements EntityOwnDataGenerator {
     }
 
     @Override
-    public void generateOwnData(GameData data, Game game, Player playingPlayer, List<String> ownedEntityIds) {
+    public void generateOwnData(GameData data, Player playingPlayer, List<String> ownedEntityIds) {
         var components = sailsRepository.findAllById(ownedEntityIds);
         components.forEach(component -> {
             var entityId = component.getEntityId();

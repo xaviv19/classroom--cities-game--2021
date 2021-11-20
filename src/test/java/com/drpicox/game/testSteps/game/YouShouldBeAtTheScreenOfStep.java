@@ -2,7 +2,7 @@ package com.drpicox.game.testSteps.game;
 
 import com.drpicox.game.testPost.reader.PostLine;
 import com.drpicox.game.testSteps.AbstractPostLineStep;
-import com.drpicox.game.testSteps.navigator.NavigatorTestView;
+import com.drpicox.game.testSteps.screenStack.ScreenStackTestView;
 import org.springframework.stereotype.Component;
 
 import static com.google.common.truth.Truth.assertThat;
@@ -11,12 +11,12 @@ import static com.google.common.truth.Truth.assertThat;
 public class YouShouldBeAtTheScreenOfStep extends AbstractPostLineStep {
 
     private final TypedTestView typedTestView;
-    private final NavigatorTestView navigatorTestView;
+    private final ScreenStackTestView screenStackTestView;
     private final EntityTestView entityTestView;
 
-    public YouShouldBeAtTheScreenOfStep(TypedTestView typedTestView, NavigatorTestView navigatorTestView, EntityTestView entityTestView) {
+    public YouShouldBeAtTheScreenOfStep(TypedTestView typedTestView, ScreenStackTestView screenStackTestView, EntityTestView entityTestView) {
         this.typedTestView = typedTestView;
-        this.navigatorTestView = navigatorTestView;
+        this.screenStackTestView = screenStackTestView;
         this.entityTestView = entityTestView;
     }
 
@@ -30,7 +30,7 @@ public class YouShouldBeAtTheScreenOfStep extends AbstractPostLineStep {
         var expectedScreenName = "entity";
         var expectedType = match[1].trim();
 
-        var screenName = navigatorTestView.peekScreenName();
+        var screenName = screenStackTestView.peekScreenName();
         var type = typedTestView.getType();
 
         assertThat(screenName).isEqualTo(expectedScreenName);

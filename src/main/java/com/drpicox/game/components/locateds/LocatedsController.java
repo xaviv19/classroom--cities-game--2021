@@ -1,10 +1,8 @@
 package com.drpicox.game.components.locateds;
 
-import com.drpicox.game.games.Game;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-import java.util.Optional;
 
 @Component
 public class LocatedsController {
@@ -15,13 +13,9 @@ public class LocatedsController {
         this.locatedsRepository = locatedsRepository;
     }
 
-    public void create(String entityId, Game game, int initialLocation) {
-        var component = new Located(entityId, game, initialLocation);
+    public void create(String entityId, int initialLocation) {
+        var component = new Located(entityId, initialLocation);
         locatedsRepository.save(component);
-    }
-    
-    public List<Located> findByGameAndLocation(Game game, int location) {
-        return locatedsRepository.findByGameAndLocation(game, location);
     }
 
     public int getLocation(String entityId) {
@@ -32,5 +26,9 @@ public class LocatedsController {
         var located = locatedsRepository.findById(entityId).get();
         located.moveTo(destination);
         locatedsRepository.save(located);
+    }
+
+    public List<Located> findByLocation(int location) {
+        return locatedsRepository.findByLocation(location);
     }
 }

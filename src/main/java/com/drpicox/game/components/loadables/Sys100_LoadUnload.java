@@ -1,7 +1,6 @@
 package com.drpicox.game.components.loadables;
 
 import com.drpicox.game.ecs.EcsSystem;
-import com.drpicox.game.games.Game;
 import com.drpicox.game.components.populateds.PopulatedsController;
 import org.springframework.stereotype.Component;
 
@@ -17,8 +16,8 @@ public class Sys100_LoadUnload implements EcsSystem {
     }
 
     @Override
-    public void act(Game game) {
-        var loadables = loadablesRepository.findAllByGame(game);
+    public void act() {
+        var loadables = loadablesRepository.findAll();
         loadables.forEach(loadable -> {
             var entityId = loadable.getEntityId();
             var loadUnloadAmount = loadable.getLoadUnloadAmount();

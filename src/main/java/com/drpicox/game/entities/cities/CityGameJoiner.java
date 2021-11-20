@@ -1,6 +1,5 @@
 package com.drpicox.game.entities.cities;
 
-import com.drpicox.game.games.Game;
 import com.drpicox.game.games.GameJoiner;
 import com.drpicox.game.players.Player;
 import org.springframework.stereotype.Component;
@@ -15,9 +14,9 @@ public class CityGameJoiner implements GameJoiner {
     }
 
     @Override
-    public void joinGame(Player owner, Game game) {
+    public void joinGame(Player owner) {
         var initialName = "Capital";
         int initialPopulation = 10;
-        cityFactory.buildCity(game, owner, initialName, initialPopulation);
+        cityFactory.buildCity(owner, initialName, initialPopulation);
     }
 }

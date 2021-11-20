@@ -1,6 +1,5 @@
 package com.drpicox.game.components.typeds;
 
-import com.drpicox.game.games.Game;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -14,8 +13,8 @@ public class TypedsController {
         this.typedsRepository = typedsRepository;
     }
 
-    public void create(String entityId, Game game, String entityType) {
-        var component = new Typed(entityId, game, entityType);
+    public void create(String entityId, String entityType) {
+        var component = new Typed(entityId, entityType);
         typedsRepository.save(component);
     }
 
@@ -23,7 +22,7 @@ public class TypedsController {
         return typedsRepository.findById(entityId).map(c -> c.isType(entityType)).orElse(false);
     }
 
-    public List<Typed> findAllByGameAndType(Game game, String type) {
-        return typedsRepository.findAllByGameAndType(game, type);
+    public List<Typed> findAllByType(String type) {
+        return typedsRepository.findAllByType(type);
     }
 }

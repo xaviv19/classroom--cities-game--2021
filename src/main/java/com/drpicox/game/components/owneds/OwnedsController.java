@@ -1,7 +1,5 @@
 package com.drpicox.game.components.owneds;
 
-import com.drpicox.game.ecs.EcsComponent;
-import com.drpicox.game.games.Game;
 import com.drpicox.game.players.Player;
 import org.springframework.stereotype.Component;
 
@@ -16,12 +14,12 @@ public class OwnedsController {
         this.ownedsRepository = ownedsRepository;
     }
 
-    public void create(String entityId, Game game, Player owner) {
-        var component = new Owned(entityId, game, owner);
+    public void create(String entityId, Player owner) {
+        var component = new Owned(entityId, owner);
         ownedsRepository.save(component);
     }
 
-    public List<Owned> findAllByGameAndOwner(Game game, Player owner) {
-        return ownedsRepository.findAllByGameAndOwner(game, owner);
+    public List<Owned> findAllByOwner(Player owner) {
+        return ownedsRepository.findAllByOwner(owner);
     }
 }

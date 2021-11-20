@@ -1,9 +1,6 @@
 package com.drpicox.game.components.sails;
 
-import com.drpicox.game.games.Game;
 import org.springframework.stereotype.Component;
-
-import java.util.Optional;
 
 @Component
 public class SailsController {
@@ -14,8 +11,8 @@ public class SailsController {
         this.sailsRepository = sailsRepository;
     }
 
-    public void create(String entityId, Game game) {
-        var component = new Sail(entityId, game);
+    public void create(String entityId) {
+        var component = new Sail(entityId);
         sailsRepository.save(component);
     }
 

@@ -2,7 +2,7 @@ package com.drpicox.game.testSteps.game;
 
 import com.drpicox.game.testPost.reader.PostLine;
 import com.drpicox.game.testSteps.AbstractPostLineStep;
-import com.drpicox.game.testSteps.navigator.NavigatorTestView;
+import com.drpicox.game.testSteps.screenStack.ScreenStackTestView;
 import org.springframework.stereotype.Component;
 
 import static com.drpicox.game.testSteps.game.TypedTestView.byType;
@@ -12,11 +12,11 @@ import static com.drpicox.game.testSteps.owneds.OwnedTestView.byOwner;
 @Component
 public class ClickOnTheCityStep extends AbstractPostLineStep {
 
-    private final NavigatorTestView navigatorTestView;
+    private final ScreenStackTestView screenStackTestView;
     private final GameTestView gameTestView;
 
-    public ClickOnTheCityStep(NavigatorTestView navigatorTestView, GameTestView gameTestView) {
-        this.navigatorTestView = navigatorTestView;
+    public ClickOnTheCityStep(ScreenStackTestView screenStackTestView, GameTestView gameTestView) {
+        this.screenStackTestView = screenStackTestView;
         this.gameTestView = gameTestView;
     }
 
@@ -34,6 +34,6 @@ public class ClickOnTheCityStep extends AbstractPostLineStep {
         var game = gameTestView.getGame();
         var city = gameTestView.findEntity(byType("city").and(byOwner(ownerName)).and(byName(cityName))).get();
 
-        navigatorTestView.pushScreenName("entity", city.getId());
+        screenStackTestView.pushScreenName("entity", city.getId());
     }
 }

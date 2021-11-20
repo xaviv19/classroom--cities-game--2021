@@ -1,7 +1,6 @@
 package com.drpicox.game.components.loadables;
 
 import com.drpicox.game.ecs.EcsComponent;
-import com.drpicox.game.games.Game;
 
 import javax.persistence.Entity;
 
@@ -10,8 +9,8 @@ public class Loadable extends EcsComponent {
     private int loadUnloadAmount;
     private String sourceEntityId;
 
-    public Loadable(String entityId, Game game) {
-        super(entityId, game);
+    public Loadable(String entityId) {
+        super(entityId);
     }
 
     protected Loadable() {}

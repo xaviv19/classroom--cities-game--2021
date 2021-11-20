@@ -1,7 +1,6 @@
 package com.drpicox.game.components.typeds;
 
 import com.drpicox.game.ecs.EcsComponent;
-import com.drpicox.game.games.Game;
 
 import javax.persistence.Entity;
 
@@ -9,8 +8,8 @@ import javax.persistence.Entity;
 public class Typed extends EcsComponent {
     private String type;
 
-    public Typed(String entityId, Game game, String type) {
-        super(entityId, game);
+    public Typed(String entityId, String type) {
+        super(entityId);
         this.type = type;
     }
 

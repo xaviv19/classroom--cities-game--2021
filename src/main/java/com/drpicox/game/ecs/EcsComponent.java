@@ -1,17 +1,14 @@
 package com.drpicox.game.ecs;
 
-import com.drpicox.game.games.Game;
-
-import javax.persistence.*;
+import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
 
 @MappedSuperclass
 public class EcsComponent {
     @Id private String entityId;
-    @ManyToOne private Game game;
 
-    public EcsComponent(String entityId, Game game) {
+    public EcsComponent(String entityId) {
         this.entityId = entityId;
-        this.game = game;
     }
 
     protected EcsComponent() {}
@@ -19,9 +16,4 @@ public class EcsComponent {
     public String getEntityId() {
         return entityId;
     }
-
-    public Game getGame() {
-        return game;
-    }
-
 }

@@ -12,8 +12,8 @@ public class Owned extends EcsComponent {
     @ManyToOne
     private Player owner;
 
-    public Owned(String entityId, Game game, Player owner) {
-        super(entityId, game);
+    public Owned(String entityId, Player owner) {
+        super(entityId);
         this.owner = owner;
     }
 

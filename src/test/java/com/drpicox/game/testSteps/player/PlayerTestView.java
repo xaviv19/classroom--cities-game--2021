@@ -1,10 +1,10 @@
 package com.drpicox.game.testSteps.player;
 
-import com.drpicox.game.testSteps.navigator.NavigableScreen;
+import com.drpicox.game.testSteps.screenStack.Screen;
 import org.springframework.stereotype.Component;
 
 @Component
-public class PlayerTestView implements NavigableScreen {
+public class PlayerTestView implements Screen {
     private String playerName;
     private String token;
     private String friendName;

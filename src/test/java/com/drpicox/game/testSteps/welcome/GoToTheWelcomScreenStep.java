@@ -2,16 +2,16 @@ package com.drpicox.game.testSteps.welcome;
 
 import com.drpicox.game.testPost.reader.PostLine;
 import com.drpicox.game.testSteps.AbstractPostLineStep;
-import com.drpicox.game.testSteps.navigator.NavigatorTestView;
+import com.drpicox.game.testSteps.screenStack.ScreenStackTestView;
 import org.springframework.stereotype.Component;
 
 @Component
 public class GoToTheWelcomScreenStep extends AbstractPostLineStep {
 
-    private NavigatorTestView navigatorTestView;
+    private ScreenStackTestView screenStackTestView;
 
-    public GoToTheWelcomScreenStep(NavigatorTestView navigatorTestView) {
-        this.navigatorTestView = navigatorTestView;
+    public GoToTheWelcomScreenStep(ScreenStackTestView screenStackTestView) {
+        this.screenStackTestView = screenStackTestView;
     }
 
     @Override
@@ -21,6 +21,6 @@ public class GoToTheWelcomScreenStep extends AbstractPostLineStep {
 
     @Override
     protected void run(PostLine line, String[] match) {
-        navigatorTestView.pushScreenName("welcome");
+        screenStackTestView.pushScreenName("welcome");
     }
 }

@@ -1,22 +1,22 @@
 package com.drpicox.game.testSteps.game;
 
-import com.drpicox.game.testSteps.navigator.NavigableScreen;
-import com.drpicox.game.testSteps.navigator.NavigatorTestView;
+import com.drpicox.game.testSteps.screenStack.Screen;
+import com.drpicox.game.testSteps.screenStack.ScreenStackTestView;
 import org.springframework.stereotype.Component;
 
 import java.util.Map;
 import java.util.TreeMap;
 
 @Component
-public class EntityTestView implements NavigableScreen {
+public class EntityTestView implements Screen {
 
     private final GameTestView gameTestView;
-    private final NavigatorTestView navigatorTestView;
+    private final ScreenStackTestView screenStackTestView;
     private Map<String, Object> form;
 
-    public EntityTestView(GameTestView gameTestView, NavigatorTestView navigatorTestView) {
+    public EntityTestView(GameTestView gameTestView, ScreenStackTestView screenStackTestView) {
         this.gameTestView = gameTestView;
-        this.navigatorTestView = navigatorTestView;
+        this.screenStackTestView = screenStackTestView;
     }
 
     @Override
@@ -41,7 +41,7 @@ public class EntityTestView implements NavigableScreen {
     }
 
     public String getEntityId() {
-        return navigatorTestView.peekId();
+        return screenStackTestView.peekId();
     }
 
     public int getEntityPropertyInt(String key) {

@@ -1,16 +1,14 @@
 package com.drpicox.game.components.docks;
 
-import com.drpicox.game.ecs.EntityOwnDataGenerator;
-import com.drpicox.game.ecs.EntityReachableDataGenerator;
+import com.drpicox.game.ecs.EntityVisibleDataGenerator;
 import com.drpicox.game.ecs.GameData;
-import com.drpicox.game.games.Game;
 import com.drpicox.game.players.Player;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 @Component
-public class DocksEntityDataGenerator implements EntityOwnDataGenerator, EntityReachableDataGenerator {
+public class DocksEntityDataGenerator implements EntityVisibleDataGenerator {
 
     private final DocksRepository docksRepository;
 
@@ -19,13 +17,8 @@ public class DocksEntityDataGenerator implements EntityOwnDataGenerator, EntityR
     }
 
     @Override
-    public void generateOwnData(GameData data, Game game, Player playingPlayer, List<String> ownedEntityIds) {
+    public void generateVisibleData(GameData data, Player playingPlayer, List<String> ownedEntityIds) {
         generateDocksData(data, ownedEntityIds);
-    }
-
-    @Override
-    public void generateReachableData(GameData data, Game game, Player playingPlayer, List<String> reachableEntityIds) {
-        generateDocksData(data, reachableEntityIds);
     }
 
     private void generateDocksData(GameData data, List<String> entityIds) {

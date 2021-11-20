@@ -1,7 +1,6 @@
 package com.drpicox.game.components.locateds;
 
 import com.drpicox.game.ecs.EcsComponent;
-import com.drpicox.game.games.Game;
 
 import javax.persistence.Entity;
 
@@ -9,8 +8,8 @@ import javax.persistence.Entity;
 public class Located extends EcsComponent {
     private int location;
 
-    public Located(String entityId, Game game, int initialLocation) {
-        super(entityId, game);
+    public Located(String entityId, int initialLocation) {
+        super(entityId);
         this.location = initialLocation;
     }
 

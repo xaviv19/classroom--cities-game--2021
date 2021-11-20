@@ -18,18 +18,16 @@ public class SailsApi {
     }
 
     @PostMapping("/{entityId}/sail")
-    public GameData sail(@PathVariable String entityId, @RequestParam String token, @RequestBody DestinationForm form) {
+    public GameData sail(@PathVariable String entityId, @RequestParam String playerName, @RequestBody DestinationForm form) {
         var sail = sailsController.orderSail(entityId, form.getDestinationLocation());
 
-        var game = sail.getGame();
-        return gamesApi.get(game.getGameName(), game.getCreator().getPlayerName(), token);
+        return gamesApi.play(playerName);
     }
 
     @PostMapping("/{entityId}/halt")
-    public GameData halt(@PathVariable String entityId, @RequestParam String token) {
+    public GameData halt(@PathVariable String entityId, @RequestParam String playerName) {
         var sail = sailsController.orderHalt(entityId);
 
-        var game = sail.getGame();
-        return gamesApi.get(game.getGameName(), game.getCreator().getPlayerName(), token);
+        return gamesApi.play(playerName);
     }
 }

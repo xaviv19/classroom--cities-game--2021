@@ -2,7 +2,7 @@ package com.drpicox.game.testSteps.game;
 
 import com.drpicox.game.testPost.reader.PostLine;
 import com.drpicox.game.testSteps.AbstractPostLineStep;
-import com.drpicox.game.testSteps.navigator.NavigatorTestView;
+import com.drpicox.game.testSteps.screenStack.ScreenStackTestView;
 import org.springframework.stereotype.Component;
 
 import static com.google.common.truth.Truth.assertThat;
@@ -11,12 +11,12 @@ import static com.google.common.truth.Truth.assertThat;
 public class YouShouldBeAtAnEmptyScreenStep extends AbstractPostLineStep {
 
     private final TypedTestView typedTestView;
-    private final NavigatorTestView navigatorTestView;
+    private final ScreenStackTestView screenStackTestView;
     private final EntityTestView entityTestView;
 
-    public YouShouldBeAtAnEmptyScreenStep(TypedTestView typedTestView, NavigatorTestView navigatorTestView, EntityTestView entityTestView) {
+    public YouShouldBeAtAnEmptyScreenStep(TypedTestView typedTestView, ScreenStackTestView screenStackTestView, EntityTestView entityTestView) {
         this.typedTestView = typedTestView;
-        this.navigatorTestView = navigatorTestView;
+        this.screenStackTestView = screenStackTestView;
         this.entityTestView = entityTestView;
     }
 
@@ -27,8 +27,8 @@ public class YouShouldBeAtAnEmptyScreenStep extends AbstractPostLineStep {
 
     @Override
     protected void run(PostLine line, String[] match) {
-        var screenName = navigatorTestView.peekScreenName();
-        var entityId = navigatorTestView.peekId();
+        var screenName = screenStackTestView.peekScreenName();
+        var entityId = screenStackTestView.peekId();
 
         var entity = entityTestView.getEntity();
         assertThat(screenName).isEqualTo("entity");

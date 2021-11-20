@@ -1,7 +1,6 @@
 package com.drpicox.game.components.sails;
 
 import com.drpicox.game.ecs.EcsComponent;
-import com.drpicox.game.games.Game;
 
 import javax.persistence.Entity;
 
@@ -10,8 +9,8 @@ public class Sail extends EcsComponent {
     private boolean destinationSail;
     private int destinationLocation;
 
-    public Sail(String entityId, Game game) {
-        super(entityId, game);
+    public Sail(String entityId) {
+        super(entityId);
     }
 
     protected Sail() {}

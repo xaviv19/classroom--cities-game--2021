@@ -3,7 +3,7 @@ package com.drpicox.game.testSteps.game;
 import com.drpicox.game.games.api.GamesApi;
 import com.drpicox.game.testPost.reader.PostLine;
 import com.drpicox.game.testSteps.AbstractPostLineStep;
-import com.drpicox.game.testSteps.navigator.NavigatorTestView;
+import com.drpicox.game.testSteps.screenStack.ScreenStackTestView;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -11,12 +11,12 @@ public class SkipRoundsStep extends AbstractPostLineStep {
 
     private final GamesApi gamesApi;
     private final GameTestView gameTestView;
-    private final NavigatorTestView navigatorTestView;
+    private final ScreenStackTestView screenStackTestView;
 
-    public SkipRoundsStep(GamesApi gamesApi, GameTestView gameTestView, NavigatorTestView navigatorTestView) {
+    public SkipRoundsStep(GamesApi gamesApi, GameTestView gameTestView, ScreenStackTestView screenStackTestView) {
         this.gamesApi = gamesApi;
         this.gameTestView = gameTestView;
-        this.navigatorTestView = navigatorTestView;
+        this.screenStackTestView = screenStackTestView;
     }
 
     @Override
@@ -28,15 +28,13 @@ public class SkipRoundsStep extends AbstractPostLineStep {
     protected void run(PostLine line, String[] match) {
         var count = Integer.parseInt(match[1]);
         var game = gameTestView.getGame();
-        var gameName = game.getGameName();
-        var creatorName = game.getCreatorName();
-        var token = game.getToken();
+        var playerName = game.getPlayerName();
 
         for (var i = 0; i < count - 1; i++) {
-            gamesApi.endRound(gameName, creatorName, token);
+            gamesApi.endRound(playerName);
         }
 
-        gameTestView.submitEndTheRound();
-        navigatorTestView.pushScreenName("game");
+        gameTestView.endTheRound();
+        screenStackTestView.pushScreenName("game");
     }
 }

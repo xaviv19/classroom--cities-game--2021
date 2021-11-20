@@ -2,77 +2,46 @@ package com.drpicox.game.games;
 
 import com.drpicox.game.ecs.EcsSystem;
 import com.drpicox.game.players.Player;
+import com.drpicox.game.players.PlayersController;
 import org.springframework.stereotype.Controller;
 
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Controller
 public class GamesController {
     private final GameRepository gameRepository;
+    private final PlayersController playersController;
     private final List<GameJoiner> gameJoiners;
-    private final List<EcsSystem> gameRounders;
+    private final List<EcsSystem> gameSystems;
 
-    public GamesController(GameRepository gameRepository, List<GameJoiner> gameJoiners, List<EcsSystem> gameRounders) {
+    public GamesController(GameRepository gameRepository, PlayersController playersController, List<GameJoiner> gameJoiners, List<EcsSystem> gameSystems) {
         this.gameRepository = gameRepository;
+        this.playersController = playersController;
         this.gameJoiners = gameJoiners;
-        this.gameRounders = gameRounders;
-        this.gameRounders.sort((a, b) -> {
+        this.gameSystems = gameSystems;
+        this.gameSystems.sort((a, b) -> {
             return a.getClass().getSimpleName().compareTo(b.getClass().getSimpleName());
         });
     }
 
-    public Optional<Game> createGame(String gameName, Player player) {
-        var id = computeId(gameName, player);
-        if (gameRepository.findById(id).isPresent()) return Optional.empty();
-
-        var game = new Game(id, gameName, player);
-        joinGame(player, game);
-
-        return Optional.of(game);
+    public Game getGame() {
+        return gameRepository.findById("daGame").orElse(new Game("daGame"));
     }
 
-    public Optional<Game> join(String gameName, Player creatorPlayer, Player joiningPlayer) {
-        return findGame(gameName, creatorPlayer)
-                .filter(game -> !game.isPlayerJoined(joiningPlayer))
-                .map(game -> {
-                    joinGame(joiningPlayer, game);
-                    return game;
-                });
+    public Player joinPlayer(String playerName) {
+        return playersController.findPlayer(playerName).orElseGet(() -> {
+            var player = playersController.createPlayer(playerName);
+            gameJoiners.forEach(j -> j.joinGame(player));
+            return player;
+        });
     }
 
-    private void joinGame(Player player, Game game) {
-        game.joinPlayer(player);
-        gameRepository.save(game);
-
-        gameJoiners.stream().forEach(gj -> gj.joinGame(player, game));
-    }
-
-    public void endRound(String gameName, Player creatorPlayer) {
-        var game = findGame(gameName, creatorPlayer).get();
+    public void endRound() {
+        var game = getGame();
         game.endRound();
         gameRepository.save(game);
 
-        gameRounders.stream().forEach(gr -> gr.act(game));
-    }
-
-    public Optional<Game> findGame(String gameName, Player player) {
-        return gameRepository.findById(computeId(gameName, player));
-    }
-
-    public List<Game> findByCreator(Player player) {
-        return gameRepository.findByCreator(player);
-    }
-
-    public List<Game> findByJoined(Player player) {
-        return gameRepository.findAll().stream()
-                .filter(g -> g.isPlayerJoined(player))
-                .collect(Collectors.toList());
-    }
-
-    private String computeId(String gameName, Player player) {
-        return player.getPlayerName() + "#" + gameName;
+        gameSystems.stream().forEach(gr -> gr.act());
     }
 
 }

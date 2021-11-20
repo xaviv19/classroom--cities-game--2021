@@ -3,7 +3,7 @@ package com.drpicox.game.testSteps.docks;
 import com.drpicox.game.testPost.reader.PostLine;
 import com.drpicox.game.testSteps.AbstractPostLineStep;
 import com.drpicox.game.testSteps.locateds.LocatedTestView;
-import com.drpicox.game.testSteps.navigator.NavigatorTestView;
+import com.drpicox.game.testSteps.screenStack.ScreenStackTestView;
 import org.springframework.stereotype.Component;
 
 import static com.drpicox.game.testSteps.nameds.NamedTestView.byName;
@@ -13,11 +13,11 @@ import static com.drpicox.game.testSteps.owneds.OwnedTestView.byOwner;
 public class ClickOnTheShipStep extends AbstractPostLineStep {
 
     private final LocatedTestView locatedTestView;
-    private final NavigatorTestView navigatorTestView;
+    private final ScreenStackTestView screenStackTestView;
 
-    public ClickOnTheShipStep(LocatedTestView locatedTestView, NavigatorTestView navigatorTestView) {
+    public ClickOnTheShipStep(LocatedTestView locatedTestView, ScreenStackTestView screenStackTestView) {
         this.locatedTestView = locatedTestView;
-        this.navigatorTestView = navigatorTestView;
+        this.screenStackTestView = screenStackTestView;
     }
 
     @Override
@@ -34,6 +34,6 @@ public class ClickOnTheShipStep extends AbstractPostLineStep {
                 .filter(byOwner(ownerName)).filter(byName(shipName))
                 .findFirst().get();
 
-        navigatorTestView.pushScreenName("entity", ship.getId());
+        screenStackTestView.pushScreenName("entity", ship.getId());
     }
 }

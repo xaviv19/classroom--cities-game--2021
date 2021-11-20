@@ -1,7 +1,6 @@
 package com.drpicox.game.components.populateds;
 
 import com.drpicox.game.ecs.EcsComponent;
-import com.drpicox.game.games.Game;
 
 import javax.persistence.Entity;
 
@@ -10,8 +9,8 @@ public class Populated extends EcsComponent {
     public static final int MAX_POPULATION = 20;
     private int population;
 
-    public Populated(String entityId, Game game, int initialPopulation) {
-        super(entityId, game);
+    public Populated(String entityId, int initialPopulation) {
+        super(entityId);
         this.population = initialPopulation;
     }
 

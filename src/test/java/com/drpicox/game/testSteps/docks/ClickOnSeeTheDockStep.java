@@ -2,22 +2,18 @@ package com.drpicox.game.testSteps.docks;
 
 import com.drpicox.game.testPost.reader.PostLine;
 import com.drpicox.game.testSteps.AbstractPostLineStep;
-import com.drpicox.game.testSteps.locateds.LocatedTestView;
-import com.drpicox.game.testSteps.navigator.NavigatorTestView;
+import com.drpicox.game.testSteps.screenStack.ScreenStackTestView;
 import org.springframework.stereotype.Component;
-
-import static com.drpicox.game.testSteps.nameds.NamedTestView.byName;
-import static com.drpicox.game.testSteps.owneds.OwnedTestView.byOwner;
 
 @Component
 public class ClickOnSeeTheDockStep extends AbstractPostLineStep {
 
     private final DockTestView dockTestView;
-    private final NavigatorTestView navigatorTestView;
+    private final ScreenStackTestView screenStackTestView;
 
-    public ClickOnSeeTheDockStep(DockTestView dockTestView, NavigatorTestView navigatorTestView) {
+    public ClickOnSeeTheDockStep(DockTestView dockTestView, ScreenStackTestView screenStackTestView) {
         this.dockTestView = dockTestView;
-        this.navigatorTestView = navigatorTestView;
+        this.screenStackTestView = screenStackTestView;
     }
 
     @Override
@@ -29,6 +25,6 @@ public class ClickOnSeeTheDockStep extends AbstractPostLineStep {
     protected void run(PostLine line, String[] match) {
         var entityId = dockTestView.getCoLocatedDockId();
 
-        navigatorTestView.pushScreenName("entity", entityId);
+        screenStackTestView.pushScreenName("entity", entityId);
     }
 }

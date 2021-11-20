@@ -13,107 +13,60 @@ We will publish more blogposts during
 the following days with the instructions
 and new functionalities.
 
-### Disseny gràfic
-
-```
-    View Welcome:                        View Signup:                         View Welcome:
-  +--------------------------+         +--------------------------+         +--------------------------+
-  | ©          ( Singup )    | ---->   | ©          ( Singup )    |         | ©          ( Singup )    |
-  +--------------------------+         +--------------------------+         +--------------------------+
-  |  Welcome!                |         |  Signup!                 |   /-->  ! Signup success           |
-  :                          :         |                          |   |     +--------------------------+  
-  |                          |         |  player name: [        ] |   |     |  Welcome!                |
-  |                          |         |  password:    [        ] |   |     :                          :
-  +--------------------------+         |  [ signup ]              | --/     |                          |
-                                       ----------------------------         |                          |
-                                                                            +--------------------------+                                                
-```
-
-
 ## Entering the game
+
+Now it is more easy than ever to start a game:
+- there are no passwords
+- no signups
+- no game creators
+Just write your player name and start (or continue) playing.
 
 ### All it's in the browser
 
 You are reading this blogpost, so you already
 know where the game is. Yes, in your browser.
 
-### Create a player
+### Welcome
 
-But before start, you need to create a player:
+You start in the welcome screen, just a fine welcoming message.
 
- * You should be at the welcome screen.
- * Go to the signup.
+ * You should be at the "welcome" screen.
 
- > You should be at the signup screen.  
- > Add your name as player name.  
- > Set your password.  
- > Click the signup button.  
+### Enter with a player
+
+At the top right there is an input box for the next player to play. Fill and go:
+
+ * Enter "leonard" as player name.
+ * Click the play button.
  <!-- SNAPSHOT status=200 -->
+ * You should be at the "game" screen.
+ * "leonard" should be the current player.
 
-At this point,
+And you can click play again if you want.
 
- > You should be back at the welcome screen.  
- > You should see a message saying that "The leonard player has been added successfully".  
+ * Click the play button.
+ <!-- SNAPSHOT status=200 -->
+ * You should be at the "game" screen.
+ * "leonard" should be the current player.
 
-## Checking data
+Or you can change the player so you have another player playing.
 
-We are all human, (are we?), and we can
-fail, so we have few failsafe to avoid
-errors.
+ * Enter "penny" as player name.
+ * Click the play button.
+ <!-- SNAPSHOT status=200 -->
+ * You should be at the "game" screen.
+ * "penny" should be the current player.
 
-### No player name
+### Shorting
 
-It is necessary the player name.
+From now, it will be more easy to change player, just with:
 
- > Go to the signup.  
- > Click the signup button.  
- <!-- SNAPSHOT status=400 -->
- > You should be at the signup screen.                                       
- > You should see an error message saying that "Player name should be present".       
+ * Go to the next player "leonard"
+ <!-- SNAPSHOT status=200 -->
+ * You should be at the "game" screen.
+ * "leonard" should be the current player.
 
-### Too short player name
-
-And it should have at least three characters long
-
- > Add "jo" as player name.              
- > Click the signup button.            
- <!-- SNAPSHOT status=400 -->
- > You should be at the signup screen.                                         
- > You should see an error message saying that "Player name should be at least three characters long".  
-
-### No password
-
-It should have a password.
-
- > Add your name as player name.     
- > Click the signup button.         
- <!-- SNAPSHOT status=400 -->
- > You should be at the signup screen.                                         
- > You should see an error message saying that "Password should be present".  
-
-### Too weak passwords
-
-It should have at least 6 characters.
-
- > Set "short" as password.  
- > Click the signup button.  
- <!-- SNAPSHOT status=400 -->
- > You should be at the signup screen.                                         
- > You should see an error message saying that "Player password should be at least six characters long".  
-
-And at least one number.
-
- > Set "nonumbers" as password.  
- > Click the signup button.  
- <!-- SNAPSHOT status=400 -->
- > You should be at the signup screen.  
- > You should see an error message saying that "Player password should have at least one number".  
-
-And some letters
-
- > Set "123456" as password.  
- > Click the signup button.  
- <!-- SNAPSHOT status=400 -->
- > You should be at the signup screen.                                          
- > You should see an error message saying that "Player password should have at least one letter".  
-
+ * Go to the next player "penny"
+ <!-- SNAPSHOT status=200 -->
+ * You should be at the "game" screen.
+ * "penny" should be the current player.

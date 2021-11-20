@@ -15,20 +15,18 @@ public class OwnedsGameDataGenerator implements GameOwnDataGenerator {
 
     private final OwnedsRepository ownedsRepository;
     private final List<EntityOwnDataGenerator> entityOwnDataGenerators;
-    private final OwnedsEntityDataGenerator ownedsEntityDataGenerator;
 
-    public OwnedsGameDataGenerator(OwnedsRepository ownedsRepository, List<EntityOwnDataGenerator> entityOwnDataGenerators, OwnedsEntityDataGenerator ownedsEntityDataGenerator) {
+    public OwnedsGameDataGenerator(OwnedsRepository ownedsRepository, List<EntityOwnDataGenerator> entityOwnDataGenerators) {
         this.ownedsRepository = ownedsRepository;
         this.entityOwnDataGenerators = entityOwnDataGenerators;
-        this.ownedsEntityDataGenerator = ownedsEntityDataGenerator;
     }
 
     @Override
-    public void generateOwnData(GameData data, Game game, Player playingPlayer) {
-        var playerOwneds = ownedsRepository.findAllByGameAndOwner(game, playingPlayer);
+    public void generateOwnData(GameData data, Player playingPlayer) {
+        var playerOwneds = ownedsRepository.findAllByOwner(playingPlayer);
         var ownedEntityIds = playerOwneds.stream().map(c -> c.getEntityId()).collect(Collectors.toList());
         entityOwnDataGenerators.forEach(generator ->
-            generator.generateOwnData(data, game, playingPlayer, ownedEntityIds)
+            generator.generateOwnData(data, playingPlayer, ownedEntityIds)
         );
     }
 }

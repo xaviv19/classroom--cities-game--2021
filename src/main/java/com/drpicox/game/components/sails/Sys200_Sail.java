@@ -2,7 +2,6 @@ package com.drpicox.game.components.sails;
 
 import com.drpicox.game.components.locateds.LocatedsController;
 import com.drpicox.game.ecs.EcsSystem;
-import com.drpicox.game.games.Game;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -17,8 +16,8 @@ public class Sys200_Sail implements EcsSystem {
     }
 
     @Override
-    public void act(Game game) {
-        var sails = sailsRepository.findAllByGame(game);
+    public void act() {
+        var sails = sailsRepository.findAll();
         sails.forEach(sail -> {
             var isSail = sail.isDestinationSail();
 

@@ -1,10 +1,8 @@
 package com.drpicox.game.components.docks;
 
-import com.drpicox.game.games.Game;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-import java.util.Optional;
 
 @Component
 public class DocksController {
@@ -15,13 +13,13 @@ public class DocksController {
         this.docksRepository = docksRepository;
     }
 
-    public void create(String entityId, Game game) {
-        var component = new Dock(entityId, game);
+    public void create(String entityId) {
+        var component = new Dock(entityId);
         docksRepository.save(component);
     }
 
-    public List<Dock> findAllByGame(Game game) {
-        return docksRepository.findAllByGame(game);
+    public List<Dock> findAll() {
+        return docksRepository.findAll();
     }
 
     public List<Dock> findAllById(List<String> entityIds) {

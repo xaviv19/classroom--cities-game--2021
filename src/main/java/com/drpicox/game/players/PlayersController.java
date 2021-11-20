@@ -12,22 +12,13 @@ public class PlayersController {
         this.playerRepository = playerRepository;
     }
 
-    public void addPlayer(String playerName, String password) {
-        var player = new Player(playerName, password);
+    public Player createPlayer(String playerName) {
+        var player = new Player(playerName);
         playerRepository.save(player);
+        return player;
     }
 
     public Optional<Player> findPlayer(String playerName) {
         return playerRepository.findById(playerName);
-    }
-
-    public Optional<String> findPlayerToken(String playerName, String password) {
-        return findPlayer(playerName)
-                .filter(playerFound -> playerFound.isPasswordOk(password))
-                .map(playerFound -> playerFound.getToken());
-    }
-
-    public Optional<Player> findPlayerByToken(String token) {
-        return playerRepository.findByToken(token);
     }
 }

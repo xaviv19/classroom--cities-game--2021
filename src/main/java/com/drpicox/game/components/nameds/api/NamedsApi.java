@@ -18,11 +18,9 @@ public class NamedsApi {
     }
 
     @PostMapping("/{entityId}/name")
-    public GameData changedName(@PathVariable String entityId, @RequestParam String token, @RequestBody NewNamedNameForm form) {
+    public GameData changedName(@PathVariable String entityId, @RequestParam String playerName, @RequestBody NewNamedNameForm form) {
         var named = namedsController.changeName(entityId, form.getNewName());
 
-
-        var game = named.getGame();
-        return gamesApi.get(game.getGameName(), game.getCreator().getPlayerName(), token);
+        return gamesApi.play(playerName);
     }
 }
