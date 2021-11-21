@@ -1,8 +1,7 @@
-package com.drpicox.game.testSteps.game.entities;
+package com.drpicox.game.testSteps.entities;
 
 import com.drpicox.game.testPost.reader.PostLine;
 import com.drpicox.game.testSteps.AbstractPostLineStep;
-import com.drpicox.game.testSteps.game.PrettyKey;
 import org.springframework.stereotype.Component;
 
 @Component

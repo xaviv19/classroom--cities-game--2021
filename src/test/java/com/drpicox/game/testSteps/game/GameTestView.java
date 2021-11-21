@@ -1,15 +1,11 @@
 package com.drpicox.game.testSteps.game;
 
 import com.drpicox.game.testPost.SnapshotService;
-import com.drpicox.game.testSteps.game.entities.EntityResponse;
 import com.drpicox.game.testSteps.screenStack.Screen;
 import org.springframework.stereotype.Component;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.Optional;
-import java.util.function.Predicate;
-import java.util.stream.Stream;
 
 @Component
 public class GameTestView implements Screen {
@@ -45,22 +41,6 @@ public class GameTestView implements Screen {
 
     public GameResponse getGame() {
         return game;
-    }
-
-    public Stream<EntityResponse> streamEntities() {
-        return game.streamEntities();
-    }
-
-    public Stream<EntityResponse> streamEntities(Predicate<EntityResponse> predicate) {
-        return streamEntities().filter(predicate);
-    }
-
-    public EntityResponse getEntity(String entityId) {
-        return game.findEntityById(entityId).orElseThrow(() -> new IllegalArgumentException("There is no entity '"+entityId+"'"));
-    }
-
-    public Optional<EntityResponse> findEntity(Predicate<EntityResponse> predicate) {
-        return streamEntities(predicate).findFirst();
     }
 
     /////////// --- RestMethods

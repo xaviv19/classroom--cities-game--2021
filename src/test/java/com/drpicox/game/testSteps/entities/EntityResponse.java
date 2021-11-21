@@ -1,4 +1,4 @@
-package com.drpicox.game.testSteps.game.entities;
+package com.drpicox.game.testSteps.entities;
 
 import com.google.gson.annotations.JsonAdapter;
 
@@ -53,6 +53,9 @@ public class EntityResponse {
     public <T> T get(String key, Class<T> as) {
         if (!properties.containsKey(key))
             throwErrorInEntity("expected to have the property '" + key + "', but it was not present", key);
+        var value = properties.get(key);
+        if (!as.isInstance(value))
+            throwErrorInEntity("expected to have the property '" + key + "' of type '"+as.getSimpleName()+"', but it was of type '"+value.getClass().getSimpleName()+"'", key);
         return (T) properties.get(key);
     }
 
@@ -88,5 +91,11 @@ public class EntityResponse {
 
     public boolean containsKey(String key) {
         return properties.containsKey(key);
+    }
+
+    public String getOnwerNameType() {
+        return getOrDefault("owner", "NO_OWNER") + "-" +
+                getOrDefault("name", "NO_NAME") + "-" +
+                getOrDefault("type", "NO_TYPE");
     }
 }

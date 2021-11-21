@@ -1,6 +1,6 @@
 package com.drpicox.game.testSteps.components.sails;
 
-import com.drpicox.game.testSteps.game.entities.EntityTestView;
+import com.drpicox.game.testSteps.entities.EntityTestView;
 import org.springframework.stereotype.Component;
 
 @Component

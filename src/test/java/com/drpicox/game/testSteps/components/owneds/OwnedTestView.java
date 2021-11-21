@@ -1,7 +1,7 @@
-package com.drpicox.game.testSteps.owneds;
+package com.drpicox.game.testSteps.components.owneds;
 
-import com.drpicox.game.testSteps.game.entities.EntityResponse;
-import com.drpicox.game.testSteps.game.entities.EntityTestView;
+import com.drpicox.game.testSteps.entities.EntityResponse;
+import com.drpicox.game.testSteps.entities.EntityTestView;
 import org.springframework.stereotype.Component;
 
 import java.util.function.Function;

@@ -2,11 +2,11 @@ package com.drpicox.game.testSteps.components.docks;
 
 import com.drpicox.game.testPost.reader.PostLine;
 import com.drpicox.game.testSteps.AbstractPostLineStep;
-import com.drpicox.game.testSteps.locateds.LocatedTestView;
+import com.drpicox.game.testSteps.components.locateds.LocatedTestView;
 import org.springframework.stereotype.Component;
 
-import static com.drpicox.game.testSteps.typeds.TypedTestView.byType;
-import static com.drpicox.game.testSteps.owneds.OwnedTestView.byOwner;
+import static com.drpicox.game.testSteps.components.typeds.TypedTestView.byType;
+import static com.drpicox.game.testSteps.components.owneds.OwnedTestView.byOwner;
 import static com.google.common.truth.Truth8.assertThat;
 
 @Component

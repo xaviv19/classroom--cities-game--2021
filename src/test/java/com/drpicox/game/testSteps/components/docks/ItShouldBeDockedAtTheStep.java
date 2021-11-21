@@ -2,9 +2,9 @@ package com.drpicox.game.testSteps.components.docks;
 
 import com.drpicox.game.testPost.reader.PostLine;
 import com.drpicox.game.testSteps.AbstractPostLineStep;
-import com.drpicox.game.testSteps.typeds.TypedTestView;
-import com.drpicox.game.testSteps.nameds.NamedTestView;
-import com.drpicox.game.testSteps.owneds.OwnedTestView;
+import com.drpicox.game.testSteps.components.typeds.TypedTestView;
+import com.drpicox.game.testSteps.components.nameds.NamedTestView;
+import com.drpicox.game.testSteps.components.owneds.OwnedTestView;
 import org.springframework.stereotype.Component;
 
 import static com.google.common.truth.Truth.assertThat;

@@ -1,8 +1,8 @@
 package com.drpicox.game.testSteps.components.docks;
 
-import com.drpicox.game.testSteps.game.entities.EntityResponse;
-import com.drpicox.game.testSteps.game.entities.EntityTestView;
-import com.drpicox.game.testSteps.locateds.LocatedTestView;
+import com.drpicox.game.testSteps.entities.EntityResponse;
+import com.drpicox.game.testSteps.entities.EntityTestView;
+import com.drpicox.game.testSteps.components.locateds.LocatedTestView;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
@@ -25,8 +25,8 @@ public class DockTestView {
     public String getCoLocatedDockId() {
         return findCoLocatedDockId().orElseThrow(() -> {
             var entity = entityTestView.getEntity();
-            var colocateds = locatedTestView.streamCoLocateds().map(EntityTestView.toId());
-            throw new AssertionError("Cannot find any dock at the location of the entity '"+entity.getId()+"' (loc: "+entity.get("location")+"). Other entities at that location are: "+colocateds+".");
+            var coLocateds = locatedTestView.streamCoLocateds().map(EntityTestView.toId());
+            throw new AssertionError("Cannot find any dock at the location of the entity '"+entity.getId()+"' (loc: "+entity.get("location")+"). Other entities at that location are: "+coLocateds+".");
         });
     }
 

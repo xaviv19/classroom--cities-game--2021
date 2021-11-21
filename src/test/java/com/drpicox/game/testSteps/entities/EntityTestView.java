@@ -1,12 +1,12 @@
-package com.drpicox.game.testSteps.game.entities;
+package com.drpicox.game.testSteps.entities;
 
 import com.drpicox.game.testSteps.game.GameResponse;
 import com.drpicox.game.testSteps.game.GameTestView;
-import com.drpicox.game.testSteps.nameds.NamedTestView;
-import com.drpicox.game.testSteps.owneds.OwnedTestView;
+import com.drpicox.game.testSteps.components.nameds.NamedTestView;
+import com.drpicox.game.testSteps.components.owneds.OwnedTestView;
 import com.drpicox.game.testSteps.screenStack.Screen;
 import com.drpicox.game.testSteps.screenStack.ScreenStackTestView;
-import com.drpicox.game.testSteps.typeds.TypedTestView;
+import com.drpicox.game.testSteps.components.typeds.TypedTestView;
 import org.springframework.stereotype.Component;
 
 import java.util.Map;

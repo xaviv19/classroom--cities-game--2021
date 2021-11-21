@@ -1,10 +1,9 @@
-package com.drpicox.game.testSteps.game;
+package com.drpicox.game.testSteps.entities;
 
 import com.drpicox.game.testPost.reader.PostLine;
 import com.drpicox.game.testSteps.AbstractPostLineStep;
-import com.drpicox.game.testSteps.game.entities.EntityTestView;
+import com.drpicox.game.testSteps.components.typeds.TypedTestView;
 import com.drpicox.game.testSteps.screenStack.ScreenStackTestView;
-import com.drpicox.game.testSteps.typeds.TypedTestView;
 import org.springframework.stereotype.Component;
 
 import static com.google.common.truth.Truth.assertThat;

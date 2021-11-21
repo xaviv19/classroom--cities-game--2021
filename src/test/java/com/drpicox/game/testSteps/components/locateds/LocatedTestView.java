@@ -1,7 +1,7 @@
-package com.drpicox.game.testSteps.locateds;
+package com.drpicox.game.testSteps.components.locateds;
 
-import com.drpicox.game.testSteps.game.entities.EntityResponse;
-import com.drpicox.game.testSteps.game.entities.EntityTestView;
+import com.drpicox.game.testSteps.entities.EntityResponse;
+import com.drpicox.game.testSteps.entities.EntityTestView;
 import com.drpicox.game.testSteps.game.GameTestView;
 import org.springframework.stereotype.Component;
 
@@ -28,10 +28,11 @@ public class LocatedTestView {
     }
 
     public Predicate<EntityResponse> byCoLocation() {
-        return byLocation(getLocation());
+        int myLocation = getLocation();
+        return byLocation(myLocation);
     }
 
     public Stream<EntityResponse> streamCoLocateds() {
-        return gameTestView.streamEntities(byCoLocation());
+        return gameTestView.getGame().streamEntities(byCoLocation());
     }
 }

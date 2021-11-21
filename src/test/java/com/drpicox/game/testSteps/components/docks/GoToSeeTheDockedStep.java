@@ -2,8 +2,8 @@ package com.drpicox.game.testSteps.components.docks;
 
 import com.drpicox.game.testPost.reader.PostLine;
 import com.drpicox.game.testSteps.AbstractPostLineStep;
-import com.drpicox.game.testSteps.game.entities.EntityTestView;
-import com.drpicox.game.testSteps.locateds.LocatedTestView;
+import com.drpicox.game.testSteps.entities.EntityTestView;
+import com.drpicox.game.testSteps.components.locateds.LocatedTestView;
 import com.drpicox.game.testSteps.screenStack.ScreenStackTestView;
 import org.springframework.stereotype.Component;
 

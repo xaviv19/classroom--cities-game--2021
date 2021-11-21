@@ -1,7 +1,7 @@
 package com.drpicox.game.testSteps.components.resources;
 
 import com.drpicox.game.testSteps.components.docks.DockTestView;
-import com.drpicox.game.testSteps.game.entities.EntityTestView;
+import com.drpicox.game.testSteps.entities.EntityTestView;
 import com.drpicox.game.testSteps.game.GameTestView;
 import org.springframework.stereotype.Component;
 
@@ -42,7 +42,7 @@ public class ResourcesTestView {
     }
 
     private Map<String, Double> getResource(String entityId, String resourceName) {
-        var entity = gameTestView.getEntity(entityId);
+        var entity = gameTestView.getGame().getEntity(entityId);
         var resources = (Map<String, Map<String,Double>>) entity.get("resources", Map.class);
         var resource = resources.get(resourceName);
         if (resource == null) throw new AssertionError("Entity '"+ entityId +"' has no resource '"+resource+"'; Available resources are:\n- " + resources.keySet().stream().collect(Collectors.joining("\n- ")));

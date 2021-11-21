@@ -3,7 +3,7 @@ package com.drpicox.game.testSteps.components.docks;
 import com.drpicox.game.testPost.reader.PostLine;
 import com.drpicox.game.testSteps.AbstractPostLineStep;
 import com.drpicox.game.testSteps.components.resources.ResourcesTestView;
-import com.drpicox.game.testSteps.game.PrettyKey;
+import com.drpicox.game.testSteps.entities.PrettyKey;
 import org.springframework.stereotype.Component;
 
 import static com.google.common.truth.Truth.assertThat;

@@ -1,18 +1,17 @@
-package com.drpicox.game.testSteps.game;
+package com.drpicox.game.testSteps.entities;
 
 import com.drpicox.game.testPost.reader.PostLine;
 import com.drpicox.game.testSteps.AbstractPostLineStep;
-import com.drpicox.game.testSteps.game.entities.EntityTestView;
 import org.springframework.stereotype.Component;
 
 import static com.google.common.truth.Truth.assertThat;
 
 @Component
-public class TheShouldBeNoStep extends AbstractPostLineStep {
+public class ThereShouldBeNoStep extends AbstractPostLineStep {
 
     private final EntityTestView entityTestView;
 
-    public TheShouldBeNoStep(EntityTestView entityTestView) {
+    public ThereShouldBeNoStep(EntityTestView entityTestView) {
         this.entityTestView = entityTestView;
     }
 

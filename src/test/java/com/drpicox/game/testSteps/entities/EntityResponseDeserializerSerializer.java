@@ -1,4 +1,4 @@
-package com.drpicox.game.testSteps.game.entities;
+package com.drpicox.game.testSteps.entities;
 
 import com.google.gson.*;
 

@@ -4,8 +4,8 @@ import com.drpicox.game.testPost.reader.PostLine;
 import com.drpicox.game.testSteps.AbstractPostLineStep;
 import org.springframework.stereotype.Component;
 
-import static com.drpicox.game.testSteps.typeds.TypedTestView.byType;
-import static com.drpicox.game.testSteps.owneds.OwnedTestView.byOwner;
+import static com.drpicox.game.testSteps.components.typeds.TypedTestView.byType;
+import static com.drpicox.game.testSteps.components.owneds.OwnedTestView.byOwner;
 import static com.google.common.truth.Truth8.assertThat;
 
 @Component
@@ -29,7 +29,7 @@ public class ShouldHaveStep extends AbstractPostLineStep {
         var count = Integer.parseInt(match[2]);
         var type = match[3];
 
-        var cities = gameTestView.streamEntities(byOwner(playerName).and(byType(type)));
+        var cities = gameTestView.getGame().streamEntities(byOwner(playerName).and(byType(type)));
         assertThat(cities).hasSize(count);
     }
 }

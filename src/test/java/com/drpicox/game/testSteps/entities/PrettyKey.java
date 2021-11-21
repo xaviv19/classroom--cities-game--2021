@@ -1,4 +1,4 @@
-package com.drpicox.game.testSteps.game;
+package com.drpicox.game.testSteps.entities;
 
 import java.util.Arrays;
 import java.util.stream.Collectors;

@@ -1,27 +1,25 @@
-package com.drpicox.game.testSteps.nameds;
+package com.drpicox.game.testSteps.components.nameds;
 
 import com.drpicox.game.testPost.reader.PostLine;
 import com.drpicox.game.testSteps.AbstractPostLineStep;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ChangeTheNameToStep extends AbstractPostLineStep {
+public class AskToChangeTheNameStep extends AbstractPostLineStep {
 
     private final NamedTestView namedTestView;
 
-    public ChangeTheNameToStep(NamedTestView namedTestView) {
+    public AskToChangeTheNameStep(NamedTestView namedTestView) {
         this.namedTestView = namedTestView;
     }
 
     @Override
     protected String getRegex() {
-        return "Change the name to \"([^\"]+)\"";
+        return "Ask to change the name";
     }
 
     @Override
     protected void run(PostLine line, String[] match) {
-        var newNamedName = match[1];
-        namedTestView.enterNewName(newNamedName);
         namedTestView.submitChangeCityName();
     }
 }

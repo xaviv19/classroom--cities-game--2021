@@ -5,10 +5,6 @@ import com.drpicox.game.testSteps.AbstractPostLineStep;
 import com.drpicox.game.testSteps.screenStack.ScreenStackTestView;
 import org.springframework.stereotype.Component;
 
-import static com.drpicox.game.testSteps.typeds.TypedTestView.byType;
-import static com.drpicox.game.testSteps.nameds.NamedTestView.byName;
-import static com.drpicox.game.testSteps.owneds.OwnedTestView.byOwner;
-
 @Component
 public class GoToTheStep extends AbstractPostLineStep {
 
@@ -31,10 +27,7 @@ public class GoToTheStep extends AbstractPostLineStep {
         var type = match[2];
         var name = match[3];
 
-        var entity = gameTestView.findEntity(
-                byType(type).and(byOwner(owner)).and(byName(name))
-        ).get();
-
+        var entity = gameTestView.getGame().getEntityByOwnerNameType(owner, name, type);
         screenStackTestView.pushScreenName("entity", entity.getId());
     }
 }
