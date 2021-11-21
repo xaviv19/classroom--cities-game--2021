@@ -5,17 +5,17 @@ import com.drpicox.game.testSteps.AbstractPostLineStep;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ClickTheChangeNameButtonStep extends AbstractPostLineStep {
+public class AskToChangeTheNameStep extends AbstractPostLineStep {
 
     private final NamedTestView namedTestView;
 
-    public ClickTheChangeNameButtonStep(NamedTestView namedTestView) {
+    public AskToChangeTheNameStep(NamedTestView namedTestView) {
         this.namedTestView = namedTestView;
     }
 
     @Override
     protected String getRegex() {
-        return "Click the change name button";
+        return "Ask to change the name";
     }
 
     @Override

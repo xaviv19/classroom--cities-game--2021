@@ -30,9 +30,4 @@ public class SailsController {
 
         return sail;
     }
-
-    public boolean isSailing(String entityId) {
-        var sail = sailsRepository.findById(entityId).get();
-        return sail.isDestinationSail();
-    }
 }

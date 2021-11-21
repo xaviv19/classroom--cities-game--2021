@@ -24,10 +24,6 @@ public class OwnedTestView {
         return e -> (String) e.getOrDefault("owner", "-without owner-");
     }
 
-    public String getOnwer() {
-        return getOnwer(entityTestView.getEntityId());
-    }
-
     public String getOnwer(String entityId) {
         return entityTestView.getEntityPropertyString(entityId, "owner");
     }

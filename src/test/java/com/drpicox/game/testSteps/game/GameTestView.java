@@ -2,7 +2,6 @@ package com.drpicox.game.testSteps.game;
 
 import com.drpicox.game.testPost.SnapshotService;
 import com.drpicox.game.testSteps.game.entities.EntityResponse;
-import com.drpicox.game.testSteps.message.MessageTestView;
 import com.drpicox.game.testSteps.screenStack.Screen;
 import org.springframework.stereotype.Component;
 
@@ -15,11 +14,9 @@ import java.util.stream.Stream;
 @Component
 public class GameTestView implements Screen {
 
-    private final MessageTestView messageTestView;
     private final SnapshotService snapshotService;
 
-    public GameTestView(MessageTestView messageTestView, SnapshotService snapshotService) {
-        this.messageTestView = messageTestView;
+    public GameTestView(SnapshotService snapshotService) {
         this.snapshotService = snapshotService;
     }
 
@@ -76,11 +73,8 @@ public class GameTestView implements Screen {
         var playerName = game.getPlayerName();
 
         var finalUrl = url + "?playerName=" + playerName;
-        var result = messageTestView.callApi(() -> {
-            var response = snapshotService.post(finalUrl, data, GameResponse.class);
-            replaceGame(response);
-            return response;
-        });
+        var result = snapshotService.post(finalUrl, data, GameResponse.class);
+        replaceGame(result);
         return result;
     }
 
@@ -94,11 +88,8 @@ public class GameTestView implements Screen {
 
     public void nextPlayer(String playerName) {
         var url = "/api/v1/games/play/" + playerName;
-        messageTestView.callApi(() -> {
-            var response = snapshotService.get(url, null, GameResponse.class);
-            replaceGame(response);
-            return response;
-        });
+        var response = snapshotService.get(url, null, GameResponse.class);
+        replaceGame(response);
     }
 
     public void playGame() {

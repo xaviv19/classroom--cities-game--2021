@@ -14,18 +14,6 @@ public class Resource implements Serializable {
         this.increment = increment;
     }
 
-    public int getCount() {
-        return count;
-    }
-
-    public int getMaximum() {
-        return maximum;
-    }
-
-    void increase(int increment) {
-        count = Math.min(this.maximum, count + increment);
-    }
-
     void increaseAndMax() {
         this.count += increment;
         this.count = Math.min(this.maximum, this.count);

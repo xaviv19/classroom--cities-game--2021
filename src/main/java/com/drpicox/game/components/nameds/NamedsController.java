@@ -2,8 +2,6 @@ package com.drpicox.game.components.nameds;
 
 import org.springframework.stereotype.Component;
 
-import java.util.List;
-
 @Component
 public class NamedsController {
 
@@ -23,9 +21,5 @@ public class NamedsController {
         named.changeName(newName);
         namedsRepository.save(named);
         return named;
-    }
-
-    public List<Named> findAllByName(String name) {
-        return namedsRepository.findAllByName(name);
     }
 }

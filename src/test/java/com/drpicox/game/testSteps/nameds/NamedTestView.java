@@ -33,10 +33,6 @@ public class NamedTestView {
         return e -> (String) e.getOrDefault("name", "-without name-");
     }
 
-    public String getName() {
-        return getName(entityTestView.getEntityId());
-    }
-
     public String getName(String entityId) {
         return entityTestView.getEntityPropertyString(entityId, "name");
     }

@@ -17,18 +17,6 @@ public class ResourcedsController {
         return new ResourcedBuilder(component, resourcedsRepository);
     }
 
-    public int increasePopulation(String entityId, int increment) {
-        var populated = resourcedsRepository.findById(entityId).get();
-        var result = populated.increasePopulation(increment);
-        resourcedsRepository.save(populated);
-        return result;
-    }
-
-    public int getPopulation(String entityId) {
-        var populated = resourcedsRepository.findById(entityId).get();
-        return populated.getPopulation();
-    }
-
     public void transfer(String fromId, String toId, String resource, int loadUnloadAmount) {
         var from = resourcedsRepository.findById(fromId).get();
         var to = resourcedsRepository.findById(toId).get();

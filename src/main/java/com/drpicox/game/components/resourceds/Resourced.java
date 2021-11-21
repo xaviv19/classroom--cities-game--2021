@@ -27,10 +27,6 @@ public class Resourced extends EcsComponent {
 
     protected Resourced() {}
 
-    public int getPopulation() {
-        return populationCount;
-    }
-
     void replace(ResourceType resourceType, int count, int maximum, int increment) {
         var name = resourceType.name().toLowerCase(Locale.ROOT);
         resourcesMap.put(name, new Resource(count, maximum, increment));
@@ -38,14 +34,6 @@ public class Resourced extends EcsComponent {
 
     void increaseAndMaxResources() {
         resourcesMap.values().forEach(resource -> resource.increaseAndMax());
-    }
-
-    int increasePopulation(int increment) {
-        resourcesMap.get("population").increase(increment);
-        var prevPropulation = this.populationCount;
-        this.populationCount = Math.min(MAX_POPULATION, Math.max(0, populationCount + increment));
-        int unfit = prevPropulation + increment - this.populationCount;
-        return unfit;
     }
 
     public Map<String, Resource> getResourcesMap() {

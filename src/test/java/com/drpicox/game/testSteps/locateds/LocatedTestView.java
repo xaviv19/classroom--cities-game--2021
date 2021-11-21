@@ -28,12 +28,7 @@ public class LocatedTestView {
     }
 
     public Predicate<EntityResponse> byCoLocation() {
-        return e -> {
-            if (!e.containsKey("location")) return false;
-            var myLocation = getLocation();
-            var location = e.getInt("location");
-            return myLocation == location;
-        };
+        return byLocation(getLocation());
     }
 
     public Stream<EntityResponse> streamCoLocateds() {

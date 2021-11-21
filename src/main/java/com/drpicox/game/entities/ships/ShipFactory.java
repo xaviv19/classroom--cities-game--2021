@@ -1,6 +1,5 @@
 package com.drpicox.game.entities.ships;
 
-import com.drpicox.game.components.loadables.LoadablesController;
 import com.drpicox.game.components.locateds.LocatedsController;
 import com.drpicox.game.components.nameds.NamedsController;
 import com.drpicox.game.components.owneds.OwnedsController;
@@ -19,17 +18,15 @@ public class ShipFactory {
     private final OwnedsController ownedsController;
     private final ResourcedsController resourcedsController;
     private final TypedsController typedsController;
-    private final LoadablesController loadablesController;
     private final EntityIdGenerator entityIdGenerator;
     private final LocatedsController locatedsController;
     private final SailsController sailsController;
 
-    public ShipFactory(NamedsController namedsController, OwnedsController ownedsController, ResourcedsController resourcedsController, TypedsController typedsController, LoadablesController loadablesController, EntityIdGenerator entityIdGenerator, LocatedsController locatedsController, SailsController sailsController) {
+    public ShipFactory(NamedsController namedsController, OwnedsController ownedsController, ResourcedsController resourcedsController, TypedsController typedsController, EntityIdGenerator entityIdGenerator, LocatedsController locatedsController, SailsController sailsController) {
         this.namedsController = namedsController;
         this.ownedsController = ownedsController;
         this.resourcedsController = resourcedsController;
         this.typedsController = typedsController;
-        this.loadablesController = loadablesController;
         this.entityIdGenerator = entityIdGenerator;
         this.locatedsController = locatedsController;
         this.sailsController = sailsController;
@@ -42,7 +39,6 @@ public class ShipFactory {
         ownedsController.create(entityId, owner);
         resourcedsController.create(entityId).with(ResourceType.POPULATION, 0, 5, 0);
         typedsController.create(entityId, "ship");
-        loadablesController.create(entityId);
         locatedsController.create(entityId, initialLocation);
         sailsController.create(entityId);
     }
