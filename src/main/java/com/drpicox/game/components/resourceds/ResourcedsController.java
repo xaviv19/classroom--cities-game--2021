@@ -24,4 +24,22 @@ public class ResourcedsController {
         resourcedsRepository.save(from);
         resourcedsRepository.save(to);
     }
+
+    public void applyModifier(String entityId, ResourceType resourceType, int roundIncrementModifier, int maximumModifier) {
+        var resourced = resourcedsRepository.findById(entityId).get();
+        resourced.applyModifier(resourceType, roundIncrementModifier, maximumModifier);
+        resourcedsRepository.save(resourced);
+    }
+
+    public void consume(String entityId, ResourceType resourceType, int quantity) {
+        var resourced = resourcedsRepository.findById(entityId).get();
+        resourced.consume(resourceType, quantity);
+        resourcedsRepository.save(resourced);
+    }
+
+    public void replaceCount(String entityId, ResourceType resourceType, int newValue) {
+        var resourced = resourcedsRepository.findById(entityId).get();
+        resourced.replaceCount(resourceType, newValue);
+        resourcedsRepository.save(resourced);
+    }
 }

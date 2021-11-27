@@ -1,8 +1,8 @@
 package com.drpicox.game.testSteps.components.docks;
 
+import com.drpicox.game.testSteps.components.locateds.LocatedTestView;
 import com.drpicox.game.testSteps.entities.EntityResponse;
 import com.drpicox.game.testSteps.entities.EntityTestView;
-import com.drpicox.game.testSteps.components.locateds.LocatedTestView;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
@@ -23,14 +23,27 @@ public class DockTestView {
     }
 
     public String getCoLocatedDockId() {
-        return findCoLocatedDockId().orElseThrow(() -> {
-            var entity = entityTestView.getEntity();
-            var coLocateds = locatedTestView.streamCoLocateds().map(EntityTestView.toId());
-            throw new AssertionError("Cannot find any dock at the location of the entity '"+entity.getId()+"' (loc: "+entity.get("location")+"). Other entities at that location are: "+coLocateds+".");
-        });
+        return findCoLocatedDockId().orElseThrow(() -> errorNoDocksAtCurrentLocation());
     }
 
     public Optional<String> findCoLocatedDockId() {
         return locatedTestView.streamCoLocateds().filter(isDock()).findAny().map(e -> e.getId());
+    }
+
+    private AssertionError errorNoDocksAtCurrentLocation() {
+        var entity = entityTestView.getEntity();
+        var otherLocateds = locatedTestView.streamCoLocateds().findAny().isPresent();
+        var coLocateds = locatedTestView.streamCoLocateds();
+        return new AssertionError(
+                "Cannot find any dock at the location of the entity " +
+                        "'"+entity.getId()+"' (loc: "+entity.getOrDefault("location", "NO_LOCATION")+").\n" +
+                        (
+                                !otherLocateds
+                                        ? "There are no other entities in the location"
+                                        : "Other entities at that location are: "+
+                                        coLocateds.map(e -> "\n- " + e.getId() + ", " + e.getOnwerNameType())
+                        )
+
+        );
     }
 }

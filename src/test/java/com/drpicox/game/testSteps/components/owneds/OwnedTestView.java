@@ -2,29 +2,27 @@ package com.drpicox.game.testSteps.components.owneds;
 
 import com.drpicox.game.testSteps.entities.EntityResponse;
 import com.drpicox.game.testSteps.entities.EntityTestView;
+import com.drpicox.game.testSteps.game.GameTestView;
 import org.springframework.stereotype.Component;
 
-import java.util.function.Function;
 import java.util.function.Predicate;
 
 @Component
 public class OwnedTestView {
 
-    private final EntityTestView entityTestView;
-
-    public OwnedTestView(EntityTestView entityTestView) {
-        this.entityTestView = entityTestView;
-    }
-
     public static Predicate<EntityResponse> byOwner(String ownerName) {
         return e -> e.getOrDefault("owner", "").equals(ownerName);
     }
 
-    public static Function<EntityResponse,String> toOwner() {
-        return e -> (String) e.getOrDefault("owner", "-without owner-");
+    private final EntityTestView entityTestView;
+    private final GameTestView gameTestView;
+
+    public OwnedTestView(EntityTestView entityTestView, GameTestView gameTestView) {
+        this.entityTestView = entityTestView;
+        this.gameTestView = gameTestView;
     }
 
-    public String getOnwer(String entityId) {
-        return entityTestView.getEntityPropertyString(entityId, "owner");
+    public String getEntityOwner(String entityId) {
+        return gameTestView.getGame().getEntity(entityId).getString("owner");
     }
 }

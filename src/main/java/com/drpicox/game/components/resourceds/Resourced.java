@@ -6,30 +6,36 @@ import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import java.util.Arrays;
-import java.util.Locale;
 import java.util.Map;
 import java.util.TreeMap;
 
 @Entity
 public class Resourced extends EcsComponent {
-    public static final int MAX_POPULATION = 20;
-    private int populationCount;
-
     @ElementCollection(fetch = FetchType.EAGER)
     private Map<String, Resource> resourcesMap = new TreeMap<>();
 
     public Resourced(String entityId) {
         super(entityId);
-        this.populationCount = 0;
 
         Arrays.stream(ResourceType.values()).forEach(t -> replace(t, 0, 0, 0));
     }
 
-    protected Resourced() {}
+    protected Resourced() {
+    }
 
     void replace(ResourceType resourceType, int count, int maximum, int increment) {
-        var name = resourceType.name().toLowerCase(Locale.ROOT);
+        var name = resourceType.getName();
         resourcesMap.put(name, new Resource(count, maximum, increment));
+    }
+
+    public void replaceCount(ResourceType resourceType, int newValue) {
+        resourcesMap.get(resourceType.getName()).replaceCount(newValue);
+    }
+
+    public void replaceMaximum(ResourceType resourceType, int maximum) {
+        var name = resourceType.getName();
+        var resource = resourcesMap.get(name);
+        resource.replaceMaximum(maximum);
     }
 
     void increaseAndMaxResources() {
@@ -45,4 +51,14 @@ public class Resourced extends EcsComponent {
         var to = toResourced.resourcesMap.get(resource);
         from.transfer(amount, to);
     }
+
+    public void applyModifier(ResourceType resourceType, int roundIncrementModifier, int maximumModifier) {
+        resourcesMap.get(resourceType.getName()).applyModifier(roundIncrementModifier, maximumModifier);
+    }
+
+    public void consume(ResourceType resourceType, int quantity) {
+        resourcesMap.get(resourceType.getName()).consume(quantity);
+    }
 }
+
+

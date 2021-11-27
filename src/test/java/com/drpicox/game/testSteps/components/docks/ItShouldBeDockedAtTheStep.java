@@ -37,9 +37,9 @@ public class ItShouldBeDockedAtTheStep extends AbstractPostLineStep {
         var expectedName = match[3];
 
         var dockId = dockTestView.getCoLocatedDockId();
-        var ownerName = ownedTestView.getOnwer(dockId);
-        var type = typedTestView.getType(dockId);
-        var name = namedTestView.getName(dockId);
+        var ownerName = ownedTestView.getEntityOwner(dockId);
+        var type = typedTestView.getEntityType(dockId);
+        var name = namedTestView.getEntityName(dockId);
 
         assertThat(ownerName).isEqualTo(expectedOwnerName);
         assertThat(type).isEqualTo(expectedType);

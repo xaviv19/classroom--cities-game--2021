@@ -1,4 +1,4 @@
-package com.drpicox.game.testSteps.components.resources;
+package com.drpicox.game.testSteps.components.resourceds;
 
 import com.drpicox.game.testPost.reader.PostLine;
 import com.drpicox.game.testSteps.AbstractPostLineStep;
@@ -10,10 +10,10 @@ import static com.google.common.truth.Truth.assertThat;
 @Component
 public class TheResourceMaximumShouldBeStep extends AbstractPostLineStep {
 
-    private final ResourcesTestView resourcesTestView;
+    private final ResourcedTestView resourcedTestView;
 
-    public TheResourceMaximumShouldBeStep(ResourcesTestView resourcesTestView) {
-        this.resourcesTestView = resourcesTestView;
+    public TheResourceMaximumShouldBeStep(ResourcedTestView resourcedTestView) {
+        this.resourcedTestView = resourcedTestView;
     }
 
     @Override
@@ -26,7 +26,7 @@ public class TheResourceMaximumShouldBeStep extends AbstractPostLineStep {
         var key = PrettyKey.getKey(match[1]);
         var expectedValue = Integer.parseInt(match[2]);
 
-        var value = resourcesTestView.getResourceMaximum(key);
+        var value = resourcedTestView.getResourceMaximum(key);
         assertThat(value).isEqualTo(expectedValue);
     }
 }

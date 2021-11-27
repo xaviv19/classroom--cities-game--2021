@@ -24,7 +24,7 @@ public class ThereShouldBeNoStep extends AbstractPostLineStep {
     protected void run(PostLine line, String[] match) {
         var entityPropertyKey = PrettyKey.getKey(match[1]);
 
-        var value = entityTestView.getEntity().get(entityPropertyKey);
-        assertThat(value).isNull();
+        var value = entityTestView.getEntity().containsKey(entityPropertyKey);
+        assertThat(value).isFalse();
     }
 }

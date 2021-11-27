@@ -19,7 +19,7 @@ public class NamedsApi {
 
     @PostMapping("/{entityId}/name")
     public GameData changedName(@PathVariable String entityId, @RequestParam String playerName, @RequestBody NewNamedNameForm form) {
-        var named = namedsController.changeName(entityId, form.getNewName());
+        namedsController.changeName(entityId, form.getNewName());
 
         return gamesApi.play(playerName);
     }

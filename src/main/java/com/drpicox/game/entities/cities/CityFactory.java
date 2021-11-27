@@ -38,7 +38,7 @@ public class CityFactory {
         docksController.create(entityId);
         namedsController.create(entityId, initialName);
         ownedsController.create(entityId, owner);
-        resourcedsController.create(entityId).with(ResourceType.POPULATION, 10, 20, 1);
+        resourcedsController.create(entityId).withMaximums(5).with(ResourceType.POPULATION, 10, 20, 1);
         typedsController.create(entityId, "city");
         locatedsController.create(entityId, initialLocation);
         return entityId;

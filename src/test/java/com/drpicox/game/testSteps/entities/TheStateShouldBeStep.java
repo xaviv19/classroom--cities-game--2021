@@ -25,7 +25,7 @@ public class TheStateShouldBeStep extends AbstractPostLineStep {
         var key = PrettyKey.getKey(match[1]);
         var expectedValue = match[2].equals("active");
 
-        var value = entityTestView.getEntityPropertyBoolean(key);
+        var value = entityTestView.getEntity().getBoolean(key);
         assertThat(value).isEqualTo(expectedValue);
     }
 }

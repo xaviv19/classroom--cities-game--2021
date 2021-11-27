@@ -24,7 +24,7 @@ public class LocatedTestView {
     }
 
     public int getLocation() {
-        return entityTestView.getEntityPropertyInt("location");
+        return entityTestView.getEntity().getInt("location");
     }
 
     public Predicate<EntityResponse> byCoLocation() {

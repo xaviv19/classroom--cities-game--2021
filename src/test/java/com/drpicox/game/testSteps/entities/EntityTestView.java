@@ -2,11 +2,8 @@ package com.drpicox.game.testSteps.entities;
 
 import com.drpicox.game.testSteps.game.GameResponse;
 import com.drpicox.game.testSteps.game.GameTestView;
-import com.drpicox.game.testSteps.components.nameds.NamedTestView;
-import com.drpicox.game.testSteps.components.owneds.OwnedTestView;
 import com.drpicox.game.testSteps.screenStack.Screen;
 import com.drpicox.game.testSteps.screenStack.ScreenStackTestView;
-import com.drpicox.game.testSteps.components.typeds.TypedTestView;
 import org.springframework.stereotype.Component;
 
 import java.util.Map;
@@ -40,32 +37,16 @@ public class EntityTestView implements Screen {
         form = new TreeMap<>();
     }
 
+    public String getEntityId() {
+        var entityId = screenStackTestView.peekId();
+        if (entityId == null) throw new AssertionError("Expected screen to have an id for an entity, but it has no id. The screen is '"+screenStackTestView.peekScreenName()+"' and the screenId is null");
+        return entityId;
+    }
+
     public EntityResponse getEntity() {
         var game = gameTestView.getGame();
         String entityId = getEntityId();
-        if (entityId == null) throw new AssertionError("Expected screen to have an id for an entity, but it has no id. The screen is '"+screenStackTestView.peekScreenName()+"' and the screen id is null");
-
         return game.getEntity(entityId);
-    }
-
-    public String getEntityId() {
-        return screenStackTestView.peekId();
-    }
-
-    public int getEntityPropertyInt(String key) {
-        return getEntity().getInt(key);
-    }
-
-    public String getEntityPropertyString(String key) {
-        return getEntityPropertyString(getEntityId(), key);
-    }
-
-    public String getEntityPropertyString(String entityId, String key) {
-        return gameTestView.getGame().getEntity(entityId).get(key, String.class);
-    }
-
-    public boolean getEntityPropertyBoolean(String key) {
-        return getEntity().get(key, Boolean.class);
     }
 
     public void putFormKey(String key, Object value) {
@@ -89,19 +70,12 @@ public class EntityTestView implements Screen {
     }
 
     public static Function<EntityResponse,String> toOwnerNameType() {
-        var owner = OwnedTestView.toOwner();
-        var name = NamedTestView.toName();
-        var type = TypedTestView.toType();
-
-        return e -> owner.apply(e) + "-" + name.apply(e) + "-" + type.apply(e);
+        return e -> e.getOnwerNameType();
     }
 
     public static Predicate<EntityResponse> byOwnerNameType(String owner, String name, String type) {
-        var powner = OwnedTestView.byOwner(owner);
-        var pname = NamedTestView.byName(name);
-        var ptype = TypedTestView.byType(type);
-
-        return e -> powner.test(e) && pname.test(e) && ptype.test(e);
+        var ownerNameType = owner + "-" + name + "-" + type;
+        return e ->e.getOnwerNameType().equals(ownerNameType);
     }
 
 }

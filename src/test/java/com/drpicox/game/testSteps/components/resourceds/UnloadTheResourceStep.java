@@ -1,4 +1,4 @@
-package com.drpicox.game.testSteps.components.resources;
+package com.drpicox.game.testSteps.components.resourceds;
 
 import com.drpicox.game.testPost.reader.PostLine;
 import com.drpicox.game.testSteps.AbstractPostLineStep;
@@ -8,10 +8,10 @@ import org.springframework.stereotype.Component;
 @Component
 public class UnloadTheResourceStep extends AbstractPostLineStep {
 
-    private final ResourcesTestView resourcesTestView;
+    private final ResourcedTestView resourcedTestView;
 
-    public UnloadTheResourceStep(ResourcesTestView resourcesTestView) {
-        this.resourcesTestView = resourcesTestView;
+    public UnloadTheResourceStep(ResourcedTestView resourcedTestView) {
+        this.resourcedTestView = resourcedTestView;
     }
 
     @Override
@@ -23,6 +23,6 @@ public class UnloadTheResourceStep extends AbstractPostLineStep {
     protected void run(PostLine line, String[] match) {
         var resource = PrettyKey.getKey(match[1]);
 
-        resourcesTestView.unload(resource);
+        resourcedTestView.unload(resource);
     }
 }

@@ -25,7 +25,7 @@ public class TheNumberShouldBeStep extends AbstractPostLineStep {
         var key = PrettyKey.getKey(match[1]);
         var expectedValue = Integer.parseInt(match[2]);
 
-        var value = entityTestView.getEntityPropertyInt(key);
+        var value = entityTestView.getEntity().getInt(key);
         assertThat(value).isEqualTo(expectedValue);
     }
 }

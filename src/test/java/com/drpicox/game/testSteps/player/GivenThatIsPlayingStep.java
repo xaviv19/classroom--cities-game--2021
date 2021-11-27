@@ -6,17 +6,17 @@ import com.drpicox.game.testSteps.AbstractPostLineStep;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ThatIsPlayingStep extends AbstractPostLineStep {
+public class GivenThatIsPlayingStep extends AbstractPostLineStep {
 
     private final GamesController gamesController;
 
-    public ThatIsPlayingStep(GamesController gamesController) {
+    public GivenThatIsPlayingStep(GamesController gamesController) {
         this.gamesController = gamesController;
     }
 
     @Override
     protected String getRegex() {
-        return "that \"([^\"]+)\" is playing";
+        return "Given that \"([^\"]+)\" is playing";
     }
 
     @Override

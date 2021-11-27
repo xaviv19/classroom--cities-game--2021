@@ -25,7 +25,7 @@ public class TheContentShouldBeStep extends AbstractPostLineStep {
         var key = PrettyKey.getKey(match[1]);
         var expectedValue = match[2];
 
-        var value = entityTestView.getEntityPropertyString(key);
+        var value = entityTestView.getEntity().getString(key);
         assertThat(value).isEqualTo(expectedValue);
     }
 }

@@ -42,24 +42,28 @@ public class EntityResponse {
         return (String) properties.get("id");
     }
 
+    public <T> T get(String key, Class<T> as) {
+        if (!properties.containsKey(key))
+            throw errorInEntity("expected to have the property '" + key + "', but it was not present", key);
+        var value = properties.get(key);
+        if (!as.isInstance(value))
+            throw errorInEntity("expected to have the property '" + key + "' of type '"+as.getSimpleName()+"', but it was of type '"+value.getClass().getSimpleName()+"'", key);
+        return (T) properties.get(key);
+    }
+
+    public boolean getBoolean(String key) {
+        return get(key, Boolean.class);
+    }
+
     public int getInt(String key) {
         return get(key, Double.class).intValue();
     }
 
-    public Object get(String key) {
-        return properties.get(key);
+    public String getString(String key) {
+        return get(key, String.class);
     }
 
-    public <T> T get(String key, Class<T> as) {
-        if (!properties.containsKey(key))
-            throwErrorInEntity("expected to have the property '" + key + "', but it was not present", key);
-        var value = properties.get(key);
-        if (!as.isInstance(value))
-            throwErrorInEntity("expected to have the property '" + key + "' of type '"+as.getSimpleName()+"', but it was of type '"+value.getClass().getSimpleName()+"'", key);
-        return (T) properties.get(key);
-    }
-
-    private void throwErrorInEntity(String message, String expectedKey) {
+    public AssertionError errorInEntity(String message, String expectedKey) {
         var builder = new StringBuilder();
         builder.append("The entity '");
         builder.append(properties.get("id"));
@@ -86,7 +90,7 @@ public class EntityResponse {
             builder.append(")\n");
         });
 
-        throw new AssertionError(builder.toString());
+        return new AssertionError(builder.toString());
     }
 
     public boolean containsKey(String key) {
