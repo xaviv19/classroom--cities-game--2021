@@ -46,7 +46,7 @@ public class UpgradeTheLevelStep extends AbstractPostLineStep {
                                 f -> "\n- " + f.getName() + " (" + f.getClass().getName() + ")"
                         ).collect(Collectors.joining()) + "\n" +
                         "You may create a new @Component implementing LeveledUpgrader with the corresponding getName().\n" +
-                        "Look inside com.drpicox.game.entities.buildings or decks and then upgraders."
+                        "Look inside com.drpicox.game.entities.{buildings,decks}.upgraders, and you may add the new Upgrader."
         );
     }
 }

@@ -43,7 +43,8 @@ public class ContainerTestView {
                                 ? "=> But there was no contained entities"
                                 : "But contained entities (id: type-name) are:\n" +
                                 streamContaineds().map(c -> c.getId() + ": " + c.getOrDefault("type", "NO_TYPE")+"-"+c.getOrDefault("name", "NO_NAME"))
-                        )
+                        ) + "\n" +
+                        "You may want to create/build first the required entity."
         );
     }
 }

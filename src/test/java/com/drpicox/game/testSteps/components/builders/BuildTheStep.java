@@ -71,7 +71,7 @@ public class BuildTheStep extends AbstractPostLineStep {
                 "There is no @Component implementing BuilderFactory for the name '" + name + "'.\n" +
                         availableImplementations() + "\n" +
                         "You may create a new @Component implementing BuilderBuildingFactory with the corresponding getName().\n" +
-                        "Look inside com.drpicox.game.entities.buildings or decks and then factories."
+                        "Look inside com.drpicox.game.entities.{buildings,decks}.factories, you may want to add one."
         );
 
         var buildeableType = typedTestView.getType();

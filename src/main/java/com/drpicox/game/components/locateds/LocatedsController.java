@@ -31,4 +31,9 @@ public class LocatedsController {
     public List<Located> findByLocation(int location) {
         return locatedsRepository.findByLocation(location);
     }
+
+    public List<Located> findByLocationOf(String entityId) {
+        var location = getLocation(entityId);
+        return findByLocation(location);
+    }
 }

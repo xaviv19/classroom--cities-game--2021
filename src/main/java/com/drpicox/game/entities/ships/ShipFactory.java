@@ -8,6 +8,7 @@ import com.drpicox.game.components.resourceds.ResourcedsController;
 import com.drpicox.game.components.sails.SailsController;
 import com.drpicox.game.components.typeds.TypedsController;
 import com.drpicox.game.ecs.EntityIdGenerator;
+import com.drpicox.game.entities.decks.DeckBuilderFactory;
 import com.drpicox.game.players.Player;
 import org.springframework.stereotype.Component;
 
@@ -21,8 +22,9 @@ public class ShipFactory {
     private final EntityIdGenerator entityIdGenerator;
     private final LocatedsController locatedsController;
     private final SailsController sailsController;
+    private final DeckBuilderFactory deckBuilderFactory;
 
-    public ShipFactory(NamedsController namedsController, OwnedsController ownedsController, ResourcedsController resourcedsController, TypedsController typedsController, EntityIdGenerator entityIdGenerator, LocatedsController locatedsController, SailsController sailsController) {
+    public ShipFactory(NamedsController namedsController, OwnedsController ownedsController, ResourcedsController resourcedsController, TypedsController typedsController, EntityIdGenerator entityIdGenerator, LocatedsController locatedsController, SailsController sailsController, DeckBuilderFactory deckBuilderFactory) {
         this.namedsController = namedsController;
         this.ownedsController = ownedsController;
         this.resourcedsController = resourcedsController;
@@ -30,6 +32,7 @@ public class ShipFactory {
         this.entityIdGenerator = entityIdGenerator;
         this.locatedsController = locatedsController;
         this.sailsController = sailsController;
+        this.deckBuilderFactory = deckBuilderFactory;
     }
 
     public void buildShip(Player owner, String dockId, String shipName, int initialLocation) {
@@ -41,6 +44,8 @@ public class ShipFactory {
         typedsController.create(entityId, "ship");
         locatedsController.create(entityId, initialLocation);
         sailsController.create(entityId);
+
+        deckBuilderFactory.buildBuildingBuilder(entityId);
     }
 
 }
