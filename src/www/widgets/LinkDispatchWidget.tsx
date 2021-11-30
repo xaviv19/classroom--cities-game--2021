@@ -5,9 +5,11 @@ import { useAppDispatch } from "www/store/hooks";
 export function LinkDispatch({
   createAction,
   children,
+  "data-testid": testId,
 }: {
   createAction: () => AppActionType;
   children: React.ReactNode;
+  "data-testid": string | undefined;
 }) {
   const dispatch = useAppDispatch();
   const go = useCallback(
@@ -16,7 +18,7 @@ export function LinkDispatch({
   );
 
   return (
-    <span role="link" onClick={go}>
+    <span role="link" onClick={go} data-testid={testId}>
       {children}
     </span>
   );

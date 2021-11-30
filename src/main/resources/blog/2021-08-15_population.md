@@ -21,14 +21,14 @@ Create and start playing one of your games:
  * Go to the next player "leonard"
  <!-- SNAPSHOT status=200 -->
  * Go to the "leonard" "city" "Capital".
- * The resource _population_ count should be 10.
+ * The resource "population" count should be 10.
 
 And the same for all players:
 
  * Go to the next player "penny"
  <!-- SNAPSHOT status=200 -->
  * Go to the "penny" "city" "Capital".
- * The resource _population_ count should be 10.
+ * The resource "population" count should be 10.
 
 ### Population grows
 
@@ -39,7 +39,7 @@ With time, population grows in one each round:
  * You should be at the "game" screen.
  * The game round should be 2.
  * Go to the "penny" "city" "Capital".
- * The resource _population_ count should be 11.
+ * The resource "population" count should be 11.
 
 And grows:
 
@@ -48,17 +48,16 @@ And grows:
  * You should be at the "game" screen.
  * The game round should be 3.
  * Go to the "penny" "city" "Capital".
- * The resource _population_ count should be 12.
+ * The resource "population" count should be 12.
 
 Until it reaches the population maximum:
 
- * The resource _population_ maximum should be 20.
+ * The resource "population" maximum should be 20.
  * Skip 8 rounds.
  <!-- SNAPSHOT status=200 -->  
  * You should be at the screen of a "city".
- * Game round should be 11.
- * Go to the "penny" "city" "Capital".
- * The resource _population_ count should be 20.
+ * The game round should be 11.
+ * The resource "population" count should be 20.
 
 And stops growing:
 
@@ -67,8 +66,8 @@ And stops growing:
  * You should be at the "game" screen.
  * The game round should be 12.
  * Go to the "penny" "city" "Capital".
- * The resource _population_ count should be 20.
- * The resource _population_ maximum should be 20.
+ * The resource "population" count should be 20.
+ * The resource "population" maximum should be 20.
 
 For every player.
 
@@ -76,8 +75,8 @@ For every player.
  <!-- SNAPSHOT status=200 -->
  * The game round should be 12.
  * Go to the "leonard" "city" "Capital".
- * The resource _population_ count should be 20.
- * The resource _population_ maximum should be 20.
+ * The resource "population" count should be 20.
+ * The resource "population" maximum should be 20.
 
 
 

@@ -18,7 +18,7 @@ public class TheResourceModifierForMaximumShouldBeStep extends AbstractPostLineS
 
     @Override
     protected String getRegex() {
-        return "The resource modifier for _([^_]+)_ maximum should be (\\d+)";
+        return "The resource modifier for \"([^\"]+)\" maximum should be (\\d+)";
     }
 
     @Override

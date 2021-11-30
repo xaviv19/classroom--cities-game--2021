@@ -7,9 +7,10 @@ export const useAppDispatch = () => useDispatch<AppDispatch>();
 export const useAppSelector: TypedUseSelectorHook<AppState> = useSelector;
 
 export const useInputRef = () => useRef<null | HTMLInputElement>(null);
+export const useSelectRef = () => useRef<null | HTMLSelectElement>(null);
 export const useDispatchForm = (
   actionCreator: Function,
-  ...refs: (string | MutableRefObject<null | HTMLInputElement>)[]
+  ...refs: (string | MutableRefObject<null | { value: string }>)[]
 ) => {
   var dispatch = useAppDispatch();
   return useCallback(() => {

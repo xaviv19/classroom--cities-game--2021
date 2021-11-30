@@ -1,14 +1,9 @@
 import { PostLineStep, step } from "../../testPost";
 import { screen } from "@testing-library/dom";
-import userEvent from "@testing-library/user-event";
 
 export const blogListTestSteps: PostLineStep[] = [
   step(/Go to the Blog/, () => {
-    const link = screen.getByRole("link", { name: /Blog/ });
-    userEvent.click(link);
-  }),
-  step(/You should be at the blog screen/, () => {
-    expect(screen.getByRole("heading", { name: /Blog!/ })).toBeInTheDocument();
+    screen.getByTestId("go-to-blog").click();
   }),
   step(/You should see at least (\d+) posts/, (line, match) => {
     const count = +match[1];
@@ -32,10 +27,10 @@ export const blogListTestSteps: PostLineStep[] = [
 
     const allItems = getAllBlogListItems();
     const theItem = allItems.find((item) => item.textContent?.includes(title));
-    userEvent.click(theItem!);
+    theItem?.click();
   }),
 ];
 
 function getAllBlogListItems(): HTMLElement[] {
-  return screen.getAllByRole("listitem");
+  return screen.getAllByTestId("blog-list-item");
 }

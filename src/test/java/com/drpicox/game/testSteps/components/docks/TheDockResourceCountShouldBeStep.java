@@ -21,7 +21,7 @@ public class TheDockResourceCountShouldBeStep extends AbstractPostLineStep {
 
     @Override
     protected String getRegex() {
-        return "The dock resource _([^_]+)_ count should be (\\d+)";
+        return "The dock resource \"([^\"]+)\" count should be (\\d+)";
     }
 
     @Override

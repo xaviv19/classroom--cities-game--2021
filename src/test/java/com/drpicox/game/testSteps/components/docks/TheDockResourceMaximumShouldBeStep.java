@@ -21,7 +21,7 @@ public class TheDockResourceMaximumShouldBeStep extends AbstractPostLineStep {
 
     @Override
     protected String getRegex() {
-        return "The dock resource _([^_]+)_ maximum should be (\\d+)";
+        return "The dock resource \"([^\"]+)\" maximum should be (\\d+)";
     }
 
     @Override

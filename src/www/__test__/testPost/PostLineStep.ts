@@ -29,5 +29,8 @@ export class PostLineStep {
 }
 
 export const step = (matchRe: RegExp, run: StepRunFn): PostLineStep => {
-  return new PostLineStep(matchRe, run);
+  let { source, flags } = matchRe;
+  if (/[a-zA-Z]$/.test(source)) source += "\\b";
+
+  return new PostLineStep(new RegExp(source, flags), run);
 };

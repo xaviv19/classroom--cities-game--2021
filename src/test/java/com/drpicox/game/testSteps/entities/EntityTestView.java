@@ -61,6 +61,7 @@ public class EntityTestView implements Screen {
         var data = new TreeMap<>();
         data.putAll(form);
         data.putAll(extraData);
+        form.clear();
 
         return gameTestView.post(url, data);
     }

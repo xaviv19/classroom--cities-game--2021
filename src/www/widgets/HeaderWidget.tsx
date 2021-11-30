@@ -4,8 +4,13 @@ import { LoadingWidget } from "./LoadingWidget";
 import { Bar } from "www/theme/Bar";
 import { Spacer } from "www/theme/Spacer";
 import { blogPushed } from "www/screens/BlogScreen/actions";
+import { useDispatchForm, useInputRef } from "www/store/hooks";
+import { gamePlayed } from "www/store/game/actions";
 
 export function HeaderWidget() {
+  const playerNameRef = useInputRef();
+  const play = useDispatchForm(gamePlayed, playerNameRef);
+
   return (
     <Bar>
       <LoadingWidget />
@@ -13,11 +18,14 @@ export function HeaderWidget() {
       <Spacer />
       <LinkTo name="welcome">Welcome</LinkTo>
       <span>&nbsp;|&nbsp;</span>
-      <LinkDispatch createAction={blogPushed}>Blog</LinkDispatch>
+      <LinkDispatch createAction={blogPushed} data-testid="go-to-blog">
+        Blog
+      </LinkDispatch>
       <Spacer />
-      <LinkTo name="login">Login</LinkTo>
-      <span>&nbsp;|&nbsp;</span>
-      <LinkTo name="addNextPlayer">Multiplayer</LinkTo>
+      <input ref={playerNameRef} data-testid="input-player-name" />
+      <button data-testid="button-play" onClick={play}>
+        Play
+      </button>
     </Bar>
   );
 }

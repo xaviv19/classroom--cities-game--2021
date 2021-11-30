@@ -1,11 +1,7 @@
 import {
-  GameCreatedAction,
-  GameJoinedAction,
   GamePlayedAction,
   GameReplacedAction,
   GameState,
-  GAME_CREATED,
-  GAME_JOINED,
   GAME_PLAYED,
   GAME_REPLACED,
   GameRefreshedAction,
@@ -14,38 +10,10 @@ import {
   ROUND_ENDED,
 } from "./types";
 
-export function gameCreated(gameName: string): GameCreatedAction {
-  return {
-    type: GAME_CREATED,
-    form: {
-      gameName,
-    },
-  };
-}
-
-export function gameJoined(
-  gameName: string,
-  creatorName: string
-): GameJoinedAction {
-  return {
-    type: GAME_JOINED,
-    form: {
-      gameName,
-      creatorName,
-    },
-  };
-}
-
-export function gamePlayed(
-  gameName: string,
-  creatorName: string
-): GamePlayedAction {
+export function gamePlayed(playerName: string): GamePlayedAction {
   return {
     type: GAME_PLAYED,
-    form: {
-      gameName,
-      creatorName,
-    },
+    playerName,
   };
 }
 

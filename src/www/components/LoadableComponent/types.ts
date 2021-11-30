@@ -5,8 +5,9 @@ export interface LoadOrderedAction {
   type: typeof LOAD_ORDERED;
   entityId: string;
   form: {
-    sourceEntityId: string;
+    dockId: string;
     loadUnloadAmount: number;
+    resource: string;
   };
 }
 
@@ -15,8 +16,9 @@ export interface UnloadOrderedAction {
   type: typeof UNLOAD_ORDERED;
   entityId: string;
   form: {
-    sourceEntityId: string;
+    dockId: string;
     loadUnloadAmount: number;
+    resource: string;
   };
 }
 

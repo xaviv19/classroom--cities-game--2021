@@ -1,6 +1,5 @@
 import { PostLineStep, step } from "../../testPost";
-import { screen } from "@testing-library/dom";
-import userEvent from "@testing-library/user-event";
+import { screen } from "@testing-library/react";
 
 export const loadableTestSteps: PostLineStep[] = [
   step(/The load unload amount should be (\d+)/, (line, [, amount]) => {
@@ -19,14 +18,34 @@ export const loadableTestSteps: PostLineStep[] = [
       expect(button).toMatchObject({ disabled: isActive });
     }
   ),
-  step(/Enter load unload amount as (\d+)/, (line, [, amount]) => {
-    const input = screen.getByLabelText("Load/unload amount:");
-    userEvent.type(input, `${amount}`);
+  step(/Enter number (\d+) as _load unload amount_/, (line, [, amount]) => {
+    enterLoadUnloadAmount(amount);
   }),
-  step(/Click the (load|unload) button/, (line, [, action]) => {
-    const button = screen.getByRole("button", {
-      name: new RegExp(`^${action}$`, "i"),
-    });
-    userEvent.click(button);
+  step(/Load the resource "([^"]+)"/, (line, [, resourceName]) => {
+    loadTheResource(resourceName);
+  }),
+  step(/Load (\d+) of "([^"]+)"/, (line, [, amount, resourceName]) => {
+    enterLoadUnloadAmount(amount);
+    loadTheResource(resourceName);
+  }),
+  step(/Unload the resource "([^"]+)"/, (line, [, resource]) => {
+    const input = screen.getByLabelText("Resource:") as HTMLInputElement;
+    input.value = resource;
+    const button = screen.getByRole("button", { name: "Unload" });
+    button.click();
   }),
 ];
+
+function enterLoadUnloadAmount(amount: string) {
+  const input = screen.getByLabelText(
+    "Load/unload amount:"
+  ) as HTMLInputElement;
+  input.value = amount;
+}
+
+function loadTheResource(resourceName: string) {
+  const input = screen.getByLabelText("Resource:") as HTMLInputElement;
+  input.value = resourceName;
+  const button = screen.getByRole("button", { name: "Load" });
+  button.click();
+}

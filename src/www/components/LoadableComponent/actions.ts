@@ -7,30 +7,34 @@ import {
 
 export function loadOrdered(
   entityId: string,
-  sourceEntityId: string,
-  loadUnloadAmount: number
+  dockId: string,
+  loadUnloadAmount: number,
+  resource: string
 ): LoadOrderedAction {
   return {
     type: LOAD_ORDERED,
     entityId,
     form: {
-      sourceEntityId,
+      dockId,
       loadUnloadAmount: +loadUnloadAmount,
+      resource,
     },
   };
 }
 
 export function unloadOrdered(
   entityId: string,
-  sourceEntityId: string,
-  loadUnloadAmount: number
+  dockId: string,
+  loadUnloadAmount: number,
+  resource: string
 ): UnloadOrderedAction {
   return {
     type: UNLOAD_ORDERED,
     entityId,
     form: {
-      sourceEntityId,
+      dockId,
       loadUnloadAmount: +loadUnloadAmount,
+      resource,
     },
   };
 }

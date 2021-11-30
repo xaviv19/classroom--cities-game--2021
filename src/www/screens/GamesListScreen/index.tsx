@@ -1,1 +1,0 @@
-export { GamesListScreen } from "./GamesListScreen";

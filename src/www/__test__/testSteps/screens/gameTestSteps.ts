@@ -1,59 +1,69 @@
 import { PostLineStep, step } from "../../testPost";
-import { testDispatch } from "../../testStore";
-import { snapshotService } from "../../testPost/SnapshotService";
-import { screen } from "@testing-library/dom";
-import { gamePlayed, gameRefreshed } from "www/store/game/actions";
-import { playerReplaced } from "www/store/player/actions";
+import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 export const gameTestSteps: PostLineStep[] = [
-  step(/You should be at the game screen/, () => {
-    expect(screen.getByRole("heading", { name: "Game!" })).toBeInTheDocument();
+  step(/"([^"]+)" should be the current player/, (title, [, playerName]) => {
+    const item = screen.getByTestId("player-name");
+    expect(item).toHaveTextContent(playerName);
   }),
   step(
-    /Playing game should be "([^"]+)" created by "([^"]+)"/,
-    (title, [, gameName, creatorName]) => {
-      const header = screen.getByTestId("game-header");
-      expect(header).toHaveTextContent(`${gameName} created by ${creatorName}`);
+    /"([^"]+)" should have (\d+) "([^"]+)"/,
+    (title, [, owner, count, type]) => {
+      const items = queryAllEntityListItem(owner, type);
+      expect(items).toHaveLength(+count);
     }
   ),
   step(
-    /"([^"]+)" is playing their game "([^"]+)"/,
-    (title, [, creatorName, gameName]) => {
-      const token = snapshotService.getToken()!;
-      testDispatch(playerReplaced(creatorName, token));
-      testDispatch(gamePlayed(gameName, creatorName));
+    /"([^"]+)" should have the "([^"]+)" "([^"]+)"/,
+    (title, [, owner, name, type]) => {
+      const item = getEntityListItem(owner, type, name);
+      expect(item).toBeInTheDocument();
     }
   ),
   step(
-    /there is "([^"]+)" playing their game "([^"]+)"/,
-    (title, [, creatorName, gameName]) => {
-      const token = snapshotService.getToken()!;
-      testDispatch(playerReplaced(creatorName, token));
-      testDispatch(gamePlayed(gameName, creatorName));
+    /Go to the "([^"]+)" "([^"]+)" "([^"]+)"/,
+    (title, [, owner, type, name]) => {
+      const item = getEntityListItem(owner, type, name);
+      item.click();
     }
   ),
-  step(
-    /"([^"]+)" should have (\d+) ([a-z]+)"/,
-    (title, [, creatorName, gameName]) => {
-      const token = snapshotService.getToken()!;
-      testDispatch(playerReplaced(creatorName, token));
-      testDispatch(gamePlayed(gameName, creatorName));
-    }
-  ),
-  step(/Game round should be (\d+)/, (title, [, round]) => {
-    const header = screen.getByTestId("game-header");
-    expect(header).toHaveTextContent(`round ${round}`);
+  step(/The game round should be (\d+)/, (title, [, round]) => {
+    const item = screen.getByTestId("game-round");
+    expect(item).toHaveTextContent(round);
   }),
   step(/End the round/, endRound),
-  step(/Skip \d+ rounds/, endRound),
-  step(/Refresh the game/, () => {
-    const button = screen.getByRole("button", { name: "Refresh" });
-    userEvent.click(button);
-  }),
+  step(/Skip \d+ rounds/, refresh),
+  step(/Refresh the game/, refresh),
 ];
+
+export function getEntityListItem(owner: string, type: string, name: string) {
+  const items = screen
+    .queryAllByTestId("entity-list-item")
+    .filter((i) => i.textContent!.includes(owner))
+    .filter((i) => i.textContent!.includes(type))
+    .filter((i) => i.textContent!.includes(name));
+
+  expect(items).toHaveLength(1);
+  const item = items[0];
+  return item;
+}
+
+export function queryAllEntityListItem(owner: string, type: string) {
+  const items = screen
+    .queryAllByTestId("entity-list-item")
+    .filter((i) => i.textContent!.includes(owner))
+    .filter((i) => i.textContent!.includes(type));
+
+  return items;
+}
 
 function endRound() {
   const button = screen.getByRole("button", { name: "End Round" });
+  userEvent.click(button);
+}
+
+function refresh() {
+  const button = screen.getByRole("button", { name: "Refresh" });
   userEvent.click(button);
 }

@@ -18,7 +18,7 @@ public class TheResourceCountShouldBeStep extends AbstractPostLineStep {
 
     @Override
     protected String getRegex() {
-        return "The resource _([^_]+)_ count should be (\\d+)";
+        return "The resource \"([^\"]+)\" count should be (\\d+)";
     }
 
     @Override

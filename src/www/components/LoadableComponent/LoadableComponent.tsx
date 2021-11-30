@@ -5,21 +5,24 @@ import { makeGetDockByLocation } from "../DockComponent/selectors";
 
 export function LoadableComponent({ entity }: any) {
   const newLoadUnloadAmountRef = useInputRef();
+  const resourceRef = useInputRef();
   const getDockByLocation = useMemo(makeGetDockByLocation, []);
-  const sourceEntityId = useAppSelector((state) =>
+  const dockId = useAppSelector((state) =>
     getDockByLocation(state, entity)
   )?.id;
   const load = useDispatchForm(
     loadOrdered,
     entity.id,
-    sourceEntityId,
-    newLoadUnloadAmountRef
+    dockId,
+    newLoadUnloadAmountRef,
+    resourceRef
   );
   const unload = useDispatchForm(
     unloadOrdered,
     entity.id,
-    sourceEntityId,
-    newLoadUnloadAmountRef
+    dockId,
+    newLoadUnloadAmountRef,
+    resourceRef
   );
 
   if (!entity.isLoadable) return null;
@@ -30,6 +33,10 @@ export function LoadableComponent({ entity }: any) {
       <label>
         Load/unload amount:
         <input type="number" ref={newLoadUnloadAmountRef} />
+      </label>
+      <label>
+        Resource:
+        <input ref={resourceRef} />
       </label>
       <button onClick={load} disabled={entity.loadRequested}>
         Load

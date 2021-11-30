@@ -1,7 +1,6 @@
 import { useAppSelector } from "www/store/hooks";
 import { getCurrentScreenId } from "www/widgets/ScreenStackWidget/selectors";
 import { getEntityById } from "www/store/game/selectors";
-import { PlayerHeader } from "../PlayerScreen/PlayerHeader";
 import { GameHeader } from "../GameScreen/GameHeader";
 import { EntityComponents } from "./EntityComponents";
 
@@ -12,10 +11,9 @@ export function EntityScreen() {
 
   return (
     <div>
-      <PlayerHeader />
       <GameHeader />
-      <main>
-        <h1>
+      <main data-testid="screen-entity">
+        <h1 data-testid="screen-entity-title">
           {entity.name} {entity.type} of {entity.owner}
         </h1>
         <EntityComponents entity={entity} />

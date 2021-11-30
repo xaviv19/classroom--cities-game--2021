@@ -1,1 +1,0 @@
-export { InformedComponent } from "./InformedComponent";

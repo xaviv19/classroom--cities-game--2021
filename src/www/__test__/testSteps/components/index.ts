@@ -1,19 +1,25 @@
+import { buildersTestSteps } from "./buildersTestSteps";
+import { containedsTestSteps } from "./containedsTestSteps";
 import { dockTestSteps } from "./dockTestSteps";
-import { informedTestSteps } from "./informedTestSteps";
+import { leveledTestSteps } from "./leveledTestSteps";
 import { loadableTestSteps } from "./loadableTestSteps";
 import { locatedTestSteps } from "./locatedTestSteps";
 import { namedTestSteps } from "./namedTestSteps";
-import { populatedTestSteps } from "./populatedTestSteps";
+import { resourcedModifierTestSteps } from "./resourcedModifierTestSteps";
+import { resourcedTestSteps } from "./resourcedTestSteps";
 import { sailTestSteps } from "./sailTestSteps";
 import { withBuildingsTestSteps } from "./withBuildingsTestSteps";
 
 export const componentsTestSteps = [
+  buildersTestSteps,
+  containedsTestSteps,
   dockTestSteps,
-  informedTestSteps,
+  leveledTestSteps,
   loadableTestSteps,
   locatedTestSteps,
   namedTestSteps,
-  populatedTestSteps,
+  resourcedModifierTestSteps,
+  resourcedTestSteps,
   sailTestSteps,
   withBuildingsTestSteps,
 ];

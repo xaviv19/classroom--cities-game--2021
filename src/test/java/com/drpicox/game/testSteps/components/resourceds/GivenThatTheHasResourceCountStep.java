@@ -35,7 +35,7 @@ public class GivenThatTheHasResourceCountStep extends AbstractPostLineStep {
 
     @Override
     protected String getRegex() {
-        return "Given that the \"([^\"]+)\" \"([^\"]+)\" \"([^\"]+)\" has resource _([^_]+)_ count (\\d+)";
+        return "Given that the \"([^\"]+)\" \"([^\"]+)\" \"([^\"]+)\" has resource \"([^\"]+)\" count (\\d+)";
     }
 
     @Override

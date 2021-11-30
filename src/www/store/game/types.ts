@@ -4,8 +4,6 @@ type EntityState = {
 };
 
 export type GameState = null | {
-  gameName: string;
-  creatorName: string;
   roundNumber: number;
   playerName: string;
   token: string;
@@ -14,30 +12,10 @@ export type GameState = null | {
   };
 };
 
-export const GAME_CREATED = "game/CREATED";
-export interface GameCreatedAction {
-  type: typeof GAME_CREATED;
-  form: {
-    gameName: string;
-  };
-}
-
-export const GAME_JOINED = "game/JOINED";
-export interface GameJoinedAction {
-  type: typeof GAME_JOINED;
-  form: {
-    gameName: string;
-    creatorName: string;
-  };
-}
-
 export const GAME_PLAYED = "game/PLAYED";
 export interface GamePlayedAction {
   type: typeof GAME_PLAYED;
-  form: {
-    gameName: string;
-    creatorName: string;
-  };
+  playerName: string;
 }
 
 export const GAME_REFRESHED = "game/REFRESHED";
@@ -57,8 +35,6 @@ export interface RoundEndedAction {
 }
 
 export type GameActionTypes =
-  | GameCreatedAction
-  | GameJoinedAction
   | GamePlayedAction
   | GameRefreshedAction
   | GameReplacedAction

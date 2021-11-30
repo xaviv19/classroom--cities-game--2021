@@ -1,7 +1,6 @@
 package com.drpicox.game.testSteps.components.resourceds;
 
 import com.drpicox.game.components.resourceds.ResourceType;
-import com.drpicox.game.testSteps.components.docks.DockTestView;
 import com.drpicox.game.testSteps.entities.EntityTestView;
 import com.drpicox.game.testSteps.game.GameTestView;
 import org.springframework.stereotype.Component;
@@ -12,12 +11,10 @@ import java.util.stream.Collectors;
 @Component
 public class ResourcedTestView {
 
-    private final DockTestView dockTestView;
     private final GameTestView gameTestView;
     private final EntityTestView entityTestView;
 
-    public ResourcedTestView(DockTestView dockTestView, GameTestView gameTestView, EntityTestView entityTestView) {
-        this.dockTestView = dockTestView;
+    public ResourcedTestView(GameTestView gameTestView, EntityTestView entityTestView) {
         this.gameTestView = gameTestView;
         this.entityTestView = entityTestView;
     }
@@ -56,20 +53,6 @@ public class ResourcedTestView {
         var resource = resources.get(resourceName);
         if (resource == null) throw errorNoResourceForResourceName(entityId, resourceName, resources);
         return resource;
-    }
-
-    public void load(String resource) {
-        var dockId = dockTestView.getCoLocatedDockId();
-        entityTestView.putFormKey("resource", resource);
-        entityTestView.putFormKey("dockId", dockId);
-        entityTestView.post("resourceds", "load");
-    }
-
-    public void unload(String resource) {
-        var dockId = dockTestView.getCoLocatedDockId();
-        entityTestView.putFormKey("resource", resource);
-        entityTestView.putFormKey("dockId", dockId);
-        entityTestView.post("resourceds", "unload");
     }
 
     private AssertionError errorNoResourceForResourceName(String entityId, String resourceName, Map<String, Map<String, Double>> resources) {

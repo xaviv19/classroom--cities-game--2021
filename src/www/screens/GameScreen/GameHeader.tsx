@@ -11,7 +11,7 @@ import { Spacer } from "www/theme/Spacer";
 export function GameHeader() {
   const isGameScreen = useAppSelector(getCurrentScreenName) === "game";
   const game = useAppSelector(getGame)!;
-  const { gameName, creatorName, roundNumber } = game;
+  const { playerName, roundNumber } = game;
 
   return (
     <Bar color="lightgray">
@@ -22,7 +22,8 @@ export function GameHeader() {
         </>
       )}{" "}
       <span data-testid="game-header">
-        Game {gameName} created by {creatorName}, round {roundNumber}
+        Player <span data-testid="player-name">{playerName}</span>, round{" "}
+        <span data-testid="game-round">{roundNumber}</span>
       </span>
       <Spacer />
       <ButtonDispatch createAction={roundEnded}>End Round</ButtonDispatch>&nbsp;

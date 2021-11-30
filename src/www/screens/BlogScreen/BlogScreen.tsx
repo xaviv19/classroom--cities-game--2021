@@ -6,7 +6,7 @@ export function BlogScreen() {
   const blog = useAppSelector(getBlog);
 
   return (
-    <main>
+    <main data-testid="screen-blog">
       <h1>
         Blog! <small style={{ fontSize: "0.7rem" }}>(#{blog.length})</small>
       </h1>

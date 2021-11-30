@@ -1,1 +1,0 @@
-export { WithBuildingsComponent } from "./WithBuildingsComponent";

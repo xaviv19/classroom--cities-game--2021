@@ -18,7 +18,7 @@ public class TheResourceModifierForRoundIncrementShouldBeStep extends AbstractPo
 
     @Override
     protected String getRegex() {
-        return "The resource modifier for _([^_]+)_ round increment should be (\\d+)";
+        return "The resource modifier for \"([^\"]+)\" round increment should be (\\d+)";
     }
 
     @Override

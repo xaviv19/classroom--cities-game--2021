@@ -10,7 +10,7 @@ export function EntityListItem({ entity }: any) {
   );
 
   return (
-    <li onClick={go}>
+    <li onClick={go} data-testid="entity-list-item">
       {entity.type}: {entity.name} of {entity.owner}
     </li>
   );

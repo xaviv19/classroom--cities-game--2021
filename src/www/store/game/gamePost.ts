@@ -1,11 +1,11 @@
-import { fetchAndDispatchMessage } from "www/widgets/MessageWidget/fetchAndDispatchMessage";
+import { apiPost } from "www/api";
 import {
   loadingFinished,
   loadingStarted,
 } from "www/widgets/LoadingWidget/actions";
-import { getPlayerToken } from "../player/selectors";
 import { gameReplaced } from "./actions";
 import { GameState } from "./types";
+import { getGame } from "./selectors";
 
 export async function gamePost(
   store: any,
@@ -14,12 +14,10 @@ export async function gamePost(
   success: (game: GameState) => Promise<void> | void = () => {}
 ) {
   store.dispatch(loadingStarted());
-  const token = getPlayerToken(store.getState());
-  const result = await fetchAndDispatchMessage(
-    `${url}?token=${token}`,
-    { method: "POST", body },
-    store.dispatch
-  );
+
+  const game = getGame(store.getState());
+  const playerName = game?.playerName;
+  const result = await apiPost(`${url}?playerName=${playerName}`, body);
 
   store.dispatch(gameReplaced(result));
   await success(result);

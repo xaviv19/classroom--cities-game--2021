@@ -18,7 +18,7 @@ public class TheResourceRoundIncrementShouldBeStep extends AbstractPostLineStep 
 
     @Override
     protected String getRegex() {
-        return "The resource _([^_]+)_ round increment should be (\\d+)";
+        return "The resource \"([^\"]+)\" round increment should be (\\d+)";
     }
 
     @Override

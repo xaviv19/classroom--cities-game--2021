@@ -1,21 +1,25 @@
+import { BuilderComponent } from "./BuilderComponent";
+import { ContainerComponent } from "./ContainedComponent/ContainerComponent";
 import { DockComponent } from "./DockComponent";
 import { DockedComponent } from "./DockComponent/DockedComponent";
-import { InformedComponent } from "./InformedComponent";
+import { LeveledComponent } from "./LeveledComponent";
 import { LoadableComponent } from "./LoadableComponent";
 import { LocatedComponent } from "./LocatedComponent";
 import { NamedComponent } from "./NamedComponent";
-import { PopulatedComponent } from "./PopulatedComponent";
+import { ResourcedModifierComponent } from "./ResourcedModifierComponent";
+import { ResourcedComponent } from "./ResourcedComponent";
 import { SailComponent } from "./SailComponent";
-import { WithBuildingsComponent } from "./WithBuildingsComponent";
 
 export const Components = [
-  InformedComponent,
+  BuilderComponent,
+  ContainerComponent,
   LocatedComponent,
-  PopulatedComponent,
+  ResourcedModifierComponent,
+  ResourcedComponent,
   DockComponent,
   DockedComponent,
+  LeveledComponent,
   LoadableComponent,
   NamedComponent,
   SailComponent,
-  WithBuildingsComponent,
 ];
