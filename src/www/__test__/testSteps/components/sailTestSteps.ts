@@ -1,6 +1,5 @@
 import { PostLineStep, step } from "../../testPost";
-import { screen } from "@testing-library/dom";
-import userEvent from "@testing-library/user-event";
+import { screen } from "@testing-library/react";
 
 export const sailTestSteps: PostLineStep[] = [
   step(
@@ -25,15 +24,15 @@ export const sailTestSteps: PostLineStep[] = [
     );
   }),
   step(/Enter number (\d+) as _destination location_/, (line, [, location]) => {
-    const input = screen.getByLabelText("Destination location:");
-    userEvent.type(input, location);
+    const input = screen.getByLabelText(
+      "Destination location:"
+    ) as HTMLInputElement;
+    input.value = location;
   }),
   step(/Set sail/, () => {
-    const button = screen.getByRole("button", { name: "Sail" });
-    userEvent.click(button);
+    screen.getByRole("button", { name: "Sail" }).click();
   }),
   step(/Halt sailing/, () => {
-    const button = screen.getByRole("button", { name: "Halt" });
-    userEvent.click(button);
+    screen.getByRole("button", { name: "Halt" }).click();
   }),
 ];

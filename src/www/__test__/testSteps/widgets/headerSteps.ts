@@ -1,6 +1,5 @@
 import { PostLineStep, step } from "../../testPost";
-// TODO: should be react
-import { screen } from "@testing-library/dom";
+import { screen } from "@testing-library/react";
 
 export const headerSteps: PostLineStep[] = [
   step(/Enter "([^"]+)" as player name/, (line, [, playerName]) => {

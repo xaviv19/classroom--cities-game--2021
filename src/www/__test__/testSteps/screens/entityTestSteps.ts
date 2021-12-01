@@ -1,6 +1,5 @@
 import { PostLineStep, step } from "../../testPost";
-import { screen, within } from "@testing-library/dom";
-import userEvent from "@testing-library/user-event";
+import { screen } from "@testing-library/react";
 
 export const entityTestSteps: PostLineStep[] = [
   step(/You should be at the screen of a "([^"]+)"/, (line, [, type]) => {
@@ -20,12 +19,6 @@ export const entityTestSteps: PostLineStep[] = [
     expect(title).toHaveTextContent(type);
   }),
   step(/Go back to the previous screen/, (line, [, name]) => {
-    const button = screen.getByRole("link", { name: "« Back" });
-    userEvent.click(button);
-  }),
-  step(/There should not be a back button/, (line, [, name]) => {
-    // TODO: check if it is needed
-    const button = screen.queryByRole("link", { name: "« Back" });
-    expect(button).toBeNull();
+    screen.getByRole("link", { name: "« Back" }).click();
   }),
 ];

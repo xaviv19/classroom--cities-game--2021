@@ -8,7 +8,6 @@ import { namedTestSteps } from "./namedTestSteps";
 import { resourcedModifierTestSteps } from "./resourcedModifierTestSteps";
 import { resourcedTestSteps } from "./resourcedTestSteps";
 import { sailTestSteps } from "./sailTestSteps";
-import { withBuildingsTestSteps } from "./withBuildingsTestSteps";
 
 export const componentsTestSteps = [
   buildersTestSteps,
@@ -21,5 +20,4 @@ export const componentsTestSteps = [
   resourcedModifierTestSteps,
   resourcedTestSteps,
   sailTestSteps,
-  withBuildingsTestSteps,
 ];

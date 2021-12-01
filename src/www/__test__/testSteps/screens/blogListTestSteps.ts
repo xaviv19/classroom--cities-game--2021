@@ -1,5 +1,5 @@
 import { PostLineStep, step } from "../../testPost";
-import { screen } from "@testing-library/dom";
+import { screen } from "@testing-library/react";
 
 export const blogListTestSteps: PostLineStep[] = [
   step(/Go to the Blog/, () => {
@@ -26,8 +26,7 @@ export const blogListTestSteps: PostLineStep[] = [
     const title = match[1];
 
     const allItems = getAllBlogListItems();
-    const theItem = allItems.find((item) => item.textContent?.includes(title));
-    theItem?.click();
+    allItems.find((item) => item.textContent?.includes(title))?.click();
   }),
 ];
 

@@ -1,5 +1,4 @@
-import { getByText, queryByText, screen } from "@testing-library/dom";
-import userEvent from "@testing-library/user-event";
+import { screen, within } from "@testing-library/react";
 import { PostLineStep, step } from "../../testPost";
 import {
   getEntityListItem,
@@ -24,15 +23,14 @@ export const dockTestSteps: PostLineStep[] = [
   step(
     /Go to see the docked "([^"]+)" "([^"]+)" "([^"]+)"/,
     (line, [, owner, type, name]) => {
-      const item = getEntityListItem(owner, type, name);
-      item.click();
+      getEntityListItem(owner, type, name).click();
     }
   ),
   step(
     /It should be docked at the "([^"]+)" "([^"]+)" "([^"]+)"/,
     (line, [, owner, type, name]) => {
       const main = screen.getByRole("main");
-      const dockedAt = getByText(main, /docked at:/i);
+      const dockedAt = within(main).getByText(/docked at:/i);
 
       expect(dockedAt).toHaveTextContent(owner);
       expect(dockedAt).toHaveTextContent(type);
@@ -40,12 +38,11 @@ export const dockTestSteps: PostLineStep[] = [
     }
   ),
   step(/Go to see the dock/, () => {
-    const main = screen.getByRole("button", { name: "See the dock" });
-    userEvent.click(main);
+    screen.getByRole("button", { name: "See the dock" }).click();
   }),
   step(/It should not be docked/, () => {
     const main = screen.getByRole("main");
-    const dockedAt = queryByText(main, /docked at:/i);
+    const dockedAt = within(main).queryByText(/docked at:/i);
 
     expect(dockedAt).toBeNull();
   }),

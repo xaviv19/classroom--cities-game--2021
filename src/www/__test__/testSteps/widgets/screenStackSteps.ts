@@ -1,5 +1,5 @@
 import { PostLineStep, step } from "../../testPost";
-import { screen } from "@testing-library/dom";
+import { screen } from "@testing-library/react";
 
 export const screenStackSteps: PostLineStep[] = [
   step(/You should be at the "([^"]+)" screen/, (line, [, screenName]) => {

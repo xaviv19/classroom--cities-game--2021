@@ -18,8 +18,7 @@ export const containedsTestSteps: PostLineStep[] = [
     }
   ),
   step(/Go to the contained "([^"]+)" "([^"]+)"/, (line, [, type, name]) => {
-    const item = getContainedListItem(type, name);
-    item.click();
+    getContainedListItem(type, name).click();
   }),
 ];
 

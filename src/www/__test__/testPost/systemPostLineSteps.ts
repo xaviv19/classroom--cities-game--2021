@@ -1,4 +1,4 @@
-import { screen, waitForElementToBeRemoved } from "@testing-library/dom";
+import { screen, waitForElementToBeRemoved } from "@testing-library/react";
 import { PostLineStep } from "./PostLineStep";
 import { snapshotService } from "./SnapshotService";
 

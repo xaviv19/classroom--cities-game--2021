@@ -1,5 +1,5 @@
 import { PostLineStep, step } from "../../testPost";
-import { screen } from "@testing-library/dom";
+import { screen } from "@testing-library/react";
 
 export const namedTestSteps: PostLineStep[] = [
   step(/Enter new name "([^"]+)"/, (line, [, text]) => {
@@ -24,6 +24,5 @@ function enterNewName(newName: string) {
 }
 
 function askChangeName() {
-  const button = screen.getByRole("button", { name: "Change name" });
-  button.click();
+  screen.getByRole("button", { name: "Change name" }).click();
 }

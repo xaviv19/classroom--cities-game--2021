@@ -1,6 +1,5 @@
 import { PostLineStep, step } from "../../testPost";
 import { screen } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
 
 export const gameTestSteps: PostLineStep[] = [
   step(/"([^"]+)" should be the current player/, (title, [, playerName]) => {
@@ -24,8 +23,7 @@ export const gameTestSteps: PostLineStep[] = [
   step(
     /Go to the "([^"]+)" "([^"]+)" "([^"]+)"/,
     (title, [, owner, type, name]) => {
-      const item = getEntityListItem(owner, type, name);
-      item.click();
+      getEntityListItem(owner, type, name).click();
     }
   ),
   step(/The game round should be (\d+)/, (title, [, round]) => {
@@ -59,11 +57,9 @@ export function queryAllEntityListItem(owner: string, type: string) {
 }
 
 function endRound() {
-  const button = screen.getByRole("button", { name: "End Round" });
-  userEvent.click(button);
+  screen.getByRole("button", { name: "End Round" }).click();
 }
 
 function refresh() {
-  const button = screen.getByRole("button", { name: "Refresh" });
-  userEvent.click(button);
+  screen.getByRole("button", { name: "Refresh" }).click();
 }
