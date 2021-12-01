@@ -1,4 +1,5 @@
-import { useAppSelector, useDispatchForm, useSelectRef } from "www/store/hooks";
+import { Section } from "www/theme/Section";
+import { useDispatchForm, useSelectRef } from "www/store/hooks";
 import { builded } from "./actions";
 
 export function BuilderComponent({ entity }: any) {
@@ -12,8 +13,7 @@ export function BuilderComponent({ entity }: any) {
   if (!entity.buildeableBuildings) return null;
 
   return (
-    <>
-      <br />
+    <Section>
       <label>
         Building type:
         <br />
@@ -24,11 +24,8 @@ export function BuilderComponent({ entity }: any) {
             </option>
           ))}
         </select>
-      </label>
-      <br />
+      </label>{" "}
       <button onClick={build}>Build</button>
-      <br />
-      <br />
-    </>
+    </Section>
   );
 }

@@ -9,7 +9,7 @@ export function LinkDispatch({
 }: {
   createAction: () => AppActionType;
   children: React.ReactNode;
-  "data-testid": string | undefined;
+  "data-testid"?: string;
 }) {
   const dispatch = useAppDispatch();
   const go = useCallback(

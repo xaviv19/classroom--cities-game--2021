@@ -1,4 +1,5 @@
 import { useCallback, useMemo } from "react";
+import { Section } from "www/theme/Section";
 import { useAppDispatch, useAppSelector } from "www/store/hooks";
 import { screenPushed } from "www/widgets/ScreenStackWidget/actions";
 import { ListResources } from "../ResourcedComponent/ListResources";
@@ -17,14 +18,13 @@ export function DockedComponent({ entity }: any) {
   if (entity.isDock || !dock) return null;
 
   return (
-    <div>
-      <ul>
-        Dock Resources:
-        <ListResources resources={dock.resources} prefixTestId="dock-" />
-      </ul>
+    <Section>
+      Dock Resources:
+      <ListResources resources={dock.resources} prefixTestId="dock-" />
+      <br />
       Docked at: {dock.type} {dock.name} of {dock.owner}
       &nbsp;
-      <button onClick={seeTheDock}>See the dock</button>.
-    </div>
+      <button onClick={seeTheDock}>See the dock</button>
+    </Section>
   );
 }

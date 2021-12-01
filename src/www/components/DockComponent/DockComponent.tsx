@@ -1,4 +1,5 @@
 import { useMemo } from "react";
+import { Section } from "www/theme/Section";
 import { EntityList } from "www/screens/EntityScreen/EntityList";
 import { useAppSelector } from "www/store/hooks";
 import { makeGetAllCoLocatedById } from "../LocatedComponent/selectors";
@@ -11,9 +12,9 @@ export function DockComponent({ entity }: any) {
   if (!entity.isDock) return null;
 
   return (
-    <div>
+    <Section>
       Dockeds:
       <EntityList entities={coLocateds} />
-    </div>
+    </Section>
   );
 }

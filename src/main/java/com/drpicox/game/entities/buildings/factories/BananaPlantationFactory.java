@@ -20,16 +20,14 @@ public class BananaPlantationFactory implements BuilderFactory {
     private final TypedsController typedsController;
     private final ResourcedsController resourcedsController;
     private final ResourcedModifiersController resourcedModifiersController;
-    private final LeveledController leveledController;
 
-    public BananaPlantationFactory(EntityIdGenerator entityIdGenerator, ContainedsController containedsController, NamedsController namedsController, TypedsController typedsController, ResourcedsController resourcedsController, ResourcedModifiersController resourcedModifiersController, LeveledController leveledController) {
+    public BananaPlantationFactory(EntityIdGenerator entityIdGenerator, ContainedsController containedsController, NamedsController namedsController, TypedsController typedsController, ResourcedsController resourcedsController, ResourcedModifiersController resourcedModifiersController) {
         this.entityIdGenerator = entityIdGenerator;
         this.containedsController = containedsController;
         this.namedsController = namedsController;
         this.typedsController = typedsController;
         this.resourcedsController = resourcedsController;
         this.resourcedModifiersController = resourcedModifiersController;
-        this.leveledController = leveledController;
     }
 
     @Override
@@ -52,7 +50,6 @@ public class BananaPlantationFactory implements BuilderFactory {
         namedsController.create(entityId, getName());
         typedsController.create(entityId, "building");
         resourcedModifiersController.create(entityId, ResourceType.BANANA, 1, 0);
-        leveledController.create(entityId);
         return entityId;
     }
 }

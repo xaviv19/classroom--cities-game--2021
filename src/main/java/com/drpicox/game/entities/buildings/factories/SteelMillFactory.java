@@ -2,7 +2,6 @@ package com.drpicox.game.entities.buildings.factories;
 
 import com.drpicox.game.components.builder.BuilderFactory;
 import com.drpicox.game.components.containeds.ContainedsController;
-import com.drpicox.game.components.leveleds.LeveledController;
 import com.drpicox.game.components.nameds.NamedsController;
 import com.drpicox.game.components.resourcedModifiers.ResourcedModifiersController;
 import com.drpicox.game.components.resourceds.ResourceType;
@@ -20,16 +19,14 @@ public class SteelMillFactory implements BuilderFactory {
     private final TypedsController typedsController;
     private final ResourcedsController resourcedsController;
     private final ResourcedModifiersController resourcedModifiersController;
-    private final LeveledController leveledController;
 
-    public SteelMillFactory(EntityIdGenerator entityIdGenerator, ContainedsController containedsController, NamedsController namedsController, TypedsController typedsController, ResourcedsController resourcedsController, ResourcedModifiersController resourcedModifiersController, LeveledController leveledController) {
+    public SteelMillFactory(EntityIdGenerator entityIdGenerator, ContainedsController containedsController, NamedsController namedsController, TypedsController typedsController, ResourcedsController resourcedsController, ResourcedModifiersController resourcedModifiersController) {
         this.entityIdGenerator = entityIdGenerator;
         this.containedsController = containedsController;
         this.namedsController = namedsController;
         this.typedsController = typedsController;
         this.resourcedsController = resourcedsController;
         this.resourcedModifiersController = resourcedModifiersController;
-        this.leveledController = leveledController;
     }
 
     @Override
@@ -51,7 +48,6 @@ public class SteelMillFactory implements BuilderFactory {
         namedsController.create(entityId, getName());
         typedsController.create(entityId, "building");
         resourcedModifiersController.create(entityId, ResourceType.STEEL, 1, 0);
-        leveledController.create(entityId);
         return entityId;
     }
 }

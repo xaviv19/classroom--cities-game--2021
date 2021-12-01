@@ -9,9 +9,16 @@ export function EntityListItem({ entity }: any) {
     [dispatch, entity]
   );
 
+  const { type, name, owner } = entity;
+
   return (
-    <li onClick={go} data-testid="entity-list-item">
-      {entity.type}: {entity.name} of {entity.owner}
+    <li
+      onClick={go}
+      data-testid="entity-list-item"
+      style={{ textDecoration: "underline", cursor: "pointer" }}
+    >
+      {type}: {name}
+      {owner && ` of ${owner}`}
     </li>
   );
 }

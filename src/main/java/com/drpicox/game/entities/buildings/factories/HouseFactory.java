@@ -20,16 +20,14 @@ public class HouseFactory implements BuilderFactory {
     private final TypedsController typedsController;
     private final ResourcedsController resourcedsController;
     private final ResourcedModifiersController resourcedModifiersController;
-    private final LeveledController leveledController;
 
-    public HouseFactory(EntityIdGenerator entityIdGenerator, ContainedsController containedsController, NamedsController namedsController, TypedsController typedsController, ResourcedsController resourcedsController, ResourcedModifiersController resourcedModifiersController, LeveledController leveledController) {
+    public HouseFactory(EntityIdGenerator entityIdGenerator, ContainedsController containedsController, NamedsController namedsController, TypedsController typedsController, ResourcedsController resourcedsController, ResourcedModifiersController resourcedModifiersController) {
         this.entityIdGenerator = entityIdGenerator;
         this.containedsController = containedsController;
         this.namedsController = namedsController;
         this.typedsController = typedsController;
         this.resourcedsController = resourcedsController;
         this.resourcedModifiersController = resourcedModifiersController;
-        this.leveledController = leveledController;
     }
 
     @Override
@@ -52,7 +50,6 @@ public class HouseFactory implements BuilderFactory {
         namedsController.create(entityId, getName());
         typedsController.create(entityId, "building");
         resourcedModifiersController.create(entityId, ResourceType.POPULATION, 0, 5);
-        leveledController.create(entityId);
         return entityId;
     }
 }

@@ -1,3 +1,4 @@
+import { Section } from "www/theme/Section";
 import { useDispatchForm } from "www/store/hooks";
 import { upgraded } from "./actions";
 
@@ -6,10 +7,8 @@ export function LeveledComponent({ entity }: any) {
   if (!entity.level) return null;
 
   return (
-    <div>
-      Level: {entity.level}.
-      <br />
-      <button onClick={build}>Upgrade</button>
-    </div>
+    <Section>
+      Level: {entity.level}. <button onClick={build}>Upgrade</button>
+    </Section>
   );
 }

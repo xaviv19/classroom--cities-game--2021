@@ -1,4 +1,5 @@
 import { useAppSelector, useDispatchForm, useInputRef } from "www/store/hooks";
+import { Section } from "www/theme/Section";
 import { getGame } from "www/store/game/selectors";
 import { nameChanged } from "./actions";
 
@@ -9,17 +10,13 @@ export function NamedComponent({ entity }: any) {
   if (entity.owner !== currentPlayer) return null;
 
   return (
-    <>
-      <br />
+    <Section>
       <label>
         New name:
         <br />
         <input ref={newNameRef} />
-      </label>
-      <br />
+      </label>{" "}
       <button onClick={changeName}>Change name</button>
-      <br />
-      <br />
-    </>
+    </Section>
   );
 }

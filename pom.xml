@@ -8,7 +8,7 @@
     <version>1.0.0</version>
 
     <name>Card Game Exam</name>
-    <description>Ultimate text Card Game engine Exam</description>
+    <description>Ultimate text Cities Game engine Exam</description>
 
     <parent>
         <groupId>org.springframework.boot</groupId>

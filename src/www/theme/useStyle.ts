@@ -1,9 +1,9 @@
 import { useMemo } from "react";
 
 const bgColors: any = {
-  white: "#eee",
-  lightgray: "#ddd",
-  gray: "#888",
+  white: "#efe",
+  lightgray: "#ded",
+  gray: "#f88",
   success: "lightblue",
   danger: "#e58370",
 };

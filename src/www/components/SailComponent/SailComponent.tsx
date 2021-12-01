@@ -1,3 +1,4 @@
+import { Section } from "www/theme/Section";
 import { useDispatchForm, useInputRef } from "www/store/hooks";
 import { sailOrdered, haltOrdered } from "./actions";
 
@@ -8,7 +9,7 @@ export function SailComponent({ entity }: any) {
   if (!entity.isSail) return null;
 
   return (
-    <div>
+    <Section>
       {entity.destinationSail && (
         <div>Destination location: {entity.destinationLocation} (sailing).</div>
       )}
@@ -16,9 +17,9 @@ export function SailComponent({ entity }: any) {
         Destination location:
         <br />
         <input type="number" ref={destinationLocationRef} />
-      </label>
-      <br />
-      <button onClick={sail}>Sail</button> <button onClick={halt}>Halt</button>
-    </div>
+      </label>{" "}
+      <button onClick={sail}>Sail</button>
+      <button onClick={halt}>Halt</button>
+    </Section>
   );
 }

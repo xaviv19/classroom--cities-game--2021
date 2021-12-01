@@ -1,3 +1,7 @@
+import { Section } from "www/theme/Section";
+
 export function LocatedComponent({ entity }: any) {
-  return <div>Location: {entity.location}</div>;
+  if (!entity.isLocated) return null;
+
+  return <Section>Location: {entity.location}</Section>;
 }

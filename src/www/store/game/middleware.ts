@@ -1,5 +1,5 @@
 import { Middleware } from "redux";
-import { apiGet, apiPost } from "www/api";
+import { apiGet } from "www/api";
 import { AppState } from "www/store";
 import {
   loadingFinished,

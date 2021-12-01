@@ -1,12 +1,12 @@
 export function ListResources({ resources, prefixTestId = "" }: any) {
   return (
-    <>
+    <ul>
       {Object.keys(resources).map((name: string) => (
         <li key={name} data-testid={`${prefixTestId}resource-${name}`}>
           {prettyPrint(name, resources[name])}
         </li>
       ))}
-    </>
+    </ul>
   );
 }
 
