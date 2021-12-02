@@ -1,14 +1,23 @@
-## Practica LS2 2021/22
+## Examen LS2 2021-12
 
 Benvingut!
 
+- Quin és el teu nom?
+  ________________________________________
+
+- Modifica el `pom.xml` i concatena pel davant el teu usuari 
+  de GitHub al artifactId
+
+
 ## Membres del grup:
 
--
--
--
--
--
+- Quins son els membres del grup?
+
+  -
+  -
+  -
+  -
+  -
 
 Deploy path:
 
@@ -19,7 +28,7 @@ Deploy path:
 Abans d'entregar verifica que:
 
 [ ] Modifica el fitxer `pom.xml` i concatena
-pel davant el teu usuari de GitHub al artifacId
+pel davant el teu usuari de GitHub al artifactId
 
 [ ] Commiteja i pushea sovint segons les regles de l'enunciat
 
@@ -31,8 +40,6 @@ There are two applications:
 
 - Java Spring JPA backend (run in 8080)
 - React Redux frontend (run in 3000)
-
-The deploy merges both into one single war.
 
 Setup Java BackEnd:
 
@@ -47,7 +54,7 @@ Manual Java Backend:
 
 Setup Javascript BackEnd:
 
-- Install node v14 i yarn
+- Install node v14 amd yarn
 
 - Execute `yarn`
 
@@ -72,11 +79,11 @@ React editor:
 Run tests frequently. Do not forget to check Code Coverage.
 First build and run backend tests, then run frontend tests.
 Frontend tests will not pass unless backend tests pass before.
-Remember that in front end, you can select a specific test by writting
+Remember that in front end, you can select a specific test by writing
 a part of it in the command line, ex:
 
 ```bash
-$ yarn test -i "2020-12-17_"
+$ yarn test "2021-12-15_"
 ```
 
 1. Backend:
@@ -86,4 +93,4 @@ $ yarn test -i "2020-12-17_"
 
 2. Frontend:
 
-- Run `CI=1 yarn test -i --coverage --coveragePathIgnorePatterns 'src/www/__test__'`
+- Run `CI=1 yarn test -i --testTimeout 20000 --coverage`
