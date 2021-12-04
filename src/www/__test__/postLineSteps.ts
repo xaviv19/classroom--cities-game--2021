@@ -1,6 +1,7 @@
-import { systemPostLineSteps } from "./testPost";
+import { PostLineStep, systemPostLineSteps } from "./testPost";
 import { customTestSteps } from "./testSteps";
 
-export const postLineSteps = [systemPostLineSteps, customTestSteps].flat(
-  Infinity
-) as any;
+export const postLineSteps: PostLineStep[] = [
+  systemPostLineSteps,
+  customTestSteps,
+].flat(Infinity) as any;

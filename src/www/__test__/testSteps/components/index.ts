@@ -1,3 +1,4 @@
+import { ListOfSteps } from "www/__test__/testPost";
 import { buildersTestSteps } from "./buildersTestSteps";
 import { containedsTestSteps } from "./containedsTestSteps";
 import { dockTestSteps } from "./dockTestSteps";
@@ -9,7 +10,7 @@ import { resourcedModifierTestSteps } from "./resourcedModifierTestSteps";
 import { resourcedTestSteps } from "./resourcedTestSteps";
 import { sailTestSteps } from "./sailTestSteps";
 
-export const componentsTestSteps = [
+export const componentsTestSteps: ListOfSteps = [
   buildersTestSteps,
   containedsTestSteps,
   dockTestSteps,
