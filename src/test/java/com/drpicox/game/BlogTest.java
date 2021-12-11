@@ -3,7 +3,6 @@ package com.drpicox.game;
 import com.drpicox.game.blog.AuthorsController;
 import com.drpicox.game.tools.JsonOld;
 import com.google.common.truth.Truth;
-import static com.google.common.truth.Truth.assertThat;
 import com.google.gson.Gson;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -19,7 +18,6 @@ import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 import static com.drpicox.game.tools.JsonSubject.assertThat;
-import static com.google.common.truth.Truth.assertWithMessage;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -89,7 +87,7 @@ public class BlogTest {
     public void all_posts_ids_satisfies_the_format_naming() throws Throwable {
         forEachPost(post -> {
             var id = post.get("id").toString();
-            if (id.matches("^20\\d\\d-[01]\\d-[0123]\\d(_[a-z]+)+$")) return;
+            if (id.matches("^20\\d\\d-[01]\\d-[0123]\\d(_[a-z0-9]+)+$")) return;
 
             throw new AssertionError("Post '" + id + ".md' name should satisfy the naming convention\n" +
                     " - post id: " + id + "\n" +
@@ -201,7 +199,7 @@ public class BlogTest {
             var title = post.get("title").toString();
 
             var expectedText = title.toLowerCase()
-                    .replaceAll("[^a-z]", " ")
+                    .replaceAll("[^a-z0-9]", " ")
                     .replaceAll("\\s+", " ")
                     .trim()
                     .replaceAll("\\s", "_");

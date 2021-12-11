@@ -96,13 +96,51 @@ And now we can surpass the limit.
  * The resource "gold" round increment should be 1.
  * The resource "gold" maximum should be 10.
 
-### Upgrade the Gold mine
+### Playing and cards
+
+In the following parts of this post, we will
+assume that we are in a more advance state of
+the game, and we will have a varying amount
+of resources, the amount necessary for the
+next functionality.
+
+For example, in the current game we have 6 of gold:
+
+ * The resource "gold" count should be 6.
+
+But we want to change it, so we describe it as follows:
+
+ * Given that the "leonard" "city" "Capital" has resource "gold" count 5.
+
+At this point the amount of gold is 5, but it is not yet
+visible in the frontend, but just refreshing the game we can see it:
+
+ * Refresh the game.
+ <!-- SNAPSHOT status=200 -->
+ * The resource "gold" count should be 5.
+
+Refreshing the game is not always necessary. When the 
+resource amount is changed, the game already knows it, and all
+calculations work. So, no refresh is usually needed.
+
+
+## Upgrade the Gold mine
 
 The gold mine produces 1 gold, it is good, but not good enough.
 We can upgrade it to level 2 and increase the production
 from 1 to 2. But the upgrade takes 5 of gold.
 
- * The resource "gold" count should be 6.
+First we make sure that we have everything that we need:
+
+ * Given that "leonard" is playing.
+ * Given that the "leonard" "city" "Capital" has built a "Gold mine"
+ * Given that the "leonard" "city" "Capital" has resource "gold" count 5.
+ * Go to the next player "leonard"
+ <!-- SNAPSHOT status=200 -->
+ * Go to the "leonard" "city" "Capital".
+
+Then we make the upgrade:
+
  * The resource "gold" round increment should be 1.
  * Go to the contained "building" "Gold mine".
  * The _level_ number should be 1.
@@ -112,23 +150,25 @@ from 1 to 2. But the upgrade takes 5 of gold.
  * The _level_ number should be 2.
  * The resource modifier for "gold" round increment should be 2.
  * Go back to the previous screen.
- * The resource "gold" count should be 1.
+ * The resource "gold" count should be 0.
  * The resource "gold" round increment should be 2.
 
-### Upgrade the Gold vault
+## Upgrade the Gold vault
 
 You can also upgrade the Gold vault, so you can keep more than 10 of
-gold in your city. But it costs 5 of gold.
+gold in your city up to 15. But it costs 5 of gold. 
 
- * The resource "gold" count should be 1.
+First we make sure that we have everything that we need:
+
+ * Given that "leonard" is playing.
+ * Given that the "leonard" "city" "Capital" has built a "Gold vault"
  * Given that the "leonard" "city" "Capital" has resource "gold" count 5.
- * Refresh the game.
+ * Go to the next player "leonard"
  <!-- SNAPSHOT status=200 -->
- * The resource "gold" count should be 5.
- 
-Now you can upgrade the Gold vault.
+ * Go to the "leonard" "city" "Capital".
 
- * The resource "gold" count should be 5.
+Then we make the upgrade:
+
  * The resource "gold" maximum should be 10.
  * Go to the contained "building" "Gold vault".
  * The _level_ number should be 1.
@@ -141,11 +181,20 @@ Now you can upgrade the Gold vault.
  * The resource "gold" count should be 0.
  * The resource "gold" maximum should be 15.
 
-### Wood mill
+## Wood mill
 
 You can build a Wood mill for 5 of gold and will produce 1 of wood in each round.
 
+First we make sure that we have everything that we need:
+
+ * Given that "leonard" is playing.
  * Given that the "leonard" "city" "Capital" has resource "gold" count 5.
+ * Go to the next player "leonard"
+ <!-- SNAPSHOT status=200 -->
+ * Go to the "leonard" "city" "Capital".
+
+Then we make the upgrade:
+
  * The resource "wood" round increment should be 0.
  * Go to the contained "building" "Builder".
  * You should be at the screen of a "building".
@@ -155,19 +204,31 @@ You can build a Wood mill for 5 of gold and will produce 1 of wood in each round
  * The resource "gold" count should be 0.
  * The resource "wood" round increment should be 1.
  * The resource "wood" count should be 0.
+
+And we can see how it produces:
+
  * Skip 1 rounds.
  <!-- SNAPSHOT status=200 -->
  * The resource "wood" count should be 1.
 
-### Wood depot
+## Wood depot
 
 You can increase the store for wood in 5 creating the wood depot. But it also
 cost 5 of gold.
 
+First we make sure that we have everything that we need:
+
+ * Given that "leonard" is playing.
+ * Given that the "leonard" "city" "Capital" has built a "Wood mill"
  * Given that the "leonard" "city" "Capital" has resource "gold" count 5.
+ * Go to the next player "leonard"
+ <!-- SNAPSHOT status=200 -->
+ * Go to the "leonard" "city" "Capital".
+
+Then we make the upgrade:
+
  * The resource "wood" maximum should be 5.
  * Go to the contained "building" "Builder".
- * You should be at the screen of a "building".
  * Build the "Wood depot".
  <!-- SNAPSHOT status=200 -->
  * There should contain the "building" "Wood depot".
@@ -179,8 +240,8 @@ now we can see that the amount of wood increases
 until the new maximum.
 
  * The resource "wood" round increment should be 1.
- * The resource "wood" count should be 1.
- * Skip 10 rounds.
+ * The resource "wood" count should be 0.
+ * Skip 11 rounds.
  <!-- SNAPSHOT status=200 -->
  * The resource "wood" count should be 10.
 

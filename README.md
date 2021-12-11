@@ -1,38 +1,27 @@
+
 ## Examen LS2 2021-12
 
 Benvingut!
+
+## Preguntes
+
+Abans de començar, omple el següent qüestionari:
 
 - Quin és el teu nom?
   ________________________________________
 
 - Modifica el `pom.xml` i concatena pel davant el teu usuari 
-  de GitHub al artifactId
+  de GitHub a artifactId
 
+- Vas participar en el canvi de tema?
+  ________________________________________
 
-## Membres del grup:
+- En punts, quin pes diries que vas aportar al canvi de tema?
+  ______
 
-- Quins son els membres del grup?
+- Qui va contribuir més en el canvi de tema del teu grup?
+  ________________________________________
 
-  -
-  -
-  -
-  -
-  -
-
-Deploy path:
-
-- url to heroku running
-
-## Checklist
-
-Abans d'entregar verifica que:
-
-[ ] Modifica el fitxer `pom.xml` i concatena
-pel davant el teu usuari de GitHub al artifactId
-
-[ ] Commiteja i pushea sovint segons les regles de l'enunciat
-
-[ ] Comprova el Coverage
 
 ## Setup
 
@@ -76,7 +65,7 @@ React editor:
 
 ## Run Tests
 
-Run tests frequently. Do not forget to check Code Coverage.
+Run tests frequently. Do not forget to check **Code Coverage**.
 First build and run backend tests, then run frontend tests.
 Frontend tests will not pass unless backend tests pass before.
 Remember that in front end, you can select a specific test by writing
