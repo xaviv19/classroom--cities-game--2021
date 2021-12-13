@@ -9,7 +9,8 @@ export function EntityListItem({ entity }: any) {
     [dispatch, entity]
   );
 
-  const { type, name, owner } = entity;
+  const { type, name, owner, resources } = entity;
+  let potatoEmoji = type === "ship" && resources?.potato.maximum > 0 ? "\ud83e\udd54" : "";
 
   return (
     <li
@@ -17,8 +18,9 @@ export function EntityListItem({ entity }: any) {
       data-testid="entity-list-item"
       style={{ textDecoration: "underline", cursor: "pointer" }}
     >
-      {type}: {name}
+      {type}: {name }
       {owner && ` of ${owner}`}
+      {potatoEmoji}
     </li>
   );
 }
