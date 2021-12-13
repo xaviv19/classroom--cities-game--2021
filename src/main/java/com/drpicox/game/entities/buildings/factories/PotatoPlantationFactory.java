@@ -48,7 +48,7 @@ public class PotatoPlantationFactory implements BuilderFactory {
         containedsController.create(entityId, containerId);
         namedsController.create(entityId, getName());
         typedsController.create(entityId, "building");
-        resourcedModifiersController.create(entityId, ResourceType.BANANA, 1, 0);
+        resourcedModifiersController.create(entityId, ResourceType.POTATO, 1, 0);
         return entityId;
     }
 }
