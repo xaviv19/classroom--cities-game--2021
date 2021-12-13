@@ -8,7 +8,8 @@ public enum ResourceType {
     GOLD("gold"),
     WOOD("wood"),
     STEEL("steel"),
-    BANANA("banana");
+    BANANA("banana"),
+    POTATO("potato");
 
     private String name;
 
