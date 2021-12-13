@@ -7,19 +7,19 @@ Benvingut!
 
 Abans de començar, omple el següent qüestionari:
 
-- Quin és el teu nom?
+- Quin és el teu nom? Xavi Vidal Dominguez
   ________________________________________
 
 - Modifica el `pom.xml` i concatena pel davant el teu usuari 
   de GitHub a artifactId
 
-- Vas participar en el canvi de tema?
+- Vas participar en el canvi de tema? Si
   ________________________________________
 
-- En punts, quin pes diries que vas aportar al canvi de tema?
+- En punts, quin pes diries que vas aportar al canvi de tema? 5 
   ______
 
-- Qui va contribuir més en el canvi de tema del teu grup?
+- Qui va contribuir més en el canvi de tema del teu grup? Judith Barberan
   ________________________________________
 
 
