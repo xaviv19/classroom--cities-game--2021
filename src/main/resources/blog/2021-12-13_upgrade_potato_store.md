@@ -19,6 +19,7 @@ coder: xaviv19
  * Given that the "leonard" "city" "Capital" has resource "steel" count 2.
 
 ### Afegir el leveledComponent al Potato store
+ * Go to the contained "deck" "Potato store".
  * The _level_ number should be 1.
 
 ### Crear el PotatoStoreUpgrader

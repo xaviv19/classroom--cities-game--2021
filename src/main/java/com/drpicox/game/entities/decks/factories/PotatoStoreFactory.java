@@ -3,6 +3,7 @@ package com.drpicox.game.entities.decks.factories;
 import com.drpicox.game.components.builder.BuilderFactory;
 import com.drpicox.game.components.containeds.ContainedsController;
 import com.drpicox.game.components.docks.DocksController;
+import com.drpicox.game.components.leveleds.LeveledController;
 import com.drpicox.game.components.nameds.NamedsController;
 import com.drpicox.game.components.resourcedModifiers.ResourcedModifiersController;
 import com.drpicox.game.components.resourceds.ResourceType;
@@ -21,8 +22,9 @@ public class PotatoStoreFactory implements BuilderFactory {
     private final ResourcedsController resourcedsController;
     private final ResourcedModifiersController resourcedModifiersController;
     private final DocksController docksController;
+    private final LeveledController leveledController;
 
-    public PotatoStoreFactory(EntityIdGenerator entityIdGenerator, ContainedsController containedsController, NamedsController namedsController, TypedsController typedsController, ResourcedsController resourcedsController, ResourcedModifiersController resourcedModifiersController, DocksController docksController) {
+    public PotatoStoreFactory(EntityIdGenerator entityIdGenerator, ContainedsController containedsController, NamedsController namedsController, TypedsController typedsController, ResourcedsController resourcedsController, ResourcedModifiersController resourcedModifiersController, DocksController docksController, LeveledController leveledController) {
         this.entityIdGenerator = entityIdGenerator;
         this.containedsController = containedsController;
         this.namedsController = namedsController;
@@ -30,6 +32,7 @@ public class PotatoStoreFactory implements BuilderFactory {
         this.resourcedsController = resourcedsController;
         this.resourcedModifiersController = resourcedModifiersController;
         this.docksController = docksController;
+        this.leveledController = leveledController;
     }
 
     @Override
@@ -52,6 +55,7 @@ public class PotatoStoreFactory implements BuilderFactory {
         namedsController.create(entityId, getName());
         typedsController.create(entityId, "deck");
         resourcedModifiersController.create(entityId, ResourceType.POTATO, 0, 5);
+        leveledController.create(entityId);
         return entityId;
     }
 }
