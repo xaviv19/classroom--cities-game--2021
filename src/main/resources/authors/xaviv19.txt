@@ -1,0 +1,3 @@
+name: Xavi Vidal Dominguez
+email: xvidal@edu.tecnocampus.cat
+github: xaviv19
