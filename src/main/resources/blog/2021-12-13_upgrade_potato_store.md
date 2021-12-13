@@ -23,11 +23,11 @@ coder: xaviv19
  * The _level_ number should be 1.
 
 ### Crear el PotatoStoreUpgrader
- * The resource modifier for "gold" maximum should be 5.
+ * The resource modifier for "potato" maximum should be 5.
  * Upgrade the level.
  <!-- SNAPSHOT status=200 -->
  * The _level_ number should be 2.
- * The resource modifier for "gold" maximum should be 10.
+ * The resource modifier for "potato" maximum should be 10.
  * Go back to the previous screen.
  * The resource "potato" maximum should be 10.
  * The dock resource "steel" count should be 0.
